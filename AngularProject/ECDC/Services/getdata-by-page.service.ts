@@ -79,4 +79,11 @@ export class GetdataByPageService {
   GetRigMovePerformanceByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/RigMovePerformance/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole}`);
   }
+
+  GetEmpCodeByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/EmpCode/ByPage/${pageNumber}`);
+  }
+  GetPositionByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Positions/ByPage/${pageNumber}`);
+  }
 }

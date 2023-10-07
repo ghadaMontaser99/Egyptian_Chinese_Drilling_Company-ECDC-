@@ -25,6 +25,8 @@ import { IToolPusherPositionName } from 'SharedClasses/IToolPusherPositionName';
 import { ITypeOfInjury } from 'SharedClasses/ITypeOfInjury';
 import { ITypeOfObservationCategory } from 'SharedClasses/ITypeOfObservationCategory';
 import { IVehicle } from 'SharedClasses/IVehicle';
+import { IEmpCode } from 'SharedClasses/IEmpCode';
+import { IPosition } from 'SharedClasses/IPosition';
 
 @Injectable({
   providedIn: 'root'
@@ -132,6 +134,13 @@ export class DeleteDataService {
 
   DeleteRigPerformance(RigPerformance:IRigMovePerformanceEvaluation): Observable<IRigMovePerformanceEvaluation> {
     return this.http.put<IRigMovePerformanceEvaluation>(`http://localhost:5000/api/RigMovePerformance/Delete/${RigPerformance.id}`,RigPerformance);
+  }
+
+  DeleteEmpCode(EmpCode:IEmpCode): Observable<IEmpCode> {
+    return this.http.put<IEmpCode>(`http://localhost:5000/api/EmpCode/Delete/${EmpCode.id}`,EmpCode);
+  }
+  DeletePosition(Position:IPosition): Observable<IPosition> {
+    return this.http.put<IPosition>(`http://localhost:5000/api/Positions/Delete/${Position.id}`,Position);
   }
 }
 

@@ -11,7 +11,9 @@ namespace TempProject.Models
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<JMP> JMPs { get; set; }
         public DbSet<Driver> DriverNames { get; set; }
-        public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
+		public DbSet<EmpCode> EmpCodes  { get; set; }
+
+		public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
         //public DbSet<Crew> Crews { get; set; }
         public DbSet<LeadershipVisit> LeadershipVisits { get; set; }
         public DbSet<RecordableAccident> RecordableAccidents { get; set; }
@@ -25,10 +27,12 @@ namespace TempProject.Models
 		public DbSet<AccidentCauses> AccidentCauses { get; set; }
 		public DbSet<TypeOfInjury> TypeOfInjurys { get; set; }
 		public DbSet<ViolationCategory> ViolationCategorys { get; set; }
-		public DbSet<ToolPusherPosition> ToolPusherPositions { get; set; }
-		public DbSet<ToolPusherPositionName> ToolPusherPositionNames { get; set; }
-		public DbSet<QHSEPosition> QHSEPositions { get; set; }
-		public DbSet<QHSEPositionName> QHSEPositionNames { get; set; }
+		public DbSet<Positions> Positions { get; set; }
+
+		//public DbSet<ToolPusherPosition> ToolPusherPositions { get; set; }
+		//public DbSet<ToolPusherPositionName> ToolPusherPositionNames { get; set; }
+		//public DbSet<QHSEPosition> QHSEPositions { get; set; }
+		//public DbSet<QHSEPositionName> QHSEPositionNames { get; set; }
 		public DbSet<TypeOfObservationCategory> TypeOfObservationCategorys { get; set; }
 		public DbSet<ReportedByPosition> ReportedByPositions { get; set; }
 		public DbSet<ReportedByName> ReportedByNames { get; set; }

@@ -57,7 +57,7 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td colspan="3">
             <div class="form-group">
               <label class="form-label" for="accidentCausesId">Incident Causes : </label>
               <select name="accidentCausesId" formControlName="accidentCausesId" id="accidentCausesId"
@@ -67,17 +67,7 @@
               </select>
             </div>
           </td>
-          <td>
-            <div class="form-group  ">
-              <label class="form-label">Driller Name : </label>
-              <input type="text" formControlName="drillerName" class="form-control" />
-              <div *ngIf="drillerName?.invalid && (drillerName?.dirty || drillerName?.touched)">
-                <small class="text-danger" *ngIf="drillerName?.errors?.['required']">
-                  Driller Name is required
-                </small>
-              </div>
-            </div>
-          </td>
+          
         </tr>
 
         <tr>
@@ -129,25 +119,25 @@
         <tr>
           <td>
             <label class="form-label m-0 pb-0">QHSE Employee Code: </label>
-            <input list="QHSEmenace" autocomplete="off" formControlName="qhseEmpCode" name="menace" class="form-control" (input)="selectedMenace($event)">
+            <input list="QHSEmenace" autocomplete="off" formControlName="qHSEEmpCode" name="qHSEEmpCode" class="form-control" (input)="selectedMenace($event)">
             <datalist id="QHSEmenace">
-              <option *ngFor="let menace of QHSECodeList">{{menace.empCode}} </option>
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
           </td>
           <td>
             <div class="from-group">
-              <label for="qhsePositionId" class="form-label">QHSE Position :</label>
+              <label for="qHSEPositionName" class="form-label">QHSE Position :</label>
               <input class="form-control" [value]="QHSE_Position" disabled />
-              <input name="qhsePositionId" formControlName="qhsePositionId" id="qhsePositionId" class="form-control"
-                [(ngModel)]="QHSEPositionID" hidden />
+              <input name="qHSEPositionName" formControlName="qHSEPositionName" id="qHSEPositionName" class="form-control"
+                [(ngModel)]="QHSE_Position" hidden />
             </div>
           </td>
           <td>
             <div class="form-group">
-              <label class="form-label" for="qhsePositionNameId">Name :</label>
+              <label class="form-label" for="qHSEEmpName">Name :</label>
               <input class="form-control" [value]="QHSE_Name" disabled />
-              <input name="qhsePositionNameId" formControlName="qhsePositionNameId" id="qhsePositionNameId"
-                class="form-control" [(ngModel)]="QHSE_NameID" hidden />
+              <input name="qHSEEmpName" formControlName="qHSEEmpName" id="qHSEEmpName"
+                class="form-control" [(ngModel)]="QHSE_Name" hidden />
             </div>
           </td>
         </tr>
@@ -155,25 +145,77 @@
         <tr>
           <td>
             <label class="form-label m-0 pb-0">Tool Pusher Code : </label>
-            <input list="ToolPushermenace" autocomplete="off" formControlName="pusherEmpCode" name="menace" class="form-control" (input)="selectedMenaceTool($event)">
-            <datalist id="ToolPushermenace">
-              <option *ngFor="let menace of ToolPusherCodeList">{{menace.empCode}} </option>
+            <input list="QHSEmenace" autocomplete="off" formControlName="pusherCode" name="pusherCode" class="form-control" (input)="selectedMenaceTool($event)">
+            <datalist id="pusherCode">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
             </datalist>
           </td>
           <td>
             <div class="from-group">
-              <label for="toolPusherPositionId" class="form-label">Tool Pusher Position :</label>
+              <label for="pusherPositionName" class="form-label">Tool Pusher Position :</label>
               <input class="form-control" [value]="PusherPosition" disabled />
-              <input name="toolPusherPositionId" formControlName="toolPusherPositionId" id="toolPusherPositionId"
-                class="form-control" [(ngModel)]="PusherPositionID" hidden />
+              <input name="pusherPositionName" formControlName="pusherPositionName" id="pusherPositionName"
+                class="form-control" [(ngModel)]="PusherPosition" hidden />
             </div>
           </td>
           <td>
             <div class="form-group">
-              <label class="form-label" for="toolPusherPositionNameId">Name :</label>
+              <label class="form-label" for="pusherName">Name :</label>
               <input class="form-control" [value]="Pusher_Name" disabled />
-              <input name="toolPusherPositionNameId" formControlName="toolPusherPositionNameId"
-                id="toolPusherPositionNameId" class="form-control" [(ngModel)]="Pusher_NameId" hidden />
+              <input name="pusherName" formControlName="pusherName"
+                id="pusherName" class="form-control" [(ngModel)]="Pusher_Name" hidden />
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0">Driller Code: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="drillerCode" name="drillerCode" class="form-control" (input)="selectedMenaceDriller($event)">
+            <datalist id="drillerCode">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="drillerPositionName" class="form-label">Position :</label>
+              <input class="form-control" [value]="DrillerPosition" disabled />
+              <input name="drillerPositionName" formControlName="drillerPositionName" id="drillerPositionName" class="form-control"
+                [(ngModel)]="DrillerPosition" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="drillerName">Name :</label>
+              <input class="form-control" [value]="Driller_Name" disabled />
+              <input name="drillerName" formControlName="drillerName" id="drillerName"
+                class="form-control" [(ngModel)]="Driller_Name" hidden />
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0">The injured person Code: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="injuredPersonCode" name="injuredPersonCode" class="form-control" (input)="selectedMenaceInjuredPerson($event)">
+            <datalist id="injuredPersonCode">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="injuredPersonPositionName" class="form-label">Position :</label>
+              <input class="form-control" [value]="InjuredPersonPosition" disabled />
+              <input name="injuredPersonPositionName" formControlName="injuredPersonPositionName" id="injuredPersonPositionName" class="form-control"
+                [(ngModel)]="InjuredPersonPosition" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="injuredPersonName">Name :</label>
+              <input class="form-control" [value]="InjuredPerson_Name" disabled />
+              <input name="injuredPersonName" formControlName="injuredPersonName" id="injuredPersonName"
+                class="form-control" [(ngModel)]="InjuredPerson_Name" hidden />
             </div>
           </td>
         </tr>

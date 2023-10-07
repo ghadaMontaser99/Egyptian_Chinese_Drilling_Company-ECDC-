@@ -17,12 +17,22 @@ namespace TempProject.DTO.ResponseDTO
         public string PreventionCategory { get; set; }
         public string ClassificationOfAccident { get; set; }
         public string AccidentLocation { get; set; }
-        public string QHSEName { get; set; }
-        public string ToolPusherName { get; set; }
-        public string DrillerName { get; set; }
-        public string DescriptionOfTheEvent { get; set; }
-        public string ToolPusherPosition { get; set; }
-        public string QHSEPosition { get; set; }
+		public int QHSEEmpCode { get; set; }
+		public string QHSEPositionName { get; set; }
+		public string QHSEEmpName { get; set; }
+
+		public int PusherCode { get; set; }
+		public string PusherPositionName { get; set; }
+		public string PusherName { get; set; }
+		public int DrillerCode { get; set; }
+		public string DrillerPositionName { get; set; }
+		public string DrillerName { get; set; }
+
+		public int InjuredPersonCode { get; set; }
+		public string InjuredPersonPositionName { get; set; }
+		public string InjuredPersonName { get; set; }
+
+		public string DescriptionOfTheEvent { get; set; }
         public string ImmediateActionType { get; set; }
         public string DirectCauses { get; set; }
         public string RootCauses { get; set; }

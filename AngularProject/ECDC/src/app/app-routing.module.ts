@@ -108,6 +108,12 @@ import { BOPComponent } from './Reports/bop/bop.component';
 import { EditBOPComponent } from './EditReports/edit-bop/edit-bop.component';
 import { BopTableComponent } from './Report_Data/bop-table/bop-table.component';
 import { PrintBopComponent } from './Print_Reports/print-bop/print-bop.component';
+import { EmpCodeComponent } from './Items_In_SubDashboard/emp-code/emp-code.component';
+import { AddEmpCodeComponent } from './Add_Data/add-emp-code/add-emp-code.component';
+import { EditEmpCodeComponent } from './EditReports/edit-emp-code/edit-emp-code.component';
+import { PositionComponent } from './Items_In_SubDashboard/position/position.component';
+import { AddPostionComponent } from './Add_Data/add-postion/add-postion.component';
+import { EditPositionComponent } from './EditReports/edit-position/edit-position.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
@@ -181,11 +187,17 @@ const routes: Routes = [
   { path: 'Dashboard/PTSM',canActivate: [UserauthGuard], component: PTSMComponent },
   { path: 'Dashboard/PTSM/Add' ,canActivate: [UserauthGuard],component: AddPTSMComponent },
   { path: 'Dashboard/PTSM/Edit/:id',canActivate: [AuthGuard], component: EditPTSMComponent },
+  { path: 'Dashboard/EmpCode',canActivate: [UserauthGuard], component: EmpCodeComponent },
+  { path: 'Dashboard/EmpCode/Add' ,canActivate: [UserauthGuard],component: AddEmpCodeComponent },
+  { path: 'Dashboard/EmpCode/Edit/:id',canActivate: [AuthGuard], component: EditEmpCodeComponent },
 
   { path: 'Dashboard/BOP',canActivate: [UserauthGuard], component: BOPComponent },
   { path: 'Dashboard/BOP/Add' ,canActivate: [UserauthGuard],component:BOPComponent  },
    { path: 'Dashboard/BOP/Edit/:id',canActivate: [AuthGuard], component: EditBOPComponent },
   { path: 'PrintBOP', canActivate: [UserauthGuard],component: PrintBopComponent },
+  { path: 'Dashboard/Position',canActivate: [UserauthGuard], component: PositionComponent },
+  { path: 'Dashboard/Position/Add',canActivate: [UserauthGuard], component: AddPostionComponent },
+  { path: 'Dashboard/Position/Edit/:id',canActivate: [AuthGuard], component: EditPositionComponent },
 
 
   { path: 'PrintAccident',canActivate: [UserauthGuard], component: ReportAccidentComponent },

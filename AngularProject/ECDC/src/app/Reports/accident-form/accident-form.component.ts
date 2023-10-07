@@ -48,13 +48,24 @@ export class AccidentFormComponent {
   Pusher_Name:string='';
   Pusher_NameId:number=0;
 
+
+  DrillerPositionID: number = 0;
+  DrillerPosition:string='';
+  Driller_Name:string='';
+  Driller_NameId:number=0;
+  
+  InjuredPersonPositionID: number = 0;
+  InjuredPersonPosition:string='';
+  InjuredPerson_Name:string='';
+  InjuredPerson_NameId:number=0;
+
   User:any;
 
   constructor(private loginService: LoginService, private dataService: DataService, private AddNewAccident: AddNewAccidentService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.User=this.loginService.currentUser.getValue();
-    this.dataService.GetQHSEPositionName().subscribe({
+    this.dataService.GetEmpCode().subscribe({
       next: data => {
         this.QHSECodeList = data.data,
           console.log("this.QHSECodeList")
@@ -66,18 +77,18 @@ export class AccidentFormComponent {
         console.log(this.ErrorMessage)
       }
     }),
-    this.dataService.GetToolPusherPositionName().subscribe({
-      next: data => {
-        this.ToolPusherCodeList = data.data,
-          console.log("this.ToolPusherCodeList")
-        console.log(this.ToolPusherCodeList)
-      },
-      error: err => {
-        this.ErrorMessage = err,
-          console.log("this.ErrorMessage")
-        console.log(this.ErrorMessage)
-      }
-    })
+    // this.dataService.GetToolPusherPositionName().subscribe({
+    //   next: data => {
+    //     this.ToolPusherCodeList = data.data,
+    //       console.log("this.ToolPusherCodeList")
+    //     console.log(this.ToolPusherCodeList)
+    //   },
+    //   error: err => {
+    //     this.ErrorMessage = err,
+    //       console.log("this.ErrorMessage")
+    //     console.log(this.ErrorMessage)
+    //   }
+    // })
       this.accidentForm = this.fb.group(
         {
           id: this.fb.control(
@@ -110,13 +121,73 @@ export class AccidentFormComponent {
               Validators.required
             ]
           ),
-          pusherEmpCode: this.fb.control(
+          qHSEEmpCode: this.fb.control(
             '',
             [
               Validators.required
             ]
           ),
-          qhseEmpCode: this.fb.control(
+          qHSEPositionName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          qHSEEmpName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          pusherCode: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          pusherPositionName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          pusherName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          drillerCode: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          drillerPositionName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          drillerName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          injuredPersonCode: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          injuredPersonPositionName: this.fb.control(
+            '',
+            [
+              Validators.required
+            ]
+          ),
+          injuredPersonName: this.fb.control(
             '',
             [
               Validators.required
@@ -147,36 +218,6 @@ export class AccidentFormComponent {
             ]
           ),
           accidentLocation: this.fb.control(
-            '',
-            [
-              Validators.required
-            ]
-          ),
-          toolPusherPositionId: this.fb.control(
-            this.PusherPositionID,
-            [
-              Validators.required
-            ]
-          ),
-          toolPusherPositionNameId: this.fb.control(
-            this.Pusher_NameId,
-            [
-              Validators.required
-            ]
-          ),
-          qhsePositionId: this.fb.control(
-            this.QHSEPositionID,
-            [
-              Validators.required
-            ]
-          ),
-          qhsePositionNameId: this.fb.control(
-            this.QHSE_NameID,
-            [
-              Validators.required
-            ]
-          ),
-          drillerName: this.fb.control(
             '',
             [
               Validators.required
@@ -256,16 +297,19 @@ export class AccidentFormComponent {
   selectedMenace(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
-    this.dataService.GetQHSEPositionNameByEmpCode(event.target.value).subscribe({
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
       next:data=>{
         this.QHSE_NameID=data.data.id
         this.QHSE_Name=data.data.name,
         this.QHSEPositionID=data.data.positionId
+        console.log(data.data)
         console.log("this.QHSE_Name")
         console.log(this.QHSE_Name)
+        console.log("this kkkkkkkkk")
+        console.log(data.data)
         console.log("this.QHSE_PositionID")
         console.log(this.QHSEPositionID)
-        this.dataService.GetQHSEPositionByID(this.QHSEPositionID).subscribe({
+        this.dataService.GetPositionByID(this.QHSEPositionID).subscribe({
           next:data=>{
             this.QHSE_Position=data.data.name,
             console.log("this.QHSE_Position")
@@ -287,7 +331,7 @@ export class AccidentFormComponent {
   selectedMenaceTool(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
-    this.dataService.GetToolPusherPositionNameByEmpCode(event.target.value).subscribe({
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
       next:data=>{
         this.Pusher_NameId=data.data.id
         this.Pusher_Name=data.data.name,
@@ -296,7 +340,7 @@ export class AccidentFormComponent {
         console.log(this.Pusher_Name)
         console.log("this.PusherPositionID")
         console.log(this.PusherPositionID)
-        this.dataService.GetToolPusherPositionByID(this.PusherPositionID).subscribe({
+        this.dataService.GetPositionByID(this.PusherPositionID).subscribe({
           next:data=>{
             this.PusherPosition=data.data.name,
             console.log("this.PusherPosition")
@@ -316,6 +360,69 @@ export class AccidentFormComponent {
   }
 
 
+  selectedMenaceDriller(event: any) {
+    console.log("event.target.value")
+    console.log(event.target.value)
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
+      next:data=>{
+        this.Driller_NameId=data.data.id
+        this.Driller_Name=data.data.name,
+        this.DrillerPositionID=data.data.positionId
+        console.log("this.Driller_Name")
+        console.log(this.Driller_Name)
+        console.log("this.DrillerPositionID")
+        console.log(this.DrillerPositionID)
+        this.dataService.GetPositionByID(this.DrillerPositionID).subscribe({
+          next:data=>{
+            this.DrillerPosition=data.data.name,
+            console.log("this.DrillerPosition")
+            console.log(this.DrillerPosition)
+          },
+          error:err=>{
+            this.ErrorMessage=err,
+            console.log(this.ErrorMessage)
+          }
+        })
+      },
+      error:err=>{
+        this.ErrorMessage=err,
+        console.log(err)
+      }
+    })
+  }
+
+
+  selectedMenaceInjuredPerson(event: any) {
+    console.log("event.target.value")
+    console.log(event.target.value)
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
+      next:data=>{
+        this.InjuredPerson_NameId=data.data.id
+        this.InjuredPerson_Name=data.data.name,
+        this.InjuredPersonPositionID=data.data.positionId
+        console.log("this.InjuredPerson_Name")
+        console.log(this.InjuredPerson_Name)
+        console.log("this.InjuredPersonPositionID")
+        console.log(this.InjuredPersonPositionID)
+        this.dataService.GetPositionByID(this.InjuredPersonPositionID).subscribe({
+          next:data=>{
+            this.InjuredPersonPosition=data.data.name,
+            console.log("this.InjuredPersonPosition")
+            console.log(this.InjuredPersonPosition)
+          },
+          error:err=>{
+            this.ErrorMessage=err,
+            console.log(this.ErrorMessage)
+          }
+        })
+      },
+      error:err=>{
+        this.ErrorMessage=err,
+        console.log(err)
+      }
+    })
+  }
+
   get id() {
     return this.accidentForm.get('id');
   }
@@ -331,24 +438,7 @@ export class AccidentFormComponent {
   get typeOfInjuryID() {
     return this.accidentForm.get('typeOfInjuryID');
   }
-  get qhsePositionNameId() {
-    return this.accidentForm.get('qhsePositionNameId');
-  }
-  get qhsePositionId() {
-    return this.accidentForm.get('qhsePositionId');
-  }
-  get pusherEmpCode() {
-    return this.accidentForm.get('pusherEmpCode');
-  }
-  get qhseEmpCode() {
-    return this.accidentForm.get('qhseEmpCode');
-  }
-  get toolPusherPositionNameId() {
-    return this.accidentForm.get('toolPusherPositionNameId');
-  }
-  get toolPusherPositionId() {
-    return this.accidentForm.get('toolPusherPositionId');
-  }
+  
   get violationCategoryId() {
     return this.accidentForm.get('violationCategoryId');
   }
@@ -364,9 +454,41 @@ export class AccidentFormComponent {
   get accidentLocation() {
     return this.accidentForm.get('accidentLocation');
   }
-
+  get qHSEEmpCode() {
+    return this.accidentForm.get('qHSEEmpCode');
+  }
+  get qHSEPositionName() {
+    return this.accidentForm.get('qHSEPositionName');
+  }
+  get qHSEEmpName() {
+    return this.accidentForm.get('qHSEEmpName');
+  }
+  get pusherCode() {
+    return this.accidentForm.get('pusherCode');
+  }
+  get pusherPositionName() {
+    return this.accidentForm.get('pusherPositionName');
+  }
+  get pusherName() {
+    return this.accidentForm.get('pusherName');
+  }
+  get drillerCode() {
+    return this.accidentForm.get('drillerCode');
+  }
+  get drillerPositionName() {
+    return this.accidentForm.get('drillerPositionName');
+  }
   get drillerName() {
     return this.accidentForm.get('drillerName');
+  }
+  get injuredPersonCode() {
+    return this.accidentForm.get('injuredPersonCode');
+  }
+  get injuredPersonPositionName() {
+    return this.accidentForm.get('injuredPersonPositionName');
+  }
+  get injuredPersonName() {
+    return this.accidentForm.get('injuredPersonName');
   }
   get descriptionOfTheEvent() {
     return this.accidentForm.get('descriptionOfTheEvent');
@@ -402,13 +524,21 @@ export class AccidentFormComponent {
       Formdata.append('preventionCategoryId', this.preventionCategoryId?.value);
       Formdata.append('classificationOfAccidentId', this.classificationOfAccidentId?.value);
       Formdata.append('accidentLocation', this.accidentLocation?.value);
-      Formdata.append('qhsePositionNameId', this.qhsePositionNameId?.value);
-      Formdata.append('pusherEmpCode', this.pusherEmpCode?.value);
-      Formdata.append('qhseEmpCode', this.qhseEmpCode?.value);
-      Formdata.append('toolPusherPositionNameId', this.toolPusherPositionNameId?.value);
-      Formdata.append('toolPusherPositionId', this.toolPusherPositionId?.value);
-      Formdata.append('qhsePositionId', this.qhsePositionId?.value);
+
+      Formdata.append('qHSEEmpCode', this.qHSEEmpCode?.value);
+      Formdata.append('qHSEPositionName', this.qHSEPositionName?.value);
+      Formdata.append('qHSEEmpName', this.qHSEEmpName?.value);
+      Formdata.append('pusherCode', this.pusherCode?.value);
+      Formdata.append('pusherPositionName', this.pusherPositionName?.value);
+      Formdata.append('pusherName', this.pusherName?.value);
+      Formdata.append('drillerCode', this.drillerCode?.value);
+      Formdata.append('drillerPositionName', this.drillerPositionName?.value);
       Formdata.append('drillerName', this.drillerName?.value);
+      Formdata.append('injuredPersonCode', this.injuredPersonCode?.value);
+      Formdata.append('injuredPersonPositionName', this.injuredPersonPositionName?.value);
+      Formdata.append('injuredPersonName', this.injuredPersonName?.value);
+
+
       Formdata.append('descriptionOfTheEvent', this.descriptionOfTheEvent?.value);
       Formdata.append('immediateActionType', this.immediateActionType?.value);
       Formdata.append('directCauses', this.directCauses?.value);

@@ -23,10 +23,6 @@ namespace TempProject.Repository
                 .Include(a => a.TypeOfInjury)
                 .Include(a => a.user)
                 .Include(a => a.ViolationCategory)
-                .Include(a => a.ToolPusherPosition)
-                .Include(a=>a.ToolPusherPosition)
-                .Include(a => a.QHSEPosition)
-                .Include(a => a.QHSEPositionName)
 				.Where(a => a.IsDeleted == false)
 				.Select(a => new Accident
                 {
@@ -40,27 +36,21 @@ namespace TempProject.Repository
                     AccidentCauses = new AccidentCauses { Name = a.AccidentCauses.Name },
                     PreventionCategory = new PreventionCategory { Name = a.PreventionCategory.Name },
                     ClassificationOfAccident = new ClassificationOfAccident { Name = a.ClassificationOfAccident.Name },
-                    QHSEPosition = new QHSEPosition
-                    {
-                        Name = a.QHSEPosition.Name,
-                    },
-                    QHSEPositionName = new QHSEPositionName
-                    {
-                        Name = a.QHSEPositionName.Name,
-                    },
-                    ToolPusherPosition = new ToolPusherPosition
-                    {
-                        Name = a.ToolPusherPosition.Name,
-                    },
-                    ToolPusherPositionName = new ToolPusherPositionName
-                    {
-                        Name = a.ToolPusherPositionName.Name,
-                    },
+
                     AccidentLocation = a.AccidentLocation,
-                    PusherEmpCode = a.PusherEmpCode,
                     QHSEEmpCode= a.QHSEEmpCode,
-                    DrillerName = a.DrillerName,
-                    DescriptionOfTheEvent = a.DescriptionOfTheEvent,
+					QHSEPositionName = a.QHSEPositionName,
+					QHSEEmpName = a.QHSEEmpName,
+					PusherCode = a.PusherCode,
+					PusherPositionName = a.PusherPositionName,
+					PusherName = a.PusherName,
+					DrillerName = a.DrillerName,
+					DrillerCode = a.DrillerCode,
+					DrillerPositionName = a.DrillerPositionName,
+					InjuredPersonCode = a.InjuredPersonCode,
+					InjuredPersonPositionName = a.InjuredPersonPositionName,
+					InjuredPersonName = a.InjuredPersonName,
+					DescriptionOfTheEvent = a.DescriptionOfTheEvent,
                     ImmediateActionType = a.ImmediateActionType,
                     DirectCauses = a.DirectCauses,
                     RootCauses = a.RootCauses,

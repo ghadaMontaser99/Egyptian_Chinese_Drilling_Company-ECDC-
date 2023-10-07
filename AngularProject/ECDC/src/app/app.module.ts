@@ -116,6 +116,12 @@ import { BOPComponent } from './Reports/bop/bop.component';
 import { EditBOPComponent } from './EditReports/edit-bop/edit-bop.component';
 import { BopTableComponent } from './Report_Data/bop-table/bop-table.component';
 import { PrintBopComponent } from './Print_Reports/print-bop/print-bop.component';
+import { EmpCodeComponent } from './Items_In_SubDashboard/emp-code/emp-code.component';
+import { AddEmpCodeComponent } from './Add_Data/add-emp-code/add-emp-code.component';
+import { EditEmpCodeComponent } from './EditReports/edit-emp-code/edit-emp-code.component';
+import { AddPostionComponent } from './Add_Data/add-postion/add-postion.component';
+import { PositionComponent } from './Items_In_SubDashboard/position/position.component';
+import { EditPositionComponent } from './EditReports/edit-position/edit-position.component';
 
 @NgModule({
   declarations: [
@@ -228,6 +234,12 @@ import { PrintBopComponent } from './Print_Reports/print-bop/print-bop.component
     EditBOPComponent,
     BopTableComponent,
     PrintBopComponent,
+    EmpCodeComponent,
+    AddEmpCodeComponent,
+    EditEmpCodeComponent,
+    AddPostionComponent,
+    PositionComponent,
+    EditPositionComponent,
 
 
   ],

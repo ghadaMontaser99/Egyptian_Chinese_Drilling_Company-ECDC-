@@ -22,8 +22,8 @@ export class SubDashboardComponent {
   passengercount:number=0;
   preventionCategoryList:any;
   preventionCategorycount:number=0;
-  QHSEPositionList:any;
-  QHSEPositioncount:number=0;
+  PositionList:any;
+  Positioncount:number=0;
   QHSEPositionNameList:any;
   QHSEPositionNamecount:number=0;
   reportedByNameList:any;
@@ -49,6 +49,8 @@ export class SubDashboardComponent {
   IsAdmin:boolean=false;
   IsRadio:boolean=false;
   IsUser:boolean=false;
+  EmpCodecount:number=0;
+  EmpCodeList:any;
 
   constructor(private dataService: DataService,
     private loginService:LoginService) { }
@@ -72,6 +74,15 @@ export class SubDashboardComponent {
         this.accidentCausescount=this.accidentCausesList.length
       }
     })
+
+
+    this.dataService.GetEmpCode().subscribe({
+      next:data=>{
+        this.EmpCodeList=data.data,
+        this.EmpCodecount=this.EmpCodeList.length
+      }
+    })
+
     this.dataService.GetClassification().subscribe({
       next:data=>{
         this.classificationList=data.data,
@@ -108,10 +119,10 @@ export class SubDashboardComponent {
         this.preventionCategorycount=this.preventionCategoryList.length
       }
     })
-    this.dataService.GetQHSEPosition().subscribe({
+    this.dataService.GetPositions().subscribe({
       next:data=>{
-        this.QHSEPositionList=data.data,
-        this.QHSEPositioncount=this.QHSEPositionList.length
+        this.PositionList=data.data,
+        this.Positioncount=this.PositionList.length
       }
     })
     this.dataService.GetQHSEPositionName().subscribe({

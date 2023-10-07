@@ -198,5 +198,26 @@ export class DataService {
     return this.http.get<any>(`http://localhost:5000/api/StopCardRegister/GetDataByMonthCompare?date1=${month1}&date2=${month2}&UserId=${userId}&UserRole=${userRole}`);
   }
 
+  GetEmpCode(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode`);
+  }
+
+  GetEmpCodeByID(EmpCodeID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode/${EmpCodeID}`);
+  }
+
+  GetEmpCodeByCode(EmpCode: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode/Code/${EmpCode}`);
+  }
+
+  GetPositions(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Positions`);
+  }
+
+  GetPositionByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Positions/${ID}`);
+  }
+  
+
 
 }

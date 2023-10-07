@@ -66,6 +66,26 @@
         </div>
       </div>
     </div>
+
+
+    <div class="col-md-6" *ngIf="IsUser||IsAdmin">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Employee No </h3>
+          <h5> {{EmpCodecount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/EmpCode">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="col-md-6" *ngIf="IsRadio||IsAdmin||IsUser">
       <div class="card p-3 mb-2">
         <div>
@@ -114,12 +134,12 @@
     <div class="col-md-6" *ngIf="IsUser||IsAdmin">
       <div class="card p-3 mb-2">
         <div>
-          <h3 class="heading"> QHSE Positions </h3>
-          <h5> {{QHSEPositioncount}} Record </h5>
+          <h3 class="heading">Positions </h3>
+          <h5> {{Positioncount}} Record </h5>
           <div class="mt-5">
             <div class="mt-3">
               <span class="text1">
-                <a routerLink="/Dashboard/QHSEPosition">Show Data</a>
+                <a routerLink="/Dashboard/Position">Show Data</a>
               </span>
             </div>
           </div>

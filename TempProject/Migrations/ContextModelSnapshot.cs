@@ -249,11 +249,29 @@ namespace TempProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DrillerCode")
+                        .HasColumnType("int");
+
                     b.Property<string>("DrillerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DrillerPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImmediateActionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InjuredPersonCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InjuredPersonName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InjuredPersonPositionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -267,17 +285,27 @@ namespace TempProject.Migrations
                     b.Property<int>("PreventionCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PusherEmpCode")
+                    b.Property<int>("PusherCode")
                         .HasColumnType("int");
+
+                    b.Property<string>("PusherName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PusherPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("QHSEEmpCode")
                         .HasColumnType("int");
 
-                    b.Property<int>("QHSEPositionId")
-                        .HasColumnType("int");
+                    b.Property<string>("QHSEEmpName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QHSEPositionNameId")
-                        .HasColumnType("int");
+                    b.Property<string>("QHSEPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Recommendations")
                         .IsRequired()
@@ -292,12 +320,6 @@ namespace TempProject.Migrations
 
                     b.Property<TimeSpan>("TimeOfEvent")
                         .HasColumnType("time");
-
-                    b.Property<int>("ToolPusherPositionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ToolPusherPositionNameId")
-                        .HasColumnType("int");
 
                     b.Property<int>("TypeOfInjuryID")
                         .HasColumnType("int");
@@ -317,15 +339,7 @@ namespace TempProject.Migrations
 
                     b.HasIndex("PreventionCategoryId");
 
-                    b.HasIndex("QHSEPositionId");
-
-                    b.HasIndex("QHSEPositionNameId");
-
                     b.HasIndex("RigId");
-
-                    b.HasIndex("ToolPusherPositionId");
-
-                    b.HasIndex("ToolPusherPositionNameId");
 
                     b.HasIndex("TypeOfInjuryID");
 
@@ -538,6 +552,34 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DriverNames");
+                });
+
+            modelBuilder.Entity("TempProject.Models.EmpCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PositionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("EmpCodes");
                 });
 
             modelBuilder.Entity("TempProject.Models.JMP", b =>
@@ -797,6 +839,26 @@ namespace TempProject.Migrations
                     b.ToTable("Passengers");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Positions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Positions");
+                });
+
             modelBuilder.Entity("TempProject.Models.PreventionCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -851,54 +913,6 @@ namespace TempProject.Migrations
                     b.HasIndex("RigMovePerformanceId");
 
                     b.ToTable("ProblemFacedDuringRigMoves");
-                });
-
-            modelBuilder.Entity("TempProject.Models.QHSEPosition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QHSEPositions");
-                });
-
-            modelBuilder.Entity("TempProject.Models.QHSEPositionName", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EmpCode")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PositionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
-
-                    b.ToTable("QHSEPositionNames");
                 });
 
             modelBuilder.Entity("TempProject.Models.RecordableAccident", b =>
@@ -1138,54 +1152,6 @@ namespace TempProject.Migrations
                     b.ToTable("StopCardRegisters");
                 });
 
-            modelBuilder.Entity("TempProject.Models.ToolPusherPosition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ToolPusherPositions");
-                });
-
-            modelBuilder.Entity("TempProject.Models.ToolPusherPositionName", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EmpCode")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PositionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
-
-                    b.ToTable("ToolPusherPositionNames");
-                });
-
             modelBuilder.Entity("TempProject.Models.TypeOfInjury", b =>
                 {
                     b.Property<int>("Id")
@@ -1355,33 +1321,9 @@ namespace TempProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TempProject.Models.QHSEPosition", "QHSEPosition")
-                        .WithMany("Accidents")
-                        .HasForeignKey("QHSEPositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TempProject.Models.QHSEPositionName", "QHSEPositionName")
-                        .WithMany("Accidents")
-                        .HasForeignKey("QHSEPositionNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TempProject.Models.Rig", "Rig")
                         .WithMany("Accidents")
                         .HasForeignKey("RigId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TempProject.Models.ToolPusherPosition", "ToolPusherPosition")
-                        .WithMany("Accidents")
-                        .HasForeignKey("ToolPusherPositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TempProject.Models.ToolPusherPositionName", "ToolPusherPositionName")
-                        .WithMany("Accidents")
-                        .HasForeignKey("ToolPusherPositionNameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1409,15 +1351,7 @@ namespace TempProject.Migrations
 
                     b.Navigation("PreventionCategory");
 
-                    b.Navigation("QHSEPosition");
-
-                    b.Navigation("QHSEPositionName");
-
                     b.Navigation("Rig");
-
-                    b.Navigation("ToolPusherPosition");
-
-                    b.Navigation("ToolPusherPositionName");
 
                     b.Navigation("TypeOfInjury");
 
@@ -1454,6 +1388,17 @@ namespace TempProject.Migrations
                     b.Navigation("Rig");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("TempProject.Models.EmpCode", b =>
+                {
+                    b.HasOne("TempProject.Models.Positions", "Positions")
+                        .WithMany("EmpCodes")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Positions");
                 });
 
             modelBuilder.Entity("TempProject.Models.JMP", b =>
@@ -1548,17 +1493,6 @@ namespace TempProject.Migrations
                     b.Navigation("RigMovePerformance");
                 });
 
-            modelBuilder.Entity("TempProject.Models.QHSEPositionName", b =>
-                {
-                    b.HasOne("TempProject.Models.QHSEPosition", "QHSEPosition")
-                        .WithMany("QHSEPositionNames")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("QHSEPosition");
-                });
-
             modelBuilder.Entity("TempProject.Models.ReportedByName", b =>
                 {
                     b.HasOne("TempProject.Models.ReportedByPosition", "ReportedByPosition")
@@ -1632,17 +1566,6 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("TempProject.Models.ToolPusherPositionName", b =>
-                {
-                    b.HasOne("TempProject.Models.ToolPusherPosition", "ToolPusherPosition")
-                        .WithMany("ToolPusherPositions")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ToolPusherPosition");
-                });
-
             modelBuilder.Entity("TempProject.Models.AccidentCauses", b =>
                 {
                     b.Navigation("Accidents");
@@ -1683,19 +1606,12 @@ namespace TempProject.Migrations
                     b.Navigation("jMP_Passengers");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Positions", b =>
+                {
+                    b.Navigation("EmpCodes");
+                });
+
             modelBuilder.Entity("TempProject.Models.PreventionCategory", b =>
-                {
-                    b.Navigation("Accidents");
-                });
-
-            modelBuilder.Entity("TempProject.Models.QHSEPosition", b =>
-                {
-                    b.Navigation("Accidents");
-
-                    b.Navigation("QHSEPositionNames");
-                });
-
-            modelBuilder.Entity("TempProject.Models.QHSEPositionName", b =>
                 {
                     b.Navigation("Accidents");
                 });
@@ -1727,18 +1643,6 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.RouteName", b =>
                 {
                     b.Navigation("JMPs");
-                });
-
-            modelBuilder.Entity("TempProject.Models.ToolPusherPosition", b =>
-                {
-                    b.Navigation("Accidents");
-
-                    b.Navigation("ToolPusherPositions");
-                });
-
-            modelBuilder.Entity("TempProject.Models.ToolPusherPositionName", b =>
-                {
-                    b.Navigation("Accidents");
                 });
 
             modelBuilder.Entity("TempProject.Models.TypeOfInjury", b =>

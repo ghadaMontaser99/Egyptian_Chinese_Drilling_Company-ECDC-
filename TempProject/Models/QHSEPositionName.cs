@@ -7,9 +7,9 @@ namespace TempProject.Models
 	public class QHSEPositionName: ISoftDeleteRepository
     {
 		public int Id { get; set; }
-		public string Name { get; set; }
-		public int EmpCode { get; set; }
-
+		[ForeignKey("EmpCode")]
+		public int EmpCodeId { get; set; }
+		public virtual EmpCode EmpCode { get; set; }
 
 		[ForeignKey("QHSEPosition")]
 		public int PositionId { get; set; }

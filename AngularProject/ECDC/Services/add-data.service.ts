@@ -6,7 +6,9 @@ import { IClassification } from 'SharedClasses/IClassification';
 import { IClassificationOfAccident } from 'SharedClasses/IClassificationOfAccident';
 import { IComminucationMethod } from 'SharedClasses/IComminucationMethod';
 import { IDriver } from 'SharedClasses/IDriver';
+import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPassenger } from 'SharedClasses/IPassenger';
+import { IPosition } from 'SharedClasses/IPosition';
 import { IPreventionCategory } from 'SharedClasses/IPreventionCategory';
 import { IQHSEPosition } from 'SharedClasses/IQHSEPosition';
 import { IQHSEPositionName } from 'SharedClasses/IQHSEPositionName';
@@ -98,6 +100,13 @@ export class AddDataService {
   }
   AddPassenger(Passenger:IPassenger):Observable<IPassenger> {
     return this.http.post<IPassenger>(`http://localhost:5000/api/Passenger`,Passenger);
+  }
+
+  AddEmpCode(EmpCode:IEmpCode):Observable<IEmpCode> {
+    return this.http.post<IEmpCode>(`http://localhost:5000/api/EmpCode`,EmpCode);
+  }
+  AddPosition(postion:IPosition):Observable<IPosition> {
+    return this.http.post<IPosition>(`http://localhost:5000/api/Positions`,postion);
   }
  
 

@@ -55,11 +55,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -97,11 +109,22 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -154,13 +177,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.QHSECode = accident.QHSEEmpCode;
-						accidentDTO.ToolPusherCode = accident.PusherEmpCode;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -198,13 +231,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.QHSECode = accident.QHSEEmpCode;
-						accidentDTO.ToolPusherCode = accident.PusherEmpCode;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -260,11 +303,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -306,11 +361,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -365,11 +432,23 @@ namespace TempProject.Controllers
 					accidentDTO.PreventionCategory = temp.PreventionCategory.Name;
 					accidentDTO.ClassificationOfAccident = temp.ClassificationOfAccident.Name;
 					accidentDTO.AccidentLocation = temp.AccidentLocation;
-					accidentDTO.QHSEName = temp.QHSEPositionName.Name;
-					accidentDTO.ToolPusherName = temp.ToolPusherPositionName.Name;
-					accidentDTO.ToolPusherPosition = temp.ToolPusherPosition.Name;
-					accidentDTO.QHSEPosition = temp.QHSEPosition.Name;
+
+					accidentDTO.QHSEEmpName = temp.QHSEEmpName;
+					accidentDTO.QHSEEmpCode = temp.QHSEEmpCode;
+					accidentDTO.QHSEPositionName = temp.QHSEPositionName;
+
+					accidentDTO.DrillerCode = temp.DrillerCode;
 					accidentDTO.DrillerName = temp.DrillerName;
+					accidentDTO.DrillerPositionName = temp.DrillerPositionName;
+
+					accidentDTO.PusherCode = temp.PusherCode;
+					accidentDTO.PusherName = temp.PusherName;
+					accidentDTO.PusherPositionName = temp.PusherPositionName;
+
+					accidentDTO.InjuredPersonCode = temp.InjuredPersonCode;
+					accidentDTO.InjuredPersonName = temp.InjuredPersonName;
+					accidentDTO.InjuredPersonPositionName = temp.InjuredPersonPositionName;
+
 					accidentDTO.DescriptionOfTheEvent = temp.DescriptionOfTheEvent;
 					accidentDTO.ImmediateActionType = temp.ImmediateActionType;
 					accidentDTO.DirectCauses = temp.DirectCauses;
@@ -406,11 +485,23 @@ namespace TempProject.Controllers
 					accidentDTO.PreventionCategory = temp.PreventionCategory.Name;
 					accidentDTO.ClassificationOfAccident = temp.ClassificationOfAccident.Name;
 					accidentDTO.AccidentLocation = temp.AccidentLocation;
-					accidentDTO.QHSEName = temp.QHSEPositionName.Name;
-					accidentDTO.ToolPusherName = temp.ToolPusherPositionName.Name;
-					accidentDTO.ToolPusherPosition = temp.ToolPusherPosition.Name;
-					accidentDTO.QHSEPosition = temp.QHSEPosition.Name;
+
+					accidentDTO.QHSEEmpName = temp.QHSEEmpName;
+					accidentDTO.QHSEEmpCode = temp.QHSEEmpCode;
+					accidentDTO.QHSEPositionName = temp.QHSEPositionName;
+
+					accidentDTO.DrillerCode = temp.DrillerCode;
 					accidentDTO.DrillerName = temp.DrillerName;
+					accidentDTO.DrillerPositionName = temp.DrillerPositionName;
+
+					accidentDTO.PusherCode = temp.PusherCode;
+					accidentDTO.PusherName = temp.PusherName;
+					accidentDTO.PusherPositionName = temp.PusherPositionName;
+
+					accidentDTO.InjuredPersonCode = temp.InjuredPersonCode;
+					accidentDTO.InjuredPersonName = temp.InjuredPersonName;
+					accidentDTO.InjuredPersonPositionName = temp.InjuredPersonPositionName;
+
 					accidentDTO.DescriptionOfTheEvent = temp.DescriptionOfTheEvent;
 					accidentDTO.ImmediateActionType = temp.ImmediateActionType;
 					accidentDTO.DirectCauses = temp.DirectCauses;
@@ -462,11 +553,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -500,11 +603,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -557,11 +672,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -595,11 +722,23 @@ namespace TempProject.Controllers
 						accidentDTO.PreventionCategory = accident.PreventionCategory.Name;
 						accidentDTO.ClassificationOfAccident = accident.ClassificationOfAccident.Name;
 						accidentDTO.AccidentLocation = accident.AccidentLocation;
-						accidentDTO.QHSEName = accident.QHSEPositionName.Name;
-						accidentDTO.ToolPusherName = accident.ToolPusherPositionName.Name;
-						accidentDTO.ToolPusherPosition = accident.ToolPusherPosition.Name;
-						accidentDTO.QHSEPosition = accident.QHSEPosition.Name;
+
+						accidentDTO.QHSEEmpName = accident.QHSEEmpName;
+						accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
+						accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+						accidentDTO.DrillerCode = accident.DrillerCode;
 						accidentDTO.DrillerName = accident.DrillerName;
+						accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+						accidentDTO.PusherCode = accident.PusherCode;
+						accidentDTO.PusherName = accident.PusherName;
+						accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+						accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+						accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+						accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
 						accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 						accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 						accidentDTO.DirectCauses = accident.DirectCauses;
@@ -700,13 +839,21 @@ namespace TempProject.Controllers
 					accidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
 					accidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
 					accidentDTO.AccidentLocation = accident.AccidentLocation;
-					accidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
-					accidentDTO.PusherEmpCode = accident.PusherEmpCode;
+					accidentDTO.QHSEEmpName = accident.QHSEEmpName;
 					accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
-					accidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-					accidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
-					accidentDTO.QHSEPositionId = accident.QHSEPositionId;
+					accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+					accidentDTO.DrillerCode = accident.DrillerCode;
 					accidentDTO.DrillerName = accident.DrillerName;
+					accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+					accidentDTO.PusherCode = accident.PusherCode;
+					accidentDTO.PusherName = accident.PusherName;
+					accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+					accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+					accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+					accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
 					accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 					accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 					accidentDTO.DirectCauses = accident.DirectCauses;
@@ -735,13 +882,21 @@ namespace TempProject.Controllers
 					accidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
 					accidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
 					accidentDTO.AccidentLocation = accident.AccidentLocation;
-					accidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
-					accidentDTO.PusherEmpCode = accident.PusherEmpCode;
+					accidentDTO.QHSEEmpName = accident.QHSEEmpName;
 					accidentDTO.QHSEEmpCode = accident.QHSEEmpCode;
-					accidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-					accidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
-					accidentDTO.QHSEPositionId = accident.QHSEPositionId;
+					accidentDTO.QHSEPositionName = accident.QHSEPositionName;
+
+					accidentDTO.DrillerCode = accident.DrillerCode;
 					accidentDTO.DrillerName = accident.DrillerName;
+					accidentDTO.DrillerPositionName = accident.DrillerPositionName;
+
+					accidentDTO.PusherCode = accident.PusherCode;
+					accidentDTO.PusherName = accident.PusherName;
+					accidentDTO.PusherPositionName = accident.PusherPositionName;
+
+					accidentDTO.InjuredPersonCode = accident.InjuredPersonCode;
+					accidentDTO.InjuredPersonName = accident.InjuredPersonName;
+					accidentDTO.InjuredPersonPositionName = accident.InjuredPersonPositionName;
 					accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
 					accidentDTO.ImmediateActionType = accident.ImmediateActionType;
 					accidentDTO.DirectCauses = accident.DirectCauses;
@@ -786,14 +941,24 @@ namespace TempProject.Controllers
                     acci.PreventionCategoryId = accident.PreventionCategoryId;
                     acci.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
                     acci.AccidentLocation = accident.AccidentLocation;
-                    acci.QHSEPositionNameId = accident.QHSEPositionNameId;
-					acci.PusherEmpCode = accident.PusherEmpCode;
+
+					acci.QHSEEmpName = accident.QHSEEmpName;
 					acci.QHSEEmpCode = accident.QHSEEmpCode;
-					acci.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-                    acci.ToolPusherPositionId = accident.ToolPusherPositionId;
-                    acci.QHSEPositionId = accident.QHSEPositionId;
-                    acci.DrillerName = accident.DrillerName;
-                    acci.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
+					acci.QHSEPositionName = accident.QHSEPositionName;
+
+					acci.DrillerCode = accident.DrillerCode;
+					acci.DrillerName = accident.DrillerName;
+					acci.DrillerPositionName = accident.DrillerPositionName;
+
+					acci.PusherCode = accident.PusherCode;
+					acci.PusherName = accident.PusherName;
+					acci.PusherPositionName = accident.PusherPositionName;
+
+					acci.InjuredPersonCode = accident.InjuredPersonCode;
+					acci.InjuredPersonName = accident.InjuredPersonName;
+					acci.InjuredPersonPositionName = accident.InjuredPersonPositionName;
+
+					acci.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
                     acci.ImmediateActionType = accident.ImmediateActionType;
                     acci.DirectCauses = accident.DirectCauses;
                     acci.RootCauses = accident.RootCauses;
@@ -885,14 +1050,24 @@ namespace TempProject.Controllers
                     orgAccd.PreventionCategoryId = newAccident.PreventionCategoryId;
                     orgAccd.ClassificationOfAccidentId = newAccident.ClassificationOfAccidentId;
                     orgAccd.AccidentLocation = newAccident.AccidentLocation;
-                    orgAccd.QHSEPositionNameId = newAccident.QHSEPositionNameId;
-                    orgAccd.ToolPusherPositionNameId = newAccident.ToolPusherPositionNameId;
-                    orgAccd.ToolPusherPositionId = newAccident.ToolPusherPositionId;
-                    orgAccd.QHSEPositionId = newAccident.QHSEPositionId;
-					orgAccd.PusherEmpCode = newAccident.PusherEmpCode;
+
+					orgAccd.QHSEEmpName = newAccident.QHSEEmpName;
 					orgAccd.QHSEEmpCode = newAccident.QHSEEmpCode;
+					orgAccd.QHSEPositionName = newAccident.QHSEPositionName;
+
+					orgAccd.DrillerCode = newAccident.DrillerCode;
 					orgAccd.DrillerName = newAccident.DrillerName;
-                    orgAccd.DescriptionOfTheEvent = newAccident.DescriptionOfTheEvent;
+					orgAccd.DrillerPositionName = newAccident.DrillerPositionName;
+
+					orgAccd.PusherCode = newAccident.PusherCode;
+					orgAccd.PusherName = newAccident.PusherName;
+					orgAccd.PusherPositionName = newAccident.PusherPositionName;
+
+					orgAccd.InjuredPersonCode = newAccident.InjuredPersonCode;
+					orgAccd.InjuredPersonName = newAccident.InjuredPersonName;
+					orgAccd.InjuredPersonPositionName = newAccident.InjuredPersonPositionName;
+
+					orgAccd.DescriptionOfTheEvent = newAccident.DescriptionOfTheEvent;
                     orgAccd.ImmediateActionType = newAccident.ImmediateActionType;
                     orgAccd.DirectCauses = newAccident.DirectCauses;
                     orgAccd.RootCauses = newAccident.RootCauses;

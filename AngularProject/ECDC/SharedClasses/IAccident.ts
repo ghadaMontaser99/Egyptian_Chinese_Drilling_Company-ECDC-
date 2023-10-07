@@ -11,14 +11,24 @@ export interface IAccident {
   preventionCategoryId: number,
   classificationOfAccidentId: number,
   accidentLocation: string,
-  qhsePositionNameId: number,
-  qhseEmpCode: number,
-  pusherEmpCode: number,
-  toolPusherPositionNameId: number,
-  drillerName: string,
+
+  qHSEEmpCode :number,
+  qHSEPositionName :string,
+  qHSEEmpName :string,
+
+  pusherCode :number,
+  pusherPositionName :string,
+  pusherName :string,
+
+  drillerCode :number,
+  drillerPositionName :string,
+  drillerName :string,
+
+  injuredPersonCode :number,
+  injuredPersonPositionName :string,
+  injuredPersonName :string,
+
   descriptionOfTheEvent: string,
-  toolPusherPositionId: number,
-  qhsePositionId: number,
   immediateActionType: string,
   directCauses: string,
   rootCauses: string,
@@ -26,5 +36,6 @@ export interface IAccident {
   pictures: string,
   userID: string,
   imageOfaccident: File,
+
 
 }

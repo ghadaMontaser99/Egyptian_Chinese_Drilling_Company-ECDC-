@@ -43,16 +43,19 @@ namespace TempProject
 			builder.Services.AddScoped<IRepository<AccidentCauses>, Repository<AccidentCauses>>();
 			builder.Services.AddScoped<IRepository<TypeOfInjury>, Repository<TypeOfInjury>>();
 			builder.Services.AddScoped<IRepository<ViolationCategory>, Repository<ViolationCategory>>();
-			builder.Services.AddScoped<IRepository<ToolPusherPosition>, Repository<ToolPusherPosition>>();
-			builder.Services.AddScoped<IRepository<ToolPusherPositionName>, Repository<ToolPusherPositionName>>();
-			builder.Services.AddScoped<IRepository<QHSEPosition>, Repository<QHSEPosition>>();
-			builder.Services.AddScoped<IRepository<QHSEPositionName>, Repository<QHSEPositionName>>();
+			//builder.Services.AddScoped<IRepository<ToolPusherPosition>, Repository<ToolPusherPosition>>();
+			//builder.Services.AddScoped<IRepository<ToolPusherPositionName>, Repository<ToolPusherPositionName>>();
+			//builder.Services.AddScoped<IRepository<QHSEPosition>, Repository<QHSEPosition>>();
+			//builder.Services.AddScoped<IRepository<QHSEPositionName>, Repository<QHSEPositionName>>();
+			builder.Services.AddScoped<IRepository<EmpCode>, Repository<EmpCode>>();
+
 			builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
 			builder.Services.AddScoped<IRepository<ReportedByName>, Repository<ReportedByName>>();
             builder.Services.AddScoped<IRepository<TypeOfObservationCategory>, Repository<TypeOfObservationCategory>>();
             builder.Services.AddScoped<IRepository<JMP>, Repository<JMP>>();
             builder.Services.AddScoped<IRepository<RouteName>, Repository<RouteName>>();
-            builder.Services.AddScoped<IRepository<Driver>, Repository<Driver>>();
+			builder.Services.AddScoped<IRepository<Positions>, Repository<Positions>>();
+			builder.Services.AddScoped<IRepository<Driver>, Repository<Driver>>();
             builder.Services.AddScoped<IRepository<ComminucationMethod>, Repository<ComminucationMethod>>();
             builder.Services.AddScoped<IRepository<Vehicle>, Repository<Vehicle>>();
             builder.Services.AddScoped<IRepository<Passenger>, Repository<Passenger>>();

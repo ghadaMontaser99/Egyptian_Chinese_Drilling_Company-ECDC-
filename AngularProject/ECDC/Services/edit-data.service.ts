@@ -23,6 +23,8 @@ import { ITypeOfObservationCategory } from 'SharedClasses/ITypeOfObservationCate
 import { IVehicle } from 'SharedClasses/IVehicle';
 import { IViolationCategory } from 'SharedClasses/IViolationCategory';
 import { Observable } from 'rxjs';
+import { IEmpCode } from 'SharedClasses/IEmpCode';
+import { IPosition } from 'SharedClasses/IPosition';
 
 @Injectable({
   providedIn: 'root'
@@ -205,5 +207,11 @@ export class EditDataService {
 
   EditRigMovePerformance(id:number,RigPerformance:IRigMovePerformanceEvaluation):Observable<IRigMovePerformanceEvaluation>{
     return this.http.put<IRigMovePerformanceEvaluation>(`http://localhost:5000/api/RigMovePerformance/${id}`,RigPerformance);
+  }
+  EditEmpCode(id:number,EmpCode:IEmpCode):Observable<IEmpCode>{
+    return this.http.put<IEmpCode>(`http://localhost:5000/api/EmpCode/${id}`,EmpCode);
+  }
+  EditPositon(id:number,Positon:IPosition):Observable<IPosition>{
+    return this.http.put<IPosition>(`http://localhost:5000/api/Positions/${id}`,Positon);
   }
 }

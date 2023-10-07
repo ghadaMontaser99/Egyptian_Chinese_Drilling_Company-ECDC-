@@ -167,6 +167,20 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PreventionCategorys",
                 columns: table => new
                 {
@@ -178,20 +192,6 @@ namespace TempProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PreventionCategorys", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "QHSEPositions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QHSEPositions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,20 +248,6 @@ namespace TempProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RouteNames", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ToolPusherPositions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ToolPusherPositions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -432,23 +418,23 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QHSEPositionNames",
+                name: "EmpCodes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmpCode = table.Column<int>(type: "int", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    PositionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QHSEPositionNames", x => x.Id);
+                    table.PrimaryKey("PK_EmpCodes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_QHSEPositionNames_QHSEPositions_PositionId",
+                        name: "FK_EmpCodes_Positions_PositionId",
                         column: x => x.PositionId,
-                        principalTable: "QHSEPositions",
+                        principalTable: "Positions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -587,28 +573,6 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ToolPusherPositionNames",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmpCode = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ToolPusherPositionNames", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ToolPusherPositionNames_ToolPusherPositions_PositionId",
-                        column: x => x.PositionId,
-                        principalTable: "ToolPusherPositions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "JMPs",
                 columns: table => new
                 {
@@ -675,6 +639,89 @@ namespace TempProject.Migrations
                         name: "FK_JMPs_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accidents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RigId = table.Column<int>(type: "int", nullable: false),
+                    TimeOfEvent = table.Column<TimeSpan>(type: "time", nullable: false),
+                    DateOfEvent = table.Column<DateTime>(type: "date", nullable: false),
+                    TypeOfInjuryID = table.Column<int>(type: "int", nullable: false),
+                    ViolationCategoryId = table.Column<int>(type: "int", nullable: false),
+                    AccidentCausesId = table.Column<int>(type: "int", nullable: false),
+                    PreventionCategoryId = table.Column<int>(type: "int", nullable: false),
+                    ClassificationOfAccidentId = table.Column<int>(type: "int", nullable: false),
+                    AccidentLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QHSEEmpCode = table.Column<int>(type: "int", nullable: false),
+                    QHSEPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QHSEEmpName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PusherCode = table.Column<int>(type: "int", nullable: false),
+                    PusherPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PusherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DrillerCode = table.Column<int>(type: "int", nullable: false),
+                    DrillerPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DrillerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InjuredPersonCode = table.Column<int>(type: "int", nullable: false),
+                    InjuredPersonPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InjuredPersonName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DescriptionOfTheEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImmediateActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DirectCauses = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RootCauses = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Recommendations = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Pictures = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accidents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accidents_AccidentCauses_AccidentCausesId",
+                        column: x => x.AccidentCausesId,
+                        principalTable: "AccidentCauses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_AspNetUsers_userID",
+                        column: x => x.userID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_ClassificationOfAccidents_ClassificationOfAccidentId",
+                        column: x => x.ClassificationOfAccidentId,
+                        principalTable: "ClassificationOfAccidents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_PreventionCategorys_PreventionCategoryId",
+                        column: x => x.PreventionCategoryId,
+                        principalTable: "PreventionCategorys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_Rigs_RigId",
+                        column: x => x.RigId,
+                        principalTable: "Rigs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_TypeOfInjurys_TypeOfInjuryID",
+                        column: x => x.TypeOfInjuryID,
+                        principalTable: "TypeOfInjurys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Accidents_ViolationCategorys_ViolationCategoryId",
+                        column: x => x.ViolationCategoryId,
+                        principalTable: "ViolationCategorys",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -781,108 +828,6 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Accidents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RigId = table.Column<int>(type: "int", nullable: false),
-                    TimeOfEvent = table.Column<TimeSpan>(type: "time", nullable: false),
-                    DateOfEvent = table.Column<DateTime>(type: "date", nullable: false),
-                    TypeOfInjuryID = table.Column<int>(type: "int", nullable: false),
-                    ViolationCategoryId = table.Column<int>(type: "int", nullable: false),
-                    AccidentCausesId = table.Column<int>(type: "int", nullable: false),
-                    PreventionCategoryId = table.Column<int>(type: "int", nullable: false),
-                    ClassificationOfAccidentId = table.Column<int>(type: "int", nullable: false),
-                    AccidentLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QHSEPositionNameId = table.Column<int>(type: "int", nullable: false),
-                    QHSEEmpCode = table.Column<int>(type: "int", nullable: false),
-                    PusherEmpCode = table.Column<int>(type: "int", nullable: false),
-                    ToolPusherPositionNameId = table.Column<int>(type: "int", nullable: false),
-                    DrillerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DescriptionOfTheEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ToolPusherPositionId = table.Column<int>(type: "int", nullable: false),
-                    QHSEPositionId = table.Column<int>(type: "int", nullable: false),
-                    ImmediateActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DirectCauses = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RootCauses = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Recommendations = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pictures = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accidents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Accidents_AccidentCauses_AccidentCausesId",
-                        column: x => x.AccidentCausesId,
-                        principalTable: "AccidentCauses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_AspNetUsers_userID",
-                        column: x => x.userID,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_ClassificationOfAccidents_ClassificationOfAccidentId",
-                        column: x => x.ClassificationOfAccidentId,
-                        principalTable: "ClassificationOfAccidents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_PreventionCategorys_PreventionCategoryId",
-                        column: x => x.PreventionCategoryId,
-                        principalTable: "PreventionCategorys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_QHSEPositionNames_QHSEPositionNameId",
-                        column: x => x.QHSEPositionNameId,
-                        principalTable: "QHSEPositionNames",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_QHSEPositions_QHSEPositionId",
-                        column: x => x.QHSEPositionId,
-                        principalTable: "QHSEPositions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_Rigs_RigId",
-                        column: x => x.RigId,
-                        principalTable: "Rigs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_ToolPusherPositionNames_ToolPusherPositionNameId",
-                        column: x => x.ToolPusherPositionNameId,
-                        principalTable: "ToolPusherPositionNames",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_ToolPusherPositions_ToolPusherPositionId",
-                        column: x => x.ToolPusherPositionId,
-                        principalTable: "ToolPusherPositions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_TypeOfInjurys_TypeOfInjuryID",
-                        column: x => x.TypeOfInjuryID,
-                        principalTable: "TypeOfInjurys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Accidents_ViolationCategorys_ViolationCategoryId",
-                        column: x => x.ViolationCategoryId,
-                        principalTable: "ViolationCategorys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "JMP_Passengers",
                 columns: table => new
                 {
@@ -925,29 +870,9 @@ namespace TempProject.Migrations
                 column: "PreventionCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accidents_QHSEPositionId",
-                table: "Accidents",
-                column: "QHSEPositionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accidents_QHSEPositionNameId",
-                table: "Accidents",
-                column: "QHSEPositionNameId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Accidents_RigId",
                 table: "Accidents",
                 column: "RigId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accidents_ToolPusherPositionId",
-                table: "Accidents",
-                column: "ToolPusherPositionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accidents_ToolPusherPositionNameId",
-                table: "Accidents",
-                column: "ToolPusherPositionNameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accidents_TypeOfInjuryID",
@@ -1019,6 +944,11 @@ namespace TempProject.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmpCodes_PositionId",
+                table: "EmpCodes",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JMP_Passengers_JMPID",
                 table: "JMP_Passengers",
                 column: "JMPID");
@@ -1069,11 +999,6 @@ namespace TempProject.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_QHSEPositionNames_PositionId",
-                table: "QHSEPositionNames",
-                column: "PositionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ReportedByNames_PositionId",
                 table: "ReportedByNames",
                 column: "PositionId");
@@ -1112,11 +1037,6 @@ namespace TempProject.Migrations
                 name: "IX_StopCardRegisters_userID",
                 table: "StopCardRegisters",
                 column: "userID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ToolPusherPositionNames_PositionId",
-                table: "ToolPusherPositionNames",
-                column: "PositionId");
         }
 
         /// <inheritdoc />
@@ -1147,6 +1067,9 @@ namespace TempProject.Migrations
                 name: "Bop");
 
             migrationBuilder.DropTable(
+                name: "EmpCodes");
+
+            migrationBuilder.DropTable(
                 name: "JMP_Passengers");
 
             migrationBuilder.DropTable(
@@ -1174,12 +1097,6 @@ namespace TempProject.Migrations
                 name: "PreventionCategorys");
 
             migrationBuilder.DropTable(
-                name: "QHSEPositionNames");
-
-            migrationBuilder.DropTable(
-                name: "ToolPusherPositionNames");
-
-            migrationBuilder.DropTable(
                 name: "TypeOfInjurys");
 
             migrationBuilder.DropTable(
@@ -1190,6 +1107,9 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "PTSMs");
+
+            migrationBuilder.DropTable(
+                name: "Positions");
 
             migrationBuilder.DropTable(
                 name: "JMPs");
@@ -1208,12 +1128,6 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "TypeOfObservationCategorys");
-
-            migrationBuilder.DropTable(
-                name: "QHSEPositions");
-
-            migrationBuilder.DropTable(
-                name: "ToolPusherPositions");
 
             migrationBuilder.DropTable(
                 name: "ComminucationMethods");
