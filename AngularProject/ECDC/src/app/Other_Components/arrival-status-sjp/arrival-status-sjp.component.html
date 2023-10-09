@@ -25,7 +25,7 @@
                 <span class="widget-49-meeting-time">{{item.enterTime | date:'mediumTime'}}</span>
               </div>
             </div>
-            <div class="fs-5 mt-3 ms-5">New Safe Journy Plan Approved</div>
+            <div class="fs-5 mt-3 ms-5">New Safe Journy Plan Will Arrive To <span class="h4">{{item.destination}}</span></div>
             <!-- <div style="font-size: 1rem;color: #012970;" class="mt-3 ms-5" *ngIf="item.qhseManagerMustApprove"><strong>Night Driving Reason :</strong> {{item.nightDrivingReason}}</div> -->
             <div class="widget-49-meeting-action">
               <a (click)="Arrive(item.id,true,item)" class="btn btn-sm btn-flash-border-primary text-success" style="font-size: 16px;">Arrive</a>

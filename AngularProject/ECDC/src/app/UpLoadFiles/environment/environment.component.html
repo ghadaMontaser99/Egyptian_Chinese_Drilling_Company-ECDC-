@@ -8,6 +8,12 @@
 
 
     </div>
+    <div class="d-flex justify-content-center my-2">
+      <label for="fileInput" class="custom-file-input">Choose File</label>
+      <input  id="fileInput" type="file" (change)="onFileSelected($event)" />
+ 
+      <button class="btn btn-primary" (click)="onUpload()"><i class="fa-solid fa-upload fa-bounce fs-6"></i></button>
+    </div>
 
 
     <div class="row mt-5">
@@ -22,11 +28,14 @@
             </thead>
 
             <tbody>
-              <tr *ngFor="let item of Environmet; let i = index ">
+              <tr *ngFor="let item of EnvironmentList | async; let i = index ">
                 <th scope="row">{{i+1}}</th>
                 <td>{{item}}</td>
-
-                <td><button class="btn btn-primary"  (click)="downloadFile(item)"><i class="fa-solid fa-download fa-bounce fs-4"></i></button></td>
+                <td><button class="btn btn-danger " (click)="deleteFile(item)"><i
+                  class="fa-solid fa-trash fa-shake fs-6"></i></button>
+              <button class="btn btn-primary ms-3" (click)="downloadFile(item)"><i
+                  class="fa-solid fa-download fa-bounce fs-6"></i></button>
+            </td>
 
               </tr>
             </tbody>
@@ -34,3 +43,21 @@
     </div>
   </div>
 
+
+  <div class="mx-auto mb-3 text-center d-flex align-items-center justify-content-center" *ngIf="countOfPage>1">
+    <button class="btn  btn-outline-primary mx-3" (click)="GetPaginatedEnvironmentUploadFiles(1)">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+    <button class="btn  btn-outline-primary me-3" (click)="gotleft()">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <div class="me-3">{{indexofPages}} of {{countOfPage}}</div>
+
+    <button class="btn  btn-outline-primary me-3" (click)="gotoright()">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+    <button class="btn  btn-outline-primary me-3" (click)="GetPaginatedEnvironmentUploadFiles(countOfPage)">
+      <i class="fa-solid fa-angles-right"></i>
+    </button>
+  </div>

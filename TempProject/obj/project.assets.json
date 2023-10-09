@@ -12149,19 +12149,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AL-FAJR\\.nuget\\packages\\": {}
+    "C:\\Users\\hadui\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ITI materials\\freelancer\\Alaa job\\projects\\project 2023-10-3\\ECDC\\TempProject\\TempProject.csproj",
+      "projectUniqueName": "E:\\هدير\\ITI\\ECDC\\ECDC\\TempProject\\TempProject.csproj",
       "projectName": "TempProject",
-      "projectPath": "D:\\ITI materials\\freelancer\\Alaa job\\projects\\project 2023-10-3\\ECDC\\TempProject\\TempProject.csproj",
-      "packagesPath": "C:\\Users\\AL-FAJR\\.nuget\\packages\\",
-      "outputPath": "D:\\ITI materials\\freelancer\\Alaa job\\projects\\project 2023-10-3\\ECDC\\TempProject\\obj\\",
+      "projectPath": "E:\\هدير\\ITI\\ECDC\\ECDC\\TempProject\\TempProject.csproj",
+      "packagesPath": "C:\\Users\\hadui\\.nuget\\packages\\",
+      "outputPath": "E:\\هدير\\ITI\\ECDC\\ECDC\\TempProject\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\AL-FAJR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hadui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12169,7 +12174,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\ITI materials\\Mohamed\\Package Source": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12254,7 +12259,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },
