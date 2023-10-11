@@ -27,6 +27,8 @@ import { ITypeOfObservationCategory } from 'SharedClasses/ITypeOfObservationCate
 import { IVehicle } from 'SharedClasses/IVehicle';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPosition } from 'SharedClasses/IPosition';
+import { IEmployeeCompetencyEvaluation } from 'SharedClasses/IEmployeeCompetencyEvaluation';
+import { ISubjectList } from 'SharedClasses/ISubjectList';
 
 @Injectable({
   providedIn: 'root'
@@ -127,10 +129,16 @@ export class DeleteDataService {
     return this.http.put<IAccident>(`http://localhost:5000/api/Accident/Delete/${Accident.id}`,Accident);
   }
 
+  DeleteEmployeeCompetencyEvaluationt(EmployeeCompetencyEvaluationt:IEmployeeCompetencyEvaluation): Observable<IEmployeeCompetencyEvaluation> {
+    return this.http.put<IEmployeeCompetencyEvaluation>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/Delete/${EmployeeCompetencyEvaluationt.id}`,EmployeeCompetencyEvaluationt);
+  }
+
   DeleteAccidentCauses(AccidentCauses:IAccidentCauses): Observable<IAccidentCauses> {
     return this.http.put<IAccidentCauses>(`http://localhost:5000/api/AccidentCauses/Delete/${AccidentCauses.id}`,AccidentCauses);
   }
-
+  DeleteSubjectList(SubjectList:ISubjectList): Observable<ISubjectList> {
+    return this.http.put<ISubjectList>(`http://localhost:5000/api/SubjectList/Delete/${SubjectList.id}`,SubjectList);
+  }
 
   DeleteRigPerformance(RigPerformance:IRigMovePerformanceEvaluation): Observable<IRigMovePerformanceEvaluation> {
     return this.http.put<IRigMovePerformanceEvaluation>(`http://localhost:5000/api/RigMovePerformance/Delete/${RigPerformance.id}`,RigPerformance);

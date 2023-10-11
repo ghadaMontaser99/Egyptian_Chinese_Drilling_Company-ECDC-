@@ -122,7 +122,13 @@ import { EditEmpCodeComponent } from './EditReports/edit-emp-code/edit-emp-code.
 import { AddPostionComponent } from './Add_Data/add-postion/add-postion.component';
 import { PositionComponent } from './Items_In_SubDashboard/position/position.component';
 import { EditPositionComponent } from './EditReports/edit-position/edit-position.component';
-
+import { EmployeeCompetencyEvaluationComponent } from './Reports/employee-competency-evaluation/employee-competency-evaluation.component';
+import { AddSubjectListComponent } from './Add_Data/add-subject-list/add-subject-list.component';
+import { EmployeeCompetencyEvaluationTableComponent } from './Report_Data/employee-competency-evaluation-table/employee-competency-evaluation-table.component';
+import { EditEmployeeCompetencyEvaluationComponent } from './EditReports/edit-employee-competency-evaluation/edit-employee-competency-evaluation.component';
+import { PrintEmployeeCompetencyEvaluationComponent } from './Print_Reports/print-employee-competency-evaluation/print-employee-competency-evaluation.component';
+import { SubjectListEmployeeCompetencyEvaluationComponent } from './Items_In_SubDashboard/subject-list-employee-competency-evaluation/subject-list-employee-competency-evaluation.component';
+import { EditSubjectListEmployeeCompetencyEvaluationComponent } from './EditReports/edit-subject-list-employee-competency-evaluation/edit-subject-list-employee-competency-evaluation.component';
 @NgModule({
   declarations: [
 
@@ -240,6 +246,13 @@ import { EditPositionComponent } from './EditReports/edit-position/edit-position
     AddPostionComponent,
     PositionComponent,
     EditPositionComponent,
+    EmployeeCompetencyEvaluationComponent,
+    AddSubjectListComponent,
+    EmployeeCompetencyEvaluationTableComponent,
+    EditEmployeeCompetencyEvaluationComponent,
+    PrintEmployeeCompetencyEvaluationComponent,
+    SubjectListEmployeeCompetencyEvaluationComponent,
+    EditSubjectListEmployeeCompetencyEvaluationComponent
 
 
   ],

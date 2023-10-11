@@ -29,8 +29,8 @@ namespace TempProject.Models
 		public DbSet<ViolationCategory> ViolationCategorys { get; set; }
 		public DbSet<Positions> Positions { get; set; }
 
-		//public DbSet<ToolPusherPosition> ToolPusherPositions { get; set; }
-		//public DbSet<ToolPusherPositionName> ToolPusherPositionNames { get; set; }
+		public DbSet<EmployeeCompetencyEvaluation> EmployeeCompetencyEvaluation { get; set; }
+		public DbSet<SubjectList> SubjectList { get; set; }
 		//public DbSet<QHSEPosition> QHSEPositions { get; set; }
 		//public DbSet<QHSEPositionName> QHSEPositionNames { get; set; }
 		public DbSet<TypeOfObservationCategory> TypeOfObservationCategorys { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TempProject.DTO.ResponseDTO
 {
     public class AccidentExcelDTO
-	{
+    {
         public int id { get; set; }
         public int Rig { get; set; }
         public TimeSpan TimeOfEvent { get; set; }

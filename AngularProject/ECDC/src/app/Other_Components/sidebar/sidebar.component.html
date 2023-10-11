@@ -89,6 +89,11 @@
             <i class="bi bi-circle"></i><span>POb Report</span>
           </a>
         </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/EmployeeCompetencyEvaluation/Add">
+            <i class="bi bi-circle"></i><span>Employee Competency Evaluation Report</span>
+          </a>
+        </li>
       </ul>
     </li><!-- End Forms Nav -->
 
@@ -210,6 +215,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/BopTable">
             <i class="bi bi-circle"></i><span>POb</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/Dashboard/EmployeeCompetencyEvaluations">
+            <i class="bi bi-circle"></i><span>Employee Competency Evaluation</span>
           </a>
         </li>
       </ul>

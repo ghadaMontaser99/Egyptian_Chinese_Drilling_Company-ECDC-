@@ -582,6 +582,67 @@ namespace TempProject.Migrations
                     b.ToTable("EmpCodes");
                 });
 
+            modelBuilder.Entity("TempProject.Models.EmployeeCompetencyEvaluation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeePositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QHSEEmpCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QHSEEmpName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QHSEPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RigId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("EmployeeCompetencyEvaluation");
+                });
+
             modelBuilder.Entity("TempProject.Models.JMP", b =>
                 {
                     b.Property<int>("Id")
@@ -1152,6 +1213,26 @@ namespace TempProject.Migrations
                     b.ToTable("StopCardRegisters");
                 });
 
+            modelBuilder.Entity("TempProject.Models.SubjectList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubjectList");
+                });
+
             modelBuilder.Entity("TempProject.Models.TypeOfInjury", b =>
                 {
                     b.Property<int>("Id")
@@ -1401,6 +1482,33 @@ namespace TempProject.Migrations
                     b.Navigation("Positions");
                 });
 
+            modelBuilder.Entity("TempProject.Models.EmployeeCompetencyEvaluation", b =>
+                {
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany("RigEmployeeCompetencyEvaluation")
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.SubjectList", "Subjectlist")
+                        .WithMany("EmployeeCompetencyEvaluation")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rig");
+
+                    b.Navigation("Subjectlist");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("TempProject.Models.JMP", b =>
                 {
                     b.HasOne("TempProject.Models.ComminucationMethod", "comminucationMethod")
@@ -1632,6 +1740,8 @@ namespace TempProject.Migrations
                 {
                     b.Navigation("Accidents");
 
+                    b.Navigation("RigEmployeeCompetencyEvaluation");
+
                     b.Navigation("RigMovePerformances");
                 });
 
@@ -1643,6 +1753,11 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.RouteName", b =>
                 {
                     b.Navigation("JMPs");
+                });
+
+            modelBuilder.Entity("TempProject.Models.SubjectList", b =>
+                {
+                    b.Navigation("EmployeeCompetencyEvaluation");
                 });
 
             modelBuilder.Entity("TempProject.Models.TypeOfInjury", b =>

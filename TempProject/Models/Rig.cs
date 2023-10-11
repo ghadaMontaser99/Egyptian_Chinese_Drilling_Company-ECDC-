@@ -12,5 +12,6 @@ namespace TempProject.Models
         public bool IsDeleted { get; set; }
         public virtual List<Accident> Accidents { get; set; }
         public virtual List<RigMovePerformance> RigMovePerformances { get; set; }
+        public virtual List<EmployeeCompetencyEvaluation> RigEmployeeCompetencyEvaluation { get; set; }
     }
 }

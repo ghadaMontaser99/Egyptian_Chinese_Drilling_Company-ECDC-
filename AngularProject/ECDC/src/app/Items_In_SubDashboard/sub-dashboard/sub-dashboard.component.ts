@@ -10,6 +10,10 @@ import { LoginService } from 'Services/login.service';
 export class SubDashboardComponent {
   accidentCausesList:any;
   accidentCausescount:number=0;
+
+  subjectList:any;
+  subjectListcount:number=0;
+
   classificationList:any;
   classificationcount:number=0;
   classificationOfAccidentList:any;
@@ -75,6 +79,12 @@ export class SubDashboardComponent {
       }
     })
 
+    this.dataService.GetSubjectList().subscribe({
+      next:data=>{
+        this.subjectList=data.data,
+        this.subjectListcount=this.subjectList.length
+      }
+    })
 
     this.dataService.GetEmpCode().subscribe({
       next:data=>{

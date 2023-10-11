@@ -105,6 +105,7 @@ import { PTSMComponent } from './Report_Data/ptsm/ptsm.component';
 import { EditPTSMComponent } from './EditReports/edit-ptsm/edit-ptsm.component';
 import { PrintPTSMComponent } from './Print_Reports/print-ptsm/print-ptsm.component';
 import { BOPComponent } from './Reports/bop/bop.component';
+
 import { EditBOPComponent } from './EditReports/edit-bop/edit-bop.component';
 import { BopTableComponent } from './Report_Data/bop-table/bop-table.component';
 import { PrintBopComponent } from './Print_Reports/print-bop/print-bop.component';
@@ -114,6 +115,13 @@ import { EditEmpCodeComponent } from './EditReports/edit-emp-code/edit-emp-code.
 import { PositionComponent } from './Items_In_SubDashboard/position/position.component';
 import { AddPostionComponent } from './Add_Data/add-postion/add-postion.component';
 import { EditPositionComponent } from './EditReports/edit-position/edit-position.component';
+import { EmployeeCompetencyEvaluationComponent } from './Reports/employee-competency-evaluation/employee-competency-evaluation.component';
+import { EditEmployeeCompetencyEvaluationComponent } from './EditReports/edit-employee-competency-evaluation/edit-employee-competency-evaluation.component';
+import { EmployeeCompetencyEvaluationTableComponent } from './Report_Data/employee-competency-evaluation-table/employee-competency-evaluation-table.component';
+import { PrintEmployeeCompetencyEvaluationComponent } from './Print_Reports/print-employee-competency-evaluation/print-employee-competency-evaluation.component';
+import { AddSubjectListComponent } from './Add_Data/add-subject-list/add-subject-list.component';
+import { SubjectListEmployeeCompetencyEvaluationComponent } from './Items_In_SubDashboard/subject-list-employee-competency-evaluation/subject-list-employee-competency-evaluation.component';
+import { EditSubjectListEmployeeCompetencyEvaluationComponent } from './EditReports/edit-subject-list-employee-competency-evaluation/edit-subject-list-employee-competency-evaluation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
@@ -122,6 +130,8 @@ const routes: Routes = [
   { path: 'Notifications', canActivate: [AuthGuard], component: NotificationsComponent },
   { path: 'ArrivalStatusSJP',canActivate: [AllAuthGuardGuard], component: ArrivalStatusSJPComponent },
   { path: 'Dashboard/Accidents',canActivate: [AllAuthGuardGuard],component: AccidentTableComponent },
+  { path: 'Dashboard/EmployeeCompetencyEvaluations',canActivate: [AllAuthGuardGuard],component: EmployeeCompetencyEvaluationTableComponent },
+
   { path: 'Home',canActivate: [AllAuthGuardGuard], component: HomeComponent },
   { path: 'Accident', canActivate: [UserauthGuard],component: AccidentFormComponent },
   { path: 'Accident/Edit/:id', canActivate: [AuthGuard],component: EditAccidentComponent },
@@ -130,6 +140,13 @@ const routes: Routes = [
   { path: 'Dashboard/AccidentCauses/Add',canActivate: [UserauthGuard], component: AddAccidentCausesComponent },
   { path: 'Dashboard/AccidentCauses/Edit/:id', canActivate: [AuthGuard],component: EditAccidentCausesComponent },
   { path: 'Dashboard/AccidentCauses',canActivate: [UserauthGuard], component: AccidentCausesComponent },
+  
+  { path: 'Dashboard/SubjectList/Add',canActivate: [UserauthGuard], component: AddSubjectListComponent },
+  { path: 'Dashboard/SubjectList/Edit/:id', canActivate: [AuthGuard],component: EditSubjectListEmployeeCompetencyEvaluationComponent },
+  { path: 'Dashboard/SubjectList',canActivate: [UserauthGuard], component: SubjectListEmployeeCompetencyEvaluationComponent },
+  
+  
+  
   { path: 'Dashboard/ClassificationOfAccident/Add', canActivate: [UserauthGuard],component: AddclassificationOfAccdComponent },
   { path: 'Dashboard/ClassificationOfAccident/Edit/:id',canActivate: [AuthGuard], component: EditClassificationOfAccidentComponent },
   { path: 'Dashboard/ClassificationOfAccident',canActivate: [UserauthGuard], component: ClassificationOfAccidentComponent },
@@ -200,6 +217,11 @@ const routes: Routes = [
   { path: 'Dashboard/Position/Edit/:id',canActivate: [AuthGuard], component: EditPositionComponent },
 
 
+  { path: 'Dashboard/EmployeeCompetencyEvaluation/Edit/:id',canActivate: [AuthGuard], component: EmployeeCompetencyEvaluationComponent },
+
+  // { path: 'ShowDataEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: EmployeeCompetencyEvaluationTableComponent },
+  { path: 'PrintEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: PrintEmployeeCompetencyEvaluationComponent },
+
   { path: 'PrintAccident',canActivate: [UserauthGuard], component: ReportAccidentComponent },
   { path: 'StopCard', canActivate: [UserauthGuard],component: StopcardComponent },
   { path: 'PrintStopCard', canActivate: [UserauthGuard],component: StopCardReportComponent },
@@ -230,6 +252,8 @@ const routes: Routes = [
   { path: 'Clinc' ,canActivate: [UserauthGuard],component: ClincFormsComponent },
   { path: 'QHSE' ,canActivate: [UserauthGuard],component: QSHEFormsComponent },
   { path: 'Policy' ,canActivate: [UserauthGuard],component: PolicyComponent },
+  { path: 'EmployeeCompetencyEvaluation/Add' ,canActivate: [UserauthGuard],component: EmployeeCompetencyEvaluationComponent },
+ 
 
 
   { path: '**', component: PageNotFoundComponent }

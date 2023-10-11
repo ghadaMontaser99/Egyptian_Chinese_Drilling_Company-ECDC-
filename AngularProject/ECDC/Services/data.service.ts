@@ -14,6 +14,10 @@ export class DataService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/GetData?UserID=${userId}&UserRole=${userRole}`);
   }
 
+  GetEmployeeCompetencyEvaluationts(userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/GetData?UserID=${userId}&UserRole=${userRole}`);
+  }
+
   GetStopCards(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetData?UserId=${userId}&UserRole=${userRole}`);
   }
@@ -34,6 +38,11 @@ export class DataService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/AccidentCauses`);
   }
 
+  GetSubjectList(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList`);
+  }
+
+ 
   GetClassification(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Classification`);
   }

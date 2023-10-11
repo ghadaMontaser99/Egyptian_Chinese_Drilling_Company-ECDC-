@@ -25,6 +25,7 @@ import { IViolationCategory } from 'SharedClasses/IViolationCategory';
 import { Observable } from 'rxjs';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPosition } from 'SharedClasses/IPosition';
+import { ISubjectList } from 'SharedClasses/ISubjectList';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,16 @@ export class EditDataService {
     return this.http.put<IAccidentCauses>(`http://localhost:5000/api/AccidentCauses/${AccidentCauses.id}`,AccidentCauses);
   }
 
+  EditSubjectList(SubjectList:ISubjectList): Observable<ISubjectList> {
+    return this.http.put<ISubjectList>(`http://localhost:5000/api/SubjectList/${SubjectList.id}`,SubjectList);
+  }
+
   GetAccidentCausesById(id: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/AccidentCauses/${id}`);
+  }
+
+  GetSubjectListById(id: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
   }
 
   EditClassification(Classification:IClassification): Observable<IClassification> {

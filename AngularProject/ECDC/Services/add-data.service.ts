@@ -16,6 +16,7 @@ import { IReportedByName } from 'SharedClasses/IReportedByName';
 import { IReportedByPosition } from 'SharedClasses/IReportedByPosition';
 import { IRig } from 'SharedClasses/IRig';
 import { IRouteName } from 'SharedClasses/IRouteName';
+import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IToolPusherPosition } from 'SharedClasses/IToolPusherPosition';
 import { IToolPusherPositionName } from 'SharedClasses/IToolPusherPositionName';
 import { ITypeOfInjury } from 'SharedClasses/ITypeOfInjury';
@@ -32,6 +33,10 @@ export class AddDataService {
 
   AddAccidentCauses(AccidentCauses:IAccidentCauses): Observable<IAccidentCauses> {
     return this.http.post<IAccidentCauses>(`http://localhost:5000/api/AccidentCauses`,AccidentCauses);
+  }
+
+  AddSubjectList(SubjectList:ISubjectList): Observable<ISubjectList> {
+    return this.http.post<IAccidentCauses>(`http://localhost:5000/api/SubjectList`,SubjectList);
   }
 
   AddClassification(Classification:IClassification): Observable<IClassification> {

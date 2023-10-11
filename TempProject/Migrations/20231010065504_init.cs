@@ -251,6 +251,20 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SubjectList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubjectList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TypeOfInjurys",
                 columns: table => new
                 {
@@ -568,6 +582,48 @@ namespace TempProject.Migrations
                         name: "FK_RigMovePerformances_Rigs_RigId",
                         column: x => x.RigId,
                         principalTable: "Rigs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeCompetencyEvaluation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RigId = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false),
+                    QHSEEmpCode = table.Column<int>(type: "int", nullable: false),
+                    QHSEPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QHSEEmpName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeCode = table.Column<int>(type: "int", nullable: false),
+                    EmployeePositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeCompetencyEvaluation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeCompetencyEvaluation_AspNetUsers_userID",
+                        column: x => x.userID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_EmployeeCompetencyEvaluation_Rigs_RigId",
+                        column: x => x.RigId,
+                        principalTable: "Rigs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_EmployeeCompetencyEvaluation_SubjectList_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "SubjectList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -949,6 +1005,21 @@ namespace TempProject.Migrations
                 column: "PositionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeCompetencyEvaluation_RigId",
+                table: "EmployeeCompetencyEvaluation",
+                column: "RigId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeCompetencyEvaluation_SubjectId",
+                table: "EmployeeCompetencyEvaluation",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeCompetencyEvaluation_userID",
+                table: "EmployeeCompetencyEvaluation",
+                column: "userID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JMP_Passengers_JMPID",
                 table: "JMP_Passengers",
                 column: "JMPID");
@@ -1070,6 +1141,9 @@ namespace TempProject.Migrations
                 name: "EmpCodes");
 
             migrationBuilder.DropTable(
+                name: "EmployeeCompetencyEvaluation");
+
+            migrationBuilder.DropTable(
                 name: "JMP_Passengers");
 
             migrationBuilder.DropTable(
@@ -1110,6 +1184,9 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Positions");
+
+            migrationBuilder.DropTable(
+                name: "SubjectList");
 
             migrationBuilder.DropTable(
                 name: "JMPs");

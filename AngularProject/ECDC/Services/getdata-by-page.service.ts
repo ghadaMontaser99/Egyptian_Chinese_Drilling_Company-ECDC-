@@ -14,6 +14,9 @@ export class GetdataByPageService {
   GetAccdientCausesByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/AccidentCauses/ByPage/${pageNumber}`);
   }
+  GetSubjectListByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/SubjectList/ByPage/${pageNumber}`);
+  }
   GetClassificationByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/Classification/ByPage/${pageNumber}`);
   }
@@ -85,5 +88,8 @@ export class GetdataByPageService {
   }
   GetPositionByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/Positions/ByPage/${pageNumber}`);
+  }
+  GetEmployeeCompetencyEvaluationByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole} `);
   }
 }

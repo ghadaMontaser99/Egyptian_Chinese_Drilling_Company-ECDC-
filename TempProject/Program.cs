@@ -30,6 +30,8 @@ namespace TempProject
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IRepository<Accident>, Repository<Accident>>();
+            builder.Services.AddScoped<IRepository<EmployeeCompetencyEvaluation>, Repository<EmployeeCompetencyEvaluation>>();
+
             //builder.Services.AddScoped<IRepository<Crew>, Repository<Crew>>();
             builder.Services.AddScoped<IRepository<LeadershipVisit>, Repository<LeadershipVisit>>();
             builder.Services.AddScoped<IRepository<NonRecordableAccident>, Repository<NonRecordableAccident>>();
@@ -48,8 +50,9 @@ namespace TempProject
 			//builder.Services.AddScoped<IRepository<QHSEPosition>, Repository<QHSEPosition>>();
 			//builder.Services.AddScoped<IRepository<QHSEPositionName>, Repository<QHSEPositionName>>();
 			builder.Services.AddScoped<IRepository<EmpCode>, Repository<EmpCode>>();
+            builder.Services.AddScoped<IRepository<SubjectList>, Repository<SubjectList>>();
 
-			builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
+            builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
 			builder.Services.AddScoped<IRepository<ReportedByName>, Repository<ReportedByName>>();
             builder.Services.AddScoped<IRepository<TypeOfObservationCategory>, Repository<TypeOfObservationCategory>>();
             builder.Services.AddScoped<IRepository<JMP>, Repository<JMP>>();
@@ -69,6 +72,7 @@ namespace TempProject
 			builder.Services.AddScoped<IRepository<RigMovePerformance>, Repository<RigMovePerformance>>();
             builder.Services.AddScoped<IRepository<ProblemFacedDuringRigMove>, Repository<ProblemFacedDuringRigMove>>();
             builder.Services.AddScoped<IRigMovePerformanceRepository, RigMovePerformanceRepository>();
+            builder.Services.AddScoped<IEmployeeCompetencyEvaluationRepository, EmployeeCompetencyEvaluationRepository>();
 
             builder.Services.AddScoped<IBOPRepossitory,BOPRepository>();
 

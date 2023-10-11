@@ -224,7 +224,7 @@
             <label for="Description">Description Of The Event:</label>
             <textarea class="form-control " formControlName="descriptionOfTheEvent" rows="4" id="Description"
               name="text"></textarea>
-            <div
+            <div>
               *ngIf="descriptionOfTheEvent?.invalid && (descriptionOfTheEvent?.dirty || descriptionOfTheEvent?.touched)">
               <small class="text-danger" *ngIf="descriptionOfTheEvent?.errors?.['required']">
                 Description Of The Event is required
