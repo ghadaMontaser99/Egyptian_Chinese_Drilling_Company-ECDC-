@@ -165,7 +165,11 @@ export class EditEmployeeCompetencyEvaluationComponent {
     this.employeeCompetencyEvaluationForm = this.fb.group({
       id: this.fb.control(0, [Validators.required]),
       rigId: this.fb.control('', [Validators.required]),
-      date: this.fb.control('', [Validators.required]),
+      date: this.fb.control('',
+       [
+        Validators.required
+       ]
+      ),
       subjectId: this.fb.control('', [Validators.required]),
       description: this.fb.control('', [Validators.required]),
       
@@ -182,12 +186,6 @@ export class EditEmployeeCompetencyEvaluationComponent {
         ]
       ),
       qHSEEmpName: this.fb.control(
-        '',
-        [
-          Validators.required
-        ]
-      ),
-      pusherCode: this.fb.control(
         '',
         [
           Validators.required
@@ -232,28 +230,10 @@ export class EditEmployeeCompetencyEvaluationComponent {
           this.ErrorMessage = err,
             console.log(this.ErrorMessage)
         }
-      }),
-     
-      // this.dataService.GetToolPusherPosition().subscribe({
-      //   next: data => {
-      //     this.toolPusherPositionList = data.data,
-      //       console.log(this.subjectList)
-      //   },
-      //   error: err => {
-      //     this.ErrorMessage = err,
-      //       console.log(this.ErrorMessage)
-      //   }
-      // }),
-      this.dataService.GetQHSEPosition().subscribe({
-        next: data => {
-          this.qhsePositionList = data.data,
-            console.log(this.subjectList)
-        },
-        error: err => {
-          this.ErrorMessage = err,
-            console.log(this.ErrorMessage)
-        }
       })
+     
+    
+    
   }
 
   selectedMenace(event: any) {
@@ -322,7 +302,9 @@ export class EditEmployeeCompetencyEvaluationComponent {
   }
 
   
-
+  get id() {
+    return this.employeeCompetencyEvaluationForm.get('id');
+  }
   get rigId() {
     return this.employeeCompetencyEvaluationForm.get('rigId');
   }
@@ -356,14 +338,18 @@ export class EditEmployeeCompetencyEvaluationComponent {
   }
   
   submitData() {
+    console.log("/*********SUBMIMT HERE**********/")
+    alert("heeeeeeeeeeeeeeelp")
+    alert( this.UserJsonObj.ID)
+   
+    console.log(this.employeeCompetencyEvaluationForm.value)
     if (this.employeeCompetencyEvaluationForm.valid) {
       const Formdata = new FormData();
-      Formdata.append('id', this.employeeCompetencyEvaluationtId?.value);
+      Formdata.append('id', this.id?.value);
       Formdata.append('rigId', this.rigId?.value);
       Formdata.append('date', this.date?.value);
       Formdata.append('subjectId', this.subjectId?.value);
       Formdata.append('description', this.description?.value);
-
       Formdata.append('qHSEEmpCode', this.qHSEEmpCode?.value);
       Formdata.append('qHSEPositionName', this.qHSEPositionName?.value);
       Formdata.append('qHSEEmpName', this.qHSEEmpName?.value);
@@ -375,7 +361,7 @@ export class EditEmployeeCompetencyEvaluationComponent {
       .subscribe({
         next: data => {
           console.log(data)
-          this.router.navigate(['/Dashboard/Accidents']);
+          this.router.navigate(['/Dashboard/EmployeeCompetencyEvaluations']);
         },
         error: error => console.log(error)
       });

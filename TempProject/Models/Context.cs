@@ -12,6 +12,9 @@ namespace TempProject.Models
         public DbSet<JMP> JMPs { get; set; }
         public DbSet<Driver> DriverNames { get; set; }
 		public DbSet<EmpCode> EmpCodes  { get; set; }
+		public DbSet<PotentialHazard> PotentialHazard { get; set; }
+		public DbSet<HazardImages> HazardImages { get; set; }
+		public DbSet<Responsibility> Responsibility { get; set; }
 
 		public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
         //public DbSet<Crew> Crews { get; set; }

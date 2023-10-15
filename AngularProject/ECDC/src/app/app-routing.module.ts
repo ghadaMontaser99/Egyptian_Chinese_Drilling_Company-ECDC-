@@ -122,6 +122,13 @@ import { PrintEmployeeCompetencyEvaluationComponent } from './Print_Reports/prin
 import { AddSubjectListComponent } from './Add_Data/add-subject-list/add-subject-list.component';
 import { SubjectListEmployeeCompetencyEvaluationComponent } from './Items_In_SubDashboard/subject-list-employee-competency-evaluation/subject-list-employee-competency-evaluation.component';
 import { EditSubjectListEmployeeCompetencyEvaluationComponent } from './EditReports/edit-subject-list-employee-competency-evaluation/edit-subject-list-employee-competency-evaluation.component';
+import { PotentialHazardComponent } from './Reports/potential-hazard/potential-hazard.component';
+import { EditPotentialHazardComponent } from './EditReports/edit-potential-hazard/edit-potential-hazard.component';
+import { PotentialHazardTableComponent } from './Report_Data/potential-hazard-table/potential-hazard-table.component';
+import { PrintPotentialHazardComponent } from './Print_Reports/print-potential-hazard/print-potential-hazard.component';
+import { ResponsibilityComponent } from './Items_In_SubDashboard/responsibility/responsibility.component';
+import { AddResponsibilityComponent } from './Add_Data/add-responsibility/add-responsibility.component';
+import { EditResponsibilityComponent } from './EditReports/edit-responsibility/edit-responsibility.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
@@ -145,6 +152,14 @@ const routes: Routes = [
   { path: 'Dashboard/SubjectList/Edit/:id', canActivate: [AuthGuard],component: EditSubjectListEmployeeCompetencyEvaluationComponent },
   { path: 'Dashboard/SubjectList',canActivate: [UserauthGuard], component: SubjectListEmployeeCompetencyEvaluationComponent },
   
+  { path: 'PotentialHazard/Add', canActivate: [UserauthGuard],component: PotentialHazardComponent },
+  { path: 'PotentialHazard/Edit/:id', canActivate: [UserauthGuard],component: EditPotentialHazardComponent },
+  { path: 'PotentialHazard',canActivate: [UserauthGuard], component: PotentialHazardTableComponent },
+  { path: 'PrintPotentialHazard', canActivate: [UserauthGuard],component: PrintPotentialHazardComponent },
+  { path: 'Dashboard/Responsibility',canActivate: [UserauthGuard], component: ResponsibilityComponent },
+  { path: 'Dashboard/Responsibility/Add',canActivate: [UserauthGuard], component: AddResponsibilityComponent },
+  { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [UserauthGuard], component: EditResponsibilityComponent },
+
   
   
   { path: 'Dashboard/ClassificationOfAccident/Add', canActivate: [UserauthGuard],component: AddclassificationOfAccdComponent },
@@ -217,7 +232,7 @@ const routes: Routes = [
   { path: 'Dashboard/Position/Edit/:id',canActivate: [AuthGuard], component: EditPositionComponent },
 
 
-  { path: 'Dashboard/EmployeeCompetencyEvaluation/Edit/:id',canActivate: [AuthGuard], component: EmployeeCompetencyEvaluationComponent },
+  { path: 'Dashboard/EmployeeCompetencyEvaluation/Edit/:id',canActivate: [AuthGuard], component: EditEmployeeCompetencyEvaluationComponent },
 
   // { path: 'ShowDataEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: EmployeeCompetencyEvaluationTableComponent },
   { path: 'PrintEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: PrintEmployeeCompetencyEvaluationComponent },

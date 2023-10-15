@@ -51,8 +51,11 @@ namespace TempProject
 			//builder.Services.AddScoped<IRepository<QHSEPositionName>, Repository<QHSEPositionName>>();
 			builder.Services.AddScoped<IRepository<EmpCode>, Repository<EmpCode>>();
             builder.Services.AddScoped<IRepository<SubjectList>, Repository<SubjectList>>();
+			builder.Services.AddScoped<IRepository<Responsibility>, Repository<Responsibility>>();
+			builder.Services.AddScoped<IRepository<PotentialHazard>, Repository<PotentialHazard>>();
+			builder.Services.AddScoped<IRepository<HazardImages>, Repository<HazardImages>>();
 
-            builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
+			builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
 			builder.Services.AddScoped<IRepository<ReportedByName>, Repository<ReportedByName>>();
             builder.Services.AddScoped<IRepository<TypeOfObservationCategory>, Repository<TypeOfObservationCategory>>();
             builder.Services.AddScoped<IRepository<JMP>, Repository<JMP>>();
@@ -73,8 +76,9 @@ namespace TempProject
             builder.Services.AddScoped<IRepository<ProblemFacedDuringRigMove>, Repository<ProblemFacedDuringRigMove>>();
             builder.Services.AddScoped<IRigMovePerformanceRepository, RigMovePerformanceRepository>();
             builder.Services.AddScoped<IEmployeeCompetencyEvaluationRepository, EmployeeCompetencyEvaluationRepository>();
+			builder.Services.AddScoped<IPotentialHazardRepository,PotentialHazardRepository>();
 
-            builder.Services.AddScoped<IBOPRepossitory,BOPRepository>();
+			builder.Services.AddScoped<IBOPRepossitory,BOPRepository>();
 
             builder.Services.AddScoped<IRepository<BOP> , Repository<BOP>>();
 

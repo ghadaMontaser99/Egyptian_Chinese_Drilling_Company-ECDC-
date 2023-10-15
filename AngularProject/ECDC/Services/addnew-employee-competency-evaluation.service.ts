@@ -36,6 +36,9 @@ export class AddnewEmployeeCompetencyEvaluationService {
   GetEmployeeCompetencyEvaluationtByEmpCode(EmpCode:number,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/GetDataByEmpCode/${EmpCode}?UserID=${userId}&UserRole=${userRole}`);
   }
+  GetEmployeeCompetencyEvaluationtByEmpCodeNew(EmpCode:number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/GetDataByEmpCode/New/${EmpCode}?UserID=${userId}&UserRole=${userRole}`);
+  }
 
   GetEmployeeCompetencyEvaluationtByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/${Id}?UserId=${userId}&UserRole=${userRole}`)

@@ -12,8 +12,8 @@
     <label class="mb-2">Employee Code :</label>
     
     <select class="form-control" [(ngModel)]="EmpCode" (change)="EmpCodeSelected($event)">
-      <option value="{{ employeeCompetencyEvaluation}}" *ngFor="let employeeCompetencyEvaluation of EmployeeCompetencyEvaluation">
-        {{employeeCompetencyEvaluation.employeeCode}}
+      <option value="{{ code}}" *ngFor="let code of EmployeeCompetencyEvaluation">
+        {{code}}
       </option>
     </select>
   
@@ -58,7 +58,7 @@
                         </td>
                       </tr>
                       <tr>
-                        <td scope="row">
+                        <td scope="row" colspan="2">
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">Description :</span>
@@ -66,16 +66,58 @@
                             </h6>
                           </div>
                         </td>
+                      
+                      </tr>
+
+                      <tr>
                         <td scope="row">
                           <div class="mb-1">
                             <h6 class="mb-1">
                               <span style="font-weight: bold;">Subject :</span>
-                              <span>{{ record.subjectId }}</span>
+                              <span>{{ record.subjectName }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                     
+                     
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;"> Employee Code :</span>
+                              <span>{{ record.employeeCode }}</span>
                             </h6>
                           </div>
                         </td>
                       </tr>
                       <tr>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">Employee Position :</span>
+                              <span>{{ record.employeePositionName }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">Employee Name :</span>
+                              <span>{{ record.employeeName }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <tr>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">QHSE Engineer Code :</span>
+                              <span>{{ record.qhseEmpCode }}</span>
+                            </h6>
+                          </div>
+                        </td>
                        
                         <td scope="row">
                           <div class="mb-1">
@@ -87,8 +129,19 @@
                         </td>
                       </tr>
                       <tr>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">QHSE Engineer Position:</span>
+                              <span>{{ record.qhsePositionName }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        
+
+                        </tr>
                        
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>

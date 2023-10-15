@@ -55,6 +55,8 @@ export class SubDashboardComponent {
   IsUser:boolean=false;
   EmpCodecount:number=0;
   EmpCodeList:any;
+  ResponsibilityCount:number=0;
+  ResponsibilityList:any;
 
   constructor(private dataService: DataService,
     private loginService:LoginService) { }
@@ -83,6 +85,12 @@ export class SubDashboardComponent {
       next:data=>{
         this.subjectList=data.data,
         this.subjectListcount=this.subjectList.length
+      }
+    })
+    this.dataService.GetResponsibility().subscribe({
+      next:data=>{
+        this.ResponsibilityList=data.data,
+        this.ResponsibilityCount=this.ResponsibilityList.length
       }
     })
 

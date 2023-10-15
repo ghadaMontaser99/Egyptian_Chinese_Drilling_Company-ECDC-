@@ -92,4 +92,7 @@ export class GetdataByPageService {
   GetEmployeeCompetencyEvaluationByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole} `);
   }
+  GetResponsibilityByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Responsibility/ByPage/${pageNumber}`);
+  }
 }

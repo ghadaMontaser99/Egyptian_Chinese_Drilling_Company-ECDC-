@@ -480,35 +480,46 @@ namespace TempProject.Controllers
 				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
 				{
                     List<EmployeeCompetencyEvaluationResponseDTO> employeeCompetencyEvaluationtDTOs = new List<EmployeeCompetencyEvaluationResponseDTO>();
-                    List<EmployeeCompetencyEvaluation> employeeCompetencyEvaluationts = employeeCompetencyEvaluationRepository.getall().Where(a => a.EmployeeCode == EmpCode ).ToList();
-                    foreach (EmployeeCompetencyEvaluation employeeCompetencyEvaluationt in employeeCompetencyEvaluationts)
+                    List<EmployeeCompetencyEvaluation> employeeCompetencyEvaluationts = employeeCompetencyEvaluationRepository.getall().Where(a => a.EmployeeCode == EmpCode).ToList();
+                    if(employeeCompetencyEvaluationts.Count>0)
                     {
-                        EmployeeCompetencyEvaluationResponseDTO employeeCompetencyEvaluationtDTO = new EmployeeCompetencyEvaluationResponseDTO();
-                        employeeCompetencyEvaluationtDTO.id = employeeCompetencyEvaluationt.Id;
-                        employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
-                        employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
-                        employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
-                        employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
+						foreach (EmployeeCompetencyEvaluation employeeCompetencyEvaluationt in employeeCompetencyEvaluationts)
+						{
+							EmployeeCompetencyEvaluationResponseDTO employeeCompetencyEvaluationtDTO = new EmployeeCompetencyEvaluationResponseDTO();
+							employeeCompetencyEvaluationtDTO.id = employeeCompetencyEvaluationt.Id;
+							employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
+							employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
+							employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+							employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
- 
-                        employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
 
-                        employeeCompetencyEvaluationtDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
-                        employeeCompetencyEvaluationtDTO.QHSEEmpCode = employeeCompetencyEvaluationt.QHSEEmpCode;
-                        employeeCompetencyEvaluationtDTO.QHSEPositionName = employeeCompetencyEvaluationt.QHSEPositionName;
+							employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
 
-                        employeeCompetencyEvaluationtDTO.EmployeeCode = employeeCompetencyEvaluationt.EmployeeCode;
-                        employeeCompetencyEvaluationtDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
-                        employeeCompetencyEvaluationtDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
+							employeeCompetencyEvaluationtDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
+							employeeCompetencyEvaluationtDTO.QHSEEmpCode = employeeCompetencyEvaluationt.QHSEEmpCode;
+							employeeCompetencyEvaluationtDTO.QHSEPositionName = employeeCompetencyEvaluationt.QHSEPositionName;
 
-                        employeeCompetencyEvaluationtDTOs.Add(employeeCompetencyEvaluationtDTO);
+							employeeCompetencyEvaluationtDTO.EmployeeCode = employeeCompetencyEvaluationt.EmployeeCode;
+							employeeCompetencyEvaluationtDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
+							employeeCompetencyEvaluationtDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
 
-         
+							employeeCompetencyEvaluationtDTOs.Add(employeeCompetencyEvaluationtDTO);
+
+
+						}
+						result.Message = "Success";
+						result.Data = employeeCompetencyEvaluationtDTOs;
+						result.Statescode = 200;
+						return result;
 					}
-					result.Message = "Success";
-					result.Data = employeeCompetencyEvaluationtDTOs;
-					result.Statescode = 200;
-					return result;
+                    else
+                    {
+						result.Message = "Not found with this EmpCode";
+						result.Data = employeeCompetencyEvaluationtDTOs;
+						result.Statescode = 404;
+						return result;
+					}
+                   
 				}
 				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
 				{
@@ -554,58 +565,158 @@ namespace TempProject.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult<ResultDTO> GetAll()
-        //{
 
-        //    ResultDTO result = new ResultDTO();
 
-        //    List<Accident> temp = accidentRepo.getall();
-        //    List<AccidentDTO> newTemp = new List<AccidentDTO>();
-        //    foreach (Accident accident in temp)
-        //    {
-        //        AccidentDTO accidentDTO = new AccidentDTO();
-        //        accidentDTO.id = accident.id;
-        //        accidentDTO.RigId = accident.RigId;
-        //        accidentDTO.TimeOfEvent = accident.TimeOfEvent;
-        //        accidentDTO.DateOfEvent = accident.DateOfEvent;
-        //        accidentDTO.TypeOfInjuryID = accident.TypeOfInjuryID;
-        //        accidentDTO.ViolationCategoryId = accident.ViolationCategoryId;
-        //        accidentDTO.AccidentCausesId = accident.AccidentCausesId;
-        //        accidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
-        //        accidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
-        //        accidentDTO.AccidentLocation = accident.AccidentLocation;
-        //        accidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
-        //        accidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-        //        accidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
-        //        accidentDTO.QHSEPositionId = accident.QHSEPositionId;
-        //        accidentDTO.DrillerName = accident.DrillerName;
-        //        accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
-        //        accidentDTO.ImmediateActionType = accident.ImmediateActionType;
-        //        accidentDTO.DirectCauses = accident.DirectCauses;
-        //        accidentDTO.RootCauses = accident.RootCauses;
-        //        accidentDTO.userID = accident.userID;
-        //        accidentDTO.Recommendations = accident.Recommendations;
-        //        accidentDTO.Pictures = accident.Pictures;
 
-        //        newTemp.Add(accidentDTO);
-        //        //result.Data = prod;
-        //    }
-        //    if (newTemp != null)
-        //    {
 
-        //        result.Statescode = 200;
-        //        result.Data = newTemp;
+		[HttpGet("GetDataByEmpCode/New/{EmpCodeNew:int}")]
+		public ActionResult<ResultDTO> GetAllWithDataByEmpCodeNew(int EmpCodeNew, string UserId, string UserRole)
+		{
+			ResultDTO result = new ResultDTO();
 
-        //        return result;
-        //    }
+			try
+			{
+				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+				{
+					List<EmpCodeComptencyNewDTO> EmpCodeComptencyNewDTOs = new List<EmpCodeComptencyNewDTO>();
+					List<EmployeeCompetencyEvaluation> employeeCompetencyEvaluationts = employeeCompetencyEvaluationRepository.getall().Where(a => a.EmployeeCode == EmpCodeNew).ToList();
+					if (employeeCompetencyEvaluationts.Count > 0)
+					{
+						foreach (EmployeeCompetencyEvaluation employeeCompetencyEvaluationt in employeeCompetencyEvaluationts)
+						{
+							EmpCodeComptencyNewDTO empCodeComptencyNewDTO = new EmpCodeComptencyNewDTO();
+							empCodeComptencyNewDTO.id = employeeCompetencyEvaluationt.Id;
+							empCodeComptencyNewDTO.RigId = employeeCompetencyEvaluationt.Rig.Number;
+							empCodeComptencyNewDTO.Date = employeeCompetencyEvaluationt.Date;
+							empCodeComptencyNewDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+							empCodeComptencyNewDTO.userID = employeeCompetencyEvaluationt.userID;
 
-        //    result.Statescode = 404;
-        //    result.Message = "data not found";
-        //    return result;
-        //}
 
-        [HttpGet("{ID:int}")]
+							empCodeComptencyNewDTO.Description = employeeCompetencyEvaluationt.Description;
+
+							empCodeComptencyNewDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
+							empCodeComptencyNewDTO.QHSEEmpCode = employeeCompetencyEvaluationt.QHSEEmpCode;
+							empCodeComptencyNewDTO.QHSEPositionName = employeeCompetencyEvaluationt.QHSEPositionName;
+
+							empCodeComptencyNewDTO.EmployeeCode = employeeCompetencyEvaluationt.EmployeeCode;
+							empCodeComptencyNewDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
+							empCodeComptencyNewDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
+
+							EmpCodeComptencyNewDTOs.Add(empCodeComptencyNewDTO);
+
+
+						}
+						result.Message = "Success";
+						result.Data = EmpCodeComptencyNewDTOs;
+						result.Statescode = 200;
+						return result;
+					}
+					else
+					{
+						result.Message = "Not found with this EmpCode";
+						result.Data = EmpCodeComptencyNewDTOs;
+						result.Statescode = 404;
+						return result;
+					}
+
+				}
+				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
+				{
+					List<EmpCodeComptencyNewDTO> empCodeComptencyNewDTOs = new List<EmpCodeComptencyNewDTO>();
+					List<EmployeeCompetencyEvaluation> employeeCompetencyEvaluationts = employeeCompetencyEvaluationRepository.getall().Where(a => a.EmployeeCode == EmpCodeNew && a.userID == UserId).ToList();
+					foreach (EmployeeCompetencyEvaluation employeeCompetencyEvaluationt in employeeCompetencyEvaluationts)
+					{
+						EmpCodeComptencyNewDTO empCodeComptencyNewDTO = new EmpCodeComptencyNewDTO();
+						empCodeComptencyNewDTO.id = employeeCompetencyEvaluationt.Id;
+						empCodeComptencyNewDTO.RigId = employeeCompetencyEvaluationt.Rig.Number;
+						empCodeComptencyNewDTO.Date = employeeCompetencyEvaluationt.Date;
+						empCodeComptencyNewDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+						empCodeComptencyNewDTO.userID = employeeCompetencyEvaluationt.userID;
+
+
+						empCodeComptencyNewDTO.Description = employeeCompetencyEvaluationt.Description;
+
+						empCodeComptencyNewDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
+						empCodeComptencyNewDTO.QHSEEmpCode = employeeCompetencyEvaluationt.QHSEEmpCode;
+						empCodeComptencyNewDTO.QHSEPositionName = employeeCompetencyEvaluationt.QHSEPositionName;
+
+						empCodeComptencyNewDTO.EmployeeCode = employeeCompetencyEvaluationt.EmployeeCode;
+						empCodeComptencyNewDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
+						empCodeComptencyNewDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
+
+						empCodeComptencyNewDTOs.Add(empCodeComptencyNewDTO);
+
+					}
+					result.Message = "Success";
+					result.Data = empCodeComptencyNewDTOs;
+					result.Statescode = 200;
+					return result;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Statescode = 404;
+				result.Message = "data not found";
+			}
+
+			return result;
+		}
+
+
+
+		//[HttpGet]
+		//public ActionResult<ResultDTO> GetAll()
+		//{
+
+		//    ResultDTO result = new ResultDTO();
+
+		//    List<Accident> temp = accidentRepo.getall();
+		//    List<AccidentDTO> newTemp = new List<AccidentDTO>();
+		//    foreach (Accident accident in temp)
+		//    {
+		//        AccidentDTO accidentDTO = new AccidentDTO();
+		//        accidentDTO.id = accident.id;
+		//        accidentDTO.RigId = accident.RigId;
+		//        accidentDTO.TimeOfEvent = accident.TimeOfEvent;
+		//        accidentDTO.DateOfEvent = accident.DateOfEvent;
+		//        accidentDTO.TypeOfInjuryID = accident.TypeOfInjuryID;
+		//        accidentDTO.ViolationCategoryId = accident.ViolationCategoryId;
+		//        accidentDTO.AccidentCausesId = accident.AccidentCausesId;
+		//        accidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
+		//        accidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
+		//        accidentDTO.AccidentLocation = accident.AccidentLocation;
+		//        accidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
+		//        accidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
+		//        accidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
+		//        accidentDTO.QHSEPositionId = accident.QHSEPositionId;
+		//        accidentDTO.DrillerName = accident.DrillerName;
+		//        accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
+		//        accidentDTO.ImmediateActionType = accident.ImmediateActionType;
+		//        accidentDTO.DirectCauses = accident.DirectCauses;
+		//        accidentDTO.RootCauses = accident.RootCauses;
+		//        accidentDTO.userID = accident.userID;
+		//        accidentDTO.Recommendations = accident.Recommendations;
+		//        accidentDTO.Pictures = accident.Pictures;
+
+		//        newTemp.Add(accidentDTO);
+		//        //result.Data = prod;
+		//    }
+		//    if (newTemp != null)
+		//    {
+
+		//        result.Statescode = 200;
+		//        result.Data = newTemp;
+
+		//        return result;
+		//    }
+
+		//    result.Statescode = 404;
+		//    result.Message = "data not found";
+		//    return result;
+		//}
+
+		[HttpGet("{ID:int}")]
         public ActionResult<ResultDTO> GetByID(int ID,string UserId,string UserRole)
         {
             ResultDTO result = new ResultDTO();

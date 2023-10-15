@@ -26,6 +26,7 @@ import { Observable } from 'rxjs';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPosition } from 'SharedClasses/IPosition';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
+import { IResponsibility } from 'SharedClasses/IResponsibility';
 
 @Injectable({
   providedIn: 'root'
@@ -222,5 +223,8 @@ export class EditDataService {
   }
   EditPositon(id:number,Positon:IPosition):Observable<IPosition>{
     return this.http.put<IPosition>(`http://localhost:5000/api/Positions/${id}`,Positon);
+  }
+  EditResponsibility(id:number,Responsibility:IResponsibility):Observable<IResponsibility>{
+    return this.http.put<IResponsibility>(`http://localhost:5000/api/Responsibility/Edit/${Responsibility.id}`,Responsibility);
   }
 }

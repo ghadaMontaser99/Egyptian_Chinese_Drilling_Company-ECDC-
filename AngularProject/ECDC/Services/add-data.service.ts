@@ -14,6 +14,7 @@ import { IQHSEPosition } from 'SharedClasses/IQHSEPosition';
 import { IQHSEPositionName } from 'SharedClasses/IQHSEPositionName';
 import { IReportedByName } from 'SharedClasses/IReportedByName';
 import { IReportedByPosition } from 'SharedClasses/IReportedByPosition';
+import { IResponsibility } from 'SharedClasses/IResponsibility';
 import { IRig } from 'SharedClasses/IRig';
 import { IRouteName } from 'SharedClasses/IRouteName';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
@@ -112,6 +113,9 @@ export class AddDataService {
   }
   AddPosition(postion:IPosition):Observable<IPosition> {
     return this.http.post<IPosition>(`http://localhost:5000/api/Positions`,postion);
+  }
+  AddResponsibility(Responsibility:IResponsibility):Observable<IResponsibility> {
+    return this.http.post<IResponsibility>(`http://localhost:5000/api/Responsibility`,Responsibility);
   }
  
 

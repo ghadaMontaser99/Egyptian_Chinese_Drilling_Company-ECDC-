@@ -14,11 +14,7 @@ namespace TempProject.DTO.ResponseDTO
         public DateTime Date { get; set; }
 
 
-        [ForeignKey("Subjectlist")]
         public int SubjectId { get; set; }
-
-        public virtual SubjectList Subjectlist { get; set; }
-
         public int QHSEEmpCode { get; set; }
         public string QHSEPositionName { get; set; }
         public string QHSEEmpName { get; set; }

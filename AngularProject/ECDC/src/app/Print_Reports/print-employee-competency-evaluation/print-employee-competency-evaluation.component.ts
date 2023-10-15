@@ -42,10 +42,12 @@ export class PrintEmployeeCompetencyEvaluationComponent {
     this.dataService.GetEmployeeCompetencyEvaluationts(this.User.ID,this.User.Role).subscribe({
       next: data => {
         data.data.forEach((ele: any) => {
-          this.EmployeeCompetencyEvaluation.push(ele.data)
+          this.EmployeeCompetencyEvaluation.push(ele.employeeCode)
           console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
 
           console.log(data.data)
+          console.log(this.EmployeeCompetencyEvaluation)
+
 
         });
         // this.Accident = data.data;
@@ -61,9 +63,10 @@ export class PrintEmployeeCompetencyEvaluationComponent {
     console.log(this.EmpCode)
     console.log(event.target.value);
 
-    this.AddNewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationtByEmpCode(this.EmpCode,this.User.ID,this.User.Role).subscribe({
+    this.AddNewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationtByEmpCodeNew(this.EmpCode,this.User.ID,this.User.Role).subscribe({
       next: data => {
         console.log('',this.EmployeeCompetencyEvaluationRecord)
+       
         this.EmployeeCompetencyEvaluationRecord = data.data;
         // this.Data = true;
       },
@@ -72,6 +75,7 @@ export class PrintEmployeeCompetencyEvaluationComponent {
         console.log("Error");
       }
     })
+
   }
  
   print(): void {

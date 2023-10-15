@@ -41,6 +41,9 @@ export class DataService {
   GetSubjectList(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList`);
   }
+  GetSubjectById(id:number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
+  }
 
  
   GetClassification(): Observable<IAPIResult> {
@@ -225,6 +228,13 @@ export class DataService {
 
   GetPositionByID(ID: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Positions/${ID}`);
+  }
+  GetResponsibility(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Responsibility`);
+  }
+
+  GetResponsibilityByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Responsibility/${ID}`);
   }
   
 
