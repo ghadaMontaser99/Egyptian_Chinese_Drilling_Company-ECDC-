@@ -12,7 +12,7 @@ using TempProject.Models;
 namespace TempProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231014075439_init")]
+    [Migration("20231017092527_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -857,6 +857,116 @@ namespace TempProject.Migrations
                     b.ToTable("NonRecordableAccidents");
                 });
 
+            modelBuilder.Entity("TempProject.Models.PPE", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PPEs");
+                });
+
+            modelBuilder.Entity("TempProject.Models.PPEAndPPEReceiving", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PPEId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PPEReceivingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PPEId");
+
+                    b.HasIndex("PPEReceivingId");
+
+                    b.ToTable("PPEAndPPEReceivings");
+                });
+
+            modelBuilder.Entity("TempProject.Models.PPEReceiving", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int>("EmployeeCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeePositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NormalCoverallsSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QHSEEmpCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QHSEEmpName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QHSEPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SafetyBootsSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThermalCoverallsSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RigId");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("PPEReceivings");
+                });
+
             modelBuilder.Entity("TempProject.Models.PTSM", b =>
                 {
                     b.Property<int>("Id")
@@ -1690,6 +1800,44 @@ namespace TempProject.Migrations
                     b.Navigation("Passenger");
                 });
 
+            modelBuilder.Entity("TempProject.Models.PPEAndPPEReceiving", b =>
+                {
+                    b.HasOne("TempProject.Models.PPE", "PPE")
+                        .WithMany("PPEAndPPEReceiving")
+                        .HasForeignKey("PPEId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.PPEReceiving", "PPEReceiving")
+                        .WithMany("PPEAndPPEReceiving")
+                        .HasForeignKey("PPEReceivingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PPE");
+
+                    b.Navigation("PPEReceiving");
+                });
+
+            modelBuilder.Entity("TempProject.Models.PPEReceiving", b =>
+                {
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany("PPEReceiving")
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rig");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TempProject.Models.PTSM", b =>
                 {
                     b.HasOne("TempProject.Models.Rig", "Rig")
@@ -1850,6 +1998,16 @@ namespace TempProject.Migrations
                     b.Navigation("jMP_Passengers");
                 });
 
+            modelBuilder.Entity("TempProject.Models.PPE", b =>
+                {
+                    b.Navigation("PPEAndPPEReceiving");
+                });
+
+            modelBuilder.Entity("TempProject.Models.PPEReceiving", b =>
+                {
+                    b.Navigation("PPEAndPPEReceiving");
+                });
+
             modelBuilder.Entity("TempProject.Models.PTSM", b =>
                 {
                     b.Navigation("Attendances");
@@ -1895,6 +2053,8 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.Rig", b =>
                 {
                     b.Navigation("Accidents");
+
+                    b.Navigation("PPEReceiving");
 
                     b.Navigation("PotentialHazard");
 

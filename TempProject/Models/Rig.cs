@@ -14,6 +14,7 @@ namespace TempProject.Models
         public virtual List<RigMovePerformance> RigMovePerformances { get; set; }
         public virtual List<EmployeeCompetencyEvaluation> RigEmployeeCompetencyEvaluation { get; set; }
         public virtual List<PotentialHazard> PotentialHazard { get; set; }
+        public virtual List<PPEReceiving> PPEReceiving { get; set;}
 
 
     }

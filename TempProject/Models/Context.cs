@@ -16,7 +16,12 @@ namespace TempProject.Models
 		public DbSet<HazardImages> HazardImages { get; set; }
 		public DbSet<Responsibility> Responsibility { get; set; }
 
-		public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
+        public DbSet<PPEReceiving> PPEReceivings { get; set; }
+    
+        public DbSet<PPE> PPEs { get; set; }
+       
+        public DbSet<PPEAndPPEReceiving> PPEAndPPEReceivings { get; set; }
+        public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
         //public DbSet<Crew> Crews { get; set; }
         public DbSet<LeadershipVisit> LeadershipVisits { get; set; }
         public DbSet<RecordableAccident> RecordableAccidents { get; set; }

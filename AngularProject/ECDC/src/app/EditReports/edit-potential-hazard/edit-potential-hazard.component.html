@@ -125,13 +125,13 @@
   
           <tr>
             <td colspan="3">
-                <label for="neededAction">Needed Action:</label>
+                <label for="neededAction">Needed Corrective Action:</label>
                 <textarea class="form-control" [ngModel]="PotentialHazard.neededAction" formControlName="neededAction" rows="4" id="neededAction"
                   name="text"></textarea>
                 <div
                   *ngIf="neededAction?.invalid && (neededAction?.dirty || neededAction?.touched)">
                   <small class="text-danger" *ngIf="neededAction?.errors?.['required']">
-                    Needed Action is required
+                    Needed Corrective Action is required
                   </small>
                 </div>
               </td>
@@ -170,7 +170,7 @@
         </table>
   
   
-        <input type="submit" [disabled]="PotentialHazardForm.invalid" class="btn btn-success me-3" value="Submit" />
+        <input type="submit" [disabled]="PotentialHazardForm.invalid" class="btn btn-success me-3" value="Update" />
         <input routerLink="/PrintPotentialHazard" type="submit" class="btn btn-primary" value="Show Data">
   
       </form>

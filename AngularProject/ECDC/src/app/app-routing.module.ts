@@ -129,6 +129,13 @@ import { PrintPotentialHazardComponent } from './Print_Reports/print-potential-h
 import { ResponsibilityComponent } from './Items_In_SubDashboard/responsibility/responsibility.component';
 import { AddResponsibilityComponent } from './Add_Data/add-responsibility/add-responsibility.component';
 import { EditResponsibilityComponent } from './EditReports/edit-responsibility/edit-responsibility.component';
+import { AddPPEReceivingComponent } from './Reports/add-ppereceiving/add-ppereceiving.component';
+import { EditPPEReceivingComponent } from './EditReports/edit-ppereceiving/edit-ppereceiving.component';
+import { PPEReceivingTableComponent } from './Report_Data/ppereceiving-table/ppereceiving-table.component';
+import { PrintPPEReceivingComponent } from './Print_Reports/print-ppereceiving/print-ppereceiving.component';
+import { PPEsComponent } from './Items_In_SubDashboard/ppes/ppes.component';
+import { AddPPEsComponent } from './Add_Data/add-ppes/add-ppes.component';
+import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
@@ -159,9 +166,6 @@ const routes: Routes = [
   { path: 'Dashboard/Responsibility',canActivate: [UserauthGuard], component: ResponsibilityComponent },
   { path: 'Dashboard/Responsibility/Add',canActivate: [UserauthGuard], component: AddResponsibilityComponent },
   { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [UserauthGuard], component: EditResponsibilityComponent },
-
-  
-  
   { path: 'Dashboard/ClassificationOfAccident/Add', canActivate: [UserauthGuard],component: AddclassificationOfAccdComponent },
   { path: 'Dashboard/ClassificationOfAccident/Edit/:id',canActivate: [AuthGuard], component: EditClassificationOfAccidentComponent },
   { path: 'Dashboard/ClassificationOfAccident',canActivate: [UserauthGuard], component: ClassificationOfAccidentComponent },
@@ -268,7 +272,16 @@ const routes: Routes = [
   { path: 'QHSE' ,canActivate: [UserauthGuard],component: QSHEFormsComponent },
   { path: 'Policy' ,canActivate: [UserauthGuard],component: PolicyComponent },
   { path: 'EmployeeCompetencyEvaluation/Add' ,canActivate: [UserauthGuard],component: EmployeeCompetencyEvaluationComponent },
- 
+  { path: 'Dashboard/PPE/Add' ,canActivate: [AllAuthGuardGuard],component: AddPPEsComponent },
+  { path: 'Dashboard/PPE/Edit/:id',canActivate: [RadioauthGuard], component: EditPPEsComponent },
+  { path: 'Dashboard/PPE',canActivate: [AllAuthGuardGuard], component: PPEsComponent },
+  { path: 'Dashboard/Responsibility/Add' ,canActivate: [AllAuthGuardGuard],component: AddResponsibilityComponent },
+  { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [RadioauthGuard], component: EditResponsibilityComponent },
+  { path: 'Dashboard/Responsibility',canActivate: [AllAuthGuardGuard], component: ResponsibilityComponent },
+  { path: 'PPEReceiving/Add', canActivate: [UserauthGuard],component: AddPPEReceivingComponent },
+  { path: 'PPEReceiving/Edit/:id', canActivate: [UserauthGuard],component: EditPPEReceivingComponent },
+  { path: 'PPEReceiving',canActivate: [UserauthGuard], component: PPEReceivingTableComponent },
+  { path: 'PrintPPEReceiving', canActivate: [UserauthGuard],component: PrintPPEReceivingComponent },
 
 
   { path: '**', component: PageNotFoundComponent }

@@ -112,7 +112,7 @@ namespace TempProject.Controllers
                 return result;
             }
         }
-		[HttpPut("Edit/{id:int}")]
+		[HttpPut("{id:int}")]
         public ActionResult<ResultDTO> Put(int id, [FromForm] ResponsibilityDTO newResponsibility) //[FromBody] string value)
         {
             ResultDTO result = new ResultDTO();

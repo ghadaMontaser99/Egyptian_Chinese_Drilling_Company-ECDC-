@@ -58,11 +58,9 @@ export class EditAccidentComponent {
   QHSE_NameID:number=0;
   QHSE_Code:number=0;
   QHSE_Name:string='';
-  // QHSEPositionID: number = 0;
+  
   QHSE_Position:string='';
 
-  // ToolPusherCodeList: any;
-  // PusherPositionID: number = 0;
   PusherPosition:string='';
   Pusher_Name:string='';
   Pusher_NameId:number=0;

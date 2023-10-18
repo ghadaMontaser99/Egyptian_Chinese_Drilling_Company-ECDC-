@@ -12,15 +12,17 @@ import { IResponsibility } from 'SharedClasses/IResponsibility';
   styleUrls: ['./edit-responsibility.component.scss']
 })
 export class EditResponsibilityComponent {
-  ResponsibilityId:any;
-  Responsibility!:IResponsibility;
+  ResponsibilityId: any;
+  Responsibility!: IResponsibility;
   ResponsibilityForm!: FormGroup;
   ErrorMessage = '';
   // json_data: any[] = [];
-  UserJsonString:any
-  UserJsonObj:any
+  UserJsonString: any
+  UserJsonObj: any
 
-  constructor(private dataService:DataService,private activatedRoute:ActivatedRoute,private loginService:LoginService,private editDataService:EditDataService,private fb: FormBuilder, private router: Router) {
+  constructor(private EditDataService: EditDataService, 
+    private DataService: DataService,
+    private activatedRoute: ActivatedRoute, private loginService: LoginService,  private fb: FormBuilder, private router: Router) {
 
   }
 
@@ -29,17 +31,18 @@ export class EditResponsibilityComponent {
       this.ResponsibilityId = params.get("id");
       console.log(this.ResponsibilityId)
     }),
-    this.dataService.GetResponsibilityByID(this.ResponsibilityId).subscribe({
-      next: data => {
-        this.Responsibility = data.data,
-        console.log('*************************************************************')
-        console.log(this.Responsibility)
-        console.log('###################################################')
-      },
-      error: (erorr: string) => this.ErrorMessage = erorr
-    }),
-    this.UserJsonString=JSON.stringify(this.loginService.currentUser.getValue())
-    this.UserJsonObj=JSON.parse(this.UserJsonString);
+      this.DataService.GetResponsibilityByID(this.ResponsibilityId).subscribe({
+        next: data => {
+          this.Responsibility = data.data,
+            console.log('*************************************************************')
+          console.log(this.Responsibility)
+          console.log(this.Responsibility.id)
+          console.log('###################################################')
+        },
+        error: (erorr: string) => this.ErrorMessage = erorr
+      }),
+      this.UserJsonString = JSON.stringify(this.loginService.currentUser.getValue())
+    this.UserJsonObj = JSON.parse(this.UserJsonString);
     this.ResponsibilityForm = this.fb.group(
       {
         id: this.fb.control(
@@ -70,12 +73,12 @@ export class EditResponsibilityComponent {
   get name() {
     return this.ResponsibilityForm.get('name');
   }
-
+  
   submitData() {
-    console.log("///////**** this.ResponsibilityId")
+    console.log('this.ResponsibilityForm.value')
     console.log(this.ResponsibilityForm.value)
     if (this.ResponsibilityForm.valid) {
-      this.editDataService.EditResponsibility(this.ResponsibilityId,this.ResponsibilityForm.value).subscribe({
+      this.EditDataService.EditResponsibility(this.ResponsibilityId, this.ResponsibilityForm.value).subscribe({
         next: data => {
           console.log(this.ResponsibilityForm.value)
           console.log('from service')

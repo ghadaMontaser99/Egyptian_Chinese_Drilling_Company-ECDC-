@@ -224,7 +224,17 @@ export class EditDataService {
   EditPositon(id:number,Positon:IPosition):Observable<IPosition>{
     return this.http.put<IPosition>(`http://localhost:5000/api/Positions/${id}`,Positon);
   }
-  EditResponsibility(id:number,Responsibility:IResponsibility):Observable<IResponsibility>{
-    return this.http.put<IResponsibility>(`http://localhost:5000/api/Responsibility/Edit/${Responsibility.id}`,Responsibility);
+  // EditResponsibility(id:number,Responsibility:IResponsibility):Observable<IResponsibility>{
+  //   return this.http.put<IResponsibility>(`http://localhost:5000/api/Responsibility/${Responsibility.id}`,Responsibility);
+  // }
+
+  EditResponsibility(id:number,Responsibility:IResponsibility):Observable<any> {
+    const url = `http://localhost:5000/api/Responsibility/${id}`;
+  
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+  
+    return this.http.put(url, JSON.stringify(Responsibility), { headers })
   }
 }

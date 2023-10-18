@@ -1,11 +1,11 @@
 <div class="container mb-5" style="margin-top: 8%;">
     <div class="heading_container heading_center d-flex">
       <h2 class="mx-auto my-4">
-        Incident
+        Potential Hazard
       </h2>
   
     </div>
-    <a routerLink="/Accident" class="btn btn-primary me-3">Add New Potential Hazard</a>
+    <a routerLink="/PotentialHazard/Add" class="btn btn-primary me-3">Add New Potential Hazard</a>
     <a (click)="Download()" class="btn btn-primary">Export Data</a>
     <table class="table table-striped text-center mt-2">
       <thead>
@@ -20,7 +20,7 @@
       </thead>
       <tbody *ngFor="let record of (PotentialHazardList | async)">
         <tr>
-          <td>{{record.rigId}}</td>
+          <td>Rig - {{record.rigId}}</td>
           <td>{{record.status}}</td>
           <td>{{record.date |date:'yyyy-MM-dd'}}</td>
           <td>{{record.title}}</td>

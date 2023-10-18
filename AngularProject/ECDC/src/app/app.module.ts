@@ -135,7 +135,14 @@ import { PotentialHazardTableComponent } from './Report_Data/potential-hazard-ta
 import { PrintPotentialHazardComponent } from './Print_Reports/print-potential-hazard/print-potential-hazard.component';
 import { ResponsibilityComponent } from './Items_In_SubDashboard/responsibility/responsibility.component';
 import { AddResponsibilityComponent } from './Add_Data/add-responsibility/add-responsibility.component';
-import { EditResponsibilityComponent } from './EditReports/edit-responsibility/edit-responsibility.component'
+import { EditResponsibilityComponent } from './EditReports/edit-responsibility/edit-responsibility.component';
+import { AddPPEReceivingComponent } from './Reports/add-ppereceiving/add-ppereceiving.component';
+import { EditPPEReceivingComponent } from './EditReports/edit-ppereceiving/edit-ppereceiving.component';
+import { PrintPPEReceivingComponent } from './Print_Reports/print-ppereceiving/print-ppereceiving.component';
+import { PPEReceivingTableComponent } from './Report_Data/ppereceiving-table/ppereceiving-table.component';
+import { PPEsComponent } from './Items_In_SubDashboard/ppes/ppes.component';
+import { AddPPEsComponent } from './Add_Data/add-ppes/add-ppes.component';
+import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component'
 @NgModule({
   declarations: [
 
@@ -268,6 +275,13 @@ import { EditResponsibilityComponent } from './EditReports/edit-responsibility/e
     ResponsibilityComponent,
     AddResponsibilityComponent,
     EditResponsibilityComponent,
+    AddPPEReceivingComponent,
+    EditPPEReceivingComponent,
+    PrintPPEReceivingComponent,
+    PPEReceivingTableComponent,
+    PPEsComponent,
+    AddPPEsComponent,
+    EditPPEsComponent,
 
 
   ],

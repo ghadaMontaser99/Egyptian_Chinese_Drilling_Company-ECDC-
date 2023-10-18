@@ -9176,3 +9176,12 @@ D:\ITI materials\freelancer\Alaa job\projects\project 2023-10-12\TempProject\bin
 D:\ITI materials\freelancer\Alaa job\projects\project 2023-10-12\TempProject\bin\Debug\net7.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
 D:\ITI materials\freelancer\Alaa job\projects\project 2023-10-12\TempProject\bin\Debug\net7.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
 D:\ITI materials\freelancer\Alaa job\projects\project 2023-10-12\TempProject\bin\Debug\net7.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\Grpc.Core.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\Grpc.Core.Api.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\System.Web.Http.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+E:\هدير\ITI\ECDC\ECDC\TempProject\bin\Debug\net7.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll

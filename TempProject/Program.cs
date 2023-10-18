@@ -77,11 +77,13 @@ namespace TempProject
             builder.Services.AddScoped<IRigMovePerformanceRepository, RigMovePerformanceRepository>();
             builder.Services.AddScoped<IEmployeeCompetencyEvaluationRepository, EmployeeCompetencyEvaluationRepository>();
 			builder.Services.AddScoped<IPotentialHazardRepository,PotentialHazardRepository>();
-
 			builder.Services.AddScoped<IBOPRepossitory,BOPRepository>();
-
             builder.Services.AddScoped<IRepository<BOP> , Repository<BOP>>();
-
+         
+            builder.Services.AddScoped<IRepository<PPE>, Repository<PPE>>();
+            builder.Services.AddScoped<IRepository<PPEReceiving>, Repository<PPEReceiving>>();
+            builder.Services.AddScoped<IPPEReceivingRepository, PPEReceivingRepository>();
+            builder.Services.AddScoped<IRepository<PPEAndPPEReceiving>, Repository<PPEAndPPEReceiving>>();
             builder.Services.AddDbContext<Context>(options =>
               options.UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );

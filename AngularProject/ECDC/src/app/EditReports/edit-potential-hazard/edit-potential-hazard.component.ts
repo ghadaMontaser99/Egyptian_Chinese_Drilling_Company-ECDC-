@@ -83,18 +83,7 @@ export class EditPotentialHazardComponent {
       }),
       this.UserJsonString = JSON.stringify(this.loginService.currentUser.getValue()),
       this.UserJsonObj = JSON.parse(this.UserJsonString),
-      // this.dataService.GetResponsibilityByID(this.PotentialHazard.responibilityId).subscribe({
-      //   next: data => {
-      //     this.Responsibilty = data.data,
-      //       console.log("this.Responsibilty")
-      //     console.log(this.Responsibilty)
-      //   },
-      //   error: err => {
-      //     this.ErrorMessage = err,
-      //       console.log("this.ErrorMessage")
-      //     console.log(this.ErrorMessage)
-      //   }
-      // }),
+     
      
     this.PotentialHazardForm = this.fb.group({
       id: this.fb.control(0, [Validators.required]),
@@ -232,7 +221,7 @@ export class EditPotentialHazardComponent {
       this.PotentialHazardService.EditPotentialHazard(Formdata,this.PotentialHazardId).subscribe({
         next: data => {
           console.log(data)
-          this.router.navigate(['/Dashboard/Accidents']);
+          this.router.navigate(['/PotentialHazard']);
         },
         error: error => console.log(error)
       });

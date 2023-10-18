@@ -15,19 +15,20 @@ export class PrintPotentialHazardComponent {
   Classification!: string;
   PotentialHazardRecord: any[] = [];
   Data: boolean = false;
-  User:any;
+  User: any;
   date!: Date;
-
-  constructor(private loginService:LoginService,private PotentialHazardService: PotentialHazardService, private dataService: DataService) { }
+  StatusOpenList: any[] = [];
+  constructor(private loginService: LoginService, private PotentialHazardService: PotentialHazardService, private dataService: DataService) { }
 
   ngOnInit() {
-    this.User=this.loginService.currentUser.getValue();
-    this.PotentialHazardService.GetPotentialHazards(this.User.ID,this.User.Role).subscribe({
+    this.User = this.loginService.currentUser.getValue();
+    this.PotentialHazardService.GetPotentialHazards(this.User.ID, this.User.Role).subscribe({
       next: data => {
-
-
-        data.data.forEach((ele: any) => {
+      
+        data.data.filter((a: any) => a.status == "Open").forEach((ele: any) => {
           this.PotentialHazard.push(ele.rigId)
+          console.log('this.PotentialHazard')
+          console.log(this.PotentialHazard)
         });
         console.log(this.PotentialHazard)
         // this.Accident = data.data;
@@ -37,12 +38,16 @@ export class PrintPotentialHazardComponent {
       },
       error: error => this.ErrorMessage = error
     })
+
+
   }
 
- RigIdSelected(event: any) {
-    console.log()
-    this.PotentialHazardService.GetPotentialHazardByRigNumber(event.target.value,this.User.ID,this.User.Role).subscribe({
+  RigIdSelected(event: any) {
+    console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+    console.log(event.target.value)
+    this.PotentialHazardService.GetPotentialHazardByRigNumber(event.target.value, this.User.ID, this.User.Role).subscribe({
       next: data => {
+
         this.PotentialHazardRecord = data.data;
         this.Data = true;
         console.log("done");

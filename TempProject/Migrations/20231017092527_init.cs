@@ -181,6 +181,20 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PPEs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PPEs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PreventionCategorys",
                 columns: table => new
                 {
@@ -571,6 +585,43 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PPEReceivings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    EmployeeCode = table.Column<int>(type: "int", nullable: false),
+                    EmployeePositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QHSEEmpCode = table.Column<int>(type: "int", nullable: false),
+                    QHSEPositionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QHSEEmpName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ThermalCoverallsSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SafetyBootsSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NormalCoverallsSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RigId = table.Column<int>(type: "int", nullable: false),
+                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PPEReceivings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PPEReceivings_AspNetUsers_userID",
+                        column: x => x.userID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_PPEReceivings_Rigs_RigId",
+                        column: x => x.RigId,
+                        principalTable: "Rigs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PTSMs",
                 columns: table => new
                 {
@@ -914,6 +965,33 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PPEAndPPEReceivings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PPEId = table.Column<int>(type: "int", nullable: false),
+                    PPEReceivingId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PPEAndPPEReceivings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PPEAndPPEReceivings_PPEReceivings_PPEReceivingId",
+                        column: x => x.PPEReceivingId,
+                        principalTable: "PPEReceivings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_PPEAndPPEReceivings_PPEs_PPEId",
+                        column: x => x.PPEId,
+                        principalTable: "PPEs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attendances",
                 columns: table => new
                 {
@@ -1152,6 +1230,26 @@ namespace TempProject.Migrations
                 column: "userID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PPEAndPPEReceivings_PPEId",
+                table: "PPEAndPPEReceivings",
+                column: "PPEId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PPEAndPPEReceivings_PPEReceivingId",
+                table: "PPEAndPPEReceivings",
+                column: "PPEReceivingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PPEReceivings_RigId",
+                table: "PPEReceivings",
+                column: "RigId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PPEReceivings_userID",
+                table: "PPEReceivings",
+                column: "userID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProblemFacedDuringRigMoves_RigMovePerformanceId",
                 table: "ProblemFacedDuringRigMoves",
                 column: "RigMovePerformanceId");
@@ -1253,6 +1351,9 @@ namespace TempProject.Migrations
                 name: "NonRecordableAccidents");
 
             migrationBuilder.DropTable(
+                name: "PPEAndPPEReceivings");
+
+            migrationBuilder.DropTable(
                 name: "ProblemFacedDuringRigMoves");
 
             migrationBuilder.DropTable(
@@ -1296,6 +1397,12 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Passengers");
+
+            migrationBuilder.DropTable(
+                name: "PPEReceivings");
+
+            migrationBuilder.DropTable(
+                name: "PPEs");
 
             migrationBuilder.DropTable(
                 name: "RigMovePerformances");

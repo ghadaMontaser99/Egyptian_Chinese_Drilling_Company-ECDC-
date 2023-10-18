@@ -77,18 +77,7 @@ export class AccidentFormComponent {
         console.log(this.ErrorMessage)
       }
     }),
-    // this.dataService.GetToolPusherPositionName().subscribe({
-    //   next: data => {
-    //     this.ToolPusherCodeList = data.data,
-    //       console.log("this.ToolPusherCodeList")
-    //     console.log(this.ToolPusherCodeList)
-    //   },
-    //   error: err => {
-    //     this.ErrorMessage = err,
-    //       console.log("this.ErrorMessage")
-    //     console.log(this.ErrorMessage)
-    //   }
-    // })
+
       this.accidentForm = this.fb.group(
         {
           id: this.fb.control(

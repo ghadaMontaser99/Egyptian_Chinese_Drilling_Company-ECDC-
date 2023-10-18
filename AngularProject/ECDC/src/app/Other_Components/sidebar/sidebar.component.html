@@ -96,7 +96,13 @@
         </li>
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/PotentialHazard/Add">
-            <i class="bi bi-circle"></i><span>Potential Hazard</span>
+            <i class="bi bi-circle"></i><span>Potential Hazard Report</span>
+          </a>
+        </li>
+
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/PPEReceiving/Add">
+            <i class="bi bi-circle"></i><span>PPE Receiving Report</span>
           </a>
         </li>
       </ul>
@@ -230,6 +236,12 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/PotentialHazard">
             <i class="bi bi-circle"></i><span>Potential Hazard</span>
+          </a>
+        </li>
+
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/PPEReceiving">
+            <i class="bi bi-circle"></i><span>PPE Receiving</span>
           </a>
         </li>
       </ul>

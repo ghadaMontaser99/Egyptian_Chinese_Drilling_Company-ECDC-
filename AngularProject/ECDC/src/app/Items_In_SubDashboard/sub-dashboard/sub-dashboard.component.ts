@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from 'Services/data.service';
 import { LoginService } from 'Services/login.service';
+import { PPEService } from 'Services/ppe.service';
 
 @Component({
   selector: 'app-sub-dashboard',
@@ -58,8 +59,12 @@ export class SubDashboardComponent {
   ResponsibilityCount:number=0;
   ResponsibilityList:any;
 
+ PPECount:number=0;
+ PPEList:any;
+
   constructor(private dataService: DataService,
-    private loginService:LoginService) { }
+    private loginService:LoginService,
+    private PPEService:PPEService) { }
 
   ngOnInit(): void {
     this.loginService.isAdmin.subscribe({
@@ -207,6 +212,13 @@ export class SubDashboardComponent {
       next:data=>{
         this.violationCategoryList=data.data,
         this.violationCategorycount=this.violationCategoryList.length
+      }
+    })
+
+    this.PPEService.GetPPEs().subscribe({
+      next:data=>{
+        this.PPEList=data.data,
+        this.PPECount=this.PPEList.length
       }
     })
   }
