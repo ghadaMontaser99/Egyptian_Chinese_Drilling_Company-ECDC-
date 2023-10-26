@@ -523,6 +523,138 @@ namespace TempProject.Migrations
                     b.ToTable("ComminucationMethods");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Drill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("DeficienciesPoints")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DrillScenario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DrillTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EffectivenessPoints")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmergencyEquipmentUsed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QHSEEmpCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QHSEEmpName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QHSEPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Recommendations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("STPCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("STPName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("STPPositionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("TimeCompleted")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("TimeInitiated")
+                        .HasColumnType("time");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrillTypeId");
+
+                    b.HasIndex("RigId");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Drills");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DrillImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DrillId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrillId");
+
+                    b.ToTable("DrillImages");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DrillType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DrillTypes");
+                });
+
             modelBuilder.Entity("TempProject.Models.Driver", b =>
                 {
                     b.Property<int>("Id")
@@ -552,6 +684,38 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DriverNames");
+                });
+
+            modelBuilder.Entity("TempProject.Models.EmergencyResponseTeamMembers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DrillId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("TeamMemberCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamMemberName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeamMemberPosition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrillId");
+
+                    b.ToTable("EmergencyResponseTeamMembers");
                 });
 
             modelBuilder.Entity("TempProject.Models.EmpCode", b =>
@@ -1686,6 +1850,55 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Drill", b =>
+                {
+                    b.HasOne("TempProject.Models.DrillType", "DrillType")
+                        .WithMany("Drills")
+                        .HasForeignKey("DrillTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany()
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DrillType");
+
+                    b.Navigation("Rig");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DrillImages", b =>
+                {
+                    b.HasOne("TempProject.Models.Drill", "Drill")
+                        .WithMany("Images")
+                        .HasForeignKey("DrillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Drill");
+                });
+
+            modelBuilder.Entity("TempProject.Models.EmergencyResponseTeamMembers", b =>
+                {
+                    b.HasOne("TempProject.Models.Drill", "Drill")
+                        .WithMany("emergencyResponseTeamMembers")
+                        .HasForeignKey("DrillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Drill");
+                });
+
             modelBuilder.Entity("TempProject.Models.EmpCode", b =>
                 {
                     b.HasOne("TempProject.Models.Positions", "Positions")
@@ -1983,6 +2196,18 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.ComminucationMethod", b =>
                 {
                     b.Navigation("JMPs");
+                });
+
+            modelBuilder.Entity("TempProject.Models.Drill", b =>
+                {
+                    b.Navigation("Images");
+
+                    b.Navigation("emergencyResponseTeamMembers");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DrillType", b =>
+                {
+                    b.Navigation("Drills");
                 });
 
             modelBuilder.Entity("TempProject.Models.Driver", b =>

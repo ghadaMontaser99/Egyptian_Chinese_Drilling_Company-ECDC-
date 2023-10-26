@@ -5,6 +5,7 @@ import { IAccidentCauses } from 'SharedClasses/IAccidentCauses';
 import { IClassification } from 'SharedClasses/IClassification';
 import { IClassificationOfAccident } from 'SharedClasses/IClassificationOfAccident';
 import { IComminucationMethod } from 'SharedClasses/IComminucationMethod';
+import { IDrillType } from 'SharedClasses/IDrillType';
 import { IDriver } from 'SharedClasses/IDriver';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPassenger } from 'SharedClasses/IPassenger';
@@ -34,6 +35,10 @@ export class AddDataService {
 
   AddAccidentCauses(AccidentCauses:IAccidentCauses): Observable<IAccidentCauses> {
     return this.http.post<IAccidentCauses>(`http://localhost:5000/api/AccidentCauses`,AccidentCauses);
+  }
+
+  AddDrillTypes(DrillTypes:IDrillType): Observable<IDrillType> {
+    return this.http.post<IDrillType>(`http://localhost:5000/api/DrillType`,DrillTypes);
   }
 
   AddSubjectList(SubjectList:ISubjectList): Observable<ISubjectList> {

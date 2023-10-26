@@ -30,6 +30,8 @@ import { IPosition } from 'SharedClasses/IPosition';
 import { IEmployeeCompetencyEvaluation } from 'SharedClasses/IEmployeeCompetencyEvaluation';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IResponsibility } from 'SharedClasses/IResponsibility';
+import { IDrill } from 'SharedClasses/IDrill';
+import { IDrillType } from 'SharedClasses/IDrillType';
 
 @Injectable({
   providedIn: 'root'
@@ -132,6 +134,14 @@ export class DeleteDataService {
 
   DeleteEmployeeCompetencyEvaluationt(EmployeeCompetencyEvaluationt:IEmployeeCompetencyEvaluation): Observable<IEmployeeCompetencyEvaluation> {
     return this.http.put<IEmployeeCompetencyEvaluation>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/Delete/${EmployeeCompetencyEvaluationt.id}`,EmployeeCompetencyEvaluationt);
+  }
+
+  DeleteDrill(Drill:IDrill): Observable<IDrill> {
+    return this.http.put<IDrill>(`http://localhost:5000/api/Drill/Delete/${Drill.id}`,Drill);
+  }
+
+  DeleteDrillTypes(DrillTypes:IDrillType): Observable<IDrillType> {
+    return this.http.put<IDrillType>(`http://localhost:5000/api/DrillType/Delete/${DrillTypes.id}`,DrillTypes);
   }
 
   DeleteAccidentCauses(AccidentCauses:IAccidentCauses): Observable<IAccidentCauses> {

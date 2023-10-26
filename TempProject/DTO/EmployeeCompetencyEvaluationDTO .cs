@@ -16,6 +16,9 @@ namespace TempProject.DTO
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
         public int SubjectId { get; set; }
+
+        public string? SubjectName { get; set; }
+
         public int QHSEEmpCode { get; set; }
         public string QHSEPositionName { get; set; }
         public string QHSEEmpName { get; set; }

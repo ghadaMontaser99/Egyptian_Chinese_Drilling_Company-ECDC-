@@ -92,6 +92,13 @@ export class GetdataByPageService {
   GetEmployeeCompetencyEvaluationByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/EmployeeCompetencyEvaluationt/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole} `);
   }
+  GetDrillByPage(pageNumber:number,userId:string,userRole:string):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Drill/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole} `);
+  }
+
+  GetDrillTypesByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/DrillType/ByPage/${pageNumber}`);
+  }
   GetResponsibilityByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/Responsibility/ByPage/${pageNumber}`);
   }

@@ -15,6 +15,9 @@ export class SubDashboardComponent {
   subjectList:any;
   subjectListcount:number=0;
 
+  drillTypeList:any;
+  drillTypecount:number=0;
+
   classificationList:any;
   classificationcount:number=0;
   classificationOfAccidentList:any;
@@ -96,6 +99,12 @@ export class SubDashboardComponent {
       next:data=>{
         this.ResponsibilityList=data.data,
         this.ResponsibilityCount=this.ResponsibilityList.length
+      }
+    })
+    this.dataService.GetDrillTypeList().subscribe({
+      next:data=>{
+        this.drillTypeList=data.data,
+        this.drillTypecount=this.drillTypeList.length
       }
     })
 

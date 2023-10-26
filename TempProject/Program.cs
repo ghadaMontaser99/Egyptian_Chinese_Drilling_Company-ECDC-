@@ -84,6 +84,18 @@ namespace TempProject
             builder.Services.AddScoped<IRepository<PPEReceiving>, Repository<PPEReceiving>>();
             builder.Services.AddScoped<IPPEReceivingRepository, PPEReceivingRepository>();
             builder.Services.AddScoped<IRepository<PPEAndPPEReceiving>, Repository<PPEAndPPEReceiving>>();
+
+            //////---------Drill Report----------------------
+
+            builder.Services.AddScoped<IRepository<DrillType>, Repository<DrillType>>();
+            builder.Services.AddScoped<IRepository<Drill>, Repository<Drill>>();
+            builder.Services.AddScoped<IRepository<DrillImages>, Repository<DrillImages>>();
+            builder.Services.AddScoped<IDrillRepository, DrillRepository>();
+            builder.Services.AddScoped<IRepository<EmergencyResponseTeamMembers>, Repository<EmergencyResponseTeamMembers>>();
+
+
+
+
             builder.Services.AddDbContext<Context>(options =>
               options.UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );

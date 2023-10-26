@@ -105,6 +105,11 @@
             <i class="bi bi-circle"></i><span>PPE Receiving Report</span>
           </a>
         </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/Drill/Add">
+            <i class="bi bi-circle"></i><span>Drills</span>
+          </a>
+        </li>
       </ul>
     </li><!-- End Forms Nav -->
 
@@ -242,6 +247,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/PPEReceiving">
             <i class="bi bi-circle"></i><span>PPE Receiving</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/Dashboard/Drill">
+            <i class="bi bi-circle"></i><span>Drill</span>
           </a>
         </li>
       </ul>

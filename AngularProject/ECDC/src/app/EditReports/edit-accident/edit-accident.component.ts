@@ -38,7 +38,6 @@ export class EditAccidentComponent {
   toolPusherPositionList: IToolPusherPosition[] = []
   qhsePositionList: IQHSEPosition[] = []
   QHSEPositionID: number = 0;
-  PusherPositionID: number = 0;
   base64: any;
 
   // QHSECodeList: any;
@@ -61,6 +60,7 @@ export class EditAccidentComponent {
   
   QHSE_Position:string='';
 
+  PusherPositionID: number = 0;
   PusherPosition:string='';
   Pusher_Name:string='';
   Pusher_NameId:number=0;

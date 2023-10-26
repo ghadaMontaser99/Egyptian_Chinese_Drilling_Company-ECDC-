@@ -15,6 +15,7 @@ namespace TempProject.DTO.ExcelDTO
 
         public int SubjectId { get; set; }
 
+        public string SubjectName { get; set; }
 
         public int QHSEEmpCode { get; set; }
         public string QHSEPositionName { get; set; }

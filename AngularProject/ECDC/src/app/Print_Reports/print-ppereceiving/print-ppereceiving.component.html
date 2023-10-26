@@ -19,7 +19,7 @@
         <div class="pb-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section" 
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section"
                         *ngFor="let record of PPEReceivingRecord">
                         <div class="table-responsive">
                             <table class="border" style="width: 100%;">
@@ -158,21 +158,21 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        
-                                        <tr >
+
+                                        <tr>
                                             <td colspan="2">
                                                 <span style="font-weight: bold;">PPE :</span>
                                                 <ul *ngFor="let item of record.ppEs">
                                                     <li>
-                                                         <div class="mb-1">
-                                                    <h6 class="mb-1">
-                                                        
-                                                        <span>{{item}}</span>
-                                                    </h6>
-                                                </div>
+                                                        <div class="mb-1">
+                                                            <h6 class="mb-1">
+
+                                                                <span>{{item}}</span>
+                                                            </h6>
+                                                        </div>
                                                     </li>
                                                 </ul>
-                                     
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -207,7 +207,8 @@
                         <!-- End -->
                     </div>
                 </div>
-                <input *ngIf="PPEReceivingRecord" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+                <input *ngIf="PPEReceivingRecord" type="submit" class="btn btn-primary my-4" value="Print Data"
+                    (click)="print()" />
             </div>
         </div>
     </div>

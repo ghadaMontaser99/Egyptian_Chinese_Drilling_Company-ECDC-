@@ -1020,7 +1020,8 @@ namespace TempProject.Controllers
 					orgRigMovePerformance.MoveDistance = newRigMovePerformance.MoveDistance;
 					orgRigMovePerformance.DieselConsumed = newRigMovePerformance.DieselConsumed;
 					orgRigMovePerformance.IsDeleted = newRigMovePerformance.IsDeleted;
-                    if (problemFacedDuringRigMove.Count == 1)
+                   
+					if (problemFacedDuringRigMove.Count == 1)
                     {
 						if (string.IsNullOrEmpty(newRigMovePerformance.ProblemDescription1) && string.IsNullOrEmpty(newRigMovePerformance.RecommendationProblemRepeated1) && newRigMovePerformance.TimeLostProblem1 == null)
 						{

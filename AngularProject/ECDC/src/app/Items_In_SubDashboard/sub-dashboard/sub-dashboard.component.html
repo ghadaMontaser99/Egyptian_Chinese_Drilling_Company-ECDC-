@@ -206,6 +206,22 @@
     <div class="col-md-6" *ngIf="IsUser||IsAdmin">
       <div class="card p-3 mb-2">
         <div>
+          <h3 class="heading"> Drill Types</h3>
+          <h5> {{drillTypecount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/DrillType">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="IsUser||IsAdmin">
+      <div class="card p-3 mb-2">
+        <div>
           <h3 class="heading"> Reported By Positions </h3>
           <h5> {{reportedByPositioncount}} Record </h5>
           <div class="mt-5">

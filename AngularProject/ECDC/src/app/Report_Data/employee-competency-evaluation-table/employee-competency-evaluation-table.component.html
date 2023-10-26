@@ -22,7 +22,7 @@
           <td>{{record.rig}}</td>
           <td>{{record.date | date: 'dd-MM-yyyy'}}</td>
           <td>{{record.description}}</td>
-          <td>{{record.subjectId}}</td>
+          <td>{{record.subjectName}}</td>
 
           <td *ngIf="IsAdmin" >
             <a routerLink="/Dashboard/EmployeeCompetencyEvaluation/Edit/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>

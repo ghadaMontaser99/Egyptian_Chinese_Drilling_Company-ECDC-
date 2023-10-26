@@ -52,6 +52,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
 
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
 
                         employeeCompetencyEvaluationtDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
@@ -87,6 +89,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
 
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
 
                         employeeCompetencyEvaluationtDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
@@ -146,6 +150,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
                         employeeCompetencyEvaluationtDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
                         newTemp.Add(employeeCompetencyEvaluationtDTO);
@@ -181,6 +187,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.EmployeeName = employeeCompetencyEvaluationt.EmployeeName;
                         employeeCompetencyEvaluationtDTO.EmployeePositionName = employeeCompetencyEvaluationt.EmployeePositionName;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
                         newTemp.Add(employeeCompetencyEvaluationtDTO);
@@ -225,6 +233,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
  
@@ -265,6 +275,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
  
@@ -319,6 +331,8 @@ namespace TempProject.Controllers
                     employeeCompetencyEvaluationtDTO.Date = temp.Date;
                     employeeCompetencyEvaluationtDTO.userID = temp.userID;
 
+
+                    employeeCompetencyEvaluationtDTO.SubjectName = temp.Subjectlist.Name;
                     employeeCompetencyEvaluationtDTO.SubjectId= temp.SubjectId;
                     employeeCompetencyEvaluationtDTO.Description = temp.Description;
 
@@ -353,6 +367,8 @@ namespace TempProject.Controllers
                     employeeCompetencyEvaluationtDTO.Rig = temp.Rig.Number;
                     employeeCompetencyEvaluationtDTO.Date = temp.Date;
                     employeeCompetencyEvaluationtDTO.SubjectId = temp.SubjectId;
+                    employeeCompetencyEvaluationtDTO.SubjectName = temp.Subjectlist.Name;
+
                     employeeCompetencyEvaluationtDTO.userID = temp.userID;
 
                     employeeCompetencyEvaluationtDTO.Description = temp.Description;
@@ -403,9 +419,10 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
- 
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
 
- 
+
+
                         employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
 
                         employeeCompetencyEvaluationtDTO.QHSEEmpName = employeeCompetencyEvaluationt.QHSEEmpName;
@@ -435,6 +452,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
  
@@ -489,8 +508,11 @@ namespace TempProject.Controllers
 							employeeCompetencyEvaluationtDTO.id = employeeCompetencyEvaluationt.Id;
 							employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
 							employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
-							employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
-							employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
+					
+                            employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                            employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
+                            employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
 
 							employeeCompetencyEvaluationtDTO.Description = employeeCompetencyEvaluationt.Description;
@@ -532,6 +554,8 @@ namespace TempProject.Controllers
                         employeeCompetencyEvaluationtDTO.Rig = employeeCompetencyEvaluationt.Rig.Number;
                         employeeCompetencyEvaluationtDTO.Date = employeeCompetencyEvaluationt.Date;
                         employeeCompetencyEvaluationtDTO.SubjectId = employeeCompetencyEvaluationt.SubjectId;
+                        employeeCompetencyEvaluationtDTO.SubjectName = employeeCompetencyEvaluationt.Subjectlist.Name;
+
                         employeeCompetencyEvaluationtDTO.userID = employeeCompetencyEvaluationt.userID;
 
  

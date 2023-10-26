@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\acciIMG\" />
     <Folder Include="wwwroot\HazardIMG\" />
+    <Folder Include="wwwroot\DrillIMG\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

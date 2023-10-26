@@ -142,7 +142,15 @@ import { PrintPPEReceivingComponent } from './Print_Reports/print-ppereceiving/p
 import { PPEReceivingTableComponent } from './Report_Data/ppereceiving-table/ppereceiving-table.component';
 import { PPEsComponent } from './Items_In_SubDashboard/ppes/ppes.component';
 import { AddPPEsComponent } from './Add_Data/add-ppes/add-ppes.component';
-import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component'
+import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component';
+import { DrillComponent } from './Reports/drill/drill.component';
+import { EditDrillComponent } from './EditReports/edit-drill/edit-drill.component';
+import { DrillTableComponent } from './Report_Data/drill-table/drill-table.component';
+import { PrintDrillComponent } from './Print_Reports/print-drill/print-drill.component';
+import { AddDrillTypesComponent } from './Add_Data/add-drill-types/add-drill-types.component'
+import { DrillTypesComponent } from './Items_In_SubDashboard/drill-types/drill-types.component';
+import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-drill-types.component';
+
 @NgModule({
   declarations: [
 
@@ -282,7 +290,13 @@ import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component'
     PPEsComponent,
     AddPPEsComponent,
     EditPPEsComponent,
-
+    DrillComponent,
+    EditDrillComponent,
+    DrillTableComponent,
+    PrintDrillComponent,
+    AddDrillTypesComponent,
+    DrillTypesComponent,
+    EditDrillTypesComponent
 
   ],
   imports: [

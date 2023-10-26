@@ -15,6 +15,8 @@ namespace TempProject.DTO.ResponseDTO
 
 
         public int SubjectId { get; set; }
+        public string SubjectName { get; set; }
+
         public int QHSEEmpCode { get; set; }
         public string QHSEPositionName { get; set; }
         public string QHSEEmpName { get; set; }

@@ -26,6 +26,7 @@ export class EditEmployeeCompetencyEvaluationComponent {
   rigList: IRig[] = []
   base64: any;
   subjectList: ISubjectList[] = []
+
   qhsePositionNameList: IQHSEPositionName[] = []
   qhsePositionList: IQHSEPosition[] = []
   QHSEPositionID: number = 0;
@@ -45,7 +46,6 @@ export class EditEmployeeCompetencyEvaluationComponent {
   QHSE_NameID:number=0;
   QHSE_Code:number=0;
   QHSE_Name:string='';
-  // QHSEPositionID: number = 0;
   QHSE_Position:string='';
 
   Employee_Code: number = 0;

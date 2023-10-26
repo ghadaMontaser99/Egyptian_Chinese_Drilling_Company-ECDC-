@@ -27,6 +27,7 @@ import { IEmpCode } from 'SharedClasses/IEmpCode';
 import { IPosition } from 'SharedClasses/IPosition';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IResponsibility } from 'SharedClasses/IResponsibility';
+import { IDrillType } from 'SharedClasses/IDrillType';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,10 @@ export class EditDataService {
     return this.http.put<ISubjectList>(`http://localhost:5000/api/SubjectList/${SubjectList.id}`,SubjectList);
   }
 
+  EditDrillTypes(DrillTypes:IDrillType): Observable<IDrillType> {
+    return this.http.put<IDrillType>(`http://localhost:5000/api/DrillType/Edit/${DrillTypes.id}`,DrillTypes);
+  }
+
   GetAccidentCausesById(id: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/AccidentCauses/${id}`);
   }
@@ -51,6 +56,9 @@ export class EditDataService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
   }
 
+  GetDrillTypesById(id: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DrillType/${id}`);
+  }
   EditClassification(Classification:IClassification): Observable<IClassification> {
     return this.http.put<IClassification>(`http://localhost:5000/api/Classification/${Classification.id}`,Classification);
   }
@@ -237,4 +245,14 @@ export class EditDataService {
   
     return this.http.put(url, JSON.stringify(Responsibility), { headers })
   }
+
+  // EditDrillTypes(id:number,DrillType:IDrillType):Observable<any> {
+  //   const url = `http://localhost:5000/api/DrillType/Edit/${id}`;
+  
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   };
+  
+  //   return this.http.put(url, JSON.stringify(DrillType), { headers })
+  // }
 }

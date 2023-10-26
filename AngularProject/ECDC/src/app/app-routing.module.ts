@@ -137,6 +137,16 @@ import { PPEsComponent } from './Items_In_SubDashboard/ppes/ppes.component';
 import { AddPPEsComponent } from './Add_Data/add-ppes/add-ppes.component';
 import { EditPPEsComponent } from './EditReports/edit-ppes/edit-ppes.component';
 
+// -----------Drills REPORT------------------
+import { DrillComponent } from './Reports/drill/drill.component';
+import { DrillTableComponent } from './Report_Data/drill-table/drill-table.component';
+import { EditDrillComponent } from './EditReports/edit-drill/edit-drill.component';
+import { PrintDrillComponent } from './Print_Reports/print-drill/print-drill.component';
+import { DrillTypesComponent } from './Items_In_SubDashboard/drill-types/drill-types.component';
+import { AddDrillTypesComponent } from './Add_Data/add-drill-types/add-drill-types.component';
+import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-drill-types.component';
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
   { path: 'Login', component: LoginComponent },
@@ -163,6 +173,7 @@ const routes: Routes = [
   { path: 'PotentialHazard/Edit/:id', canActivate: [UserauthGuard],component: EditPotentialHazardComponent },
   { path: 'PotentialHazard',canActivate: [UserauthGuard], component: PotentialHazardTableComponent },
   { path: 'PrintPotentialHazard', canActivate: [UserauthGuard],component: PrintPotentialHazardComponent },
+ 
   { path: 'Dashboard/Responsibility',canActivate: [UserauthGuard], component: ResponsibilityComponent },
   { path: 'Dashboard/Responsibility/Add',canActivate: [UserauthGuard], component: AddResponsibilityComponent },
   { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [UserauthGuard], component: EditResponsibilityComponent },
@@ -282,6 +293,18 @@ const routes: Routes = [
   { path: 'PPEReceiving/Edit/:id', canActivate: [UserauthGuard],component: EditPPEReceivingComponent },
   { path: 'PPEReceiving',canActivate: [UserauthGuard], component: PPEReceivingTableComponent },
   { path: 'PrintPPEReceiving', canActivate: [UserauthGuard],component: PrintPPEReceivingComponent },
+
+// ------------------DRIILS---------
+
+{ path: 'Drill/Add' ,canActivate: [UserauthGuard],component: DrillComponent },
+{ path: 'Drill/Edit/:id',canActivate: [AuthGuard], component: EditDrillComponent },
+{ path: 'Dashboard/Drill',canActivate: [AllAuthGuardGuard],component: DrillTableComponent },
+{ path: 'PrintDrill', canActivate: [UserauthGuard],component: PrintDrillComponent },
+
+//----------------Drill Types-----------------------------------
+{ path: 'Dashboard/DrillType/Add' ,canActivate: [AllAuthGuardGuard],component: AddDrillTypesComponent },
+{ path: 'Dashboard/DrillType/Edit/:id',canActivate: [AuthGuard], component: EditDrillTypesComponent },
+{ path: 'Dashboard/DrillType',canActivate: [UserauthGuard], component: DrillTypesComponent },
 
 
   { path: '**', component: PageNotFoundComponent }

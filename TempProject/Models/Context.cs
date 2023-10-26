@@ -55,6 +55,12 @@ namespace TempProject.Models
 
         public DbSet<BOP> Bop { get; set; }
 
+        //------------Drill Report------------------------------------
+        public DbSet<DrillImages> DrillImages { get; set; }
+        public DbSet<DrillType> DrillTypes { get; set; }
+        public DbSet<Drill> Drills { get; set; }
+        public DbSet<EmergencyResponseTeamMembers> EmergencyResponseTeamMembers { get; set; }
+
 
         public Context(DbContextOptions c) : base(c)
         {
