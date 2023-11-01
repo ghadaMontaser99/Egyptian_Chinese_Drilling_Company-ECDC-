@@ -121,12 +121,13 @@ namespace TempProject.Controllers
             {
                 try
                 {
-                    DrillType drillType = new DrillType();
+                    DrillType drillType = DrillTypeRepo.getbyid(id);
+
                     //drillType.Id = DrillTypeDTO.Id;
                     drillType.Name = DrillTypeDTO.Name;
                     drillType.IsDeleted = DrillTypeDTO.IsDeleted;
 
-                    DrillTypeRepo.create(drillType);
+                    DrillTypeRepo.update(drillType);
                     result.Data = DrillTypeDTO;
                     result.Statescode = 200;
                     result.Message = "Success";

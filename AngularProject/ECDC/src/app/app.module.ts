@@ -150,6 +150,7 @@ import { PrintDrillComponent } from './Print_Reports/print-drill/print-drill.com
 import { AddDrillTypesComponent } from './Add_Data/add-drill-types/add-drill-types.component'
 import { DrillTypesComponent } from './Items_In_SubDashboard/drill-types/drill-types.component';
 import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-drill-types.component';
+import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-hazard-charts/potential-hazard-charts.component';
 
 @NgModule({
   declarations: [
@@ -296,7 +297,8 @@ import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-dri
     PrintDrillComponent,
     AddDrillTypesComponent,
     DrillTypesComponent,
-    EditDrillTypesComponent
+    EditDrillTypesComponent,
+    PotentialHazardChartsComponent
 
   ],
   imports: [

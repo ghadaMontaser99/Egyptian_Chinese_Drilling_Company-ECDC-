@@ -299,9 +299,34 @@ export class AddPPEReceivingComponent {
   toggleSelection(item: PPE) {
     if (!this.selectedItems.includes(item)) {
       this.selectedItems.push(item);
+      
     }
     else {
       this.selectedItems = this.selectedItems.filter((selectedItem) => selectedItem !== item)
+      if(item.name=='Normal Coveralls')
+      {
+        const element = document.getElementById('normalCoverallsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
+      if(item.name=='Thermal Coveralls')
+      {
+        const element = document.getElementById('thermalCoverallsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
+      if(item.name=='Safety Boot')
+      {
+        const element = document.getElementById('safetyBootsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
     }
     console.log('chexkbooooooooooox select')
     console.log(this.selectedItems)
@@ -325,7 +350,7 @@ export class AddPPEReceivingComponent {
      this.NormalCoverallsSize = document.getElementById('normalCoverallsSize');
      this.PPEReceivingObj.normalCoverallsSize=this.NormalCoverallsSize.value;
 
-     this.ThermalCoverallsSize = document.getElementById('normalCoverallsSize');
+     this.ThermalCoverallsSize = document.getElementById('thermalCoverallsSize');
      this.PPEReceivingObj.thermalCoverallsSize=this.ThermalCoverallsSize.value;
 
 

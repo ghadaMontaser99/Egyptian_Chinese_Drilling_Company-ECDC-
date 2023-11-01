@@ -39,6 +39,9 @@ export class PotentialHazardService {
   GetPotentialHazardByRigNumber(RigId: number,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/PotentialHazard/GetDataByRigNumber/${RigId}?UserId=${userId}&UserRole=${userRole}`)
   }
+  GetForAnalysis(Year: number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/PotentialHazard/GetAllForAnalysis/${Year}?UserId=${userId}&UserRole=${userRole}`)
+  }
 
 
 

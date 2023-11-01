@@ -73,7 +73,10 @@ export class EditDrillTypesComponent {
 
   submitData() {
     if (this.drillTypeListForm.valid) {
-      this.editDataService.EditDrillTypes(this.drillTypeListForm.value).subscribe({
+      const Formdata = new FormData();
+         Formdata.append('id', this.id?.value);
+         Formdata.append('name', this.name?.value);
+      this.editDataService.EditDrillTypes(this.drillTypeListId,Formdata).subscribe({
         next: data => {
           console.log('from service')
           console.log(data)

@@ -2084,9 +2084,10 @@ namespace TempProject.Controllers
                 {
                     DrillImages drillImage = DrillImagesRepo.getbyid(item.Id);
                     drillImage.IsDeleted = true;
-                    //drillImage.Id = item.Id;
+					//drillImage.Id = item.Id;
+					DeleteImagesHelper.DeleteImage(drillImage.FileName, "DrillIMG");
 
-                    DrillImagesRepo.update(drillImage);
+					DrillImagesRepo.update(drillImage);
 
                 }
 

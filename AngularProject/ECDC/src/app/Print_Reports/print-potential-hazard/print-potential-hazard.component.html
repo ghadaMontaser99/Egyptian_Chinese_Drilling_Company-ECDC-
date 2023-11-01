@@ -7,6 +7,7 @@
   
     <label class="mb-2">Rig Number :</label>
     <select class="form-control" (change)="RigIdSelected($event)">
+      <option value="" disabled selected>Choose Rig Number</option>
       <option value="{{ potentialHazard}}" *ngFor="let potentialHazard of PotentialHazard">
         Rig - {{potentialHazard}}
       </option>

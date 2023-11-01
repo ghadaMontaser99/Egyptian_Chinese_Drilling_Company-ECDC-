@@ -24,7 +24,7 @@ namespace TempProject.Repository
                 .Select(a => new PotentialHazard
 				{
                     Id = a.Id,
-                    Rig = new Rig { Number = a.Rig.Number },
+                    Rig = new Rig { Number = a.Rig.Number,Id=a.Rig.Id },
                     Date = a.Date,
 					PR_IssueDate = a.PR_IssueDate,
 					PR_No = a.PR_No,

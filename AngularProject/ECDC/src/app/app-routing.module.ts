@@ -145,6 +145,7 @@ import { PrintDrillComponent } from './Print_Reports/print-drill/print-drill.com
 import { DrillTypesComponent } from './Items_In_SubDashboard/drill-types/drill-types.component';
 import { AddDrillTypesComponent } from './Add_Data/add-drill-types/add-drill-types.component';
 import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-drill-types.component';
+import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-hazard-charts/potential-hazard-charts.component';
 
 
 const routes: Routes = [
@@ -272,6 +273,8 @@ const routes: Routes = [
   { path: 'Dashboard/SJPTable',canActivate: [AllAuthGuardGuard], component: JMPTableComponent },
   { path: 'changepassword',canActivate: [AllAuthGuardGuard],component: ChangepasswordComponent },
   { path: 'stopCardCharts' ,canActivate: [UserauthGuard],component: StopCardChartComponent },
+  { path: 'PotentialHazardCharts' ,canActivate: [UserauthGuard],component: PotentialHazardChartsComponent },
+
   { path: 'RigMovePerformanceCharts' ,canActivate: [UserauthGuard],component: RigPerformanceChartComponent },
   { path: 'stopCardCompareCharts' ,canActivate: [UserauthGuard],component: StopCardCompareChartComponent },
   { path: 'RigMovePerformanceCompareCharts' ,canActivate: [UserauthGuard],component: RigPerformanceCompareChartsComponent },

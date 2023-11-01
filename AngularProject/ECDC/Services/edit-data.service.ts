@@ -44,8 +44,8 @@ export class EditDataService {
     return this.http.put<ISubjectList>(`http://localhost:5000/api/SubjectList/${SubjectList.id}`,SubjectList);
   }
 
-  EditDrillTypes(DrillTypes:IDrillType): Observable<IDrillType> {
-    return this.http.put<IDrillType>(`http://localhost:5000/api/DrillType/Edit/${DrillTypes.id}`,DrillTypes);
+  EditDrillTypes(id:number,DrillTypes:FormData): Observable<FormData> {
+    return this.http.put<FormData>(`http://localhost:5000/api/DrillType/Edit/${id}`,DrillTypes);
   }
 
   GetAccidentCausesById(id: number): Observable<IAPIResult> {
@@ -232,19 +232,20 @@ export class EditDataService {
   EditPositon(id:number,Positon:IPosition):Observable<IPosition>{
     return this.http.put<IPosition>(`http://localhost:5000/api/Positions/${id}`,Positon);
   }
-  // EditResponsibility(id:number,Responsibility:IResponsibility):Observable<IResponsibility>{
-  //   return this.http.put<IResponsibility>(`http://localhost:5000/api/Responsibility/${Responsibility.id}`,Responsibility);
-  // }
+  EditResponsibility(id:number,Responsibility:any):Observable<any>{
+    return this.http.put<any>(`http://localhost:5000/api/Responsibility/${id}`,Responsibility);
+  } 
 
-  EditResponsibility(id:number,Responsibility:IResponsibility):Observable<any> {
-    const url = `http://localhost:5000/api/Responsibility/${id}`;
+
+  // EditResponsibility(id:number,Responsibility:IResponsibility):Observable<any> {
+  //   const url = `http://localhost:5000/api/Responsibility/${id}`;
   
-    const headers = {
-      'Content-Type': 'application/json'
-    };
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   };
   
-    return this.http.put(url, JSON.stringify(Responsibility), { headers })
-  }
+  //   return this.http.put(url, JSON.stringify(Responsibility), { headers })
+  // }
 
   // EditDrillTypes(id:number,DrillType:IDrillType):Observable<any> {
   //   const url = `http://localhost:5000/api/DrillType/Edit/${id}`;

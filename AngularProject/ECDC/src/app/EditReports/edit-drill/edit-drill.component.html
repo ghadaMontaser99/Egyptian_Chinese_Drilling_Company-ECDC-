@@ -92,8 +92,8 @@
                     <td colspan="2">
                         <div class="form-group">
                             <label class="form-label" for="drillTypeId">Drill Types : </label>
-                            <select name="drillTypeId" formControlName="drillTypeId" id="drillTypeId"
-                                class="form-select" [(ngModel)]="drill.drillTypeId">
+                            <select name="drillTypeId" [(ngModel)]="DrillType" formControlName="drillTypeId" id="drillTypeId"
+                                class="form-select" >
                                 <option value="" disabled selected>Choose Drill Type</option>
                                 <option *ngFor="let item of drillTypeList" value="{{item.id}}">{{item.name}}</option>
                             </select>
@@ -447,11 +447,13 @@
                 </tr>
 
                 <tr>
-                    <td>
+
+
+                   <td>
                         <label class="form-label m-0 pb-0">Emp.No: </label>
                         <input list="QHSEmenace" autocomplete="off" formControlName="stpCode" name="stpCode"
                             class="form-control" (input)="selectedMenaceSTP($event)" [(ngModel)]="drill.stpCode">
-                        <datalist id="stpCode">
+                        <datalist id="QHSEmenace">
                             <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
                         </datalist>
                     </td>

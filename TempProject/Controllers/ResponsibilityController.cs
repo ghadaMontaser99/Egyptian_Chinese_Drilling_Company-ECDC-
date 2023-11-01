@@ -136,7 +136,7 @@ namespace TempProject.Controllers
                 catch (Exception ex)
                 {
                     result.Message = "Error in Updating";
-                    result.Statescode = 400;
+                    result.Statescode = 40000;
                     return result;
                 }
             }

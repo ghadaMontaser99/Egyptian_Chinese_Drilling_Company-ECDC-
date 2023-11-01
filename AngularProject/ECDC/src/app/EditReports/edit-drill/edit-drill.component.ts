@@ -41,6 +41,7 @@ export class EditDrillComponent {
   QHSENameCodeID: number = 0;
   QHSEposition: string = '';
   QHSEName: string = '';
+  DrillType:number=0;
 
   QHSECodeList: any[]=[];
   QHSE_NameID: number = 0;
@@ -138,27 +139,13 @@ Code:any=[]
       console.log(this.drillId)
     }),
    
-    this.dataService.GetEmpCode().subscribe({
-      next: data => {
-        this.QHSECodeList = data.data
-        console.log("this.QHSECodeListtttt")
-        console.log(this.QHSECodeList)
-        this.Code = data.data.code
-        console.log(data.data.code)
-        this.cdr.detectChanges();
-      },
-      error: err => {
-        this.ErrorMessage = err,
-          console.log("this.ErrorMessage")
-        console.log(this.ErrorMessage)
-      }
-    }),
+   
 
       this.drillService.GetDrillByID(this.drillId, this.User.ID, this.User.Role).subscribe({
         next: data => {
           this.drill = data.data,
             console.log('*************************************************************')
-          
+          console.log(this.drill);
             this.TimeCompleted=data.data.timeCompleted
           this.TimeInitiated=data.data.timeInitiated
 
@@ -167,7 +154,7 @@ Code:any=[]
           this.QHSE_Code = data.data.qhseEmpCode
           this.QHSE_Position = data.data.qhsePositionName;
           this.QHSE_Name = data.data.qhseEmpName;
-
+          this.DrillType=data.data.drillTypeId;
           this.STP_Code = data.data.stpCode
           this.STPPosition = data.data.stpPositionName;
           this.STP_Name = data.data.stpName;
@@ -405,115 +392,132 @@ Code:any=[]
                 console.log(err)
             }
           })
-          this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode4).subscribe({
-            next: data => {
-              this.TeamMemeber4_NameId = data.data.id
-              this.TeamMemeber4_Name = data.data.name,
-                this.TeamMemeber4_PositionID = data.data.positionId
-              this.TeamMemeber4_Code = this.drill.teamMemeberCode4
-              console.log("this.Pusher_Name")
-              console.log(this.TeamMemeber4_Name)
-              console.log("this.PusherPositionID")
-              console.log(this.TeamMemeber4_PositionID)
-              this.dataService.GetPositionByID(this.TeamMemeber4_PositionID).subscribe({
-                next: data => {
-                  this.TeamMemeber4_Position = data.data.name,
-                    console.log("this.PusherPosition")
-                  console.log(this.TeamMemeber4_Position)
-                },
-                error: err => {
-                  this.ErrorMessage = err,
-                    console.log(this.ErrorMessage)
-                }
-              })
-            },
-            error: err => {
-              this.ErrorMessage = err,
-                console.log(err)
-            }
-          })
-          this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode5).subscribe({
-            next: data => {
-              this.TeamMemeber5_NameId = data.data.id
-              this.TeamMemeber5_Name = data.data.name,
-                this.TeamMemeber5_PositionID = data.data.positionId
-              this.TeamMemeber5_Code = this.drill.teamMemeberCode5
-              console.log("this.Pusher_Name")
-              console.log(this.TeamMemeber5_Name)
-              console.log("this.PusherPositionID")
-              console.log(this.TeamMemeber5_PositionID)
-              this.dataService.GetPositionByID(this.TeamMemeber5_PositionID).subscribe({
-                next: data => {
-                  this.TeamMemeber5_Position = data.data.name,
-                    console.log("this.PusherPosition")
-                  console.log(this.TeamMemeber5_Position)
-                },
-                error: err => {
-                  this.ErrorMessage = err,
-                    console.log(this.ErrorMessage)
-                }
-              })
-            },
-            error: err => {
-              this.ErrorMessage = err,
-                console.log(err)
-            }
-          })
-          this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode6).subscribe({
-            next: data => {
-              this.TeamMemeber6_NameId = data.data.id
-              this.TeamMemeber6_Name = data.data.name,
-                this.TeamMemeber6_PositionID = data.data.positionId
-              this.TeamMemeber6_Code = this.drill.teamMemeberCode
-              console.log("this.Pusher_Name")
-              console.log(this.TeamMemeber6_Name)
-              console.log("this.PusherPositionID")
-              console.log(this.TeamMemeber6_PositionID)
-              this.dataService.GetPositionByID(this.TeamMemeber6_PositionID).subscribe({
-                next: data => {
-                  this.TeamMemeber6_Position = data.data.name,
-                    console.log("this.PusherPosition")
-                  console.log(this.TeamMemeber6_Position)
-                },
-                error: err => {
-                  this.ErrorMessage = err,
-                    console.log(this.ErrorMessage)
-                }
-              })
-            },
-            error: err => {
-              this.ErrorMessage = err,
-                console.log(err)
-            }
-          })
-          this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode7).subscribe({
-            next: data => {
-              this.TeamMemeber7_NameId = data.data.id
-              this.TeamMemeber7_Name = data.data.name,
-                this.TeamMemeber7_PositionID = data.data.positionId
-              this.TeamMemeber7_Code = this.drill.teamMemeberCode7
-              console.log("this.Pusher_Name")
-              console.log(this.TeamMemeber7_Name)
-              console.log("this.PusherPositionID")
-              console.log(this.TeamMemeber7_PositionID)
-              this.dataService.GetPositionByID(this.TeamMemeber7_PositionID).subscribe({
-                next: data => {
-                  this.TeamMemeber7_Position = data.data.name,
-                    console.log("this.PusherPosition")
-                  console.log(this.TeamMemeber7_Position)
-                },
-                error: err => {
-                  this.ErrorMessage = err,
-                    console.log(this.ErrorMessage)
-                }
-              })
-            }
+          // this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode4).subscribe({
+          //   next: data => {
+          //     this.TeamMemeber4_NameId = data.data.id
+          //     this.TeamMemeber4_Name = data.data.name,
+          //       this.TeamMemeber4_PositionID = data.data.positionId
+          //     this.TeamMemeber4_Code = this.drill.teamMemeberCode4
+          //     console.log("this.Pusher_Name")
+          //     console.log(this.TeamMemeber4_Name)
+          //     console.log("this.PusherPositionID")
+          //     console.log(this.TeamMemeber4_PositionID)
+          //     this.dataService.GetPositionByID(this.TeamMemeber4_PositionID).subscribe({
+          //       next: data => {
+          //         this.TeamMemeber4_Position = data.data.name,
+          //           console.log("this.PusherPosition")
+          //         console.log(this.TeamMemeber4_Position)
+          //       },
+          //       error: err => {
+          //         this.ErrorMessage = err,
+          //           console.log(this.ErrorMessage)
+          //       }
+          //     })
+          //   },
+          //   error: err => {
+          //     this.ErrorMessage = err,
+          //       console.log(err)
+          //   }
+          // })
+          // this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode5).subscribe({
+          //   next: data => {
+          //     this.TeamMemeber5_NameId = data.data.id
+          //     this.TeamMemeber5_Name = data.data.name,
+          //       this.TeamMemeber5_PositionID = data.data.positionId
+          //     this.TeamMemeber5_Code = this.drill.teamMemeberCode5
+          //     console.log("this.Pusher_Name")
+          //     console.log(this.TeamMemeber5_Name)
+          //     console.log("this.PusherPositionID")
+          //     console.log(this.TeamMemeber5_PositionID)
+          //     this.dataService.GetPositionByID(this.TeamMemeber5_PositionID).subscribe({
+          //       next: data => {
+          //         this.TeamMemeber5_Position = data.data.name,
+          //           console.log("this.PusherPosition")
+          //         console.log(this.TeamMemeber5_Position)
+          //       },
+          //       error: err => {
+          //         this.ErrorMessage = err,
+          //           console.log(this.ErrorMessage)
+          //       }
+          //     })
+          //   },
+          //   error: err => {
+          //     this.ErrorMessage = err,
+          //       console.log(err)
+          //   }
+          // })
+          // this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode6).subscribe({
+          //   next: data => {
+          //     this.TeamMemeber6_NameId = data.data.id
+          //     this.TeamMemeber6_Name = data.data.name,
+          //       this.TeamMemeber6_PositionID = data.data.positionId
+          //     this.TeamMemeber6_Code = this.drill.teamMemeberCode
+          //     console.log("this.Pusher_Name")
+          //     console.log(this.TeamMemeber6_Name)
+          //     console.log("this.PusherPositionID")
+          //     console.log(this.TeamMemeber6_PositionID)
+          //     this.dataService.GetPositionByID(this.TeamMemeber6_PositionID).subscribe({
+          //       next: data => {
+          //         this.TeamMemeber6_Position = data.data.name,
+          //           console.log("this.PusherPosition")
+          //         console.log(this.TeamMemeber6_Position)
+          //       },
+          //       error: err => {
+          //         this.ErrorMessage = err,
+          //           console.log(this.ErrorMessage)
+          //       }
+          //     })
+          //   },
+          //   error: err => {
+          //     this.ErrorMessage = err,
+          //       console.log(err)
+          //   }
+          // })
+          // this.dataService.GetEmpCodeByCode(this.drill.teamMemeberCode7).subscribe({
+          //   next: data => {
+          //     this.TeamMemeber7_NameId = data.data.id
+          //     this.TeamMemeber7_Name = data.data.name,
+          //       this.TeamMemeber7_PositionID = data.data.positionId
+          //     this.TeamMemeber7_Code = this.drill.teamMemeberCode7
+          //     console.log("this.Pusher_Name")
+          //     console.log(this.TeamMemeber7_Name)
+          //     console.log("this.PusherPositionID")
+          //     console.log(this.TeamMemeber7_PositionID)
+          //     this.dataService.GetPositionByID(this.TeamMemeber7_PositionID).subscribe({
+          //       next: data => {
+          //         this.TeamMemeber7_Position = data.data.name,
+          //           console.log("this.PusherPosition")
+          //         console.log(this.TeamMemeber7_Position)
+          //       },
+          //       error: err => {
+          //         this.ErrorMessage = err,
+          //           console.log(this.ErrorMessage)
+          //       }
+          //     })
+          //   }
 
-          })
+         // })
         },
         error: (erorr: string) => this.ErrorMessage = erorr
       }),
       
+
+      this.dataService.GetEmpCode().subscribe({
+        next: data => {
+          this.QHSECodeList = data.data
+          console.log("this.QHSECodeListtttt")
+          console.log(this.QHSECodeList)
+          this.Code = data.data.code
+          console.log(data.data.code)
+          this.cdr.detectChanges();
+        },
+        error: err => {
+          this.ErrorMessage = err,
+            console.log("this.ErrorMessage")
+          console.log(this.ErrorMessage)
+        }
+      }),
+
       // this.dataService.GetEmpCode().subscribe({
       //   next: data => {
       //     this.QHSECodeList = data.data,

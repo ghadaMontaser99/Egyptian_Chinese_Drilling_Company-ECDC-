@@ -27,7 +27,7 @@ namespace TempProject.DTO.ResponseDTO
         public string SafetyBootsSize { get; set; }
         public string NormalCoverallsSize { get; set; }
 
-        public  List<PPEAndPPEReceiving> PPE { get; set; }
+        public  List<PPEAndPPEReceiving> PPE { get; set; }=new List<PPEAndPPEReceiving> { };
 
 
         public List<string> PPEs { get; set; }= new List<string>();

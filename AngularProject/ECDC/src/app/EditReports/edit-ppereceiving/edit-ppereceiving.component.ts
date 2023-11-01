@@ -62,7 +62,7 @@ export class EditPPEReceivingComponent {
   ThermalCoverallsSize: any='';
   SafetyBootsSize: any='';
 
-
+  OldselectedItems:any[]=[];
   selectedItems: PPE[] = [];
 
   constructor(private loginService: LoginService,
@@ -97,15 +97,39 @@ export class EditPPEReceivingComponent {
           this.Employee_Code=data.data.employeeCode
           this.Employee_Name=data.data.employeeName 
           this.Employee_Position=data.data.employeePositionName
-          this.selectedItems=data.data.ppe
+          this.OldselectedItems=data.data.ppe
+          this.OldselectedItems.forEach(element => {
+            console.log("herrreee foooooooooooooooooooorrr")
+            console.log(element.ppeId);
+            this.PPEService.GetPPEByID(element.ppeId).subscribe({
+              next: data => {
+                console.log("fooooooooooooooooooorrrr")
+                console.log(data.data)
+
+                this.selectedItems.push(data.data)
+                this.selectedItems = Array.from(new Set(this.selectedItems))
+
+                this.updateFlags()
+                console.log(this.selectedItems)
+              },
+              error: err => {
+                this.ErrorMessage = err;
+                console.log("ErrrrrrPPEList")
+              }
+            })
+      
+          }),
             console.log('************************************************************* GetPPEReceivingByID')
           console.log(this.pPEReceiving)
+          console.log('************************************************************* selectedItems')
+          console.log(this.OldselectedItems)
+
           console.log('###################################################')
         
         },
         error: (erorr: string) => this.ErrorMessage = erorr
       }),
-   
+     
       this.PPEService.GetPPEs().subscribe({
         next: data => {
           this.PPEList = data.data
@@ -119,7 +143,8 @@ export class EditPPEReceivingComponent {
         }
 
       }),
-
+     
+      
      
 
       this.dataService.GetEmpCode().subscribe({
@@ -134,6 +159,8 @@ export class EditPPEReceivingComponent {
           console.log(this.ErrorMessage)
         }
       }),
+   
+   
 
       this.PPEReceiving.GetPPEReceivings(this.User.ID,this.User.Role).subscribe({
         next: data => this.json_data = data.data,
@@ -345,20 +372,58 @@ export class EditPPEReceivingComponent {
  
 
   toggleSelection(item: PPE) {
-    if (!this.selectedItems.includes(item)) {
+    console.log("beffffoooorrreeee ifff")
+    console.log(this.selectedItems)
+    // if (!this.selectedItems.includes(item)) {
+    //   this.selectedItems.push(item);
+
+    // }
+    // else {
+    //   this.selectedItems = this.selectedItems.filter((selectedItem) => selectedItem !== item)
+    // }
+    // this.selectedItems = Array.from(new Set(this.selectedItems))
+
+    // this.updateFlags();
+    const isItemSelected = this.selectedItems.some(selectedItem => selectedItem.name === item.name);
+  
+    if (!isItemSelected) {
       this.selectedItems.push(item);
-    }
-    else {
-      this.selectedItems = this.selectedItems.filter((selectedItem) => selectedItem !== item)
-    }
-   
+    } else {
+      this.selectedItems = this.selectedItems.filter(selectedItem => selectedItem.name !== item.name);
+      if(item.name=='Normal Coveralls')
+      {
+        const element = document.getElementById('normalCoverallsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
+      if(item.name=='Thermal Coveralls')
+      {
+        const element = document.getElementById('thermalCoverallsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
+      if(item.name=='Safety Boot')
+      {
+        const element = document.getElementById('safetyBootsSize') as HTMLInputElement;
+
+        if (element) {
+          element.value = '';
+        }
+      }
+
+       }
+    
     this.updateFlags();
     console.log('chexkbooooooooooox select')
     console.log(this.selectedItems)
 
 
   }
-
+ 
   updateFlags() {
     this.NormalCoveralls = this.selectedItems.some((item) => item.name === 'Normal Coveralls');
     this.ThermalCoveralls = this.selectedItems.some((item) => item.name === 'Thermal Coveralls');
@@ -371,17 +436,25 @@ export class EditPPEReceivingComponent {
     return this.pPEReceiving.ppe.some((p: any) => p.ppeId == itemId);
   }
   
+  
 
   submitData() {
     if (this.PPEReceivingForm.valid) {
        
      this.PPEReceivingObj=this.PPEReceivingForm.value;
+    //  this.selectedItems.forEach(element => {
+    //   this.PPEReceivingObj.ppedto.push(element)
+    //  });
+     console.log("sumittt")
+     console.log(  this.PPEReceivingObj.ppedto)
+     this.PPEReceivingObj.ppedto = Array.from(new Set(this.PPEReceivingObj.ppedto))
+
      this.PPEReceivingObj.ppedto=this.selectedItems;
      
      this.NormalCoverallsSize = document.getElementById('normalCoverallsSize');
      this.PPEReceivingObj.normalCoverallsSize=this.NormalCoverallsSize.value;
 
-     this.ThermalCoverallsSize = document.getElementById('normalCoverallsSize');
+     this.ThermalCoverallsSize = document.getElementById('thermalCoverallsSize');
      this.PPEReceivingObj.thermalCoverallsSize=this.ThermalCoverallsSize.value;
 
 

@@ -58,7 +58,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td >
                 <label>PPE : </label>
                 <div *ngFor="let item of PPEList; let i = index">
                   <label>
@@ -70,7 +70,7 @@
                 
             </td>
   
-            <td>
+            <td >
          
               <div  class="form-group">
                 <label for="normalCoverallsSize">Normal Coveralls Size :</label>
@@ -85,7 +85,7 @@
                 <label for="thermalCoverallsSize">Thermal Coveralls Size :</label>
                 <input class="form-control" [disabled]="!ThermalCoveralls" id="thermalCoverallsSize" [value]="pPEReceiving.thermalCoverallsSize"  />
                 <input  formControlName="thermalCoverallsSize" name="thermalCoverallsSize"
-                  class="form-control" hidden />
+                  class="form-control" hidden id="eee"/>
                 <div
                   *ngIf="thermalCoverallsSize?.invalid && (thermalCoverallsSize?.dirty || thermalCoverallsSize?.touched)">
                 </div>

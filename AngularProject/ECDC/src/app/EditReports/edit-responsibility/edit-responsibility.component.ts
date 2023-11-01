@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -16,6 +17,8 @@ export class EditResponsibilityComponent {
   Responsibility!: IResponsibility;
   ResponsibilityForm!: FormGroup;
   ErrorMessage = '';
+  ResponsibilityName:string='';
+  NewResposibility!:IResponsibility;
   // json_data: any[] = [];
   UserJsonString: any
   UserJsonObj: any
@@ -34,7 +37,10 @@ export class EditResponsibilityComponent {
       this.DataService.GetResponsibilityByID(this.ResponsibilityId).subscribe({
         next: data => {
           this.Responsibility = data.data,
+          this.ResponsibilityName=data.data.name;
+          console.log( this.ResponsibilityName)
             console.log('*************************************************************')
+            
           console.log(this.Responsibility)
           console.log(this.Responsibility.id)
           console.log('###################################################')
@@ -77,8 +83,24 @@ export class EditResponsibilityComponent {
   submitData() {
     console.log('this.ResponsibilityForm.value')
     console.log(this.ResponsibilityForm.value)
+    console.log("idddddddddd")
+    console.log(this.ResponsibilityId)
     if (this.ResponsibilityForm.valid) {
-      this.EditDataService.EditResponsibility(this.ResponsibilityId, this.ResponsibilityForm.value).subscribe({
+      console.log("newwww obbjjj")
+
+      this.NewResposibility={
+        id:this.ResponsibilityForm.value.id,
+        name:this.ResponsibilityName,
+        isDeleted:false
+      }
+      
+      console.log( this.NewResposibility)
+      const Formdata = new FormData();
+      Formdata.append('id', this.id?.value);
+      Formdata.append('name', this.name?.value);
+
+      
+      this.EditDataService.EditResponsibility(this.ResponsibilityId, Formdata).subscribe({
         next: data => {
           console.log(this.ResponsibilityForm.value)
           console.log('from service')
@@ -93,7 +115,7 @@ export class EditResponsibilityComponent {
     }
     else {
       console.log("E+++++====error in : ");
-      console.log(this.ResponsibilityForm);
+      console.log(this.ResponsibilityForm.errors);
     }
   }
 }
