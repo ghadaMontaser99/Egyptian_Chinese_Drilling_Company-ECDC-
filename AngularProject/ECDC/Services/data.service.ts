@@ -49,7 +49,20 @@ export class DataService {
   GetDrillTypeList(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/DrillType`);
   }
-  
+   
+  GetDrillByMonth(month1:number,month2:number,userRole:string, rigId:number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisByDrillTypeAndMonth/?Month1=${month1}&Month2=${month2}&UserRole=${userRole}&RigID=${rigId}`);
+  }
+
+  GetDrillByYear(year:number ,userRole:string, rigId:number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisByDrillTypeAndYear/?Year=${year}&UserRole=${userRole}&RigID=${rigId}`);
+  }
+  GetDrillAnalysisWithCompareByYear(year:number,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisWithCompareByYear/?Year=${year}&UserRole=${userRole}`);
+  }
+  GetDrillAnalysisWithCompareByMonth(month1:number,month2:number,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisWithCompareByMonth/?Month1=${month1}&Month2=${month2}&UserRole=${userRole}`);
+  }
   GetSubjectById(id:number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/SubjectList/${id}`);
   }

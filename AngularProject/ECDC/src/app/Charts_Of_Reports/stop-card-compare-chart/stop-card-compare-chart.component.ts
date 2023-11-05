@@ -15,6 +15,7 @@ Chart.register(...registerables);
 export class StopCardCompareChartComponent {
   clearChart(ID_Name:string) {
     const myElement = document.querySelector('#'+ ID_Name) as HTMLElement;
+    
     myElement.remove()
     this.UnsafeAct_Month1 = [];
     this.UnsafeCondition_Month1 = [];

@@ -146,6 +146,8 @@ import { DrillTypesComponent } from './Items_In_SubDashboard/drill-types/drill-t
 import { AddDrillTypesComponent } from './Add_Data/add-drill-types/add-drill-types.component';
 import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-drill-types.component';
 import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-hazard-charts/potential-hazard-charts.component';
+import { ChartWithDrillTypeComponent } from './Charts_Of_Reports/chart-with-drill-type/chart-with-drill-type.component';
+import { ChartDrillWitManagerNameComponent } from './Charts_Of_Reports/chart-drill-wit-manager-name/chart-drill-wit-manager-name.component';
 
 
 const routes: Routes = [
@@ -303,6 +305,8 @@ const routes: Routes = [
 { path: 'Drill/Edit/:id',canActivate: [AuthGuard], component: EditDrillComponent },
 { path: 'Dashboard/Drill',canActivate: [AllAuthGuardGuard],component: DrillTableComponent },
 { path: 'PrintDrill', canActivate: [UserauthGuard],component: PrintDrillComponent },
+{ path: 'DrillChart', canActivate: [UserauthGuard],component: ChartWithDrillTypeComponent },
+{ path: 'DrillCompareCharts' ,canActivate: [UserauthGuard],component: ChartDrillWitManagerNameComponent },
 
 //----------------Drill Types-----------------------------------
 { path: 'Dashboard/DrillType/Add' ,canActivate: [AllAuthGuardGuard],component: AddDrillTypesComponent },

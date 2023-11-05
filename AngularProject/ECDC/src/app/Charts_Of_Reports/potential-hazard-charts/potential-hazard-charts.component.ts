@@ -5,7 +5,7 @@ import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { LoginService } from 'Services/login.service';
 import { PotentialHazardService } from 'Services/potential-hazard.service';
-import { RouterTestingHarness } from '@angular/router/testing';
+// import { RouterTestingHarness } from '@angular/router/testing';
 Chart.register(ChartDataLabels);
 Chart.register(...registerables);
 
@@ -32,6 +32,18 @@ export class PotentialHazardChartsComponent {
     //this.RigNames=[];
     this.Colors=[];
     this.ColorsBackground=[];
+
+   this.PotentialListOpen=[];
+ this.pushingListOpen = []
+ this.pushingListCounthingOpen=[];
+ this.ColorsOpen=[];
+ this.ColorsBackgroundOpen=[]
+
+ this.PotentialListClosed=[];
+ this.pushingListClosed = []
+ this.pushingListCounthingClosed=[];
+ this.ColorsClosed=[];
+ this.ColorsBackgroundClosed=[]
     
   }
 
@@ -65,6 +77,18 @@ export class PotentialHazardChartsComponent {
  test:string[]=['vvvv','fff','dddd']
  Year:any[]=[];
  YearsList:any[]=[];
+
+ PotentialListOpen:any[]=[];
+  pushingListOpen:any[][] = []
+  pushingListCounthingOpen:any[]=[];
+  ColorsOpen:string[]=[];
+  ColorsBackgroundOpen:any[]=[]
+
+  PotentialListClosed:any[]=[];
+  pushingListClosed:any[][] = []
+  pushingListCounthingClosed:any[]=[];
+  ColorsClosed:string[]=[];
+  ColorsBackgroundClosed:any[]=[]
   constructor(private dataService: DataService,private potentialHazardService: PotentialHazardService,private loginService:LoginService) { }
 
   ngOnInit(): void {
@@ -105,6 +129,10 @@ export class PotentialHazardChartsComponent {
       }
     })
     
+  
+  
+  
+  
   }
 
 
@@ -133,12 +161,6 @@ export class PotentialHazardChartsComponent {
        
 
         console.log(data.data)
-       
-      
-        
-       
-
-
     // for (var i = 0; i < this.PotentialList.length; i++) {
     //   // Initialize pushingList[i] as an empty array
     //   this.pushingList[i] = [];
@@ -527,5 +549,270 @@ for (var i = 0; i < this.PotentialList.length; i++) {
     //   }
     // });
 
+
+
+    this.potentialHazardService.GetForAnalysis(event.target.value,this.User.ID,this.User.Role).subscribe({
+      next: data => {
+        this.clearChart("myChart2")
+        data.data.filter((a: any) => a.status == "Open").forEach((ele: any) => {
+          this.PotentialListOpen.push(ele)
+        });
+       
+       
+console.log('this.PotentialListOpen')
+        console.log(this.PotentialListOpen)
+
+   // Initialize pushingList as an empty 2D array
+
+for (var i = 0; i < this.PotentialListOpen.length; i++) {
+  // Check if this item has been added to any row
+  let added = false;
+
+  for (var j = 0; j < this.pushingListOpen.length; j++) {
+    const row = this.pushingListOpen[j];
+
+    // Check if the item's rigId matches any item in the current row
+    if (row.some(item => item.rigId === this.PotentialListOpen[i].rigId)) {
+      row.push(this.PotentialListOpen[i]);
+      added = true;
+      break;
+    }
   }
+
+  // If the item wasn't added to any existing row, create a new row
+  if (!added) {
+    this.pushingListOpen.push([this.PotentialListOpen[i]]);
+  }
+}
+
+    
+    console.log('this.PotentialListOpen')
+    console.log(this.PotentialListOpen)
+    console.log('this.pushingListOpen')
+    console.log(this.pushingListOpen)
+    console.log(this.Rigs)
+    
+
+
+
+ this.pushingListCounthingOpen = new Array(this.Rigs.length).fill(0);
+ for (var i = 0; i < this.Rigs.length; i++){
+  for (var j = 0; j < this.pushingListOpen.length; j++) {
+    let foundMatchInRow = false; // Flag to check if a match is found in the row
+  
+    for (var k = 0; k < this.pushingListOpen[j].length; k++) {
+    
+        if (this.Rigs[i].id === this.pushingListOpen[j][k].rigId) {
+          foundMatchInRow = true;
+          break; // Exit the inner loop once a match is found
+        }
+      
+    }
+  
+    // If a match is found in the row, update the count in the result array
+    if (foundMatchInRow) {
+      this.pushingListCounthingOpen[i] = this.pushingListOpen[j].length;
+    }
+  }
+ }
+
+    
+    
+    console.log('this.pushingListCounthing')
+    console.log(this.pushingListCounthingOpen)
+
+    for (let i = 0; i < this.pushingListCounthingOpen.length; i++) {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 200);
+      const blue = Math.floor(Math.random() * 256);
+      const colorString = `rgba(${red}, ${green}, ${blue}, 1)`;
+      const colorStringbackground = `rgba(${red}, ${green}, ${blue}, 0.2)`;
+      this.ColorsBackgroundOpen.push(colorStringbackground);
+      this.ColorsOpen.push(colorString);
+    }
+
+
+        this.AddCanvas("myChart2","chart2")
+
+        var myChart2 = new Chart("myChart2", {
+          type: 'bar',
+          data: {
+            labels: this.RigNames,
+            datasets: [{
+              label: "Status Open",
+              data: this.pushingListCounthingOpen,
+              backgroundColor: this.ColorsBackgroundOpen
+              // [
+              //   'rgba(255, 99, 132, 0.2)',
+              //   'rgba(54, 162, 235, 0.2)',
+              //   'rgba(255, 206, 86, 0.2)',
+              //   'rgba(75, 192, 192, 0.2)'
+              // ]
+              ,
+              borderColor: this.ColorsOpen
+              // [
+              //   'rgba(255, 99, 132, 1)',
+              //   'rgba(54, 162, 235, 1)',
+              //   'rgba(255, 206, 86, 1)',
+              //   'rgba(75, 192, 192, 1)'
+              // ]
+              ,
+              borderWidth: 1,
+              datalabels: {
+                color:this.ColorsOpen
+                //  [
+                //   'rgba(255, 99, 132, 1)',
+                //   'rgba(54, 162, 235, 1)',
+                //   'rgba(255, 206, 86, 1)',
+                //   'rgba(75, 192, 192, 1)'
+                // ]
+                ,
+                font: {
+                  size: 18,
+                }
+              }
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+    });
+
+
+
+    //the 3 chart for closed
+
+    this.potentialHazardService.GetForAnalysis(event.target.value,this.User.ID,this.User.Role).subscribe({
+      next: data => {
+        this.clearChart("myChart3")
+        data.data.filter((a: any) => a.status == "Closed").forEach((ele: any) => {
+          this.PotentialListClosed.push(ele)
+        });
+       
+       
+console.log('this.PotentialListClosed')
+        console.log(this.PotentialListClosed)
+
+   // Initialize pushingList as an empty 2D array
+
+for (var i = 0; i < this.PotentialListClosed.length; i++) {
+  // Check if this item has been added to any row
+  let added = false;
+
+  for (var j = 0; j < this.pushingListClosed.length; j++) {
+    const row = this.pushingListClosed[j];
+
+    // Check if the item's rigId matches any item in the current row
+    if (row.some(item => item.rigId === this.PotentialListClosed[i].rigId)) {
+      row.push(this.PotentialListClosed[i]);
+      added = true;
+      break;
+    }
+  }
+
+  // If the item wasn't added to any existing row, create a new row
+  if (!added) {
+    this.pushingListClosed.push([this.PotentialListClosed[i]]);
+  }
+}
+
+    
+    console.log('this.PotentialListClosed')
+    console.log(this.PotentialListClosed)
+    console.log('this.pushingListClosed')
+    console.log(this.pushingListClosed)
+    console.log(this.Rigs)
+    
+
+
+
+ this.pushingListCounthingClosed = new Array(this.Rigs.length).fill(0);
+ for (var i = 0; i < this.Rigs.length; i++){
+  for (var j = 0; j < this.pushingListClosed.length; j++) {
+    let foundMatchInRow = false; // Flag to check if a match is found in the row
+  
+    for (var k = 0; k < this.pushingListClosed[j].length; k++) {
+    
+        if (this.Rigs[i].id === this.pushingListClosed[j][k].rigId) {
+          foundMatchInRow = true;
+          break; // Exit the inner loop once a match is found
+        }
+      
+    }
+  
+    // If a match is found in the row, update the count in the result array
+    if (foundMatchInRow) {
+      this.pushingListCounthingClosed[i] = this.pushingListClosed[j].length;
+    }
+  }
+ }
+
+    
+    
+    console.log('this.pushingListCounthing')
+    console.log(this.pushingListCounthingClosed)
+
+    for (let i = 0; i < this.pushingListCounthingClosed.length; i++) {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 200);
+      const blue = Math.floor(Math.random() * 256);
+      const colorString = `rgba(${red}, ${green}, ${blue}, 1)`;
+      const colorStringbackground = `rgba(${red}, ${green}, ${blue}, 0.2)`;
+      this.ColorsBackgroundClosed.push(colorStringbackground);
+      this.ColorsClosed.push(colorString);
+    }
+
+
+        this.AddCanvas("myChart3","chart3")
+
+        var myChart3 = new Chart("myChart3", {
+          type: 'bar',
+          data: {
+            labels: this.RigNames,
+            datasets: [{
+              label: "Status Closed",
+              data: this.pushingListCounthingClosed,
+              backgroundColor: this.ColorsBackgroundClosed
+             
+              ,
+              borderColor: this.ColorsClosed
+             
+              ,
+              borderWidth: 1,
+              datalabels: {
+                color:this.ColorsClosed
+               
+                ,
+                font: {
+                  size: 18,
+                }
+              }
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+    });
+
+    
+    
+
+  
+
+  }
+
+
+  
 }

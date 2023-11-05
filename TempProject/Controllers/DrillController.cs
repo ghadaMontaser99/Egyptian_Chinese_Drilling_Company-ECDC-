@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System.Linq;
 using TempProject.DTO;
 using TempProject.DTO.ResponseDTO;
 using TempProject.Helper;
@@ -1710,6 +1708,188 @@ namespace TempProject.Controllers
         }
 
 
+
+
+        [HttpGet("GetDrillAnalysisByDrillTypeAndMonth")]
+        public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole ,int RigID)
+        {
+
+            ResultDTO result = new ResultDTO();
+
+            try
+            {
+                if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Month == Month1 || r.Date.Month == Month2) && (r.Rig.Id==RigID)).ToList();
+
+                    List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
+                    foreach (Drill drill in temp)
+                    {
+                        DrillResponseDTO drillDTO = new DrillResponseDTO();
+                        drillDTO.Id = drill.Id;
+                        drillDTO.RigId = drill.Rig.Id;
+                        drillDTO.Date = drill.Date;
+                        drillDTO.DrillTypeName = drill.DrillType.Name;
+                        drillDTO.userID = drill.userID;
+                        newTemp.Add(drillDTO);
+                    }
+                    if (newTemp != null)
+                    {
+
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
+
+                        return result;
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
+
+
+
+
+        [HttpGet("GetDrillAnalysisByDrillTypeAndYear")]
+        public ActionResult<ResultDTO> GetDrillAnalysisByDrillTypeAndYear(int Year, string UserRole,int RigID)
+        {
+
+            ResultDTO result = new ResultDTO();
+
+            try
+            {
+                if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Rig.Id == RigID) && (r.Date.Year == Year)) .ToList();
+
+                    List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
+                    foreach (Drill drill in temp)
+                    {
+                        DrillResponseDTO drillDTO = new DrillResponseDTO();
+                        drillDTO.Id = drill.Id;
+                        drillDTO.RigId = drill.Rig.Id;
+                        drillDTO.Date = drill.Date;
+                        drillDTO.DrillTypeName = drill.DrillType.Name;
+                        drillDTO.userID = drill.user.Id;
+                        newTemp.Add(drillDTO);
+                    }
+                    if (newTemp != null)
+                    {
+
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
+
+                        return result;
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
+
+                   /// Admin
+        [HttpGet("GetDrillAnalysisWithCompareByYear")]
+        public ActionResult<ResultDTO> GetDrillAnalysisWithCompare([FromQuery] int Year, string UserRole)
+        {
+
+            ResultDTO result = new ResultDTO();
+
+            try
+            {
+                 if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Year == Year)).ToList();
+
+
+                    List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
+                    foreach (Drill drill in temp)
+                    {
+                        DrillResponseDTO drillDTO = new DrillResponseDTO();
+                        drillDTO.Id = drill.Id;
+                        drillDTO.RigId = drill.Rig.Id;
+                        drillDTO.Date = drill.Date;
+                        drillDTO.DrillTypeName = drill.DrillType.Name;
+                        drillDTO.userID = drill.user.Id;
+
+                        newTemp.Add(drillDTO);
+                    }
+                    if (newTemp != null)
+                    {
+
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
+
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
+
+
+        [HttpGet("GetDrillAnalysisWithCompareByMonth")]
+        public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole)
+        {
+
+            ResultDTO result = new ResultDTO();
+
+            try
+            {
+                
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<Drill> temp = DrillRepoistory.getall().Where(r =>(r.Date.Month == Month1 || r.Date.Month == Month2)).ToList();
+                    List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
+                    foreach (Drill drill in temp)
+                    {
+                        DrillResponseDTO drillDTO = new DrillResponseDTO();
+                        drillDTO.Id = drill.Id;
+                        drillDTO.RigId = drill.Rig.Id;
+                        drillDTO.Date = drill.Date;
+                        drillDTO.DrillTypeName = drill.DrillType.Name;
+                        drillDTO.userName = drill.user.UserName;
+
+                        newTemp.Add(drillDTO);
+                    }
+                    if (newTemp != null)
+                    {
+
+                        result.Message = "Success";
+                        result.Statescode = 200;
+                        result.Data = newTemp;
+
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+            return result;
+        }
+
+
+
         [HttpPut("{id:int}")]
         public ActionResult<ResultDTO> Put(int id, [FromForm] DrillDTO newDrill) //[FromBody] string value)
         {
@@ -2059,8 +2239,6 @@ namespace TempProject.Controllers
             }
             return BadRequest(ModelState);
         }
-
-
 
         [HttpPut("Delete/{id:int}")]
         public ActionResult<ResultDTO> Delete(int id) //[FromBody] string value)

@@ -46,7 +46,7 @@ export class DrillTableComponent {
       }
      })
 
-     this.AddnewDrill.GetDrills(this.User.ID,this.User.Role).subscribe({
+     this.dataService.GetDrills(this.User.ID,this.User.Role).subscribe({
       next: data => this.json_data = data.data,
       error: err => this.ErrorMessage = err
     })

@@ -379,7 +379,7 @@ TestDrill!: any
             ]),
         }
       ),
-      this.AddNewDrill.GetDrills(this.User.ID,this.User.Role).subscribe({
+      this.dataService.GetDrills(this.User.ID,this.User.Role).subscribe({
         next: data => this.json_data = data.data,
         error: err => this.ErrorMessage = err
       }),
@@ -885,9 +885,6 @@ get id() {
      if (this.drillForm.valid) {
 
       const Formdata=new FormData()
-     
-
-
      console.log("fforrrrrrrmmmmmmmmm",Formdata)
 
       Formdata.append('rigId', this.rigId?.value);
