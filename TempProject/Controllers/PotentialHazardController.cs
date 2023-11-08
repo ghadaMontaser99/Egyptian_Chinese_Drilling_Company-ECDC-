@@ -534,7 +534,7 @@ namespace TempProject.Controllers
 
 
 		[HttpGet("GetDataByRigNumber/{RigNumber:int}")]
-		public ActionResult<ResultDTO> GetAllWithDataByRigNumber(int RigNumber, string UserId, string UserRole)
+		public ActionResult<ResultDTO> GetAllWithDataByRigNumber(int RigNumber, string UserId, string UserRole,string title)
 		{
 			ResultDTO result = new ResultDTO();
 
@@ -543,7 +543,7 @@ namespace TempProject.Controllers
 				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
 				{
 					List<PotentialHazardResponseDTO> PotentialHazardDTOs = new List<PotentialHazardResponseDTO>();
-					List<PotentialHazard> potentialHazards = PotentialHazardRepoistory.getall().Where(a => a.Rig.Number == RigNumber&&a.Status=="Open").ToList();
+					List<PotentialHazard> potentialHazards = PotentialHazardRepoistory.getall().Where(a => a.Rig.Number == RigNumber&&a.Status=="Open"&&a.Title==title).ToList();
 					foreach (PotentialHazard potentialHazard in potentialHazards)
 					{
 						PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
@@ -580,7 +580,7 @@ namespace TempProject.Controllers
 				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
 				{
 					List<PotentialHazardResponseDTO> PotentialHazardDTOs = new List<PotentialHazardResponseDTO>();
-					List<PotentialHazard> potentialHazards = PotentialHazardRepoistory.getall().Where(a => a.Rig.Number == RigNumber && a.Status == "Open" && a.user.Id == UserId).ToList();
+					List<PotentialHazard> potentialHazards = PotentialHazardRepoistory.getall().Where(a => a.Rig.Number == RigNumber && a.Status == "Open" && a.user.Id == UserId&&a.Title==title).ToList();
 					foreach (PotentialHazard potentialHazard in potentialHazards)
 					{
 						PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();

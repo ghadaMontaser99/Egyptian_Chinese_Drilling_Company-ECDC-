@@ -46,6 +46,8 @@ export class ReportAccidentComponent {
         this.AccidentRecord = data.data;
         this.Data = true;
         console.log("done");
+        console.log("data.data");
+        console.log(data.data);
       },
       error: error => {
         this.ErrorMessage = error;

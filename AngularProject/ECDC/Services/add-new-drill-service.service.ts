@@ -20,8 +20,8 @@ export class AddNewDrillServiceService {
  EditDrill(Drill : FormData, id:number): Observable<any> {
    return this.http.put<FormData>(`http://localhost:5000/api/Drill/${id}`, Drill);
  }  
- GetDrillByDrillType(DrillType:string,userId:string,userRole:string): Observable<IAPIResult> {
-   return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDataByDrillType/${DrillType}?UserID=${userId}&UserRole=${userRole}`);
+ GetDrillByDrillType(DrillType:string,userId:string,userRole:string,date:string,rigNum:number): Observable<IAPIResult> {
+   return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDataByDrillType/${DrillType}?UserID=${userId}&UserRole=${userRole}&date=${date}&RigNumber=${rigNum}`);
  }
 
 

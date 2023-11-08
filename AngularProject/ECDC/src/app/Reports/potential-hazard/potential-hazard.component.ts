@@ -304,31 +304,6 @@ export class PotentialHazardComponent {
     this.SelectFiles = event.target.files;
 
 
-    // const files = event.target.files;
-  
-    // if (files && files.length > 0) {
-    //   const fileArray = this.potentialHazardForm.get('images') as FormArray;
-  
-    //   const fileValues = [];
-      
-    //   for (let i = 0; i < files.length; i++) {
-    //     const file = files[i];
-    //     fileArray.push(this.fb.control(file));
-  
-    //     // Handle the base64 data as needed
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //       const base64Data = reader.result as string;
-    //       // You can do something with the base64 data here
-    //     };
-    //     reader.readAsDataURL(file);
-  
-    //     // Push the file or its properties (as needed) into the fileValues array
-    //     fileValues.push(file);
-    //   }
-      
-    //   // Set the values for the FormArray using the fileValues array
-    //   fileArray.setValue(fileValues);
-    // }
   }
 }
+

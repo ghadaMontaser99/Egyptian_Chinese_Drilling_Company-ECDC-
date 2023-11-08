@@ -32,12 +32,25 @@ export class EmployeeCompetencyEvaluationTableComponent {
 
   User:any;
   ErrorMessage: any;
-
+  SearchList:string[]=[];
 
   constructor(private AddnewEmployeeCompetencyEvaluation: AddnewEmployeeCompetencyEvaluationService,private getDataByPage:GetdataByPageService,private dataService: DataService, private deleteService: DeleteDataService,private loginService:LoginService) { }
 
   ngOnInit() {
     this.User=this.loginService.currentUser.getValue();
+    this.AddnewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationts(this.User.ID,this.User.Role).subscribe({
+      next: data => {
+        console.log("EmployeeeCode")
+        console.log(data.data)
+        data.data.forEach((element: {employeeCode: string; }) => {
+
+          this.SearchList.push(element.employeeCode)
+        });
+        this.SearchList = Array.from(new Set(this.SearchList))
+        console.log(this.SearchList)
+      }
+
+    })
     this.getpages(1)
 
     this.loginService.isAdmin.subscribe({
@@ -47,9 +60,27 @@ export class EmployeeCompetencyEvaluationTableComponent {
      })
 
      this.AddnewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationts(this.User.ID,this.User.Role).subscribe({
-      next: data => this.json_data = data.data,
+    
+      next: data =>{
+        console.log('GetEmployeeCompetencyEvaluationts')
+        console.log(data.data)
+        this.json_data = data.data
+      }, 
       error: err => this.ErrorMessage = err
     })
+  }
+
+  selectedMenace( event:any)
+  {
+    console.log(event.target.value)
+    this.AddnewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationtSearchByEmpCode(event.target.value,this.User.ID,this.User.Role).subscribe({
+      next:data=> this.ListOfEmployeeCompetencyEvaluation.next(data.data),
+      error: err => {
+        this.getpages(1)
+        console.log(err);
+      }
+    })
+
   }
 
   DeleteEmployeeCompetencyEvaluationt(EmployeeCompetencyEvaluationt: IEmployeeCompetencyEvaluation) {

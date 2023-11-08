@@ -1272,8 +1272,9 @@ namespace TempProject.Controllers
         //  ------------------filter by DrillType------------------------------------------
 
         [HttpGet("GetDataByDrillType/{DrillType}")]
-        public ActionResult<ResultDTO> GetAllWithDataByDrillType(string DrillType, string UserId, string UserRole)
+        public ActionResult<ResultDTO> GetAllWithDataByDrillType(string DrillType, string UserId, string UserRole,string date, int RigNumber)
         {
+            DateTime dateObject = DateTime.Parse(date);
             ResultDTO result = new ResultDTO();
 
             try
@@ -1281,7 +1282,7 @@ namespace TempProject.Controllers
                 if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
                 {
                     List<DrillResponseDTO> DrillDTOs = new List<DrillResponseDTO>();
-                    List<Drill> drills = DrillRepoistory.getall().Where(a => a.DrillType.Name == DrillType).ToList();
+                    List<Drill> drills = DrillRepoistory.getall().Where(a => a.DrillType.Name == DrillType&&a.Rig.Number==RigNumber&&a.Date== dateObject).ToList();
                     foreach (Drill drill in drills)
                     {
                         DrillResponseDTO drillDTO = new DrillResponseDTO();
@@ -1420,7 +1421,7 @@ namespace TempProject.Controllers
                 else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
                 {
                     List<DrillResponseDTO> DrillDTOs = new List<DrillResponseDTO>();
-                    List<Drill> drills = DrillRepoistory.getall().Where(a => a.DrillType.Name == DrillType && a.user.Id == UserId).ToList();
+                    List<Drill> drills = DrillRepoistory.getall().Where(a => a.DrillType.Name == DrillType && a.Rig.Number == RigNumber && a.Date == dateObject&& a.user.Id == UserId).ToList();
                     foreach (Drill drill in drills)
                     {
                         DrillResponseDTO drillDTO = new DrillResponseDTO();
@@ -1711,7 +1712,7 @@ namespace TempProject.Controllers
 
 
         [HttpGet("GetDrillAnalysisByDrillTypeAndMonth")]
-        public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole ,int RigID)
+        public ActionResult<ResultDTO> GetDrillAnalysisWithCompareByMonth(int Month1, int Month2, string UserRole,string UserId)
         {
 
             ResultDTO result = new ResultDTO();
@@ -1720,7 +1721,7 @@ namespace TempProject.Controllers
             {
                 if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
                 {
-                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Month == Month1 || r.Date.Month == Month2) && (r.Rig.Id==RigID)).ToList();
+                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Date.Month == Month1 || r.Date.Month == Month2) && r.user.Id==UserId).ToList();
 
                     List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
                     foreach (Drill drill in temp)
@@ -1730,7 +1731,7 @@ namespace TempProject.Controllers
                         drillDTO.RigId = drill.Rig.Id;
                         drillDTO.Date = drill.Date;
                         drillDTO.DrillTypeName = drill.DrillType.Name;
-                        drillDTO.userID = drill.userID;
+                        drillDTO.userID = drill.user.Id;
                         newTemp.Add(drillDTO);
                     }
                     if (newTemp != null)
@@ -1757,7 +1758,7 @@ namespace TempProject.Controllers
 
 
         [HttpGet("GetDrillAnalysisByDrillTypeAndYear")]
-        public ActionResult<ResultDTO> GetDrillAnalysisByDrillTypeAndYear(int Year, string UserRole,int RigID)
+        public ActionResult<ResultDTO> GetDrillAnalysisByDrillTypeAndYear(int Year, string UserRole, string UserId)
         {
 
             ResultDTO result = new ResultDTO();
@@ -1766,7 +1767,7 @@ namespace TempProject.Controllers
             {
                 if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
                 {
-                    List<Drill> temp = DrillRepoistory.getall().Where(r => (r.Rig.Id == RigID) && (r.Date.Year == Year)) .ToList();
+                    List<Drill> temp = DrillRepoistory.getall().Where(r =>  r.Date.Year == Year && r.user.Id == UserId) .ToList();
 
                     List<DrillResponseDTO> newTemp = new List<DrillResponseDTO>();
                     foreach (Drill drill in temp)

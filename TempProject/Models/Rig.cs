@@ -16,6 +16,8 @@ namespace TempProject.Models
         public virtual List<PotentialHazard> PotentialHazard { get; set; }
         public virtual List<PPEReceiving> PPEReceiving { get; set;}
 
+        public virtual List<EmpCode> EmpCode { get; set; }
+
 
     }
 }

@@ -70,12 +70,14 @@ namespace TempProject.Models
         
 		public string Recommendations { get; set; }
         
-		public string Pictures { get; set;}
+
 		
 		[ForeignKey("user")]
 		public string userID { get; set; }
 		
 		public virtual IdentityUser user { get; set; }
+        public virtual List<AccidentImages> Images { get; set; } = new List<AccidentImages>();
+
 
         [DefaultValue(false)]
         public bool IsDeleted { get; set; }

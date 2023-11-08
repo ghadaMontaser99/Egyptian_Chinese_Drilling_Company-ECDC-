@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Drawing.Drawing2D;
+using System.Text;
 using TempProject.DTO;
 using TempProject.DTO.ResponseDTO;
 using TempProject.Helper;
@@ -22,13 +24,14 @@ namespace TempProject.Controllers
         public IAccidentRepository accidentRepoistory { get; set; }
 
 		private readonly Microsoft.AspNetCore.Identity.UserManager<IdentityUser> userManager;
+        public IRepository<AccidentImages> AccidentImagesRepo { get; set; }
 
-
-		public AccidentController(Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager,IRepository<Accident> _accidentRepo, IAccidentRepository _accidentRepoistory)
+        public AccidentController(Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager,IRepository<Accident> _accidentRepo, IAccidentRepository _accidentRepoistory, IRepository<AccidentImages> _AccidentImagesRepo)
         {
             this.accidentRepo = _accidentRepo;
             this.accidentRepoistory = _accidentRepoistory;
             this.userManager = _userManager;
+            this.AccidentImagesRepo = _AccidentImagesRepo;
         }
 
         [HttpGet("GetData")]
@@ -78,9 +81,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						newTemp.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 					if (newTemp != null)
@@ -131,9 +140,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						newTemp.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 					if (newTemp != null)
@@ -200,9 +215,13 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
+                        foreach (var item in accident.Images)
+                        {
+                            accidentDTO.images.Add(item.FileName);
 
-						newTemp.Add(accidentDTO);
+                        }
+
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 					if (newTemp != null)
@@ -254,9 +273,13 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						newTemp.Add(accidentDTO);
+                        foreach (var item in accident.Images)
+                        {
+                            accidentDTO.images.Add(item.FileName);
+
+                        }
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 					if (newTemp != null)
@@ -326,9 +349,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
 
-						newTemp.Add(accidentDTO);
+                        }
+
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 
@@ -384,9 +413,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						newTemp.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        newTemp.Add(accidentDTO);
 						//result.Data = prod;
 					}
 
@@ -455,9 +490,15 @@ namespace TempProject.Controllers
 					accidentDTO.RootCauses = temp.RootCauses;
 					accidentDTO.userName = temp.user.UserName;
 					accidentDTO.Recommendations = temp.Recommendations;
-					accidentDTO.Pictures = temp.Pictures;
+                    List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == temp.Id).ToList();
+                    foreach (var item in accidentImages)
+                    {
+                        string FileName = item.FileName;
+                        accidentDTO.Images.Add(FileName);
 
-					if (accidentDTO != null)
+                    }
+
+                    if (accidentDTO != null)
 					{
 
 						result.Message = "Success";
@@ -508,9 +549,15 @@ namespace TempProject.Controllers
 					accidentDTO.RootCauses = temp.RootCauses;
 					accidentDTO.userName = temp.user.UserName;
 					accidentDTO.Recommendations = temp.Recommendations;
-					accidentDTO.Pictures = temp.Pictures;
 
-					if (accidentDTO != null)
+                    List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == temp.Id).ToList();
+                    foreach (var item in accidentImages)
+                    {
+                        string FileName = item.FileName;
+                        accidentDTO.Images.Add(FileName);
+
+                    }
+                    if (accidentDTO != null)
 					{
 
 						result.Message = "Success";
@@ -576,9 +623,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						accidentDTOs.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        accidentDTOs.Add(accidentDTO);
 
 					}
 					result.Message = "Success";
@@ -626,9 +679,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						accidentDTOs.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        accidentDTOs.Add(accidentDTO);
 
 					}
 					result.Message = "Success";
@@ -695,9 +754,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
 
-						accidentDTOs.Add(accidentDTO);
+                        }
+
+                        accidentDTOs.Add(accidentDTO);
 
 					}
 					result.Message = "Success";
@@ -745,9 +810,15 @@ namespace TempProject.Controllers
 						accidentDTO.RootCauses = accident.RootCauses;
 						accidentDTO.userName = accident.user.UserName;
 						accidentDTO.Recommendations = accident.Recommendations;
-						accidentDTO.Pictures = accident.Pictures;
 
-						accidentDTOs.Add(accidentDTO);
+                        List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                        foreach (var item in accidentImages)
+                        {
+                            string FileName = item.FileName;
+                            accidentDTO.Images.Add(FileName);
+
+                        }
+                        accidentDTOs.Add(accidentDTO);
 
 					}
 					result.Message = "Success";
@@ -767,61 +838,12 @@ namespace TempProject.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult<ResultDTO> GetAll()
-        //{
 
-        //    ResultDTO result = new ResultDTO();
 
-        //    List<Accident> temp = accidentRepo.getall();
-        //    List<AccidentDTO> newTemp = new List<AccidentDTO>();
-        //    foreach (Accident accident in temp)
-        //    {
-        //        AccidentDTO accidentDTO = new AccidentDTO();
-        //        accidentDTO.id = accident.id;
-        //        accidentDTO.RigId = accident.RigId;
-        //        accidentDTO.TimeOfEvent = accident.TimeOfEvent;
-        //        accidentDTO.DateOfEvent = accident.DateOfEvent;
-        //        accidentDTO.TypeOfInjuryID = accident.TypeOfInjuryID;
-        //        accidentDTO.ViolationCategoryId = accident.ViolationCategoryId;
-        //        accidentDTO.AccidentCausesId = accident.AccidentCausesId;
-        //        accidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
-        //        accidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
-        //        accidentDTO.AccidentLocation = accident.AccidentLocation;
-        //        accidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
-        //        accidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-        //        accidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
-        //        accidentDTO.QHSEPositionId = accident.QHSEPositionId;
-        //        accidentDTO.DrillerName = accident.DrillerName;
-        //        accidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
-        //        accidentDTO.ImmediateActionType = accident.ImmediateActionType;
-        //        accidentDTO.DirectCauses = accident.DirectCauses;
-        //        accidentDTO.RootCauses = accident.RootCauses;
-        //        accidentDTO.userID = accident.userID;
-        //        accidentDTO.Recommendations = accident.Recommendations;
-        //        accidentDTO.Pictures = accident.Pictures;
-
-        //        newTemp.Add(accidentDTO);
-        //        //result.Data = prod;
-        //    }
-        //    if (newTemp != null)
-        //    {
-
-        //        result.Statescode = 200;
-        //        result.Data = newTemp;
-
-        //        return result;
-        //    }
-
-        //    result.Statescode = 404;
-        //    result.Message = "data not found";
-        //    return result;
-        //}
-
-        [HttpGet("{ID:int}")]
-        public ActionResult<ResultDTO> GetByID(int ID,string UserId,string UserRole)
-        {
-            ResultDTO result = new ResultDTO();
+		[HttpGet("{ID:int}")]
+		public ActionResult<ResultDTO> GetByID(int ID, string UserId, string UserRole)
+		{
+			ResultDTO result = new ResultDTO();
 
 			try
 			{
@@ -860,9 +882,16 @@ namespace TempProject.Controllers
 					accidentDTO.RootCauses = accident.RootCauses;
 					accidentDTO.userID = accident.userID;
 					accidentDTO.Recommendations = accident.Recommendations;
-					accidentDTO.Pictures = accident.Pictures;
 
-					result.Message = "Success";
+
+                    List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                    foreach (var item in accidentImages)
+                    {
+                        string FileName = item.FileName;
+                        accidentDTO.Imagess.Add(FileName);
+
+                    }
+                    result.Message = "Success";
 					result.Data = accidentDTO;
 					result.Statescode = 200;
 					return result;
@@ -903,13 +932,21 @@ namespace TempProject.Controllers
 					accidentDTO.RootCauses = accident.RootCauses;
 					accidentDTO.userID = accident.userID;
 					accidentDTO.Recommendations = accident.Recommendations;
-					accidentDTO.Pictures = accident.Pictures;
 
-					result.Message = "Success";
-					result.Data = accidentDTO;
-					result.Statescode = 200;
-					return result;
-				}
+
+					  List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == accident.Id).ToList();
+                    foreach (var item in accidentImages)
+                    {
+                        string FileName = item.FileName;
+                        accidentDTO.Imagess.Add(FileName);
+
+                    }
+						result.Message = "Success";
+						result.Data = accidentDTO;
+						result.Statescode = 200;
+						return result;
+					}
+				
 
 			}
 			catch (Exception Ex)
@@ -921,7 +958,7 @@ namespace TempProject.Controllers
 			return result;
 		}
 
-        [HttpPost]
+		[HttpPost]
         public ActionResult<ResultDTO> AddAccident([FromForm] AccidentDTO accident)
         {
             ResultDTO result = new ResultDTO();
@@ -965,10 +1002,17 @@ namespace TempProject.Controllers
                     acci.userID = accident.userID;
 
                     acci.Recommendations = accident.Recommendations;
-                    acci.Pictures = ImagesHelper.uploadImg(accident.ImageOfaccident, "acciIMG");
+                  
 
 
                     accidentRepo.create(acci);
+                    foreach (var item in accident.Images)
+                    {
+                        AccidentImages accidentImages = new AccidentImages();
+                        accidentImages.FileName = ImagesHelper.uploadImg(item, "AccidentIMG");
+                        accidentImages.AccidentId = acci.Id;
+                        AccidentImagesRepo.create(accidentImages);
+                    }
                     result.Message = "Success";
                     result.Data = acci;
                     result.Statescode = 200;
@@ -982,53 +1026,7 @@ namespace TempProject.Controllers
             return result;
         }
 
-        //[HttpGet("{date:DateTime}")]
-        //public ActionResult<ResultDTO> GetByDate(DateTime date)
-        //{
-        //    ResultDTO result = new ResultDTO();
-        //    try
-        //    {
-        //        List<AccidentDTO> accidentDTOs = new List<AccidentDTO>();
-        //        List<Accident> accidents = accidentRepo.getall().Where(a => a.DateOfEvent == date).ToList();
-        //        foreach (Accident accident in accidents)
-        //        {
-        //            AccidentDTO AccidentDTO = new AccidentDTO();
-        //            AccidentDTO.id = accident.id;
-        //            AccidentDTO.RigId = accident.RigId;
-        //            AccidentDTO.TimeOfEvent = accident.TimeOfEvent;
-        //            AccidentDTO.DateOfEvent = accident.DateOfEvent;
-        //            AccidentDTO.TypeOfInjuryID = accident.TypeOfInjuryID;
-        //            AccidentDTO.ViolationCategoryId = accident.ViolationCategoryId;
-        //            AccidentDTO.AccidentCausesId = accident.AccidentCausesId;
-        //            AccidentDTO.PreventionCategoryId = accident.PreventionCategoryId;
-        //            AccidentDTO.ClassificationOfAccidentId = accident.ClassificationOfAccidentId;
-        //            AccidentDTO.AccidentLocation = accident.AccidentLocation;
-        //            AccidentDTO.QHSEPositionNameId = accident.QHSEPositionNameId;
-        //            AccidentDTO.ToolPusherPositionNameId = accident.ToolPusherPositionNameId;
-        //            AccidentDTO.ToolPusherPositionId = accident.ToolPusherPositionId;
-        //            AccidentDTO.QHSEPositionId = accident.QHSEPositionId;
-        //            AccidentDTO.DrillerName = accident.DrillerName;
-        //            AccidentDTO.DescriptionOfTheEvent = accident.DescriptionOfTheEvent;
-        //            AccidentDTO.ImmediateActionType = accident.ImmediateActionType;
-        //            AccidentDTO.DirectCauses = accident.DirectCauses;
-        //            AccidentDTO.RootCauses = accident.RootCauses;
-        //            AccidentDTO.userID = accident.userID;
-        //            AccidentDTO.Recommendations = accident.Recommendations;
-        //            AccidentDTO.Pictures = accident.Pictures;
-        //            accidentDTOs.Add(AccidentDTO);
-
-        //        }
-        //        result.Data = accidentDTOs;
-        //        result.Statescode = 200;
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Message = "Erroe Not Find";
-        //        result.Statescode = 404;
-        //        return result;
-        //    }
-        //}
+       
 
         [HttpPut("{id:int}")]
         public ActionResult<ResultDTO> Put(int id, [FromForm] AccidentDTO newAccident) //[FromBody] string value)
@@ -1037,19 +1035,19 @@ namespace TempProject.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    Accident orgAccd = accidentRepo.getbyid(id);
-                    newAccident.id = orgAccd.Id;
-                    orgAccd.RigId = newAccident.RigId;
-                    orgAccd.TimeOfEvent = newAccident.TimeOfEvent;
-                    orgAccd.DateOfEvent = newAccident.DateOfEvent;
-                    orgAccd.TypeOfInjuryID = newAccident.TypeOfInjuryID;
-                    orgAccd.ViolationCategoryId = newAccident.ViolationCategoryId;
-                    orgAccd.AccidentCausesId = newAccident.AccidentCausesId;
-                    orgAccd.PreventionCategoryId = newAccident.PreventionCategoryId;
-                    orgAccd.ClassificationOfAccidentId = newAccident.ClassificationOfAccidentId;
-                    orgAccd.AccidentLocation = newAccident.AccidentLocation;
+				try
+				{
+					Accident orgAccd = accidentRepo.getbyid(id);
+					newAccident.id = orgAccd.Id;
+					orgAccd.RigId = newAccident.RigId;
+					orgAccd.TimeOfEvent = newAccident.TimeOfEvent;
+					orgAccd.DateOfEvent = newAccident.DateOfEvent;
+					orgAccd.TypeOfInjuryID = newAccident.TypeOfInjuryID;
+					orgAccd.ViolationCategoryId = newAccident.ViolationCategoryId;
+					orgAccd.AccidentCausesId = newAccident.AccidentCausesId;
+					orgAccd.PreventionCategoryId = newAccident.PreventionCategoryId;
+					orgAccd.ClassificationOfAccidentId = newAccident.ClassificationOfAccidentId;
+					orgAccd.AccidentLocation = newAccident.AccidentLocation;
 
 					orgAccd.QHSEEmpName = newAccident.QHSEEmpName;
 					orgAccd.QHSEEmpCode = newAccident.QHSEEmpCode;
@@ -1068,26 +1066,76 @@ namespace TempProject.Controllers
 					orgAccd.InjuredPersonPositionName = newAccident.InjuredPersonPositionName;
 
 					orgAccd.DescriptionOfTheEvent = newAccident.DescriptionOfTheEvent;
-                    orgAccd.ImmediateActionType = newAccident.ImmediateActionType;
-                    orgAccd.DirectCauses = newAccident.DirectCauses;
-                    orgAccd.RootCauses = newAccident.RootCauses;
-                    //orgAccd.userID = newAccident.userID;
+					orgAccd.ImmediateActionType = newAccident.ImmediateActionType;
+					orgAccd.DirectCauses = newAccident.DirectCauses;
+					orgAccd.RootCauses = newAccident.RootCauses;
+					//orgAccd.userID = newAccident.userID;
 
-                    orgAccd.Recommendations = newAccident.Recommendations;
-                    orgAccd.Pictures = orgAccd.Pictures;// ImagesHelper.uploadImg(newAccident.ImageOfaccident, "acciIMG");
+					orgAccd.Recommendations = newAccident.Recommendations;
+					List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == newAccident.id).ToList();
+					int p = 1;//Equal
+					if (newAccident.Images.IsNullOrEmpty())
+					{
+						p = 1;//equal to the old
+					}
+					else if (accidentImages.Count == newAccident.Images.Count)
+					{
+						foreach (var image in accidentImages)
+						{
+							foreach (var image1 in newAccident.Images)
+							{
+								if (image.FileName != image1.FileName)
+								{
+									p = 0;//Not Equal
+								}
 
 
-                    accidentRepo.update(orgAccd);
-                    result.Data = orgAccd;
-                    result.Statescode = 200;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    result.Message = "Error in Updating";
-                    result.Statescode = 400;
-                    return result;
-                }
+							}
+						}
+					}
+					else
+					{
+						p = 0;
+					}
+					if (p == 1)
+					{
+                        accidentRepo.update(orgAccd);
+                        result.Data = orgAccd;
+                        result.Statescode = 200;
+                        return result;
+                    }
+					else
+					{
+						// Clear the existing images
+						foreach (var image in accidentImages)
+						{
+							DeleteImagesHelper.DeleteImage(image.FileName, "AccidentIMG");
+                            AccidentImagesRepo.delete(image);
+						}
+
+						// Add the new images to the list
+
+						foreach (var item in newAccident.Images)
+						{
+							AccidentImages accidentImagess = new AccidentImages();
+							accidentImagess.FileName = ImagesHelper.uploadImg(item, "AccidentIMG");
+							accidentImagess.AccidentId = orgAccd.Id;
+							AccidentImagesRepo.create(accidentImagess);
+						}
+
+
+						accidentRepo.update(orgAccd);
+						result.Data = orgAccd;
+						result.Statescode = 200;
+						return result;
+					}
+				}
+				catch (Exception ex)
+				{
+					result.Message = "Error in Updating";
+					result.Statescode = 400;
+					return result;
+				}
             }
             return BadRequest(ModelState);
         }
@@ -1098,6 +1146,19 @@ namespace TempProject.Controllers
             ResultDTO result = new ResultDTO();
             try
             {
+                List<AccidentImages> accidentImages = AccidentImagesRepo.getall().Where(p => p.AccidentId == id).ToList();
+                foreach (var item in accidentImages)
+                {
+
+                    AccidentImages accidentImage = AccidentImagesRepo.getbyid(item.Id);
+                    DeleteImagesHelper.DeleteImage(accidentImage.FileName, "AccidentIMG");
+
+                    accidentImage.IsDeleted = true;
+                    //drillImage.Id = item.Id;
+
+                    AccidentImagesRepo.update(accidentImage);
+
+                }
                 Accident accident = accidentRepo.getbyid(id);
                 accident.IsDeleted = true;
                 accidentRepo.update(accident);

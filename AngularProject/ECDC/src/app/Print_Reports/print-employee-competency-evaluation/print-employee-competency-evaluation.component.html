@@ -6,11 +6,12 @@
         Employee Competency Evaluationt Report
       </h2>
     </div>
-    <label class="mb-2">Employee Code :</label>
+
     
     <select class="form-control" [(ngModel)]="EmpCode" (change)="EmpCodeSelected($event)">
-      <option value="{{ code}}" *ngFor="let code of EmployeeCompetencyEvaluation">
-        {{code}}
+      <option value="" disabled selected>Choose Employee Code And Date</option>
+      <option  value="{{code.employeeCode}} / {{code.date|date: 'dd-MM-yyyy' }}" *ngFor="let code of EmployeeCompetencyEvaluation">
+        EmpCode {{code.employeeCode}} / {{code.date|date: 'dd-MM-yyyy' }}
       </option>
     </select>
   

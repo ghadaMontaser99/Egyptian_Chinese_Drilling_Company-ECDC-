@@ -20,7 +20,8 @@ export class PrintDrillComponent {
   Data: boolean = false;
   User:any;
   date!: Date;
-
+  extractedNumber: number = 0;
+  extractedDate!: Date;
   constructor(private loginService:LoginService,private AddNewDrill: AddNewDrillServiceService, private dataService: DataService) { }
   ngOnInit() {
     this.User=this.loginService.currentUser.getValue();
@@ -28,7 +29,7 @@ export class PrintDrillComponent {
     this.dataService.GetDrills(this.User.ID,this.User.Role).subscribe({
       next: data => {
         data.data.forEach((ele: any) => {
-          this.Drill.push(ele.drillTypeName)
+          this.Drill.push(ele)
           console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
           console.log(data.data)
           console.log(this.Drill)
@@ -41,43 +42,46 @@ export class PrintDrillComponent {
     })
   }
 
-  // DrillTypeSelected(event: any) {
-  //   console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
-  //   console.log(event.target.value);
+  
 
-  //   this.AddNewDrill.GetDrillByDrillType(event.target.value,this.User.ID,this.User.Role).subscribe({
-  //     next: data => {
-  //       console.log('',this.DrillRecord)
-       
-  //       this.DrillRecord = data.data;
-  //       // this.Data = true;
-  //     },
-  //     error: error => {
-  //       this.ErrorMessage = error;
-  //       console.log("Error");
-  //     }
-  //   })
-
-  // }
-
-  DrillTypeSelected(event: any) {
+  DrillTypeAndRigAndDateSelected(event: any) {
     console.log(event.target.value)
-    this.AddNewDrill.GetDrillByDrillType(event.target.value,this.User.ID,this.User.Role).subscribe({
-      next: data => {
-        this.DrillRecord = data.data;
-        this.Data = true;
-        console.log("dtoooooooo");
+   
+   
+    const regex = /(\d+) \/ ([\w\s]+) \/ (\d{2}-\d{2}-\d{4})/;
+    const match = event.target.value.match(regex);
+    
+    if (match) {
+      const rigNumber = match[1];  // Extracted number
+      const drillType = match[2].trim();  // Extracted string with leading/trailing spaces trimmed
+      const date = match[3];    // Extracted date
+      console.log("Number: " + rigNumber);
+      console.log("String: " + drillType);
+      console.log("Date: " + date);
 
-        console.log(this.DrillRecord[0])
+      this.AddNewDrill.GetDrillByDrillType(drillType,this.User.ID,this.User.Role,date,rigNumber).subscribe({
+        next: data => {
+          this.DrillRecord = data.data;
+          this.Data = true;
+          console.log("dtoooooooo");
+  
+          console.log(this.DrillRecord[0])
+  
+          console.log("done");
+          
+        },
+        error: error => {
+          this.ErrorMessage = error;
+          console.log("Error");
+        }
+      })
+    } else {
+      console.log("No match found");
+    }
+    
 
-        console.log("done");
-        
-      },
-      error: error => {
-        this.ErrorMessage = error;
-        console.log("Error");
-      }
-    })
+
+  
   }
  
   print(): void {

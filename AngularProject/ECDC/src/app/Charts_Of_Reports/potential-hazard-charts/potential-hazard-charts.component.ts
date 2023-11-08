@@ -23,13 +23,12 @@ export class PotentialHazardChartsComponent {
     this.Status = [];
     this.pushingListCounthing=[]
     this.Open = [];
-    //this.OpenCount= 0;
+  
     this. Closed = [];
-    //this. ClosedCount= 0;
+   
     this. PotentialList=[];
     this. pushingList=[];
-    //this. pushingListCounthing=[];
-    //this.RigNames=[];
+    
     this.Colors=[];
     this.ColorsBackground=[];
 
@@ -161,16 +160,7 @@ export class PotentialHazardChartsComponent {
        
 
         console.log(data.data)
-    // for (var i = 0; i < this.PotentialList.length; i++) {
-    //   // Initialize pushingList[i] as an empty array
-    //   this.pushingList[i] = [];
-    
-    //   for (var j = 0; j < this.Rigs.length; j++) {
-    //     if (this.PotentialList[i].rigId == this.Rigs[j].id) {
-    //       this.pushingList[i].push(this.PotentialList[i]);
-    //     }
-    //   }
-    // }
+  
 
    // Initialize pushingList as an empty 2D array
 

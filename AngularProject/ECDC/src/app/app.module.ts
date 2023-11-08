@@ -153,6 +153,7 @@ import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-dri
 import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-hazard-charts/potential-hazard-charts.component';
 import { ChartWithDrillTypeComponent } from './Charts_Of_Reports/chart-with-drill-type/chart-with-drill-type.component';
 import { ChartDrillWitManagerNameComponent } from './Charts_Of_Reports/chart-drill-wit-manager-name/chart-drill-wit-manager-name.component';
+import { DrillsCompareByRigsComponent } from './Charts_Of_Reports/drills-compare-by-rigs/drills-compare-by-rigs.component';
 
 @NgModule({
   declarations: [
@@ -302,7 +303,8 @@ import { ChartDrillWitManagerNameComponent } from './Charts_Of_Reports/chart-dri
     EditDrillTypesComponent,
     PotentialHazardChartsComponent,
     ChartWithDrillTypeComponent,
-    ChartDrillWitManagerNameComponent
+    ChartDrillWitManagerNameComponent,
+    DrillsCompareByRigsComponent
   ],
   imports: [
     BrowserModule,

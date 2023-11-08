@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from 'Services/login.service';
 import { PPEReceivingService } from 'Services/ppereceiving.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-print-ppereceiving',
@@ -11,25 +12,27 @@ export class PrintPPEReceivingComponent {
   PPEReceiving: any[] = [];
   ErrorMessage: string = '';
   //  QHSECodeList: any;
-  EmpCodeLists: any[]=[];
-  EmpCode!:any;
+  EmpCodeLists: any[] = [];
+  EmpCode!: any;
   PPEReceivingRecord: any[] = [];
   Data: boolean = false;
-  User:any;
+  User: any;
   date!: Date;
-  ppEs:any[]=[];
+  ppEs: any[] = [];
+  extractedNumber: number = 0;
+  extractedDate!: Date;
 
 
-  constructor(private loginService:LoginService,private PPEReceivingService: PPEReceivingService) { }
+  constructor(private loginService: LoginService, private PPEReceivingService: PPEReceivingService) { }
   ngOnInit() {
-    this.User=this.loginService.currentUser.getValue();
+    this.User = this.loginService.currentUser.getValue();
     console.log()
-   
 
-    this.PPEReceivingService.GetPPEReceivings(this.User.ID,this.User.Role).subscribe({
+
+    this.PPEReceivingService.GetPPEReceivings(this.User.ID, this.User.Role).subscribe({
       next: data => {
         data.data.forEach((ele: any) => {
-          this.PPEReceiving.push(ele.employeeCode)
+          this.PPEReceiving.push(ele)
           console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
 
           console.log(data.data)
@@ -38,7 +41,7 @@ export class PrintPPEReceivingComponent {
 
         });
         // this.Accident = data.data;
-       this.PPEReceiving = Array.from(new Set(this.PPEReceiving))
+        this.PPEReceiving = Array.from(new Set(this.PPEReceiving))
         console.log(this.PPEReceiving)
       },
       error: error => this.ErrorMessage = error
@@ -50,19 +53,48 @@ export class PrintPPEReceivingComponent {
     console.log(this.EmpCode)
     console.log(event.target.value);
 
-    this.PPEReceivingService.GetPPEReceivingtByEmpCodeNew(this.EmpCode, this.User.ID, this.User.Role).subscribe({
+    const match = event.target.value.match(/(\d+) \/ (\d{2}-\d{2}-\d{4})/);
+
+
+
+
+    if (match) {
+      this.extractedNumber = parseInt(match[1], 10);
+      const dateParts = match[2].split('-');
+      this.extractedDate = new Date(parseInt(dateParts[2], 10), parseInt(dateParts[1], 10) - 1, parseInt(dateParts[0], 10));
+
+    }
+    const inputDate = new Date(this.extractedDate);
+    const day = String(inputDate.getDate()).padStart(2, '0');
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so we add 1
+    const year = inputDate.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
+
+
+
+    
+
+    console.log("---------------------------------------------------------")
+    console.log(formattedDate); // Output: "14-12-2023"
+
+    console.log(this.extractedNumber)
+    console.log(this.extractedDate);
+
+
+    this.PPEReceivingService.GetPPEReceivingtByEmpCodeNew(this.extractedNumber, this.User.ID, this.User.Role,formattedDate).subscribe({
       next: data => {
         this.PPEReceivingRecord = data.data as any; // Use "as any" to bypass type checking
-        this.ppEs = data.data.ppEs ;
+        this.ppEs = data.data.ppEs;
+        this.Data = true;
       },
       error: error => {
         this.ErrorMessage = error;
       }
     });
-    
+
 
   }
- 
+
   print(): void {
     const elements = Array.from(document.getElementsByClassName("print-section"));
 

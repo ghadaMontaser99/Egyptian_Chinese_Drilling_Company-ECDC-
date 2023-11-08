@@ -50,6 +50,7 @@ namespace TempProject.DTO
 		public string Recommendations { get; set; }
 		public string? Pictures { get; set; }
 		public string userID { get; set; }
-		public IFormFile? ImageOfaccident { get; set; }
+		public List<IFormFile>? Images { get; set; }
+		public List<string> Imagess { get; set; } = new List<string>();
     }
 }

@@ -278,10 +278,6 @@ namespace TempProject.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Pictures")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("PreventionCategoryId")
                         .HasColumnType("int");
 
@@ -368,6 +364,31 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AccidentCauses");
+                });
+
+            modelBuilder.Entity("TempProject.Models.AccidentImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccidentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccidentId");
+
+                    b.ToTable("AccidentImages");
                 });
 
             modelBuilder.Entity("TempProject.Models.Attendance", b =>
@@ -739,9 +760,14 @@ namespace TempProject.Migrations
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PositionId");
+
+                    b.HasIndex("RigId");
 
                     b.ToTable("EmpCodes");
                 });
@@ -1820,6 +1846,17 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("TempProject.Models.AccidentImages", b =>
+                {
+                    b.HasOne("TempProject.Models.Accident", "Accident")
+                        .WithMany("Images")
+                        .HasForeignKey("AccidentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Accident");
+                });
+
             modelBuilder.Entity("TempProject.Models.Attendance", b =>
                 {
                     b.HasOne("TempProject.Models.PTSM", "PTSM")
@@ -1907,7 +1944,15 @@ namespace TempProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany("EmpCode")
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Positions");
+
+                    b.Navigation("Rig");
                 });
 
             modelBuilder.Entity("TempProject.Models.EmployeeCompetencyEvaluation", b =>
@@ -2178,6 +2223,11 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Accident", b =>
+                {
+                    b.Navigation("Images");
+                });
+
             modelBuilder.Entity("TempProject.Models.AccidentCauses", b =>
                 {
                     b.Navigation("Accidents");
@@ -2275,6 +2325,8 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.Rig", b =>
                 {
                     b.Navigation("Accidents");
+
+                    b.Navigation("EmpCode");
 
                     b.Navigation("PPEReceiving");
 

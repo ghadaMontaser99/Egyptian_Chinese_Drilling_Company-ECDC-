@@ -26,7 +26,7 @@
                 <td>{{item}}</td>
                 <td><button class="btn btn-danger " (click)="deleteFile(item)"><i
                   class="fa-solid fa-trash fa-shake fs-6"></i></button>
-              <button class="btn btn-primary ms-3" (click)="downloadFile(item)"><i
+              <button class="btn btn-primary ms-3" (click)="downloadFile(item,'QHSEFormUploadFiles')"><i
                   class="fa-solid fa-download fa-bounce fs-6"></i></button>
             </td>
 
@@ -41,7 +41,7 @@
 
 
       <div class="mx-auto mb-3 text-center d-flex align-items-center justify-content-center" *ngIf="countOfPage>1">
-              <button class="btn  btn-outline-primary mx-3" (click)="GetPaginatedQHSEFormUploadFiles(1)">
+              <button class="btn  btn-outline-primary mx-3" (click)="GetPaginatedUploadFiles(1)">
                 <i class="fa-solid fa-angles-left"></i>
               </button>
               <button class="btn  btn-outline-primary me-3" (click)="gotleft()">
@@ -53,7 +53,7 @@
               <button class="btn  btn-outline-primary me-3" (click)="gotoright()">
                 <i class="fa-solid fa-angle-right"></i>
               </button>
-              <button class="btn  btn-outline-primary me-3" (click)="GetPaginatedQHSEFormUploadFiles(countOfPage)">
+              <button class="btn  btn-outline-primary me-3" (click)="GetPaginatedUploadFiles(countOfPage)">
                 <i class="fa-solid fa-angles-right"></i>
               </button>
             </div>

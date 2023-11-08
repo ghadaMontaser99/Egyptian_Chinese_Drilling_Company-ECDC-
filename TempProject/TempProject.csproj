@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Uploads\ClincUploadFiles\tttt.docx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
     <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
@@ -29,7 +33,8 @@
     <Folder Include="wwwroot\acciIMG\" />
     <Folder Include="wwwroot\HazardIMG\" />
     <Folder Include="wwwroot\DrillIMG\" />
-    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\AccidentIMG\" />
+    <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 
 </Project>

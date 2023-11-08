@@ -148,6 +148,7 @@ import { EditDrillTypesComponent } from './EditReports/edit-drill-types/edit-dri
 import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-hazard-charts/potential-hazard-charts.component';
 import { ChartWithDrillTypeComponent } from './Charts_Of_Reports/chart-with-drill-type/chart-with-drill-type.component';
 import { ChartDrillWitManagerNameComponent } from './Charts_Of_Reports/chart-drill-wit-manager-name/chart-drill-wit-manager-name.component';
+import { DrillsCompareByRigsComponent } from './Charts_Of_Reports/drills-compare-by-rigs/drills-compare-by-rigs.component';
 
 
 const routes: Routes = [
@@ -157,11 +158,11 @@ const routes: Routes = [
   { path: 'Notifications', canActivate: [AuthGuard], component: NotificationsComponent },
   { path: 'ArrivalStatusSJP',canActivate: [AllAuthGuardGuard], component: ArrivalStatusSJPComponent },
   { path: 'Dashboard/Accidents',canActivate: [AllAuthGuardGuard],component: AccidentTableComponent },
-  { path: 'Dashboard/EmployeeCompetencyEvaluations',canActivate: [AllAuthGuardGuard],component: EmployeeCompetencyEvaluationTableComponent },
+  { path: 'Dashboard/EmployeeCompetencyEvaluations',canActivate: [UserauthGuard],component: EmployeeCompetencyEvaluationTableComponent },
 
   { path: 'Home',canActivate: [AllAuthGuardGuard], component: HomeComponent },
   { path: 'Accident', canActivate: [UserauthGuard],component: AccidentFormComponent },
-  { path: 'Accident/Edit/:id', canActivate: [AuthGuard],component: EditAccidentComponent },
+  { path: 'Accident/Edit/:id', canActivate: [UserauthGuard],component: EditAccidentComponent },
   { path: 'StopCard/Edit/:id', canActivate: [UserauthGuard],component: EditStopCardComponent },
   { path: 'SJP/Edit/:id', canActivate: [AllAuthGuardGuard],component: EditJMLFormComponent },
   { path: 'Dashboard/AccidentCauses/Add',canActivate: [UserauthGuard], component: AddAccidentCausesComponent },
@@ -243,16 +244,15 @@ const routes: Routes = [
 
   { path: 'Dashboard/BOP',canActivate: [UserauthGuard], component: BOPComponent },
   { path: 'Dashboard/BOP/Add' ,canActivate: [UserauthGuard],component:BOPComponent  },
-   { path: 'Dashboard/BOP/Edit/:id',canActivate: [AuthGuard], component: EditBOPComponent },
+  { path: 'Dashboard/BOP/Edit/:id',canActivate: [AuthGuard], component: EditBOPComponent },
   { path: 'PrintBOP', canActivate: [UserauthGuard],component: PrintBopComponent },
   { path: 'Dashboard/Position',canActivate: [UserauthGuard], component: PositionComponent },
   { path: 'Dashboard/Position/Add',canActivate: [UserauthGuard], component: AddPostionComponent },
   { path: 'Dashboard/Position/Edit/:id',canActivate: [AuthGuard], component: EditPositionComponent },
 
 
-  { path: 'Dashboard/EmployeeCompetencyEvaluation/Edit/:id',canActivate: [AuthGuard], component: EditEmployeeCompetencyEvaluationComponent },
+  { path: 'Dashboard/EmployeeCompetencyEvaluation/Edit/:id',canActivate: [UserauthGuard], component: EditEmployeeCompetencyEvaluationComponent },
 
-  // { path: 'ShowDataEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: EmployeeCompetencyEvaluationTableComponent },
   { path: 'PrintEmployeeCompetencyEvaluation',canActivate: [UserauthGuard], component: PrintEmployeeCompetencyEvaluationComponent },
 
   { path: 'PrintAccident',canActivate: [UserauthGuard], component: ReportAccidentComponent },
@@ -276,7 +276,7 @@ const routes: Routes = [
   { path: 'changepassword',canActivate: [AllAuthGuardGuard],component: ChangepasswordComponent },
   { path: 'stopCardCharts' ,canActivate: [UserauthGuard],component: StopCardChartComponent },
   { path: 'PotentialHazardCharts' ,canActivate: [UserauthGuard],component: PotentialHazardChartsComponent },
-
+  { path: 'DrillCompareWithRigsCharts' ,canActivate: [AuthGuard],component: DrillsCompareByRigsComponent },
   { path: 'RigMovePerformanceCharts' ,canActivate: [UserauthGuard],component: RigPerformanceChartComponent },
   { path: 'stopCardCompareCharts' ,canActivate: [UserauthGuard],component: StopCardCompareChartComponent },
   { path: 'RigMovePerformanceCompareCharts' ,canActivate: [UserauthGuard],component: RigPerformanceCompareChartsComponent },
@@ -289,7 +289,7 @@ const routes: Routes = [
   { path: 'Policy' ,canActivate: [UserauthGuard],component: PolicyComponent },
   { path: 'EmployeeCompetencyEvaluation/Add' ,canActivate: [UserauthGuard],component: EmployeeCompetencyEvaluationComponent },
   { path: 'Dashboard/PPE/Add' ,canActivate: [AllAuthGuardGuard],component: AddPPEsComponent },
-  { path: 'Dashboard/PPE/Edit/:id',canActivate: [RadioauthGuard], component: EditPPEsComponent },
+  { path: 'Dashboard/PPE/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditPPEsComponent },
   { path: 'Dashboard/PPE',canActivate: [AllAuthGuardGuard], component: PPEsComponent },
   { path: 'Dashboard/Responsibility/Add' ,canActivate: [AllAuthGuardGuard],component: AddResponsibilityComponent },
   { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [RadioauthGuard], component: EditResponsibilityComponent },

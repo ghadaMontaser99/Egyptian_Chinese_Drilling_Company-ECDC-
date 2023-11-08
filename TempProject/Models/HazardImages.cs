@@ -8,7 +8,7 @@ namespace TempProject.Models
 	{
 			public int Id { get; set; }
 			public string FileName { get; set; }
-			//public byte[] Data { get; set; } 
+ 
 			[ForeignKey("PotentialHazard")]
 			public int PotentialHazardId { get; set; } 
 			public virtual PotentialHazard PotentialHazard { get; set; }

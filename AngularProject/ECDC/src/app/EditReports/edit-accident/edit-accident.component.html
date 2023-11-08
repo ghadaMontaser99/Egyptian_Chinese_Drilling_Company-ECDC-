@@ -302,6 +302,32 @@
             </div>
           </td>
         </tr>
+
+        <tr>
+          <td colspan="3">
+            <div class="form-group">
+              <label class="form-label">Photos : </label>
+              <input type="file" formControlName="images" name="images" class="form-control"
+                (change)="GetImagePath($event)" multiple #fileInput/>
+              <div *ngIf="images?.invalid && (images?.dirty || images?.touched)">
+                <small class="text-danger" *ngIf="images?.errors?.['required']">
+                  Photos is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+
+          <td>
+            <div class="row" >
+              <div *ngFor="let imageUrl of accident.imagess" class="col-4 mx-2 my-2">
+                <img src="http://localhost:5000/AccidentIMG/{{imageUrl}}" alt="Image" width="100%" height="auto">
+              </div>
+            </div>
+          </td>
+          
+        </tr>
       </table>
 
 

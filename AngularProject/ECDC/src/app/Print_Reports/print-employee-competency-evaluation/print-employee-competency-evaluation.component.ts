@@ -20,29 +20,19 @@ export class PrintEmployeeCompetencyEvaluationComponent {
   Data: boolean = false;
   User:any;
   date!: Date;
-
+  extractedNumber: number = 0;
+  extractedDate!: Date;
 
   constructor(private loginService:LoginService,private AddNewEmployeeCompetencyEvaluation: AddnewEmployeeCompetencyEvaluationService, private dataService: DataService) { }
   ngOnInit() {
     this.User=this.loginService.currentUser.getValue();
     console.log()
-    // this.AddNewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationts(this.User.ID,this.User.Role).subscribe({
-    //   next: data => {
-    //     console.log('',this.EmployeeCompetencyEvaluationRecord)
-    //     this.EmpCodeLists = data.data;
-    //     this.Data = true;
-    //     console.log("done");
-    //   },
-    //   error: error => {
-    //     this.ErrorMessage = error;
-    //     console.log("Error");
-    //   }
-    // })
+ 
 
     this.dataService.GetEmployeeCompetencyEvaluationts(this.User.ID,this.User.Role).subscribe({
       next: data => {
         data.data.forEach((ele: any) => {
-          this.EmployeeCompetencyEvaluation.push(ele.employeeCode)
+          this.EmployeeCompetencyEvaluation.push(ele)
           console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
 
           console.log(data.data)
@@ -58,23 +48,53 @@ export class PrintEmployeeCompetencyEvaluationComponent {
     })
   }
 
+ 
+
+
   EmpCodeSelected(event: any) {
     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44")
     console.log(this.EmpCode)
     console.log(event.target.value);
 
-    this.AddNewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationtByEmpCodeNew(this.EmpCode,this.User.ID,this.User.Role).subscribe({
+    const match = event.target.value.match(/(\d+) \/ (\d{2}-\d{2}-\d{4})/);
+
+
+
+
+    if (match) {
+      this.extractedNumber = parseInt(match[1], 10);
+      const dateParts = match[2].split('-');
+      this.extractedDate = new Date(parseInt(dateParts[2], 10), parseInt(dateParts[1], 10) - 1, parseInt(dateParts[0], 10));
+
+    }
+    const inputDate = new Date(this.extractedDate);
+    const day = String(inputDate.getDate()).padStart(2, '0');
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so we add 1
+    const year = inputDate.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
+
+
+
+    
+
+    console.log("---------------------------------------------------------")
+    console.log(formattedDate); // Output: "14-12-2023"
+
+    console.log(this.extractedNumber)
+    console.log(this.extractedDate);
+
+
+    this.AddNewEmployeeCompetencyEvaluation.GetEmployeeCompetencyEvaluationtByEmpCodeNew(this.extractedNumber, this.User.ID, this.User.Role,formattedDate).subscribe({
       next: data => {
-        console.log('',this.EmployeeCompetencyEvaluationRecord)
-       
-        this.EmployeeCompetencyEvaluationRecord = data.data;
-        // this.Data = true;
+        this.EmployeeCompetencyEvaluationRecord = data.data as any; // Use "as any" to bypass type checking
+ 
+        this.Data = true;
       },
       error: error => {
         this.ErrorMessage = error;
-        console.log("Error");
       }
-    })
+    });
+
 
   }
  

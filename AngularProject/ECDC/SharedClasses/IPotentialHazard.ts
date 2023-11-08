@@ -14,7 +14,7 @@ export interface IPotentialHazard {
   neededAction :string,
   userID: string,
   title:string,
-  //images:File[],
+
   images:File[],
   isDeleted:boolean
 

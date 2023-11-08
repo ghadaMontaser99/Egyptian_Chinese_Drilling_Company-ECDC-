@@ -5,11 +5,11 @@
       </h2>
     </div>
   
-    <label class="mb-2">Rig Number :</label>
-    <select class="form-control" (change)="RigIdSelected($event)">
-      <option value="" disabled selected>Choose Rig Number</option>
-      <option value="{{ potentialHazard}}" *ngFor="let potentialHazard of PotentialHazard">
-        Rig - {{potentialHazard}}
+
+    <select class="form-control" (change)="SelectedRigAndTitle($event)">
+      <option value="" disabled selected>Choose Rig Number And Title</option>
+      <option value="{{potentialHazard.rigId}} / {{potentialHazard.title}}" *ngFor="let potentialHazard of PotentialHazard">
+        Rig - {{potentialHazard.rigId}} / Title :  {{potentialHazard.title}}
       </option>
     </select>
 

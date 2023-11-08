@@ -54,8 +54,8 @@ namespace TempProject
 			builder.Services.AddScoped<IRepository<Responsibility>, Repository<Responsibility>>();
 			builder.Services.AddScoped<IRepository<PotentialHazard>, Repository<PotentialHazard>>();
 			builder.Services.AddScoped<IRepository<HazardImages>, Repository<HazardImages>>();
-
-			builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
+            builder.Services.AddScoped<IRepository<AccidentImages>, Repository<AccidentImages>>();
+            builder.Services.AddScoped<IRepository<ReportedByPosition>, Repository<ReportedByPosition>>();
 			builder.Services.AddScoped<IRepository<ReportedByName>, Repository<ReportedByName>>();
             builder.Services.AddScoped<IRepository<TypeOfObservationCategory>, Repository<TypeOfObservationCategory>>();
             builder.Services.AddScoped<IRepository<JMP>, Repository<JMP>>();

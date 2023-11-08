@@ -23,7 +23,7 @@ import { IViolationCategory } from 'SharedClasses/IViolationCategory';
 })
 export class EditAccidentComponent {
   accidentId: any;
-  accident!: IAccident;
+  accident!: any;
   ErrorMessage: string = "";
   accidentForm!: FormGroup;
   date: Date = new Date();
@@ -40,7 +40,7 @@ export class EditAccidentComponent {
   QHSEPositionID: number = 0;
   base64: any;
 
-  // QHSECodeList: any;
+
 
   QHSECodeRecord: any;
 
@@ -80,7 +80,7 @@ export class EditAccidentComponent {
 
   UserJsonString: any
   UserJsonObj: any
-
+  SelectFiles:File[]=[];
   User:any;
 
   constructor(private loginService: LoginService,
@@ -106,18 +106,18 @@ export class EditAccidentComponent {
             this.QHSE_Position=data.data.qhsePositionName;
             console.log('***********this.QHSE_Code here ******************')
             console.log( this.QHSE_Code)
+            console.log('************** accidentbyID ************************************')
           console.log(this.accident)
           this.date = this.accident.dateOfEvent
           console.log('###################################################')
 
-          const file = data.data.imageOfaccident;
+          const file = data.data.images;
           this.accidentForm.patchValue({
-            ImageOfaccident: file
+            images: file
           });
-          this.accidentForm.get('ImageOfaccident')?.updateValueAndValidity()
+          this.accidentForm.get('images')?.updateValueAndValidity()
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssddddd")
-          //this.QHSE_Code=this.accident.qHSEEmpCode
-          console.log( this.QHSE_Code)
+        
           const reader = new FileReader();     //to reade image file and dispaly it
           reader.onload = () => {
             this.base64 = reader.result as string;
@@ -251,18 +251,7 @@ export class EditAccidentComponent {
           console.log(this.ErrorMessage)
         }
       }),
-      // this.dataService.GetToolPusherPositionName().subscribe({
-      //   next: data => {
-      //     this.ToolPusherCodeList = data.data,
-      //       console.log("this.ToolPusherCodeList")
-      //     console.log(this.ToolPusherCodeList)
-      //   },
-      //   error: err => {
-      //     this.ErrorMessage = err,
-      //       console.log("this.ErrorMessage")
-      //     console.log(this.ErrorMessage)
-      //   }
-      // })
+      
     this.accidentForm = this.fb.group({
       id: this.fb.control(0, [Validators.required]),
       rigId: this.fb.control('', [Validators.required]),
@@ -355,7 +344,7 @@ export class EditAccidentComponent {
       recommendations: this.fb.control('', [Validators.required]),
       // pictures: this.fb.control('', [Validators.required]),
       userID: this.fb.control(this.UserJsonObj.ID, [Validators.required]),
-      imageOfaccident: this.fb.control(null)
+      images: this.fb.control(null)
     }),
       // this.userID=this.UserJsonObj.ID;
       this.dataService.GetAccidentCauses().subscribe({
@@ -570,25 +559,7 @@ export class EditAccidentComponent {
 
   
 
-  // ToolPusherSelected(event: any) {
-  //   this.PusherPositionID = event.target.value
-  //   this.dataService.GetToolPusherPositionNameByPositionId(this.PusherPositionID).subscribe({
-  //     next: data => this.toolPusherPositionNameList = data.data,
-  //     error: err => this.ErrorMessage = err
-  //   })
-  // }
 
-  // QHSESelected(event: any) {
-  //   this.QHSEPositionID = event.target.value
-  //   this.dataService.GetTQHSEPositionNameByPositionId(this.QHSEPositionID).subscribe({
-  //     next: data => this.qhsePositionNameList = data.data,
-  //     error: err => this.ErrorMessage = err
-  //   })
-  // }
-
-  // get id() {
-  //   return this.accidentForm.get('id');
-  // }
   get rigId() {
     return this.accidentForm.get('rigId');
   }
@@ -671,22 +642,22 @@ export class EditAccidentComponent {
   get recommendations() {
     return this.accidentForm.get('recommendations');
   }
-  // get pictures() {
-  //   return this.accidentForm.get('pictures');
-  // }
+  
   get userID() {
     return this.accidentForm.get('userID');
   }
-  get imageOfaccident() {
-    return this.accidentForm.get('ImageOfaccident');
+  get images() {
+    return this.accidentForm.get('images');
   }
 
 
   submitData() {
+    console.log('accidentForm')
+    console.log(this.accidentForm)
     if (this.accidentForm.valid) {
       const Formdata = new FormData();
       Formdata.append('id', this.accidentId);
-      Formdata.append('ImageOfaccident', this.imageOfaccident?.value);
+     
       Formdata.append('rigId', this.rigId?.value);
       Formdata.append('timeOfEvent', this.timeOfEvent?.value);
       Formdata.append('dateOfEvent', this.dateOfEvent?.value);
@@ -718,40 +689,54 @@ export class EditAccidentComponent {
       Formdata.append('recommendations', this.recommendations?.value);
       // Formdata.append('pictures', this.pictures?.value);
       Formdata.append('userID', this.UserJsonObj.ID);
+      
+      for (let i = 0; i < this.SelectFiles.length; i++) {
+        Formdata.append('images', this.SelectFiles[i]);
+      }
+
+      console.log('____ Formdata ___')
+      console.log(Formdata)
+
 
       this.accidentService.EditAccident(Formdata).subscribe({
         next: data => {
-          console.log(data)
+          console.log(data.data)
           this.router.navigate(['/Dashboard/Accidents']);
         },
         error: error => console.log(error)
       });
-      // console.log(this.accidentForm.value)
-      // this.router.navigate(['/Dashboard/AccidentTable'])
+     
     }
     else {
       console.log("E+++++====error in : ");
       console.log(this.accidentForm);
     }
   }
+  
 
+  // GetImagePath(event: any) {
+
+  //   const file = event.target.files[0];
+  //   this.accidentForm.patchValue({
+  //     ImageOfaccident: file
+  //   });
+  //   this.accidentForm.get('ImageOfaccident')?.updateValueAndValidity()
+
+  //   const reader = new FileReader();     //to reade image file and dispaly it
+  //   reader.onload = () => {
+  //     this.base64 = reader.result as string;
+  //   }
+  //   reader.readAsDataURL(file)
+
+  //     // const file: File = event.target.files[0];
+  //     // this.fileToEdit = file;
+  // }
 
   GetImagePath(event: any) {
+    this.SelectFiles = event.target.files;
 
-    const file = event.target.files[0];
-    this.accidentForm.patchValue({
-      ImageOfaccident: file
-    });
-    this.accidentForm.get('ImageOfaccident')?.updateValueAndValidity()
 
-    const reader = new FileReader();     //to reade image file and dispaly it
-    reader.onload = () => {
-      this.base64 = reader.result as string;
-    }
-    reader.readAsDataURL(file)
-
-      // const file: File = event.target.files[0];
-      // this.fileToEdit = file;
   }
+
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'Services/login.service';
 import { UploadAndDownloadFilesService } from 'Services/upload-and-download-files.service';
 
 import { BehaviorSubject } from 'rxjs';
@@ -32,7 +33,7 @@ export class QSHEFormsComponent {
   json_data: any[] = [];
 
   User:any;
-  constructor(private UploadFilesService: UploadAndDownloadFilesService)
+  constructor(private UploadFilesService: UploadAndDownloadFilesService,private loginService:LoginService)
   {
 //     this.qshe=['ECDC-QHSE-FM-99- TBT.pdf','ECDC-QHSE-FM-98-Third Part Inspection Checklist.docx',
 //   'ECDC-QHSE-FM-97-Man Riding Winch Checklist.doc','ECDC-QHSE-FM-96-Shift Handover.doc',
@@ -73,142 +74,120 @@ export class QSHEFormsComponent {
    isExcelFileByMimeType(mimeType: string): boolean {
     return mimeType === 'application/vnd.ms-excel' || mimeType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
   }
-  downloadFile(item:string) {
-    if(this.isWordFile(item)){
-      const filePath = `/assets/managment system/Forms/Medical Forms/QSHE/${item}`; // Replace 'your-file-name' with the actual file name and extension
-      const link = document.createElement('a');
-      link.href = filePath;
-      link.download = `${item}`; // Replace 'your-file-name' with the actual file name and extension
-      link.click();
-    }
-    else if(this.isExcelFile(item)||this.isExcelFileByMimeType(item)){
-      const filePath =`/assets/managment system/Forms/Medical Forms/QSHE/${item}`; // Replace 'your-file-name' with the actual file name and extension
-      const link = document.createElement('a');
-      link.href = filePath;
-      link.download =`${item}`; // Replace 'your-file-name' with the actual file name and extension
-      link.click();
-    }
-    else if(this.isPDFFile(item)||this.isExcelFileByMimeType(item)){
-      const filePath =`/assets/managment system/Forms/Medical Forms/QSHE/${item}`; // Replace 'your-file-name' with the actual file name and extension
-      const link = document.createElement('a');
-      link.href = filePath;
-      link.download =`${item}`; // Replace 'your-file-name' with the actual file name and extension
-      link.click();
-    }
-    else if(this.isPPTXFile(item)||this.isExcelFileByMimeType(item)){
-      const filePath =`/assets/managment system/Forms/Medical Forms/QSHE/${item}`; // Replace 'your-file-name' with the actual file name and extension
-      const link = document.createElement('a');
-      link.href = filePath;
-      link.download =`${item}`; // Replace 'your-file-name' with the actual file name and extension
-      link.click();
-    }
+  downloadFile(fileName: string,FolderName:string): void {
+    const apiUrl = `http://localhost:5000/api/UploadFiles/DownloadFile?fileName=${fileName}&FolderName=${FolderName}`;
+
+    // Use window.open to initiate the file download
+    window.open(apiUrl, '_blank');
   }
 
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input?.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-    }
+onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input?.files && input.files.length > 0) {
+    this.selectedFile = input.files[0];
   }
-
-  
-
- 
-
-  onFileSelectedd(event: any): void {
-    this.selectedFilee = event.target.files[0];
-  }
-
-  onUpload(): void {
-    if (this.selectedFile) {
-       const formData = new FormData();
-       formData.append('file', this.selectedFile);
- 
-       // Adjust the API URL accordingly
-       this.UploadFilesService.QHSEFormUploadFiles(formData).subscribe(
-        {
-          next:(response) => {
-            console.log('File uploaded successfully');
-            console.log( response);
-            this.GetPaginatedQHSEFormUploadFiles(this.currentPage);
-         },
-         error:(err) => {
-            console.error('Error uploading file');
-            this.GetPaginatedQHSEFormUploadFiles(this.currentPage);
-         }
-        }
-       );
-    }
- }
-
-
- ngOnInit(): void {
-  this.GetPaginatedQHSEFormUploadFiles(this.currentPage);
-  // this.UploadFilesService.GetAllQHSEFormUploadFiles().subscribe(
-  //   (response) => {
-  //     this.files = response;
-  //   },
-  //   (error) => {
-  //     console.error('Error fetching file list', error);
-  //   }
-  // );
 }
 
-GetPaginatedQHSEFormUploadFiles(pageNumber: number): void {
-  this.UploadFilesService.GetPaginatedQHSEFormUploadFiles(pageNumber)
-    .subscribe(
-    {
-      next: (response) => {
-         console.log("pagggggggggggg")
-         console.log(response.files)
-        this.countOfPage=response.totalPages;
-        this.TempArray= new Array(this.countOfPage);
-        this.files .next( response.files);
-        this.currentPage = response.currentPage;
+
+
+
+
+onFileSelectedd(event: any): void {
+  this.selectedFilee = event.target.files[0];
+}
+
+
+
+
+onUpload(): void {
+if (this.selectedFile) {
+   const formData = new FormData();
+   formData.append('file', this.selectedFile);
+
+   // Adjust the API URL accordingly
+   this.UploadFilesService.UploadFiles(formData,"QHSEFormUploadFiles").subscribe(
+      (response) => {
+         console.log('File uploaded successfully');
+         console.log( response);
+         this.GetPaginatedUploadFiles(this.currentPage)
+
       },
-      error:err => {
-        console.error('Error fetching paginated files:', err);
+      (error) => {
+         console.error('Error uploading file', error);
+         this.GetPaginatedUploadFiles(this.currentPage)
       }
+   );
+}
+}
+
+ngOnInit(): void {
+this.User=this.loginService.currentUser.getValue();
+this.GetPaginatedUploadFiles(this.currentPage);
+
+this.loginService.isAdmin.subscribe({
+  next: data => {
+    this.IsAdmin=data
+  }
+ })
+
+}
+
+deleteFile(fileName: string): void {
+if (confirm("Are you sure you want to delete this file?"))
+{
+this.UploadFilesService.DeleteUploadFiles(fileName,"QHSEFormUploadFiles")
+.subscribe(
+  () => {
+    console.log('File deleted successfully.');
+    this.GetPaginatedUploadFiles(this.currentPage)
+    // Update UI or perform other actions after successful deletion
+  },
+  error => {
+    console.error('Error deleting file:', error);
+    // Handle error and display appropriate message
+    this.GetPaginatedUploadFiles(this.currentPage)
+  }
+);
+}
+}
+
+
+GetPaginatedUploadFiles(pageNumber: number): void {
+this.UploadFilesService.GetPaginatedUploadFiles("QHSEFormUploadFiles",pageNumber)
+  .subscribe(
+  {
+    next: (response) => {
+       console.log("pagggggggggggg")
+       console.log(response.files)
+      this.countOfPage=response.totalPages;
+      this.TempArray= new Array(this.countOfPage);
+      this.files .next( response.files);
+      this.currentPage = response.currentPage;
+    },
+    error:err => {
+      console.error('Error fetching paginated files:', err);
+
     }
-     
-    );
+  }
+   
+  );
 }
 
 
 
 gotleft()
 {
-  (this.indexofPages>1)?this.indexofPages-=1:this.indexofPages=1;
-  this.GetPaginatedQHSEFormUploadFiles(this.indexofPages);
-  console.log("gotleft"+this.indexofPages);
+(this.indexofPages>1)?this.indexofPages-=1:this.indexofPages=1;
+this.GetPaginatedUploadFiles(this.indexofPages);
+console.log("gotleft"+this.indexofPages);
 }
 gotoright()
 {
 
-  (this.indexofPages<this.countOfPage)?this.indexofPages+=1:this.indexofPages=this.countOfPage;
-  this.GetPaginatedQHSEFormUploadFiles(this.indexofPages);
-  console.log("gotoright"+this.indexofPages);
+(this.indexofPages<this.countOfPage)?this.indexofPages+=1:this.indexofPages=this.countOfPage;
+this.GetPaginatedUploadFiles(this.indexofPages);
+console.log("gotoright"+this.indexofPages);
 }
-
-deleteFile(fileName: string)
-{
-
-    this.UploadFilesService.DeleteQHSEFormUploadFiles(fileName)
-      .subscribe(
-       {
-        next:(data) => {
-          console.log('File deleted successfully.');
-          this.GetPaginatedQHSEFormUploadFiles(this.currentPage);
-          // Update UI or perform other actions after successful deletion
-        },
-        error:err => {
-          console.log('Error deleting file:');
-          this.GetPaginatedQHSEFormUploadFiles(this.currentPage);
-          // Handle error and display appropriate message
-        }
-       }
-      );
-  }
 }
 

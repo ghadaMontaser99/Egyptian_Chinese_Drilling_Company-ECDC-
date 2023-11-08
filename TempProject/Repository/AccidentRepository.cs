@@ -23,7 +23,8 @@ namespace TempProject.Repository
                 .Include(a => a.TypeOfInjury)
                 .Include(a => a.user)
                 .Include(a => a.ViolationCategory)
-				.Where(a => a.IsDeleted == false)
+                .Include(a => a.Images)
+                .Where(a => a.IsDeleted == false)
 				.Select(a => new Accident
                 {
                     Id = a.Id,
@@ -55,7 +56,7 @@ namespace TempProject.Repository
                     DirectCauses = a.DirectCauses,
                     RootCauses = a.RootCauses,
                     Recommendations = a.Recommendations,
-                    Pictures = a.Pictures,
+                    Images = a.Images,
                     user = new IdentityUser { UserName = a.user.UserName,Id=a.user.Id }
                 }).ToList();
         }

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as saveAs from 'file-saver';
 import { UploadAndDownloadFilesService } from 'Services/upload-and-download-files.service';
+import { LoginService } from 'Services/login.service';
 
 @Component({
   selector: 'app-safety',
@@ -33,7 +34,7 @@ export class SafetyComponent {
   json_data: any[] = [];
 
   User:any;
-  constructor(private UploadFilesService: UploadAndDownloadFilesService)
+  constructor(private UploadFilesService: UploadAndDownloadFilesService,private loginService:LoginService)
   {
 //     this.health=['ECDC Specific QHSE Plan.xls','ECDC-QHSE-PR-08-Permit To Work Procedure.docx','ECDC-QHSE-PR-09-Confined Space Entry Procedure.docx',
 //   'ECDC-QHSE-PR-10-Lockout Tagout Procedure.docx','ECDC-QHSE-PR-11-Job Safety Analysis Procedure.docx','ECDC-QHSE-PR-12-Risk Notification Procedure.docx',
@@ -54,191 +55,125 @@ export class SafetyComponent {
 // 'ECDC-QHSE-PR-41-Rig Emergency Response Procedure Version A.docx','ECDC-QHSE-PR-42-Emergency Response Plan Version A.docx',
 // 'ECDC-QHSE-PR-43-Airconditioner Check Version A.xls'] 
   }
-  //  isWordFile(fileName: string): boolean {
-  //   const extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-  //   console.log(extension==='docx'||extension === 'doc')
-  //   return extension === 'doc' || extension === 'docx';
-  // }
-  
-  //  isExcelFile(fileName: string): boolean {
-  //   const extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-  //   return extension === 'xls' || extension === 'xlsx';
-  // }
-  //  isExcelFileByMimeType(mimeType: string): boolean {
-  //   return mimeType === 'application/vnd.ms-excel' || mimeType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-  // }
-  
-
-
-  // downloadFile(fileName: string): void {
-
-  //   this.UploadFilesService.DownloadProcedureSafetyUploadFiles(fileName).subscribe({
-  //     next( data)  {
-  //       console.log("downloadFile")
-  //           console.log(data)
-  //           const blob = new Blob([data], { type: 'application/octet-stream' });
-  //           const url = window.URL.createObjectURL(blob);
-  //           const a = document.createElement('a');
-  //           a.href = url;
-  //           a.download = fileName;
-  //           // document.body.appendChild(a);
-  //            a.click();
-  //           // document.body.removeChild(a);
-  //     },
-  //     error( err)  {
-  //       console.error('Error downloading file:llllplplplplplplplp');
-  //       console.log(err)
-  //     }
-  //   })
-
-
-  //     // this.UploadFilesService.DownloadProcedureSafetyUploadFiles(fileName).subscribe((response: Blob) => {
-  //     //  // Replace with the desired file name
-  //     //   saveAs(response, fileName);
-  //     // });
-    
-
-
-
-
-  // //   this.UploadFilesService.DownloadProcedureSafetyUploadFiles(fileName)
-  // //     .subscribe({
-        
-  // //        next: data => {
-  // //           console.log("downloadFile")
-  // //           console.log(data)
-  // //           const blob = new Blob([data], { type: 'application/octet-stream' });
-  // //           const url = window.URL.createObjectURL(blob);
-  // //           const a = document.createElement('a');
-  // //           a.href = url;
-  // //           a.download = fileName;
-  // //           document.body.appendChild(a);
-  // //           a.click();
-  // //           document.body.removeChild(a);
-  // //         },
-  // //         error:error => {
-  // //           console.error('Error downloading file:');
-  // //           // Handle error and display appropriate message
-  // //           alert("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-  // //         }
-        
-  // //     })
-  // }
+ 
    
     
   
 
 
-  downloadFile(fileName: string): void {
-    const apiUrl = `http://localhost:5000/api/ProcedureSafetyUploadFiles/DownloadFile/${fileName}`; // Adjust the API URL accordingly
+  downloadFile(fileName: string,FolderName:string): void {
+    const apiUrl = `http://localhost:5000/api/UploadFiles/DownloadFile?fileName=${fileName}&FolderName=${FolderName}`;
 
     // Use window.open to initiate the file download
     window.open(apiUrl, '_blank');
   }
 
 
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input?.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-    }
+onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input?.files && input.files.length > 0) {
+    this.selectedFile = input.files[0];
   }
-
-  
-
- 
-
-  onFileSelectedd(event: any): void {
-    this.selectedFilee = event.target.files[0];
-  }
-
-  onUpload(): void {
-    if (this.selectedFile) {
-       const formData = new FormData();
-       formData.append('file', this.selectedFile);
- 
-       // Adjust the API URL accordingly
-       this.UploadFilesService.ProcedureSafetyUploadFiles(formData).subscribe(
-          (response) => {
-             console.log('File uploaded successfully');
-             console.log( response);
-             this.GetPaginatedProcedureSafetyUploadFiles(this.currentPage);
-             
-          },
-          (error) => {
-             console.error('Error uploading file', error);
-             this.GetPaginatedProcedureSafetyUploadFiles(this.currentPage);
-          }
-       );
-    }
- }
-
-
- ngOnInit(): void {
-  this.GetPaginatedProcedureSafetyUploadFiles(this.currentPage);
-  // this.UploadFilesService.GetAllProcedureSafetyUploadFiles().subscribe(
-  //   (response) => {
-  //     this.files = response;
-  //   },
-  //   (error) => {
-  //     console.error('Error fetching file list', error);
-  //   }
-  // );
 }
 
+
+
+
+
+onFileSelectedd(event: any): void {
+  this.selectedFilee = event.target.files[0];
+}
+
+
+
+
+onUpload(): void {
+if (this.selectedFile) {
+   const formData = new FormData();
+   formData.append('file', this.selectedFile);
+
+   // Adjust the API URL accordingly
+   this.UploadFilesService.UploadFiles(formData,"ProcedureSafetyUploadFiles").subscribe(
+      (response) => {
+         console.log('File uploaded successfully');
+         console.log( response);
+         this.GetPaginatedUploadFiles(this.currentPage)
+
+      },
+      (error) => {
+         console.error('Error uploading file', error);
+         this.GetPaginatedUploadFiles(this.currentPage)
+      }
+   );
+}
+}
+
+ngOnInit(): void {
+this.User=this.loginService.currentUser.getValue();
+this.GetPaginatedUploadFiles(this.currentPage);
+
+this.loginService.isAdmin.subscribe({
+  next: data => {
+    this.IsAdmin=data
+  }
+ })
+
+}
 
 deleteFile(fileName: string): void {
-  this.UploadFilesService.DeleteProcedureSafetyUploadFiles(fileName)
-    .subscribe(
-      () => {
-        console.log('File deleted successfully.');
-        this.GetPaginatedProcedureSafetyUploadFiles(this.currentPage)
-        // Update UI or perform other actions after successful deletion
-      },
-      error => {
-        console.error('Error deleting file:', error);
-        // Handle error and display appropriate message
-        this.GetPaginatedProcedureSafetyUploadFiles(this.currentPage)
-      }
-    );
+if (confirm("Are you sure you want to delete this file?"))
+{
+this.UploadFilesService.DeleteUploadFiles(fileName,"ProcedureSafetyUploadFiles")
+.subscribe(
+  () => {
+    console.log('File deleted successfully.');
+    this.GetPaginatedUploadFiles(this.currentPage)
+    // Update UI or perform other actions after successful deletion
+  },
+  error => {
+    console.error('Error deleting file:', error);
+    // Handle error and display appropriate message
+    this.GetPaginatedUploadFiles(this.currentPage)
+  }
+);
+}
 }
 
 
-GetPaginatedProcedureSafetyUploadFiles(pageNumber: number): void {
-  this.UploadFilesService.GetPaginatedProcedureSafetyUploadFiles(pageNumber)
-    .subscribe(
-    {
-      next: (response) => {
-         console.log("pagggggggggggg")
-         console.log(response.files)
-        this.countOfPage=response.totalPages;
-        this.TempArray= new Array(this.countOfPage);
-        this.files .next( response.files);
-        this.currentPage = response.currentPage;
-      },
-      error:err => {
-        console.error('Error fetching paginated files:', err);
+GetPaginatedUploadFiles(pageNumber: number): void {
+this.UploadFilesService.GetPaginatedUploadFiles("ProcedureSafetyUploadFiles",pageNumber)
+  .subscribe(
+  {
+    next: (response) => {
+       console.log("pagggggggggggg")
+       console.log(response.files)
+      this.countOfPage=response.totalPages;
+      this.TempArray= new Array(this.countOfPage);
+      this.files .next( response.files);
+      this.currentPage = response.currentPage;
+    },
+    error:err => {
+      console.error('Error fetching paginated files:', err);
 
-      }
     }
-     
-    );
+  }
+   
+  );
 }
 
 
 
 gotleft()
 {
-  (this.indexofPages>1)?this.indexofPages-=1:this.indexofPages=1;
-  this.GetPaginatedProcedureSafetyUploadFiles(this.indexofPages);
-  console.log("gotleft"+this.indexofPages);
+(this.indexofPages>1)?this.indexofPages-=1:this.indexofPages=1;
+this.GetPaginatedUploadFiles(this.indexofPages);
+console.log("gotleft"+this.indexofPages);
 }
 gotoright()
 {
 
-  (this.indexofPages<this.countOfPage)?this.indexofPages+=1:this.indexofPages=this.countOfPage;
-  this.GetPaginatedProcedureSafetyUploadFiles(this.indexofPages);
-  console.log("gotoright"+this.indexofPages);
+(this.indexofPages<this.countOfPage)?this.indexofPages+=1:this.indexofPages=this.countOfPage;
+this.GetPaginatedUploadFiles(this.indexofPages);
+console.log("gotoright"+this.indexofPages);
 }
 }

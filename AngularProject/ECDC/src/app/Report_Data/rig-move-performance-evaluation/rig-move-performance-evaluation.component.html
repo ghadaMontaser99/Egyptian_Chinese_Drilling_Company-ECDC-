@@ -24,6 +24,7 @@
         <td>{{record.newWellName}}</td>
         <td *ngIf="IsAdmin" >
           <a routerLink="/RigPerformance/Edit/{{record.id}}" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a routerLink="/PrintRigPerformance" class="m-2 h4" style="color: #434F78;"><i class="fa-solid fa-print"></i></a>
           <a (click)="DeleteRigPerformance(record)" class="m-2 h4" style="color: #f3c93e;cursor: pointer !important;"><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>

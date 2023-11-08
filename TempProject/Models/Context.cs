@@ -7,6 +7,7 @@ namespace TempProject.Models
     public class Context : IdentityDbContext
     {
         public DbSet<Accident> Accidents { get; set; }
+        public DbSet<AccidentImages> AccidentImages { get; set; }
         public DbSet<RouteName> RouteNames { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<JMP> JMPs { get; set; }

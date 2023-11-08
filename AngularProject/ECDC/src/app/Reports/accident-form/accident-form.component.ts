@@ -58,7 +58,7 @@ export class AccidentFormComponent {
   InjuredPersonPosition:string='';
   InjuredPerson_Name:string='';
   InjuredPerson_NameId:number=0;
-
+  SelectFiles:File[]=[]
   User:any;
 
   constructor(private loginService: LoginService, private dataService: DataService, private AddNewAccident: AddNewAccidentService, private fb: FormBuilder, private router: Router) { }
@@ -243,12 +243,11 @@ export class AccidentFormComponent {
               Validators.required
             ]
           ),
-          ImageOfaccident: this.fb.control(
-            null,
+          images: this.fb.control(
+            [], 
             [
-              Validators.required
-            ]
-          )
+            Validators.required
+            ]),
         }
       ),
       this.AddNewAccident.GetAccidents(this.User.ID,this.User.Role).subscribe({
@@ -495,8 +494,9 @@ export class AccidentFormComponent {
   get recommendations() {
     return this.accidentForm.get('recommendations');
   }
-  get ImageOfaccident() {
-    return this.accidentForm.get('ImageOfaccident');
+  
+  get images() {
+    return this.accidentForm.get('images');
   }
 
   submitData() {
@@ -533,8 +533,11 @@ export class AccidentFormComponent {
       Formdata.append('directCauses', this.directCauses?.value);
       Formdata.append('rootCauses', this.rootCauses?.value);
       Formdata.append('recommendations', this.recommendations?.value);
-      Formdata.append('ImageOfaccident', this.ImageOfaccident?.value);
       Formdata.append('userID', this.UserJsonObj.ID);
+      for (let i = 0; i < this.SelectFiles.length; i++) {
+        Formdata.append('images', this.SelectFiles[i]);
+      }
+      
       console.log(Formdata);
 
       console.log('after formData')
@@ -618,18 +621,24 @@ export class AccidentFormComponent {
     });
   }
 
+  // GetImagePath(event: any) {
+
+  //   const file = event.target.files[0];
+  //   this.accidentForm.patchValue({
+  //     ImageOfaccident: file
+  //   });
+  //   this.accidentForm.get('ImageOfaccident')?.updateValueAndValidity()
+
+  //   const reader = new FileReader();     //to reade image file and dispaly it
+  //   reader.onload = () => {
+  //     this.base64 = reader.result as string;
+  //   }
+  //   reader.readAsDataURL(file)
+  // }
   GetImagePath(event: any) {
 
-    const file = event.target.files[0];
-    this.accidentForm.patchValue({
-      ImageOfaccident: file
-    });
-    this.accidentForm.get('ImageOfaccident')?.updateValueAndValidity()
+    this.SelectFiles = event.target.files;
 
-    const reader = new FileReader();     //to reade image file and dispaly it
-    reader.onload = () => {
-      this.base64 = reader.result as string;
-    }
-    reader.readAsDataURL(file)
+
   }
 }

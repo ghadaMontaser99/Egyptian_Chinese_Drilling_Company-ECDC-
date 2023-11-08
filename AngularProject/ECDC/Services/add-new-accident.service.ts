@@ -16,17 +16,14 @@ export class AddNewAccidentService {
     return this.http.post<FormData>(`http://localhost:5000/api/Accident`, accident);
   }
 
-  EditAccident(accident: FormData): Observable<IAccident> {
-    return this.http.put<IAccident>(`http://localhost:5000/api/Accident/${accident.get('id')}`, accident);
+  EditAccident(accident: FormData): Observable<any> {
+    return this.http.put<any>(`http://localhost:5000/api/Accident/${accident.get('id')}`, accident);
   }
 ////////////
   GetAccidents(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/GetDataForExcel?UserID=${userId}&UserRole=${userRole}`);
   }
 
-  // GetAccidentByRigId(RigId: number): Observable<IAPIResult> {
-  //   return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/${RigId}`)
-  // }
 
   GetAccidentByClassi(data:Data,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/GetDataByDate/${data}?UserID=${userId}&UserRole=${userRole}`);

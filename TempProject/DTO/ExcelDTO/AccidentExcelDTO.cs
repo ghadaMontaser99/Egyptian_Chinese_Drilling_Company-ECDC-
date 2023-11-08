@@ -38,7 +38,7 @@ namespace TempProject.DTO.ResponseDTO
         public string RootCauses { get; set; }
         public string Recommendations { get; set; }
         public string userName { get; set; }
-        public string Pictures { get; set; }
+        public List<string> images { get; set; } = new List<string>();
 
     }
 }

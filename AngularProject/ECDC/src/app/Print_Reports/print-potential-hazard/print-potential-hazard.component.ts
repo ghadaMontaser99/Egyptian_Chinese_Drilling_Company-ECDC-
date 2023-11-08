@@ -26,7 +26,7 @@ export class PrintPotentialHazardComponent {
       next: data => {
       
         data.data.filter((a: any) => a.status == "Open").forEach((ele: any) => {
-          this.PotentialHazard.push(ele.rigId)
+          this.PotentialHazard.push(ele)
           console.log('this.PotentialHazard')
           console.log(this.PotentialHazard)
         });
@@ -42,21 +42,34 @@ export class PrintPotentialHazardComponent {
 
   }
 
-  RigIdSelected(event: any) {
+  SelectedRigAndTitle(event: any) {
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
     console.log(event.target.value)
-    this.PotentialHazardService.GetPotentialHazardByRigNumber(event.target.value, this.User.ID, this.User.Role).subscribe({
-      next: data => {
+  
+const regex = /(\d+) \/ (.+)/;
+const match = event.target.value.match(regex);
 
-        this.PotentialHazardRecord = data.data;
-        this.Data = true;
-        console.log("done");
-      },
-      error: error => {
-        this.ErrorMessage = error;
-        console.log("Error");
-      }
-    })
+if (match) {
+  const number = match[1]; // Extracted number
+  const title = match[2];  // Extracted title
+  console.log("Number: " + number);
+  console.log("Title: " + title);
+  this.PotentialHazardService.GetPotentialHazardByRigNumber(number, this.User.ID, this.User.Role,title).subscribe({
+    next: data => {
+
+      this.PotentialHazardRecord = data.data;
+      this.Data = true;
+      console.log("done");
+    },
+    error: error => {
+      this.ErrorMessage = error;
+      console.log("Error");
+    }
+  })
+} else {
+  console.log("No match found");
+}
+   
   }
 
   print(): void {

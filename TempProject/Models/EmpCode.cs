@@ -16,6 +16,11 @@ namespace TempProject.Models
 		public int PositionId { get; set; }
 		public virtual Positions Positions { get; set; }
 
+        [ForeignKey("Rig")]
+        public int RigId { get; set; }
 
-	}
+        public virtual Rig Rig { get; set; }
+
+
+    }
 }

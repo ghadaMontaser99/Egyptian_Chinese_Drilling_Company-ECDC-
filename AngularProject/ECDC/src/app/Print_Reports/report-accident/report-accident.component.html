@@ -5,7 +5,7 @@
     </h2>
   </div>
 
-  <label class="mb-2">Data :</label>
+  <label class="mb-2">Date :</label>
   <select class="form-control" [(ngModel)]="date" (change)="ClassificationSelected($event)">
     <option value="{{ accident}}" *ngFor="let accident of Accident">
       {{ accident | date: 'dd-MM-yyyy'}}
@@ -100,7 +100,7 @@
                       <td scope="row">
                         <div class="mb-1">
                           <h6 class="mb-1">
-                            <span style="font-weight: bold;">Night Pusher Name :</span>
+                            <span style="font-weight: bold;">S.T.P / N.P :</span>
                             <span>{{ record.pusherName }}</span>
                           </h6>
                         </div>
@@ -118,7 +118,7 @@
                       <td scope="row">
                         <div class="mb-1">
                           <h6 class="mb-1">
-                            <span style="font-weight: bold;">Night QHSE Engineer Name :</span>
+                            <span style="font-weight: bold;">QHSE Engineer :</span>
                             <span>{{ record.qhseEmpName }}</span>
                           </h6>
                         </div>
@@ -209,13 +209,11 @@
                       </td>
                     </tr>
                     <tr>
-                      <td scope="row" class="p-0">
-                        <div class="mb-1">
-                          <h6 class="mb-1">
-                            <span style="font-weight: bold;">Pictures :</span>
-                            <img class="ms-2" style="width: 100px;"
-                              src="http://localhost:5000/acciIMG/{{record.pictures}}">
-                          </h6>
+                      <td>
+                        <div class="row" >
+                          <div *ngFor="let imageUrl of record.images" class="col-4 mx-2 my-2">
+                            <img src="http://localhost:5000/AccidentIMG/{{imageUrl}}" alt="Image" width="100%" height="auto">
+                          </div>
                         </div>
                       </td>
                     </tr>

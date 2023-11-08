@@ -6,15 +6,8 @@
   
     </div>
     <div class="row mb-5 text-center">
-      <div class="col-md-4" >
-        <!-- <label for="month1" class="form-label">Rigs</label> -->
-        <select name="Rig1" id="Rig1" class="form-select"  (change)="onChangeWithRig($event)">
-          <option value="" disabled selected>Choose Rig Number</option>
-          <option value="{{item.id}}" *ngFor="let item of RigList">Rig - {{item.number}}</option>
-        </select>
-      </div>
+    
       <div class="col-md-4">
-        <!-- <label for="month1" class="form-label">Month1</label> -->
         <select name="month1" id="month1" class="form-select"   (change)="onChangeWithMonth1($event)">
           <option value="" disabled selected>Choose Month</option>
           <option value="1">January</option>
@@ -33,7 +26,6 @@
       </div>
 
       <div class="col-md-3 ">
-        <!-- <label for="month2" class="form-label">Month2</label> -->
         <select name="month2" id="month2" class="form-select"  (change)="onChangeWithMonth2($event)">
           <option value="" disabled selected>Choose Month</option>
           <option value="1">January</option>
@@ -64,13 +56,7 @@
         </div>
     </div> 
     <div class="row mb-5 text-center">
-      <div class="col-md-4" >
-        <!-- <label for="month1" class="form-label">Rigs</label> -->
-        <select name="Rig1" id="Rig1" class="form-select"  (change)="onChangeWithRig($event)">
-          <option value="" disabled selected>Choose Rig Number</option>
-          <option value="{{item.id}}" *ngFor="let item of RigList">Rig - {{item.number}}</option>
-        </select>
-      </div>
+  
       <div class="col-md-3">
         <select name="year" id="year" class="form-select" (change)="onYearChange($event)">
           <option value="" disabled selected>Choose Year</option>
