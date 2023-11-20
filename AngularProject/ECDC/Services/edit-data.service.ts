@@ -28,6 +28,11 @@ import { IPosition } from 'SharedClasses/IPosition';
 import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IResponsibility } from 'SharedClasses/IResponsibility';
 import { IDrillType } from 'SharedClasses/IDrillType';
+import { IClient } from 'SharedClasses/IClient';
+import { ILeadershipVisits } from 'SharedClasses/ILeadershipVisits';
+import { ICrew } from 'SharedClasses/ICrew';
+import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
+import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
 
 @Injectable({
   providedIn: 'root'
@@ -235,7 +240,21 @@ export class EditDataService {
   EditResponsibility(id:number,Responsibility:any):Observable<any>{
     return this.http.put<any>(`http://localhost:5000/api/Responsibility/${id}`,Responsibility);
   } 
-
+  EditClient(id:number,Client:FormData):Observable<IClient>{
+    return this.http.put<IClient>(`http://localhost:5000/api/Client/${id}`,Client);
+  }
+  EditLeadershipVisits(id:number,LeadershipVisit:FormData):Observable<ILeadershipVisits>{
+    return this.http.put<ILeadershipVisits>(`http://localhost:5000/api/LeadershipVisit/${id}`,LeadershipVisit);
+  }
+  EditCrew(id:number,Crew:FormData):Observable<ICrew>{
+    return this.http.put<ICrew>(`http://localhost:5000/api/Crew/${id}`,Crew);
+  }
+  EditDaysSinceNoLTI(id:number,DaysSinceNoLTI:FormData):Observable<IDaysSinceNoLTI>{
+    return this.http.put<IDaysSinceNoLTI>(`http://localhost:5000/api/DaysSinceNoLTI/${id}`,DaysSinceNoLTI);
+  }
+  EditDaysSinceNoFatality(id:number,DaysSinceNoFatality:FormData):Observable<IDaysSinceNoFatality>{
+    return this.http.put<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality/${id}`,DaysSinceNoFatality);
+  }
 
   // EditResponsibility(id:number,Responsibility:IResponsibility):Observable<any> {
   //   const url = `http://localhost:5000/api/Responsibility/${id}`;

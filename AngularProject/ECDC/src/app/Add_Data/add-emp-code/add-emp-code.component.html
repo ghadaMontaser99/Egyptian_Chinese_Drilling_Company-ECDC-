@@ -36,7 +36,15 @@
             </td>
           </tr>
           <tr>
-        
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
             <td colspan="2">
               <div class="from-group  ">
                 <label for="PositionId" class="form-label">position Name :</label>

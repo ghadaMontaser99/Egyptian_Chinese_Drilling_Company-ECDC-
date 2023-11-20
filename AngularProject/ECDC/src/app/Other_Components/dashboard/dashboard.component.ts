@@ -67,7 +67,7 @@ export class DashboardComponent {
   PotentialHazardCount: number = 0;
   User: any;
   TotalManHours: any;
-
+  DaysSinceNoLTIList:any[]=[];
   constructor(private ptsmService: PTSMService, private loginService: LoginService,
     private dataService: DataService, private BopService: AddBOPService,
      private PotentialHazardService: PotentialHazardService) { }
@@ -76,6 +76,22 @@ export class DashboardComponent {
     this.User = this.loginService.currentUser.getValue();
     console.log("/////////////************************")
     console.log(this.User)
+    this.dataService.GetAccidents(this.User.ID, this.User.Role).subscribe({
+      next: data => {
+        console.log("data.data.length")
+        console.log(data.data.length)
+        this.accidentsList = data.data,
+          this.accidentcount = this.accidentsList.length
+      }
+    })
+    this.dataService.GetDaysSinceNoLTI().subscribe({
+      next:data=>{
+        this.DaysSinceNoLTIList=data.data
+        console.log("dataaaa of llltttiiiii")
+        console.log( this.DaysSinceNoLTIList)
+        //this.DaysSinceNoLTICount=this.DaysSinceNoLTIList.length
+      }
+    })
     this.dataService.GetAccidents(this.User.ID, this.User.Role).subscribe({
       next: data => {
         console.log("data.data.length")

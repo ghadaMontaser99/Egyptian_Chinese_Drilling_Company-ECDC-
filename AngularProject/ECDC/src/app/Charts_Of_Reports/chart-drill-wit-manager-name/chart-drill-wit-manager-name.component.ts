@@ -23,7 +23,7 @@ export class ChartDrillWitManagerNameComponent {
       this.Evacuation_Month1=[],
       this.HS_Month1=[],
       this.Kick_Month1=[],
-      this.ConfinedSpace_Month1
+      this.ConfinedSpace_Month1=[]
 
       this.other_Month2=[]
       this.FireAid_Month2=[],
@@ -33,7 +33,7 @@ export class ChartDrillWitManagerNameComponent {
       this.Evacuation_Month2=[],
       this.HS_Month2=[],
       this.Kick_Month2=[],
-      this.ConfinedSpace_Month2
+      this.ConfinedSpace_Month2=[]
 
   }
 
@@ -298,6 +298,7 @@ export class ChartDrillWitManagerNameComponent {
           }
 
         });
+
         this.otherCount_Month1 = this.other_Month1.length
         this.otherCount_Month2 = this.other_Month2.length
 

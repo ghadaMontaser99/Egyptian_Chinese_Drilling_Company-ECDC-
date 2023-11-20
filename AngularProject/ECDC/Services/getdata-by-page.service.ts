@@ -102,4 +102,19 @@ export class GetdataByPageService {
   GetResponsibilityByPage(pageNumber:number):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/Responsibility/ByPage/${pageNumber}`);
   }
+  GetClientByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Client/ByPage/${pageNumber}`);
+  }
+  GetCrewByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/Crew/ByPage/${pageNumber}`);
+  }
+  GetLeadershipVisitByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/LeadershipVisit/ByPage/${pageNumber}`);
+  }
+  GetDaysSinceNoFatalityByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/DaysSinceNoFatality/ByPage/${pageNumber}`);
+  }
+  GetDaysDaysSinceNoLTIByPage(pageNumber:number):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/DaysSinceNoLTI/ByPage/${pageNumber}`);
+  }
 }

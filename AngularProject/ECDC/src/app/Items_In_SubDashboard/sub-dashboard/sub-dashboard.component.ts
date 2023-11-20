@@ -61,7 +61,16 @@ export class SubDashboardComponent {
   EmpCodeList:any;
   ResponsibilityCount:number=0;
   ResponsibilityList:any;
-
+  ClientCount:number=0;
+  ClientList:any;
+  LeadershipVisitCount:number=0;
+  LeadershipVisitList:any;
+  CrewCount:number=0;
+  CrewList:any;
+  DaysSinceNoLTICount:number=0;
+  DaysSinceNoLTIList:any;
+ DaysSinceNoFatalityCount:number=0;
+ DaysSinceNoFatalityList:any;
  PPECount:number=0;
  PPEList:any;
 
@@ -99,6 +108,34 @@ export class SubDashboardComponent {
       next:data=>{
         this.ResponsibilityList=data.data,
         this.ResponsibilityCount=this.ResponsibilityList.length
+      }
+    })
+
+    this.dataService.GetClient().subscribe({
+      next:data=>{
+        this.ClientList=data.data,
+        this.ClientCount=this.ClientList.length
+      }
+    })
+
+    this.dataService.GetLeadershipVisit().subscribe({
+      next:data=>{
+        this.LeadershipVisitList=data.data,
+        this.LeadershipVisitCount=this.LeadershipVisitList.length
+      }
+    })
+
+    this.dataService.GetCrew().subscribe({
+      next:data=>{
+        this.CrewList=data.data,
+        this.CrewCount=this.CrewList.length
+      }
+    })
+   
+    this.dataService.GetDaysSinceNoFatality().subscribe({
+      next:data=>{
+        this.DaysSinceNoFatalityList=data.data,
+        this.DaysSinceNoFatalityCount=this.DaysSinceNoFatalityList.length
       }
     })
     this.dataService.GetDrillTypeList().subscribe({

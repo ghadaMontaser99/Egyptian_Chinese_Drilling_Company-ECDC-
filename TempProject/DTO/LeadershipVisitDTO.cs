@@ -6,7 +6,7 @@ namespace TempProject.DTO
     {
         public int id { get; set; }
 
-        public string LeadershipType { get; set; }
+        public string LeaderShipType { get; set; }
 
 		[DefaultValue(false)]
 		public bool IsDeleted { get; set; }

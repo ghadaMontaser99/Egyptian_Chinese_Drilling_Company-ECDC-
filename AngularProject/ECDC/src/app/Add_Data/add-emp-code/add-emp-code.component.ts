@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AddDataService } from 'Services/add-data.service';
 import { DataService } from 'Services/data.service';
 import { LoginService } from 'Services/login.service';
+import { IRig } from 'SharedClasses/IRig';
 
 @Component({
   selector: 'app-add-emp-code',
@@ -17,7 +18,7 @@ export class AddEmpCodeComponent {
   UserJsonString:any
   UserJsonObj:any
   positonIdList:any;
-
+  rigList:IRig[]=[];
   constructor(private dataService:DataService,private loginService:LoginService,private addDataService:AddDataService,private fb: FormBuilder, private router: Router) {
 
   }
@@ -49,6 +50,12 @@ export class AddEmpCodeComponent {
             Validators.required
           ]
         ),
+        rigId: this.fb.control(
+          '',
+          [
+            Validators.required
+          ]
+        ),
         isDeleted: this.fb.control(
           false,
           [
@@ -61,6 +68,10 @@ export class AddEmpCodeComponent {
     this.UserJsonObj=JSON.parse(this.UserJsonString);
     this.dataService.GetPositions().subscribe({
       next: data => this.positonIdList = data.data,
+      error: err => this.ErrorMessage = err
+    }),
+    this.dataService.GetRig().subscribe({
+      next: data => this.rigList = data.data,
       error: err => this.ErrorMessage = err
     })
   }
@@ -77,7 +88,9 @@ export class AddEmpCodeComponent {
   get PositionId() {
     return this.EmpCodeForm.get('PositionId');
   }
-
+  get rigId() {
+    return this.EmpCodeForm.get('rigId');
+  }
 
   submitData() {
     console.log("here>>>>>>>>>")

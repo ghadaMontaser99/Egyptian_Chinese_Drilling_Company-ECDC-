@@ -32,6 +32,11 @@ import { ISubjectList } from 'SharedClasses/ISubjectList';
 import { IResponsibility } from 'SharedClasses/IResponsibility';
 import { IDrill } from 'SharedClasses/IDrill';
 import { IDrillType } from 'SharedClasses/IDrillType';
+import { IClient } from 'SharedClasses/IClient';
+import { ICrew } from 'SharedClasses/ICrew';
+import { ILeadershipVisits } from 'SharedClasses/ILeadershipVisits';
+import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
+import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
 
 @Injectable({
   providedIn: 'root'
@@ -163,6 +168,24 @@ export class DeleteDataService {
   }
   DeleteResponsibility(Responsibility:IResponsibility): Observable<IResponsibility> {
     return this.http.put<IResponsibility>(`http://localhost:5000/api/Responsibility/Delete/${Responsibility.id}`,Responsibility);
+  }
+
+  DeleteClient(Client:IClient): Observable<IClient> {
+    return this.http.put<IClient>(`http://localhost:5000/api/Client/Delete/${Client.id}`,Client);
+  }
+  
+  DeleteCrew(Crew:ICrew): Observable<ICrew> {
+    return this.http.put<ICrew>(`http://localhost:5000/api/Crew/Delete/${Crew.id}`,Crew);
+  }
+  
+  DeleteLeadershipVists(LeadershipVists:ILeadershipVisits): Observable<ILeadershipVisits> {
+    return this.http.put<ILeadershipVisits>(`http://localhost:5000/api/LeadershipVisit/Delete/${LeadershipVists.id}`,LeadershipVists);
+  }
+  DeleteIDaysSinceNoLTI(DaysSinceNoLTI:IDaysSinceNoLTI): Observable<IDaysSinceNoLTI> {
+    return this.http.put<IDaysSinceNoLTI>(`http://localhost:5000/api/DaysSinceNoLTI/Delete/${DaysSinceNoLTI.id}`,DaysSinceNoLTI);
+  }
+  DeleteDaysSinceNoFatality(DaysSinceNoFatality:IDaysSinceNoFatality): Observable<IDaysSinceNoFatality> {
+    return this.http.put<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality/Delete/${DaysSinceNoFatality.id}`,DaysSinceNoFatality);
   }
 }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
@@ -23,8 +24,17 @@ namespace TempProject.Models
        
         public DbSet<PPEAndPPEReceiving> PPEAndPPEReceivings { get; set; }
         public DbSet<ComminucationMethod> ComminucationMethods { get; set; }
-        //public DbSet<Crew> Crews { get; set; }
-        public DbSet<LeadershipVisit> LeadershipVisits { get; set; }
+        public DbSet<Crew> Crews { get; set; }
+		public DbSet<DaysSinceNoLTI> DaysSinceNoLTI { get; set; }
+		public DbSet<QHSEDailyReport> QHSEDailyReport { get; set; }
+		public DbSet<Client> Client { get; set; }
+		public DbSet<LTIPrevDateAndDays> LTIPrevDateAndDays { get; set; }
+
+		public DbSet<LeaderShipVisitsAndQHSEDaily> LeaderShipVisitsAndQHSEDaily { get; set; }
+		public DbSet<CrewQuizAndQHSEDaily> CrewQuizAndQHSEDaily { get; set; }
+		public DbSet<CrewSaftyAlertAndQHSEDaily> CrewSaftyAlertAndQHSEDaily { get; set; }
+
+		public DbSet<LeadershipVisit> LeadershipVisits { get; set; }
         public DbSet<RecordableAccident> RecordableAccidents { get; set; }
         public DbSet<NonRecordableAccident> NonRecordableAccidents { get; set; }
         //public DbSet<Drill> Drills { get; set; }
@@ -67,6 +77,25 @@ namespace TempProject.Models
         {
             
         }
+
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+			//modelBuilder.Entity<Crew>()
+			//	.HasMany(c => c.QHSEDailyReport1)
+			//	//WithOne(q => q.SafetyAlertCrew)
+			//	.HasForeignKey(q => q.SafetyAlertCrewId);
+
+			//modelBuilder.Entity<Crew>()
+			//	.HasMany(c => c.QHSEDailyReport2)
+			//	//.WithOne(q => q.QuizCrew)
+			//	.HasForeignKey(q => q.QuizCrewId);
+
+			//modelBuilder.Entity<IdentityUserLogin<string>>()
+		 //  .HasKey(l => new { l.LoginProvider, l.ProviderKey });
+		}
+
 
 		//protected override void OnModelCreating(ModelBuilder modelBuilder)
 		//{

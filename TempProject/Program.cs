@@ -32,8 +32,7 @@ namespace TempProject
             builder.Services.AddScoped<IRepository<Accident>, Repository<Accident>>();
             builder.Services.AddScoped<IRepository<EmployeeCompetencyEvaluation>, Repository<EmployeeCompetencyEvaluation>>();
 
-            //builder.Services.AddScoped<IRepository<Crew>, Repository<Crew>>();
-            builder.Services.AddScoped<IRepository<LeadershipVisit>, Repository<LeadershipVisit>>();
+            
             builder.Services.AddScoped<IRepository<NonRecordableAccident>, Repository<NonRecordableAccident>>();
             builder.Services.AddScoped<IRepository<RecordableAccident>, Repository<RecordableAccident>>();
             //builder.Services.AddScoped<IRepository<Drill>, Repository<Drill>>();
@@ -49,6 +48,17 @@ namespace TempProject
 			//builder.Services.AddScoped<IRepository<ToolPusherPositionName>, Repository<ToolPusherPositionName>>();
 			//builder.Services.AddScoped<IRepository<QHSEPosition>, Repository<QHSEPosition>>();
 			//builder.Services.AddScoped<IRepository<QHSEPositionName>, Repository<QHSEPositionName>>();
+
+			//******************** QHSE Daily Report *******************
+			builder.Services.AddScoped<IRepository<DaysSinceNoLTI>, Repository<DaysSinceNoLTI>>();
+			builder.Services.AddScoped<IRepository<Crew>, Repository<Crew>>();
+			builder.Services.AddScoped<IRepository<LeadershipVisit>, Repository<LeadershipVisit>>();
+			builder.Services.AddScoped<IRepository<QHSEDailyReport>, Repository<QHSEDailyReport>>();
+			builder.Services.AddScoped<IRepository<Client>, Repository<Client>>();
+			builder.Services.AddScoped<IRepository<LTIPrevDateAndDays>, Repository<LTIPrevDateAndDays>>();
+			builder.Services.AddScoped<IDaysSinceNoLTIRepossitory, DaysSinceNoLTIRepository>();
+
+
 			builder.Services.AddScoped<IRepository<EmpCode>, Repository<EmpCode>>();
             builder.Services.AddScoped<IRepository<SubjectList>, Repository<SubjectList>>();
 			builder.Services.AddScoped<IRepository<Responsibility>, Repository<Responsibility>>();
@@ -79,15 +89,19 @@ namespace TempProject
 			builder.Services.AddScoped<IPotentialHazardRepository,PotentialHazardRepository>();
 			builder.Services.AddScoped<IBOPRepossitory,BOPRepository>();
             builder.Services.AddScoped<IRepository<BOP> , Repository<BOP>>();
-         
-            builder.Services.AddScoped<IRepository<PPE>, Repository<PPE>>();
+			builder.Services.AddScoped<IQHSEDailyReportRepository, QHSEDailyReportRepository>();
+
+			builder.Services.AddScoped<IRepository<PPE>, Repository<PPE>>();
             builder.Services.AddScoped<IRepository<PPEReceiving>, Repository<PPEReceiving>>();
             builder.Services.AddScoped<IPPEReceivingRepository, PPEReceivingRepository>();
             builder.Services.AddScoped<IRepository<PPEAndPPEReceiving>, Repository<PPEAndPPEReceiving>>();
+			builder.Services.AddScoped<IRepository<CrewQuizAndQHSEDaily>, Repository<CrewQuizAndQHSEDaily>>();
+			builder.Services.AddScoped<IRepository<CrewSaftyAlertAndQHSEDaily>, Repository<CrewSaftyAlertAndQHSEDaily>>();
+			builder.Services.AddScoped<IRepository<LeaderShipVisitsAndQHSEDaily>, Repository<LeaderShipVisitsAndQHSEDaily>>();
 
-            //////---------Drill Report----------------------
+			//////---------Drill Report----------------------
 
-            builder.Services.AddScoped<IRepository<DrillType>, Repository<DrillType>>();
+			builder.Services.AddScoped<IRepository<DrillType>, Repository<DrillType>>();
             builder.Services.AddScoped<IRepository<Drill>, Repository<Drill>>();
             builder.Services.AddScoped<IRepository<DrillImages>, Repository<DrillImages>>();
             builder.Services.AddScoped<IDrillRepository, DrillRepository>();

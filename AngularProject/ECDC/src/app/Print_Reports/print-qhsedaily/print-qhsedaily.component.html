@@ -1,0 +1,524 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+        <h2 class="mx-auto my-4">
+            QHSE Daily Report
+
+
+
+        </h2>
+    </div>
+   
+
+    <select class="form-control" (change)="DateSelected($event)">
+        <option value="" disabled selected>Choose Date</option>
+        <option value="{{item }}" *ngFor="let item of QHSEDaily">
+           {{item|date: 'dd-MM-yyyy' }}
+        </option>
+    </select>
+
+    <div class="px-4 px-lg-0 m-5" *ngIf="QHSEDailyRecord">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section"
+                        *ngFor="let record of QHSEDailyRecord">
+                        <div class="table-responsive">
+                            <table class="border" style="width: 100%;">
+                             
+                                <tr>
+                                    <td colspan="5">
+                                      <div style="
+                                          display: flex;
+                                          justify-content: space-evenly;
+                                          border-bottom: 2px solid #0e0a27;
+                                        ">
+                                        <img style="margin-left: 30px" width="150px" src="../../assets/img/ECDC Logo png.png" />
+                                        <label class="form-label mt-3" style="
+                                            font-weight: bolder;
+                                            font-size: larger;
+                                            color: #0e0a27;
+                                            margin-left: 250px;
+                                          ">
+                                          الشركة المصرية الصينية للحفر
+                                        </label>
+                                      </div>
+                                    </td>
+                                  </tr>
+                    
+                                 
+                                  <tr class="text-center " style="margin-bottom: 30px">
+                                    <th  style=" 
+                                         
+                                    font-weight: bolder; font-size: 20px; font-family: 'Arial Black', sans-serif;
+                                                      color: rgb(7, 2, 77); text-decoration: underline;" colspan="5">QHSE Daily Report   </th>
+                            </tr>
+
+                                
+                                
+                                  <tr>
+                                    <td scope="row">
+                                        <div class="mb-1">
+                                            <h6 class="mb-1">
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(7, 2, 77);">Date :</span>
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(0, 0, 0);">{{ record.date |date: 'dd-MM-yyyy' }}</span>
+                                            </h6>
+                                        </div>
+                                    </td>
+                                    <td scope="row">
+                                        <div class="mb-1">
+                                            <h6 class="mb-1">
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(7, 2, 77);">Well Name :</span>
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(0, 0, 0);">{{ record.wallName }}</span>
+                                            </h6>
+                                        </div>
+                                    </td>
+                                    <td scope="row">
+                                        <div class="mb-1">
+                                            <h6 class="mb-1">
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(7, 2, 77);">Rig Number
+                                                 :</span>
+                                                <span style="font-weight: bolder; font-size: 16px; font-family: 'Arial Black', sans-serif;
+                                                color: rgb(0, 0, 0);">{{ record.rigNumber }}</span>
+                                            </h6>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+
+                            <div class="col-12">
+                                <table class="table table-bordered" style="margin-bottom: 0;">
+                                    <tbody>
+                                       
+                                        <tr>
+                                            
+                        
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;"> Client :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.clientName }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Drills :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.drillsRecords }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Stop Cards:</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.stopCardsRecords }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        
+                                        <!-- <tr>
+                                            <td colspan="4" style="height: 1px;"></td>
+                                        </tr> -->
+                                        <tr>
+                                            <td scope="row"  style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Man Power:</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.manPowerNumber }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row"  style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Total Man Power Hours:</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.totalManPowerHours }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Non - Recordable Accident :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                       <span>{{ record.nonRecordableAccident }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="height: 1px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Quiz:</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.crewQuizAndQHSEDailys }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Quiz, Crew Number :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.quizCrewNumber }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Recordable Accident :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.recordableAccident }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                           
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">PTSM:</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.ptsmRecords }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            
+                                            <td scope="row"  style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">LeaderShip Visits :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" colspan="4">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">{{ record.leaderShipVisitsAndQHSEDailys }}</span>
+                                                    </h6>
+                                                </div>
+                                        
+                                                
+                                            </td>
+         
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="height: 1px;"></td>
+                                        </tr>
+                                        <tr>
+
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Rig Vehicles Kilometers :</span>
+                                                       
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        
+                                                        <span>{{ record.rigVehiclesKilometers }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Rig Tracking Open Points :</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span>{{ record.rigTrackingOpenPoints }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Rig Tracking Closed Points:</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                       
+                                                        <span>{{ record.rigTrackingClosedPoints }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                     
+                                        <tr>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">PTW (Cold) :</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+                                            <td scope="row" >
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                    
+                                                        <span>{{ record.ptwCold }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">PTW (Hot) :</span>
+                                                         
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.ptwHot }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Total PTW :</span>
+                                                         
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row"  colspan="3">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.totalPTW }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="height: 1px;"></td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td colspan="4" style="height: 1px;"></td>
+                                        </tr> -->
+                                        <tr>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Safety Alert :</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.crewSaftyAlertAndQHSEDailys }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Safety Alert, Crew Number :</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.safetyAlertCrewNumber }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Safety Induction :</span>
+                                                         
+                                                    </h6>
+                                                </div>
+                                            </td> <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.safetyInduction }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+                                        </tr> 
+                                        <tr>
+                                            <td scope="row"  width="16%"style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Weekly Inspection :</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" width="16%">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.weeklyInspection }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+
+                                            <td scope="row" width="16%" style="font-weight: bold;color:white;  background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Monthly Inspection:</span>
+                                                       
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" width="16%">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        
+                                                        <span>{{ record.monthlyInspection }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" width="16%" style="font-weight: bold;color:white; background-color: #8db4e2;">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Days Since Last LTI :</span>
+                                                        
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row" width="16%" colspan="3">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                         
+                                                        <span>{{ record.daysSinceLastLTI }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>  
+                                       
+                                    </tbody>
+                                </table>
+                                <div style="text-align: center;" class="mt-4">
+                                    <span style="font-weight: bolder; font-size: 20px; font-family: 'Arial Black', sans-serif; color: rgb(7, 2, 77);">
+                                        QHSE Engineers
+                                    </span>
+                                    <br>
+                                    <div style="font-size:30px ;">
+                                        ................................
+                                    </div>
+                                    <img width="60%" src="../../assets/img/QHSEDailyicon.png"style="float: right;" />
+                                </div>
+                                
+                              
+
+                            </div>
+
+                            <!-- <div class="col-12">
+                               
+                             
+                               
+                            </div> -->
+                        </div>
+                        <!-- End -->
+                    </div>
+                </div>
+                <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data"
+                    (click)="print()" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,13 +20,51 @@
               <!-- <a routerLink="/BopTable">Show Data</a> -->
             </div>
             <div>
-              <i class="fa-regular fa-clock fa-spin h1" style="color: #012970;"></i>
+              <i class="fa-regular fa-clock fa-spin h1" style="color: #000000;"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <div class="col-md-12">
+      <div class="card p-3 mb-2">
+        <div>
+         
+          <div class="d-flex align-items-center justify-content-between text-center">
+            <div class="me-3">
+              <h3 class="heading">Days Since No LTI </h3>
+            </div>
+            <div>
+              <img style="margin-left: 30px;color: #012970;" width="50px" src="../../assets/img/accident.ico" />
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 33%;">#</th>
+                <th scope="col" style="width: 33%;">Rig Number</th>
+                <th scope="col" style="width: 33%;">Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of DaysSinceNoLTIList; let i = index">
+                <th scope="row" style="width: 33%;">{{i + 1}}</th>
+                <td style="width: 33%;">Rig- {{item.rigId}}</td>
+                <td style="width: 33%;">{{item.days}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/DaysSinceNoLTI">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col-md-6">
       <div class="card p-3 mb-2">
         <div>

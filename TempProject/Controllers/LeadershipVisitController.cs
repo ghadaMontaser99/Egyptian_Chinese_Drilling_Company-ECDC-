@@ -28,7 +28,7 @@ namespace TempProject.Controllers
             {
                 LeadershipVisitDTO LeadershipVisitDTO = new LeadershipVisitDTO();
                 LeadershipVisitDTO.id = LeadershipVisit.Id;
-				LeadershipVisitDTO.LeadershipType = LeadershipVisit.LeadershipType;
+				LeadershipVisitDTO.LeaderShipType = LeadershipVisit.LeadershipType;
 				LeadershipVisitDTO.IsDeleted = LeadershipVisit.IsDeleted;
 
 				newTemp.Add(LeadershipVisitDTO);
@@ -49,7 +49,34 @@ namespace TempProject.Controllers
 
         }
 
-        [HttpGet("{ID:int}")]
+
+		[HttpGet("ByPage/{page:int}")]
+		public PageResult<LeadershipVisitDTO> GettAllLeadershipVisitByPage(int? page, int pagesize = 10)
+		{
+			List<LeadershipVisit> temp = LeadershipVisitRepo.getall();
+			List<LeadershipVisitDTO> newTemp = new List<LeadershipVisitDTO>();
+			foreach (LeadershipVisit LeadershipVisit in temp)
+			{
+				LeadershipVisitDTO LeadershipVisitDTO = new LeadershipVisitDTO();
+				LeadershipVisitDTO.id = LeadershipVisit.Id;
+				LeadershipVisitDTO.LeaderShipType = LeadershipVisit.LeadershipType;
+				LeadershipVisitDTO.IsDeleted = LeadershipVisit.IsDeleted;
+
+				newTemp.Add(LeadershipVisitDTO);
+			}
+
+			float countDetails = LeadershipVisitRepo.getall().Count();
+			var result = new PageResult<LeadershipVisitDTO>
+			{
+				Count = (int)Math.Ceiling(countDetails / pagesize),
+				PageIndex = page ?? 1,
+				PageSize = pagesize,
+				Items = newTemp.Skip((page - 1 ?? 0) * pagesize).Take(pagesize).ToList()
+			};
+			return result;
+		}
+
+		[HttpGet("{ID:int}")]
         public ActionResult<ResultDTO> GetByID(int ID)
         {
             ResultDTO result = new ResultDTO();
@@ -58,7 +85,7 @@ namespace TempProject.Controllers
                 LeadershipVisitDTO LeadershipVisitDTO = new LeadershipVisitDTO();
                 LeadershipVisit LeadershipVisit = LeadershipVisitRepo.getbyid(ID);
                 LeadershipVisitDTO.id = LeadershipVisit.Id;
-				LeadershipVisitDTO.LeadershipType = LeadershipVisit.LeadershipType;
+				LeadershipVisitDTO.LeaderShipType = LeadershipVisit.LeadershipType;
 				LeadershipVisitDTO.IsDeleted = LeadershipVisit.IsDeleted;
 
 				result.Message = "Success";
@@ -85,7 +112,7 @@ namespace TempProject.Controllers
                 {
                     LeadershipVisit orgLeadershipVisit = LeadershipVisitRepo.getbyid(id);
                     newLeadershipVisit.id = orgLeadershipVisit.Id;
-					orgLeadershipVisit.LeadershipType = newLeadershipVisit.LeadershipType;
+					orgLeadershipVisit.LeadershipType = newLeadershipVisit.LeaderShipType;
 					orgLeadershipVisit.IsDeleted = newLeadershipVisit.IsDeleted;
 
 
@@ -116,7 +143,7 @@ namespace TempProject.Controllers
                 {
                     LeadershipVisit LeadershipVisit = new LeadershipVisit();
                     LeadershipVisit.Id = LeadershipVisitDTO.id;
-					LeadershipVisit.LeadershipType = LeadershipVisitDTO.LeadershipType;
+					LeadershipVisit.LeadershipType = LeadershipVisitDTO.LeaderShipType;
 					LeadershipVisit.IsDeleted = LeadershipVisitDTO.IsDeleted;
 
 					LeadershipVisitRepo.create(LeadershipVisit);

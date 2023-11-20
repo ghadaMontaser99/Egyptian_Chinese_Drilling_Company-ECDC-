@@ -11,45 +11,55 @@ import { Chart } from 'chart.js';
   styleUrls: ['./chart-with-drill-type.component.scss'],
 })
 export class ChartWithDrillTypeComponent {
+
   clearChart(ID_Name: string) {
     const myElement = document.querySelector('#' + ID_Name) as HTMLElement;
     myElement.remove();
 
-    this.other_Month1 = [];
-    (this.FireAid_Month1 = []),
-      (this.FireAndFirstAid_Month1 = []),
-      (this.Fire_Month1 = []),
-      (this.SpillDrill_Month1 = []),
-      (this.Evacuation_Month1 = []),
-      (this.HS_Month1 = []),
-      (this.Kick_Month1 = []),
-      this.ConfinedSpace_Month1;
+      this.other_Month1 = [];
+      this.FireAid_Month1 = [];
+      this.FireAndFirstAid_Month1 = [];
+      this.Fire_Month1 = [];
+      this.SpillDrill_Month1 = [];
+      this.Evacuation_Month1 = [];
+      this.HS_Month1 = [];
+      this.Kick_Month1 = [];
+      this.ConfinedSpace_Month1=[];
 
-    this.other_Month2 = [];
-    (this.FireAid_Month2 = []),
-      (this.FireAndFirstAid_Month2 = []),
-      (this.Fire_Month2 = []),
-      (this.SpillDrill_Month2 = []),
-      (this.Evacuation_Month2 = []),
-      (this.HS_Month2 = []),
-      (this.Kick_Month2 = []),
-      this.ConfinedSpace_Month2;
+      this.other_Month2 = [];
+      this.FireAid_Month2 = [];
+      this.FireAndFirstAid_Month2 = [];
+      this.Fire_Month2 = [];
+      this.SpillDrill_Month2 = [];
+      this.Evacuation_Month2 = [];
+      this.HS_Month2 = [];
+      this.Kick_Month2 = [];
+      this.ConfinedSpace_Month2=[];
   }
 
-  AddCanvas(ID_Name: string, DIV_Name: string) {
+  AddCanvas(ID_Name:string,DIV_Name:string) {
+    // Create a new element
+    var newElement = document.createElement('canvas');
+    newElement.id=ID_Name
+
+    // Get the parent element where you want to append the new element
+    const myElement = document.querySelector('#'+DIV_Name) as HTMLElement;
+
+   
+  // Check if the element exists before appending
+  if (myElement) {
     // Create a new element
     var newElement = document.createElement('canvas');
     newElement.id = ID_Name;
 
-    // Get the parent element where you want to append the new element
-    const myElement = document.querySelector('#' + DIV_Name) as HTMLElement;
-
     // Append the new element to the parent element
     myElement.appendChild(newElement);
+  } else {
+    console.error(`Element with ID '${DIV_Name}' not found.`);
   }
-
+  }
   temp: boolean = false;
-
+  temp2: boolean = false;
   month1: number = 0;
   month2: number = 0;
   month1_Name: string = '';
@@ -214,19 +224,20 @@ export class ChartWithDrillTypeComponent {
     this.Year = event.target.value;
   }
 
-  onChangeByMonth(event: any) {
+  onChangeByMonth() {
     console.log(this.month1);
     console.log(this.month2);
     console.log(this.month1_Name);
     console.log(this.month2_Name);
-
+    this.temp=true;
     this.dataService
       .GetDrillByMonth(this.month1, this.month2, this.User.Role, this.User.ID)
       .subscribe({
         next: (data) => {
+     
           console.log('data____________________________');
           console.log(data.data);
-          this.clearChart('myChart');
+          this.clearChart("myChart1");
           data.data.forEach(
             (element: { date: Date; drillTypeName: string }) => {
               const validDate = new Date(element.date);
@@ -353,9 +364,9 @@ export class ChartWithDrillTypeComponent {
           console.log(this.KickCount_Month1);
           console.log('KickCount_Month2');
           console.log(this.KickCount_Month2);
-          this.AddCanvas('myChart', 'chart1');
+          this.AddCanvas("myChart1", "chart1")
 
-          var myChart = new Chart('myChart', {
+          var myChart1 = new Chart("myChart1", {
             type: 'bar',
             data: {
               labels: this.DrillType,
@@ -371,7 +382,7 @@ export class ChartWithDrillTypeComponent {
                     this.FireAidCount_Month1,
                     this.FireCount_Month1,
                     this.EvacuationCount_Month1,
-                    this.otherCount_Month1,
+                    this.otherCount_Month1
                   ],
                   backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -409,7 +420,8 @@ export class ChartWithDrillTypeComponent {
                     this.FireAidCount_Month2,
                     this.FireCount_Month2,
                     this.EvacuationCount_Month2,
-                    this.otherCount_Month2,
+                    this.otherCount_Month2
+
                   ],
                   backgroundColor: [
                     'rgba(54, 162, 235, 0.2)',
@@ -453,14 +465,16 @@ export class ChartWithDrillTypeComponent {
       });
   }
 
-  onChangeByYear(event: any) {
+  onChangeByYear() {
     console.log(this.Year);
-
+    this.temp2=true;
     this.dataService
+
       .GetDrillByYear(this.Year, this.User.Role, this.User.ID)
       .subscribe({
-        next: (data) => {
-          console.log('dataaaaaaaaaa', data.data);
+        next: (data:any) => {
+          console.log('dataaaaaaaaaa2');
+          console.log(data.data)
           this.clearChart('myChart2');
           data.data.forEach(
             (element: { rigId: number; drillTypeName: string }) => {
@@ -515,7 +529,7 @@ export class ChartWithDrillTypeComponent {
                     this.FireAidCount_Year,
                     this.FireCount_Year,
                     this.EvacuationCount_Year,
-                    this.otherCount_Year,
+                    this.otherCount_Year
                   ],
                   backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                   borderColor: ['rgba(255, 99, 132, 1)'],

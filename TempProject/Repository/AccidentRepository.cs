@@ -28,7 +28,7 @@ namespace TempProject.Repository
 				.Select(a => new Accident
                 {
                     Id = a.Id,
-                    Rig = new Rig { Number = a.Rig.Number },
+                    Rig = new Rig { Number = a.Rig.Number,Id= a.Rig.Id },
                     TimeOfEvent = a.TimeOfEvent,
                     DateOfEvent = a.DateOfEvent,
                     ClassificationOfAccidentId = a.ClassificationOfAccidentId,

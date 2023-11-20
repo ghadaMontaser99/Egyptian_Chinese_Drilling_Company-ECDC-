@@ -72,6 +72,26 @@
             <i class="bi bi-circle"></i><span>Drills Compare By All Rigs Chart</span>
           </a>
         </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/QHSEChartByMonth">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare By Month Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser">
+          <a routerLink="/QHSEChartByYear">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare By Year Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/QHSEChartByYearAllRigs">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Year Chart</span>
+          </a>
+        </li>
+        <li *ngIf="IsAdmin">
+          <a routerLink="/QHSEChartByMonthAllRigs">
+            <i class="bi bi-circle"></i><span>QHSE Statics Compare With All Rigs By Month Chart</span>
+          </a>
+        </li>
       </ul>
     </li>
 
@@ -129,6 +149,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/Drill/Add">
             <i class="bi bi-circle"></i><span>Drills</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/QHSEDaily/Add">
+            <i class="bi bi-circle"></i><span>QHSE Daily Report</span>
           </a>
         </li>
       </ul>
@@ -251,7 +276,7 @@
         </li>
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/BopTable">
-            <i class="bi bi-circle"></i><span>POb</span>
+            <i class="bi bi-circle"></i><span>POB</span>
           </a>
         </li>
         <li *ngIf="IsUser || IsAdmin">
@@ -273,6 +298,11 @@
         <li *ngIf="IsUser || IsAdmin">
           <a routerLink="/Dashboard/Drill">
             <i class="bi bi-circle"></i><span>Drill</span>
+          </a>
+        </li>
+        <li *ngIf="IsUser || IsAdmin">
+          <a routerLink="/QHSEDaily">
+            <i class="bi bi-circle"></i><span>QHSE Daily</span>
           </a>
         </li>
       </ul>

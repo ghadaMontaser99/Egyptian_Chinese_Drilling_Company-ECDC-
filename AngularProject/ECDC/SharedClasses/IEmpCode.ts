@@ -3,5 +3,6 @@ export interface IEmpCode {
      code: number,
      name:string,
      positionId:number,
+     rigId:number,
      isDeleted:boolean,
   }

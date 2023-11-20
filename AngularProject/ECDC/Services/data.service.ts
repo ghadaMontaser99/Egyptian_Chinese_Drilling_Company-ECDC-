@@ -55,7 +55,7 @@ export class DataService {
   }
 
   GetDrillByYear(year:number ,userRole:string,UserId:string): Observable<IAPIResult> {
-    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisByDrillTypeAndYear/?Year=${year}&UserRole=${userRole}&UserId=${UserId}}`);
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisByDrillTypeAndYear?Year=${year}&UserRole=${userRole}&UserId=${UserId}`);
   }
   GetDrillAnalysisWithCompareByYear(year:number,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDrillAnalysisWithCompareByYear/?Year=${year}&UserRole=${userRole}`);
@@ -258,7 +258,42 @@ export class DataService {
   GetResponsibilityByID(ID: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Responsibility/${ID}`);
   }
-  
+  GetClient(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Client`);
+  }
+  GetClientByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Client/${ID}`);
+  }
+  GetLeadershipVisit(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/LeadershipVisit`);
+  }
+  GetLeadershipVisitsByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/LeadershipVisit/${ID}`);
+  }
+  GetCrew(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Crew`);
+  }
+  GetCrewByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Crew/${ID}`);
+  }
+  GetDaysSinceNoLTI(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI`);
+  }
+  GetDaysSinceNoLTIByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI/${ID}`);
+  }
+  GetDaysSinceNoFatality(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoFatality`);
+  }
+  GetDaysSinceNoFatalityByID(ID: number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoFatality/${ID}`);
+  }
+  GetDaysSinceNoFatalityByRigNumber(RigNumber:number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoFatality/ByRigNumber/${RigNumber}`);
+  }
+  GetDaysSinceNoLTIByRigNumber(RigNumber:number): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI/ByRigNumber/${RigNumber}`);
+  }
 
 
 }

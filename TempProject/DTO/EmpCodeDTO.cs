@@ -12,5 +12,7 @@ namespace TempProject.DTO
 		public bool IsDeleted { get; set; }
 		public string Name { get; set; }
 		public int PositionId { get; set; }
+		public int RigId { get; set; }
+
 	}
 }

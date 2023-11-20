@@ -524,6 +524,26 @@ namespace TempProject.Migrations
                     b.ToTable("ClassificationOfAccidents");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Client");
+                });
+
             modelBuilder.Entity("TempProject.Models.ComminucationMethod", b =>
                 {
                     b.Property<int>("Id")
@@ -542,6 +562,102 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ComminucationMethods");
+                });
+
+            modelBuilder.Entity("TempProject.Models.Crew", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CrewName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Crews");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CrewQuizAndQHSEDaily", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CrewId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QHSEDailyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CrewId");
+
+                    b.HasIndex("QHSEDailyId");
+
+                    b.ToTable("CrewQuizAndQHSEDaily");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CrewSaftyAlertAndQHSEDaily", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CrewId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QHSEDailyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CrewId");
+
+                    b.HasIndex("QHSEDailyId");
+
+                    b.ToTable("CrewSaftyAlertAndQHSEDaily");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DaysSinceNoLTI", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RigId");
+
+                    b.ToTable("DaysSinceNoLTI");
                 });
 
             modelBuilder.Entity("TempProject.Models.Drill", b =>
@@ -1004,6 +1120,59 @@ namespace TempProject.Migrations
                     b.ToTable("JMP_Passengers");
                 });
 
+            modelBuilder.Entity("TempProject.Models.LTIPrevDateAndDays", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DaysSinceNoLTIId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PrevDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("PrevDays")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DaysSinceNoLTIId");
+
+                    b.ToTable("LTIPrevDateAndDays");
+                });
+
+            modelBuilder.Entity("TempProject.Models.LeaderShipVisitsAndQHSEDaily", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LeadershipVisitId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QHSEDailyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LeadershipVisitId");
+
+                    b.HasIndex("QHSEDailyId");
+
+                    b.ToTable("LeaderShipVisitsAndQHSEDaily");
+                });
+
             modelBuilder.Entity("TempProject.Models.LeadershipVisit", b =>
                 {
                     b.Property<int>("Id")
@@ -1359,6 +1528,107 @@ namespace TempProject.Migrations
                     b.HasIndex("RigMovePerformanceId");
 
                     b.ToTable("ProblemFacedDuringRigMoves");
+                });
+
+            modelBuilder.Entity("TempProject.Models.QHSEDailyReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int>("DaysSinceLastLTI")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DaysSinceNoLTIId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrillsRecords")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ManPowerNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MonthlyInspection")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NonRecordableAccident")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PTSMRecords")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PTWCold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PTWHot")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuizCrewNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecordableAccident")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RigId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RigTrackingClosedPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RigTrackingOpenPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RigVehiclesKilometers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SafetyAlertCrewNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SafetyInduction")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StopCardsRecords")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalManPowerHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalPTW")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("WallName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WeeklyInspection")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("DaysSinceNoLTIId");
+
+                    b.HasIndex("RigId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("QHSEDailyReport");
                 });
 
             modelBuilder.Entity("TempProject.Models.RecordableAccident", b =>
@@ -1887,6 +2157,55 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("TempProject.Models.CrewQuizAndQHSEDaily", b =>
+                {
+                    b.HasOne("TempProject.Models.Crew", "Crew")
+                        .WithMany("CrewQuizAndQHSEDaily")
+                        .HasForeignKey("CrewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.QHSEDailyReport", "QHSEDaily")
+                        .WithMany("CrewQuizAndQHSEDaily")
+                        .HasForeignKey("QHSEDailyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Crew");
+
+                    b.Navigation("QHSEDaily");
+                });
+
+            modelBuilder.Entity("TempProject.Models.CrewSaftyAlertAndQHSEDaily", b =>
+                {
+                    b.HasOne("TempProject.Models.Crew", "Crew")
+                        .WithMany("CrewSaftyAlertAndQHSEDaily")
+                        .HasForeignKey("CrewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.QHSEDailyReport", "QHSEDaily")
+                        .WithMany("CrewSaftyAlertAndQHSEDaily")
+                        .HasForeignKey("QHSEDailyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Crew");
+
+                    b.Navigation("QHSEDaily");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DaysSinceNoLTI", b =>
+                {
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany("DaysSinceNoLTI")
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rig");
+                });
+
             modelBuilder.Entity("TempProject.Models.Drill", b =>
                 {
                     b.HasOne("TempProject.Models.DrillType", "DrillType")
@@ -2055,6 +2374,36 @@ namespace TempProject.Migrations
                     b.Navigation("Passenger");
                 });
 
+            modelBuilder.Entity("TempProject.Models.LTIPrevDateAndDays", b =>
+                {
+                    b.HasOne("TempProject.Models.DaysSinceNoLTI", "DaysSinceNoLTI")
+                        .WithMany("LTIPrevDateAndDays")
+                        .HasForeignKey("DaysSinceNoLTIId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DaysSinceNoLTI");
+                });
+
+            modelBuilder.Entity("TempProject.Models.LeaderShipVisitsAndQHSEDaily", b =>
+                {
+                    b.HasOne("TempProject.Models.LeadershipVisit", "LeadershipVisit")
+                        .WithMany("LeaderShipVisitsAndQHSEDaily")
+                        .HasForeignKey("LeadershipVisitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.QHSEDailyReport", "QHSEDaily")
+                        .WithMany("LeaderShipVisitsAndQHSEDaily")
+                        .HasForeignKey("QHSEDailyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LeadershipVisit");
+
+                    b.Navigation("QHSEDaily");
+                });
+
             modelBuilder.Entity("TempProject.Models.PPEAndPPEReceiving", b =>
                 {
                     b.HasOne("TempProject.Models.PPE", "PPE")
@@ -2150,6 +2499,41 @@ namespace TempProject.Migrations
                     b.Navigation("RigMovePerformance");
                 });
 
+            modelBuilder.Entity("TempProject.Models.QHSEDailyReport", b =>
+                {
+                    b.HasOne("TempProject.Models.Client", "Client")
+                        .WithMany("QHSEDailyReport")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.DaysSinceNoLTI", "DaysSinceNoLTI")
+                        .WithMany("QHSEDailyReport")
+                        .HasForeignKey("DaysSinceNoLTIId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempProject.Models.Rig", "Rig")
+                        .WithMany("QHSEDailyReport")
+                        .HasForeignKey("RigId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("DaysSinceNoLTI");
+
+                    b.Navigation("Rig");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("TempProject.Models.ReportedByName", b =>
                 {
                     b.HasOne("TempProject.Models.ReportedByPosition", "ReportedByPosition")
@@ -2243,9 +2627,28 @@ namespace TempProject.Migrations
                     b.Navigation("Accidents");
                 });
 
+            modelBuilder.Entity("TempProject.Models.Client", b =>
+                {
+                    b.Navigation("QHSEDailyReport");
+                });
+
             modelBuilder.Entity("TempProject.Models.ComminucationMethod", b =>
                 {
                     b.Navigation("JMPs");
+                });
+
+            modelBuilder.Entity("TempProject.Models.Crew", b =>
+                {
+                    b.Navigation("CrewQuizAndQHSEDaily");
+
+                    b.Navigation("CrewSaftyAlertAndQHSEDaily");
+                });
+
+            modelBuilder.Entity("TempProject.Models.DaysSinceNoLTI", b =>
+                {
+                    b.Navigation("LTIPrevDateAndDays");
+
+                    b.Navigation("QHSEDailyReport");
                 });
 
             modelBuilder.Entity("TempProject.Models.Drill", b =>
@@ -2268,6 +2671,11 @@ namespace TempProject.Migrations
             modelBuilder.Entity("TempProject.Models.JMP", b =>
                 {
                     b.Navigation("jMP_Passengers");
+                });
+
+            modelBuilder.Entity("TempProject.Models.LeadershipVisit", b =>
+                {
+                    b.Navigation("LeaderShipVisitsAndQHSEDaily");
                 });
 
             modelBuilder.Entity("TempProject.Models.PPE", b =>
@@ -2305,6 +2713,15 @@ namespace TempProject.Migrations
                     b.Navigation("Accidents");
                 });
 
+            modelBuilder.Entity("TempProject.Models.QHSEDailyReport", b =>
+                {
+                    b.Navigation("CrewQuizAndQHSEDaily");
+
+                    b.Navigation("CrewSaftyAlertAndQHSEDaily");
+
+                    b.Navigation("LeaderShipVisitsAndQHSEDaily");
+                });
+
             modelBuilder.Entity("TempProject.Models.ReportedByName", b =>
                 {
                     b.Navigation("StopCardRegisters");
@@ -2326,11 +2743,15 @@ namespace TempProject.Migrations
                 {
                     b.Navigation("Accidents");
 
+                    b.Navigation("DaysSinceNoLTI");
+
                     b.Navigation("EmpCode");
 
                     b.Navigation("PPEReceiving");
 
                     b.Navigation("PotentialHazard");
+
+                    b.Navigation("QHSEDailyReport");
 
                     b.Navigation("RigEmployeeCompetencyEvaluation");
 

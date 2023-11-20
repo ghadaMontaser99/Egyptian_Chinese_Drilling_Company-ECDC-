@@ -35,6 +35,7 @@ namespace TempProject.Controllers
 				EmpCodeDTO.PositionId = EmpCode.PositionId;
 				EmpCodeDTO.Name = EmpCode.Name;
 				EmpCodeDTO.IsDeleted = EmpCode.IsDeleted;
+				EmpCodeDTO.RigId = EmpCode.RigId;
 
 				newTemp.Add(EmpCodeDTO);
 			}
@@ -103,6 +104,7 @@ namespace TempProject.Controllers
 				EmpCodeDTO.PositionId = EmpCode.PositionId;
 				EmpCodeDTO.Name = EmpCode.Name;
 				EmpCodeDTO.IsDeleted = EmpCode.IsDeleted;
+				EmpCodeDTO.RigId = EmpCode.RigId;
 
 				newTemp.Add(EmpCodeDTO);
 			}
@@ -164,6 +166,7 @@ namespace TempProject.Controllers
 				EmpCodeDTO.Name = EmpCodeNumber.Name;
 				EmpCodeDTO.PositionId = EmpCodeNumber.PositionId;
 				EmpCodeDTO.IsDeleted = EmpCodeNumber.IsDeleted;
+				EmpCodeDTO.RigId = EmpCodeNumber.RigId;
 
 				result.Data = EmpCodeDTO;
 				result.Message = "Success";
@@ -193,6 +196,7 @@ namespace TempProject.Controllers
 					orgEmpCode.PositionId = newEmpCodeDTO.PositionId;
 					orgEmpCode.Name = newEmpCodeDTO.Name;
 					orgEmpCode.IsDeleted = newEmpCodeDTO.IsDeleted;
+					orgEmpCode.RigId = newEmpCodeDTO.RigId;
 
 
 					EmpCodeRepo.update(orgEmpCode);
@@ -224,6 +228,7 @@ namespace TempProject.Controllers
 				EmpCodeDTO.PositionId = EmpCode.PositionId;
 				EmpCodeDTO.Name = EmpCode.Name;
 				EmpCodeDTO.IsDeleted = EmpCode.IsDeleted;
+				EmpCodeDTO.RigId = EmpCode.RigId;
 
 				result.Message = "Success";
 				result.Data = EmpCodeDTO;
@@ -253,6 +258,7 @@ namespace TempProject.Controllers
 					EmpCode.PositionId = EmpCodeDTO.PositionId;
 					EmpCode.Name = EmpCodeDTO.Name;
 					EmpCode.IsDeleted = EmpCodeDTO.IsDeleted;
+					EmpCode.RigId = EmpCodeDTO.RigId;
 
 					EmpCodeRepo.create(EmpCode);
 					result.Data = EmpCodeDTO;

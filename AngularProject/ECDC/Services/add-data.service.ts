@@ -4,10 +4,15 @@ import { Observable } from 'rxjs';
 import { IAccidentCauses } from 'SharedClasses/IAccidentCauses';
 import { IClassification } from 'SharedClasses/IClassification';
 import { IClassificationOfAccident } from 'SharedClasses/IClassificationOfAccident';
+import { IClient } from 'SharedClasses/IClient';
 import { IComminucationMethod } from 'SharedClasses/IComminucationMethod';
+import { ICrew } from 'SharedClasses/ICrew';
+import { IDaysSinceNoFatality } from 'SharedClasses/IDaysSinceNoFatality';
+import { IDaysSinceNoLTI } from 'SharedClasses/IDaysSinceNoLTI';
 import { IDrillType } from 'SharedClasses/IDrillType';
 import { IDriver } from 'SharedClasses/IDriver';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
+import { ILeadershipVisits } from 'SharedClasses/ILeadershipVisits';
 import { IPassenger } from 'SharedClasses/IPassenger';
 import { IPosition } from 'SharedClasses/IPosition';
 import { IPreventionCategory } from 'SharedClasses/IPreventionCategory';
@@ -121,6 +126,21 @@ export class AddDataService {
   }
   AddResponsibility(Responsibility:IResponsibility):Observable<IResponsibility> {
     return this.http.post<IResponsibility>(`http://localhost:5000/api/Responsibility`,Responsibility);
+  }
+  AddClient(Client:IClient):Observable<IClient> {
+    return this.http.post<IClient>(`http://localhost:5000/api/Client`,Client);
+  }
+  AddLeadershipVisits(LeadershipVisits:ILeadershipVisits):Observable<ILeadershipVisits> {
+    return this.http.post<ILeadershipVisits>(`http://localhost:5000/api/LeadershipVisit`,LeadershipVisits);
+  }
+  AddCrew(Crew:ICrew):Observable<ICrew> {
+    return this.http.post<ICrew>(`http://localhost:5000/api/Crew`,Crew);
+  }
+  AddDaysSinceNoLTI(DaysSinceNoLTI:IDaysSinceNoLTI):Observable<IDaysSinceNoLTI> {
+    return this.http.post<IDaysSinceNoLTI>(`http://localhost:5000/api/DaysSinceNoLTI`,DaysSinceNoLTI);
+  }
+  AddDaysSinceNoFatality(DaysSinceNoFatality:IDaysSinceNoFatality):Observable<IDaysSinceNoFatality> {
+    return this.http.post<IDaysSinceNoFatality>(`http://localhost:5000/api/DaysSinceNoFatality`,DaysSinceNoFatality);
   }
  
 

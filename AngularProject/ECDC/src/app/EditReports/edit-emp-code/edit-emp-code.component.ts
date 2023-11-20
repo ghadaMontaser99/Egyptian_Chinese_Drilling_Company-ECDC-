@@ -5,6 +5,7 @@ import { DataService } from 'Services/data.service';
 import { EditDataService } from 'Services/edit-data.service';
 import { LoginService } from 'Services/login.service';
 import { IEmpCode } from 'SharedClasses/IEmpCode';
+import { IRig } from 'SharedClasses/IRig';
 
 @Component({
   selector: 'app-edit-emp-code',
@@ -20,7 +21,7 @@ export class EditEmpCodeComponent {
   UserJsonString:any
   UserJsonObj:any
   positonIdList:any;
-
+  rigList:IRig[]=[];
   constructor(private dataService:DataService,private activatedRoute:ActivatedRoute,private loginService:LoginService,private editDataService:EditDataService,private fb: FormBuilder, private router: Router) {
 
   }
@@ -44,7 +45,11 @@ export class EditEmpCodeComponent {
     this.dataService.GetPositions().subscribe({
       next: data => this.positonIdList = data.data,
       error: err => this.ErrorMessage = err
-    })
+    }),
+    this.dataService.GetRig().subscribe({
+      next: data => this.rigList = data.data,
+      error: err => this.ErrorMessage = err
+    }),
     this.EmpCodeForm = this.fb.group(
       {
         id: this.fb.control(
@@ -66,6 +71,12 @@ export class EditEmpCodeComponent {
           ]
         ),
          PositionId: this.fb.control(
+          '',
+          [
+            Validators.required
+          ]
+        ),
+        rigId: this.fb.control(
           '',
           [
             Validators.required
@@ -93,7 +104,9 @@ export class EditEmpCodeComponent {
   get PositionId() {
     return this.EmpCodeForm.get('PositionId');
   }
-
+  get rigId() {
+    return this.EmpCodeForm.get('rigId');
+  }
   submitData() {
     if (this.EmpCodeForm.valid) {
       this.editDataService.EditEmpCode( this.EmpCodeId,this.EmpCodeForm.value).subscribe({

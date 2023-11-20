@@ -149,6 +149,31 @@ import { PotentialHazardChartsComponent } from './Charts_Of_Reports/potential-ha
 import { ChartWithDrillTypeComponent } from './Charts_Of_Reports/chart-with-drill-type/chart-with-drill-type.component';
 import { ChartDrillWitManagerNameComponent } from './Charts_Of_Reports/chart-drill-wit-manager-name/chart-drill-wit-manager-name.component';
 import { DrillsCompareByRigsComponent } from './Charts_Of_Reports/drills-compare-by-rigs/drills-compare-by-rigs.component';
+import { ClientComponent } from './Items_In_SubDashboard/client/client.component';
+import { AddClientComponent } from './Add_Data/add-client/add-client.component';
+import { EditClientComponent } from './EditReports/edit-client/edit-client.component';
+import { LeaderShipVisitComponent } from './Items_In_SubDashboard/leader-ship-visit/leader-ship-visit.component';
+import { AddLeaderShipVisitComponent } from './Add_Data/add-leader-ship-visit/add-leader-ship-visit.component';
+import { EditLeaderShipVisitComponent } from './EditReports/edit-leader-ship-visit/edit-leader-ship-visit.component';
+import { CrewComponent } from './Items_In_SubDashboard/crew/crew.component';
+import { AddCrewComponent } from './Add_Data/add-crew/add-crew.component';
+import { EditCrewComponent } from './EditReports/edit-crew/edit-crew.component';
+import { DaysScienceNoLTIComponent } from './Items_In_SubDashboard/days-science-no-lti/days-science-no-lti.component';
+import { AddDaysScienceNoLTIComponent } from './Add_Data/add-days-science-no-lti/add-days-science-no-lti.component';
+import { EditDaysScienceNoLTIComponent } from './EditReports/edit-days-science-no-lti/edit-days-science-no-lti.component';
+import { DaysSinceNoFatalityComponent } from './Items_In_SubDashboard/days-since-no-fatality/days-since-no-fatality.component';
+import { AddDaysSinceNoFatalityComponent } from './Add_Data/add-days-since-no-fatality/add-days-since-no-fatality.component';
+import { EditDaysSinceNoFatalityComponent } from './EditReports/edit-days-since-no-fatality/edit-days-since-no-fatality.component';
+import { QHSEDailyComponent } from './Report_Data/qhsedaily/qhsedaily.component';
+import { AddQHSEDailyComponent } from './Reports/add-qhsedaily/add-qhsedaily.component';
+import { EditQHSEDailyComponent } from './EditReports/edit-qhsedaily/edit-qhsedaily.component';
+import { PrintQHSEDailyComponent } from './Print_Reports/print-qhsedaily/print-qhsedaily.component';
+import { UserOnlyAuthGardGuard } from './user-only-auth-gard.guard';
+import { UserChartQHSEDailyByMonthComponent } from './Charts_Of_Reports/QHSEDailyCharts/user-chart-qhsedaily-by-month/user-chart-qhsedaily-by-month.component';
+import { UserChartQHSEDailyByYearComponent } from './Charts_Of_Reports/QHSEDailyCharts/user-chart-qhsedaily-by-year/user-chart-qhsedaily-by-year.component';
+import { AdminChartQHSEDailyByYearComponent } from './Charts_Of_Reports/QHSEDailyCharts/admin-chart-qhsedaily-by-year/admin-chart-qhsedaily-by-year.component';
+import { AdminChartQHSEDailyByMonthComponent } from './Charts_Of_Reports/QHSEDailyCharts/admin-chart-qhsedaily-by-month/admin-chart-qhsedaily-by-month.component';
+import { QHSEDailyPrintByIdComponent } from './Print_Reports/qhsedaily-print-by-id/qhsedaily-print-by-id.component';
 
 
 const routes: Routes = [
@@ -292,12 +317,36 @@ const routes: Routes = [
   { path: 'Dashboard/PPE/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditPPEsComponent },
   { path: 'Dashboard/PPE',canActivate: [AllAuthGuardGuard], component: PPEsComponent },
   { path: 'Dashboard/Responsibility/Add' ,canActivate: [AllAuthGuardGuard],component: AddResponsibilityComponent },
-  { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [RadioauthGuard], component: EditResponsibilityComponent },
+  { path: 'Dashboard/Responsibility/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditResponsibilityComponent },
   { path: 'Dashboard/Responsibility',canActivate: [AllAuthGuardGuard], component: ResponsibilityComponent },
   { path: 'PPEReceiving/Add', canActivate: [UserauthGuard],component: AddPPEReceivingComponent },
   { path: 'PPEReceiving/Edit/:id', canActivate: [UserauthGuard],component: EditPPEReceivingComponent },
   { path: 'PPEReceiving',canActivate: [UserauthGuard], component: PPEReceivingTableComponent },
   { path: 'PrintPPEReceiving', canActivate: [UserauthGuard],component: PrintPPEReceivingComponent },
+  { path: 'Dashboard/Client',canActivate: [AllAuthGuardGuard], component: ClientComponent },
+  { path: 'Dashboard/Client/Add' ,canActivate: [AllAuthGuardGuard],component: AddClientComponent },
+  { path: 'Dashboard/Client/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditClientComponent },
+  { path: 'Dashboard/LeadershipVisit',canActivate: [AllAuthGuardGuard], component: LeaderShipVisitComponent },
+  { path: 'Dashboard/LeadershipVisit/Add' ,canActivate: [AllAuthGuardGuard],component: AddLeaderShipVisitComponent },
+  { path: 'Dashboard/LeadershipVisit/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditLeaderShipVisitComponent },
+  { path: 'Dashboard/Crew',canActivate: [AllAuthGuardGuard], component: CrewComponent },
+  { path: 'Dashboard/Crew/Add' ,canActivate: [AllAuthGuardGuard],component: AddCrewComponent },
+  { path: 'Dashboard/Crew/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditCrewComponent },
+  { path: 'Dashboard/DaysSinceNoLTI',canActivate: [AllAuthGuardGuard], component: DaysScienceNoLTIComponent },
+  { path: 'Dashboard/DaysSinceNoLTI/Add' ,canActivate: [AllAuthGuardGuard],component: AddDaysScienceNoLTIComponent },
+  { path: 'Dashboard/DaysSinceNoLTI/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditDaysScienceNoLTIComponent },
+  { path: 'Dashboard/DaysSinceNoFatality',canActivate: [AllAuthGuardGuard], component: DaysSinceNoFatalityComponent },
+  { path: 'Dashboard/DaysSinceNoFatality/Add' ,canActivate: [AllAuthGuardGuard],component: AddDaysSinceNoFatalityComponent },
+  { path: 'Dashboard/DaysSinceNoFatality/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditDaysSinceNoFatalityComponent },
+  { path: 'QHSEDaily',canActivate: [UserauthGuard], component: QHSEDailyComponent },
+  { path: 'QHSEDaily/Add' ,canActivate: [AllAuthGuardGuard],component: AddQHSEDailyComponent },
+  { path: 'QHSEDaily/Edit/:id',canActivate: [AllAuthGuardGuard], component: EditQHSEDailyComponent },
+  { path: 'PrintQHSEDaily',canActivate: [AllAuthGuardGuard], component: PrintQHSEDailyComponent },
+  { path: 'QHSEChartByMonth',canActivate: [UserOnlyAuthGardGuard], component: UserChartQHSEDailyByMonthComponent },
+  { path: 'QHSEChartByYear',canActivate: [UserOnlyAuthGardGuard], component: UserChartQHSEDailyByYearComponent },
+  { path: 'QHSEChartByYearAllRigs',canActivate: [AuthGuard], component: AdminChartQHSEDailyByYearComponent },
+  { path: 'QHSEChartByMonthAllRigs',canActivate: [AuthGuard], component: AdminChartQHSEDailyByMonthComponent },
+  { path: 'QHSEDailyPrintById/:id',canActivate: [UserauthGuard], component: QHSEDailyPrintByIdComponent },
 
 // ------------------DRIILS---------
 

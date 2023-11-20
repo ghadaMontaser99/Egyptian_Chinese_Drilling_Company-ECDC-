@@ -49,7 +49,33 @@ namespace TempProject.Controllers
 
         }
 
-        [HttpGet("{ID:int}")]
+		[HttpGet("ByPage/{page:int}")]
+		public PageResult<CrewDTO> GettAllCrewByPage(int? page, int pagesize = 10)
+		{
+			List<Crew> temp = CrewRepo.getall();
+			List<CrewDTO> newTemp = new List<CrewDTO>();
+			foreach (Crew Crew in temp)
+			{
+				CrewDTO CrewDTO = new CrewDTO();
+				CrewDTO.id = Crew.Id;
+				CrewDTO.CrewName = Crew.CrewName;
+				CrewDTO.IsDeleted = Crew.IsDeleted;
+
+				newTemp.Add(CrewDTO);
+			}
+
+			float countDetails = CrewRepo.getall().Count();
+			var result = new PageResult<CrewDTO>
+			{
+				Count = (int)Math.Ceiling(countDetails / pagesize),
+				PageIndex = page ?? 1,
+				PageSize = pagesize,
+				Items = newTemp.Skip((page - 1 ?? 0) * pagesize).Take(pagesize).ToList()
+			};
+			return result;
+		}
+
+		[HttpGet("{ID:int}")]
         public ActionResult<ResultDTO> GetByID(int ID)
         {
             ResultDTO result = new ResultDTO();
