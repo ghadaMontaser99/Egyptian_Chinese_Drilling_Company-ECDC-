@@ -43,6 +43,11 @@ export class PotentialHazardService {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/PotentialHazard/GetAllForAnalysis/${Year}?UserId=${userId}&UserRole=${userRole}`)
   }
 
+  PrintPotentialHazardByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/PotentialHazard/PrintDataById?ID=${Id}&UserId=${userId}&UserRole=${userRole}`)
+  }
+
+
 
 
 }

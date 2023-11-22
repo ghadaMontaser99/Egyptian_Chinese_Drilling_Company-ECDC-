@@ -35,7 +35,9 @@ export class PPEReceivingService {
     return this.http.get<any>(`http://localhost:5000/api/PPEReceiving/ByPage/${pageNumber}?UserId=${userId}&UserRole=${userRole}`);
     
   }
-
+  PrintPPEReceivingByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/PPEReceiving/PrintDataById/${Id}?UserId=${userId}&UserRole=${userRole}`)
+  }
 
   GetPPEReceivingtByEmpCodeNew(empCode:number,userId:string,userRole:string,date:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/PPEReceiving/GetDataByEmpCode/New/${empCode}?UserId=${userId}&UserRole=${userRole}&date=${date}`);

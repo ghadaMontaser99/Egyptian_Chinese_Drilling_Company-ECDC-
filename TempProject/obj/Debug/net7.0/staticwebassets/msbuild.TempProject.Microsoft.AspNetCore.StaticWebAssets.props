@@ -432,6 +432,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af5439e7-c29a-4d6a-bbee-ff48b861c629WhatsApp Image 2023-10-23 at 10.54.21 AM.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\b4868936-d2bf-4f80-8313-02c91810dee4github-sign.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>AccidentIMG/b4868936-d2bf-4f80-8313-02c91810dee4github-sign.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\b4868936-d2bf-4f80-8313-02c91810dee4github-sign.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\b8901b8c-bdf3-4846-a608-a007c76809c5R.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -1888,6 +1904,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\7742081e-d50c-4b87-874e-9c033c89e60darrival - Copy.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\7a28deea-0162-4b2d-b254-8fefd5b94b2eaccident.ico))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>DrillIMG/7a28deea-0162-4b2d-b254-8fefd5b94b2eaccident.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\7a28deea-0162-4b2d-b254-8fefd5b94b2eaccident.ico))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\7aaeb06f-edcf-4471-94b8-0c9db184f5a9WhatsApp Image 2023-10-22 at 10.06.07_057cf3b8.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -2527,6 +2559,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\3fe2d576-10fc-4b39-a174-6c010b0badd5WhatsApp Image 2023-10-22 at 10.06.07_057cf3b8.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\54732e18-b43e-4de3-9c06-31ba9fd3d27cWhatsApp Image 2023-10-23 at 10.54.21 AM.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>HazardIMG/54732e18-b43e-4de3-9c06-31ba9fd3d27cWhatsApp Image 2023-10-23 at 10.54.21 AM.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\54732e18-b43e-4de3-9c06-31ba9fd3d27cWhatsApp Image 2023-10-23 at 10.54.21 AM.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\7ae39716-908b-4b7f-8f3c-31c95ec6f7c6WhatsApp Image 2023-10-22 at 10.06.07_057cf3b8.jpg))">
       <SourceType>Package</SourceType>

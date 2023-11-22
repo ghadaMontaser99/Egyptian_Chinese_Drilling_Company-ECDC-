@@ -180,6 +180,16 @@ import { AdminChartQHSEDailyByMonthComponent } from './Charts_Of_Reports/QHSEDai
 import { QHSEDailyPrintByIdComponent } from './Print_Reports/qhsedaily-print-by-id/qhsedaily-print-by-id.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { PrintAccidentByIdComponent } from './Print_Reports/print-accident-by-id/print-accident-by-id.component';
+import { PrintStopCardByIdComponent } from './Print_Reports/print-stop-card-by-id/print-stop-card-by-id.component';
+import { PrintSJPByIdComponent } from './Print_Reports/print-sjpby-id/print-sjpby-id.component';
+import { PrintRMPEByIdComponent } from './Print_Reports/print-rmpeby-id/print-rmpeby-id.component';
+import { PrintPOBByIdComponent } from './Print_Reports/print-pobby-id/print-pobby-id.component';
+import { PrintPTSMByIdComponent } from './Print_Reports/print-ptsmby-id/print-ptsmby-id.component';
+import { PrintEmployeeCompetencyEvaluationtByIdComponent } from './Print_Reports/print-employee-competency-evaluationt-by-id/print-employee-competency-evaluationt-by-id.component';
+import { PrintPPEReceivingByIdComponent } from './Print_Reports/print-ppereceiving-by-id/print-ppereceiving-by-id.component';
+import { PrintDrillByIdComponent } from './Print_Reports/print-drill-by-id/print-drill-by-id.component';
+import { PrintPotentialHazardByIdComponent } from './Print_Reports/print-potential-hazard-by-id/print-potential-hazard-by-id.component';
 
 @NgModule({
   declarations: [
@@ -354,7 +364,17 @@ import { DatePipe } from '@angular/common';
     UserChartQHSEDailyByYearComponent,
     AdminChartQHSEDailyByYearComponent,
     AdminChartQHSEDailyByMonthComponent,
-    QHSEDailyPrintByIdComponent
+    QHSEDailyPrintByIdComponent,
+    PrintAccidentByIdComponent,
+    PrintStopCardByIdComponent,
+    PrintSJPByIdComponent,
+    PrintRMPEByIdComponent,
+    PrintPOBByIdComponent,
+    PrintPTSMByIdComponent,
+    PrintEmployeeCompetencyEvaluationtByIdComponent,
+    PrintPPEReceivingByIdComponent,
+    PrintDrillByIdComponent,
+    PrintPotentialHazardByIdComponent
   ],
   imports: [
     BrowserModule,

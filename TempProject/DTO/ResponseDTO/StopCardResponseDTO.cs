@@ -14,11 +14,14 @@ namespace TempProject.DTO.ResponseDTO
         public string Classification { get; set; }
 
         public string Description { get; set; }
-        [ForeignKey("ReportedByPosition")]
+        public int EmployeeCode { get; set; }
         public string ReportedByPosition { get; set; }
-
-        [ForeignKey("ReportedByName")]
         public string ReportedByName { get; set; }
+        //[ForeignKey("ReportedByPosition")]
+        //public string ReportedByPosition { get; set; }
+
+        //[ForeignKey("ReportedByName")]
+        //public string ReportedByName { get; set; }
 
         public string ActionRequired { get; set; }
 

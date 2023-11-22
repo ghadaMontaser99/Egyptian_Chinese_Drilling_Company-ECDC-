@@ -36,9 +36,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -67,9 +68,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -115,9 +117,9 @@ namespace TempProject.Controllers
                     {
                         StopCardExcelDTO StopCardRegisterDTO = new StopCardExcelDTO();
                         StopCardRegisterDTO.Id = StopCardRegister.Id;
-                        StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-                        StopCardRegisterDTO.ReportedByCode = StopCardRegister.EmpCode;
-                        StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
+                        StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
                         StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
                         StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
                         StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
@@ -147,9 +149,9 @@ namespace TempProject.Controllers
 					{
 						StopCardExcelDTO StopCardRegisterDTO = new StopCardExcelDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByCode = StopCardRegister.EmpCode;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.EmployeeCode= StopCardRegister.EmployeeCode;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
 						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
@@ -242,8 +244,9 @@ namespace TempProject.Controllers
                     {
                         StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
                         StopCardRegisterDTO.Id = StopCardRegister.Id;
-                        StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-                        StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
+                        StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
                         StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
                         StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
                         StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
@@ -275,9 +278,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -332,9 +336,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO stopCardRegisterDTO = new StopCardResponseDTO();
 						stopCardRegisterDTO.Id = stopCardRegister.Id;
-						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName.Name;
-						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition.Name;
-						stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
+						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName;
+						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition;
+                        stopCardRegisterDTO.EmployeeCode = stopCardRegister.EmployeeCode;
+                        stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
 						stopCardRegisterDTO.TypeOfObservationCategory = stopCardRegister.TypeOfObservationCategory.Name;
 						stopCardRegisterDTO.ActionRequired = stopCardRegister.ActionRequired;
 						stopCardRegisterDTO.Date = stopCardRegister.Date;
@@ -369,9 +374,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO stopCardRegisterDTO = new StopCardResponseDTO();
 						stopCardRegisterDTO.Id = stopCardRegister.Id;
-						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName.Name;
-						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition.Name;
-						stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
+						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName;
+						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition;
+                        stopCardRegisterDTO.EmployeeCode = stopCardRegister.EmployeeCode;
+                        stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
 						stopCardRegisterDTO.TypeOfObservationCategory = stopCardRegister.TypeOfObservationCategory.Name;
 						stopCardRegisterDTO.ActionRequired = stopCardRegister.ActionRequired;
 						stopCardRegisterDTO.Date = stopCardRegister.Date;
@@ -425,9 +431,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO stopCardRegisterDTO = new StopCardResponseDTO();
 						stopCardRegisterDTO.Id = stopCardRegister.Id;
-						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName.Name;
-						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition.Name;
-						stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
+						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName;
+						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition;
+                        stopCardRegisterDTO.EmployeeCode = stopCardRegister.EmployeeCode;
+                        stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
 						stopCardRegisterDTO.TypeOfObservationCategory = stopCardRegister.TypeOfObservationCategory.Name;
 						stopCardRegisterDTO.ActionRequired = stopCardRegister.ActionRequired;
 						stopCardRegisterDTO.Date = stopCardRegister.Date;
@@ -462,9 +469,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO stopCardRegisterDTO = new StopCardResponseDTO();
 						stopCardRegisterDTO.Id = stopCardRegister.Id;
-						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName.Name;
-						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition.Name;
-						stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
+						stopCardRegisterDTO.ReportedByName = stopCardRegister.ReportedByName;
+						stopCardRegisterDTO.ReportedByPosition = stopCardRegister.ReportedByPosition;
+                        stopCardRegisterDTO.EmployeeCode = stopCardRegister.EmployeeCode;
+                        stopCardRegisterDTO.Classification = stopCardRegister.Classification.Name;
 						stopCardRegisterDTO.TypeOfObservationCategory = stopCardRegister.TypeOfObservationCategory.Name;
 						stopCardRegisterDTO.ActionRequired = stopCardRegister.ActionRequired;
 						stopCardRegisterDTO.Date = stopCardRegister.Date;
@@ -515,9 +523,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = temp.Id;
-						StopCardRegisterDTO.ReportedByName = temp.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = temp.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = temp.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = temp.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = temp.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = temp.EmployeeCode;
+                        StopCardRegisterDTO.Classification = temp.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = temp.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = temp.ActionRequired;
 						StopCardRegisterDTO.Date = temp.Date;
@@ -543,9 +552,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = temp.Id;
-						StopCardRegisterDTO.ReportedByName = temp.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = temp.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = temp.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = temp.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = temp.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = temp.EmployeeCode;
+                        StopCardRegisterDTO.Classification = temp.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = temp.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = temp.ActionRequired;
 						StopCardRegisterDTO.Date = temp.Date;
@@ -589,9 +599,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -615,9 +626,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -658,9 +670,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -684,9 +697,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -727,9 +741,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -753,9 +768,10 @@ namespace TempProject.Controllers
 					{
 						StopCardResponseDTO StopCardRegisterDTO = new StopCardResponseDTO();
 						StopCardRegisterDTO.Id = StopCardRegister.Id;
-						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName.Name;
-						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition.Name;
-						StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+                        StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+                        StopCardRegisterDTO.Classification = StopCardRegister.Classification.Name;
 						StopCardRegisterDTO.TypeOfObservationCategory = StopCardRegister.TypeOfObservationCategory.Name;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
@@ -799,9 +815,9 @@ namespace TempProject.Controllers
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
 						StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 						StopCardRegisterDTO.Description = StopCardRegister.Description;
-						StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-						StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-						StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+						StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 						StopCardRegisterDTO.Status = StopCardRegister.Status;
@@ -830,9 +846,9 @@ namespace TempProject.Controllers
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
 						StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 						StopCardRegisterDTO.Description = StopCardRegister.Description;
-						StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-						StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-						StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+						StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 						StopCardRegisterDTO.Status = StopCardRegister.Status;
@@ -876,9 +892,9 @@ namespace TempProject.Controllers
 					StopCardRegisterDTO.Date = StopCardRegister.Date;
 					StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 					StopCardRegisterDTO.Description = StopCardRegister.Description;
-					StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-					StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-					StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+					StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+					StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+					StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 					StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 					StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 					StopCardRegisterDTO.Status = StopCardRegister.Status;
@@ -898,9 +914,9 @@ namespace TempProject.Controllers
 					StopCardRegisterDTO.Date = StopCardRegister.Date;
 					StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 					StopCardRegisterDTO.Description = StopCardRegister.Description;
-					StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-					StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-					StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+					StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+					StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+					StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 					StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 					StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 					StopCardRegisterDTO.Status = StopCardRegister.Status;
@@ -936,9 +952,9 @@ namespace TempProject.Controllers
                     orgStopCard.Date = newStopCard.Date;
                     orgStopCard.ClassificationID = newStopCard.ClassificationID;
                     orgStopCard.Description = newStopCard.Description;
-					orgStopCard.EmpCode = newStopCard.EmpCode;
-					orgStopCard.ReportedByPositionID = newStopCard.ReportedByPositionID;
-					orgStopCard.ReportedByNameID = newStopCard.ReportedByNameID;
+					orgStopCard.EmployeeCode = newStopCard.EmployeeCode;
+					orgStopCard.ReportedByPosition = newStopCard.ReportedByPosition;
+					orgStopCard.ReportedByName = newStopCard.ReportedByName;
                     orgStopCard.ActionRequired = newStopCard.ActionRequired;
                     orgStopCard.TypeOfObservationCategoryID = newStopCard.TypeOfObservationCategoryID;
                     orgStopCard.Status = newStopCard.Status;
@@ -976,9 +992,9 @@ namespace TempProject.Controllers
                     StopCardRegister.Date = StopCardRegisterDTO.Date;
                     StopCardRegister.ClassificationID = StopCardRegisterDTO.ClassificationID;
                     StopCardRegister.Description = StopCardRegisterDTO.Description;
-					StopCardRegister.EmpCode = StopCardRegisterDTO.EmpCode;
-					StopCardRegister.ReportedByPositionID = StopCardRegisterDTO.ReportedByPositionID;
-					StopCardRegister.ReportedByNameID = StopCardRegisterDTO.ReportedByNameID;
+					StopCardRegister.EmployeeCode = StopCardRegisterDTO.EmployeeCode;
+					StopCardRegister.ReportedByPosition = StopCardRegisterDTO.ReportedByPosition;
+					StopCardRegister.ReportedByName = StopCardRegisterDTO.ReportedByName;
                     StopCardRegister.ActionRequired = StopCardRegisterDTO.ActionRequired;
                     StopCardRegister.TypeOfObservationCategoryID = StopCardRegisterDTO.TypeOfObservationCategoryID;
                     StopCardRegister.Status = StopCardRegisterDTO.Status;
@@ -1017,9 +1033,9 @@ namespace TempProject.Controllers
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
 						StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 						StopCardRegisterDTO.Description = StopCardRegister.Description;
-						StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-						StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-						StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+						StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 						StopCardRegisterDTO.Status = StopCardRegister.Status;
@@ -1043,9 +1059,9 @@ namespace TempProject.Controllers
 						StopCardRegisterDTO.Date = StopCardRegister.Date;
 						StopCardRegisterDTO.ClassificationID = StopCardRegister.ClassificationID;
 						StopCardRegisterDTO.Description = StopCardRegister.Description;
-						StopCardRegisterDTO.EmpCode = StopCardRegister.EmpCode;
-						StopCardRegisterDTO.ReportedByPositionID = StopCardRegister.ReportedByPositionID;
-						StopCardRegisterDTO.ReportedByNameID = StopCardRegister.ReportedByNameID;
+						StopCardRegisterDTO.EmployeeCode = StopCardRegister.EmployeeCode;
+						StopCardRegisterDTO.ReportedByPosition = StopCardRegister.ReportedByPosition;
+						StopCardRegisterDTO.ReportedByName = StopCardRegister.ReportedByName;
 						StopCardRegisterDTO.ActionRequired = StopCardRegister.ActionRequired;
 						StopCardRegisterDTO.TypeOfObservationCategoryID = StopCardRegister.TypeOfObservationCategoryID;
 						StopCardRegisterDTO.Status = StopCardRegister.Status;

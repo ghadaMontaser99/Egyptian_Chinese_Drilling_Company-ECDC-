@@ -15,7 +15,7 @@ export class  stopcardservice{
   AddStopCardRegister(stopCard: IStopCardRegister): Observable<IStopCardRegister> {
     return this.http.post<IStopCardRegister>(`http://localhost:5000/api/StopCardRegister`, stopCard);
   }
-/////////
+
   GetStopCard(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetDataForExcel?UserId=${userId}&UserRole=${userRole}`);
   }
@@ -29,16 +29,19 @@ export class  stopcardservice{
   }
 
   GetStopCardById(id: number,userId:string,userRole:string): Observable<IAPIResult> {
+    
     return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/Edit/${id}?UserId=${userId}&UserRole=${userRole}`);
   }
 
-  // SearchStopCardById(id:number):Observable<IStopCardRegister>
-  // {
-  //   return this.http.get<IStopCardRegister>(`http://localhost:5000/api/StopCardRegister/GetDataById/${id}`);
-  // }
-
+  
   GetDataByClassification(classification:string,userId:string,userRole:string):Observable<IAPIResult>{
     return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetDataByClassification?classification=${classification}&UserId=${userId}&UserRole=${userRole}`);
   }
+
+ PrintStopCardById(id: number,userId:string,userRole:string): Observable<IAPIResult> {
+
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/StopCardRegister/GetDataById/${id}?UserId=${userId}&UserRole=${userRole}`);
+  }
+
 
 }

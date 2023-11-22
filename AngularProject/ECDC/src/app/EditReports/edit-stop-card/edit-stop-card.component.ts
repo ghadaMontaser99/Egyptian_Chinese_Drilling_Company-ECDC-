@@ -26,12 +26,13 @@ export class EditStopCardComponent {
   reportedByPositionList: IReportedByPosition[] = []
   reportedByNameList: IReportedByName[] = []
   typeOfObservationCategoryList: ITypeOfObservationCategory[] = []
-
-  ReportedByCodeList: any;
-  ReportedBy_NameID: number = 0;
-  ReportedBy_Name: string = '';
-  ReportedByPositionID: number = 0;
-  ReportedBy_Position: string = '';
+  QHSECodeList: any;
+ 
+  EmployeeCode: any;
+  Employee_PositionID: number = 0;
+  Employee_Position: string = '';
+  Employee_Name: string = '';
+  Employee_NameId: number = 0;
 
   User:any;
 
@@ -44,6 +45,8 @@ export class EditStopCardComponent {
 
   ngOnInit(): void {
     this.User=this.loginService.currentUser.getValue();
+    this.UserJsonString=JSON.stringify(this.loginService.currentUser.getValue())
+    this.UserJsonObj=JSON.parse(this.UserJsonString);
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.stopCardId = params.get("id");
       console.log(this.stopCardId)
@@ -51,51 +54,29 @@ export class EditStopCardComponent {
     this.StopCardService.GetStopCardById(this.stopCardId,this.User.ID,this.User.Role).subscribe({
       next: data => {
         this.stopCard = data.data,
+        this.EmployeeCode=data.data.employeeCode
+        this.Employee_Name=data.data.reportedByName 
+        this.Employee_Position=data.data.reportedByPosition
         console.log('*************************************************************')
         console.log(this.stopCard)
         console.log('###################################################')
-        this.dataService.GetReportedByNameByEmpCode(this.stopCard.empCode).subscribe({
-          next:data=>{
-            this.ReportedBy_NameID=data.data.id
-            this.ReportedBy_Name=data.data.name,
-            this.ReportedByPositionID=data.data.positionId
-            console.log("this.ReportedBy_Name")
-            console.log(this.ReportedBy_Name)
-            console.log("this.ReportedBy_PositionID")
-            console.log(this.ReportedByPositionID)
-            this.dataService.GetReportedByPositionByID(this.ReportedByPositionID).subscribe({
-              next:data=>{
-                this.ReportedBy_Position=data.data.name,
-                console.log("this.ReportedBy_Position")
-                console.log(this.ReportedBy_Position)
-              },
-              error:err=>{
-                this.ErrorMessage=err,
-                console.log(err)
-              }
-            })
-          },
-          error:err=>{
-            this.ErrorMessage=err,
-            console.log(err)
-          }
-        })
+       
       },
       error: (erorr: string) => this.ErrorMessage = erorr
     }),
-    this.UserJsonString=JSON.stringify(this.loginService.currentUser.getValue())
-    this.UserJsonObj=JSON.parse(this.UserJsonString);
-    this.dataService.GetReportedByName().subscribe({
+    this.dataService.GetEmpCode().subscribe({
       next: data => {
-        this.ReportedByCodeList = data.data,
-          console.log("this.ReportedByCodeList")
-        console.log(this.ReportedByCodeList)
+        this.QHSECodeList = data.data,
+          console.log("this.QHSECodeList")
+        console.log(this.QHSECodeList)
       },
       error: err => {
         this.ErrorMessage = err,
-          console.log(err)
+          console.log("this.ErrorMessage")
+        console.log(this.ErrorMessage)
       }
-    })
+    }),
+  
     this.StopCardForm = this.fb.group(
       {
         id: this.fb.control(
@@ -122,19 +103,19 @@ export class EditStopCardComponent {
             Validators.required
           ]
         ),
-        empCode: this.fb.control(
+        employeeCode: this.fb.control(
           '',
           [
             Validators.required
           ]
         ),
-        reportedByPositionID: this.fb.control(
+        reportedByPosition: this.fb.control(
           '',
           [
             Validators.required
           ]
         ),
-        reportedByNameID: this.fb.control(
+        reportedByName: this.fb.control(
           '',
           [
             Validators.required
@@ -180,33 +161,31 @@ export class EditStopCardComponent {
         next: data => this.classificationList = data.data,
         error: err => this.ErrorMessage = err
       }),
-      this.dataService.GetReportedByPosition().subscribe({
-        next: data => this.reportedByPositionList = data.data,
-        error: err => this.ErrorMessage = err
-      }),
+    
       this.dataService.GetTypeOfObservationCategory().subscribe({
         next: data => this.typeOfObservationCategoryList = data.data,
         error: err => this.ErrorMessage = err
       })
   }
 
-  selectedMenace(event: any) {
+  SelectedEmployeeCode(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
-    this.dataService.GetReportedByNameByEmpCode(event.target.value).subscribe({
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
       next:data=>{
-        this.ReportedBy_NameID=data.data.id
-        this.ReportedBy_Name=data.data.name,
-        this.ReportedByPositionID=data.data.positionId
-        console.log("this.ReportedBy_Name")
-        console.log(this.ReportedBy_Name)
+        this.Employee_NameId=data.data.id
+        this.Employee_Name=data.data.name,
+        this.Employee_PositionID=data.data.positionId
+        console.log("this.Employee_Name")
+        console.log(this.Employee_Name)
         console.log("this.ReportedBy_PositionID")
-        console.log(this.ReportedByPositionID)
-        this.dataService.GetReportedByPositionByID(this.ReportedByPositionID).subscribe({
+        console.log(this.Employee_PositionID)
+        console.log("**********************************************")
+        this.dataService.GetPositionByID(this.Employee_PositionID).subscribe({
           next:data=>{
-            this.ReportedBy_Position=data.data.name,
-            console.log("this.ReportedBy_Position")
-            console.log(this.ReportedBy_Position)
+            this. Employee_Position=data.data.name,
+            console.log("this. Employee_Position")
+            console.log(this. Employee_Position)
           },
           error:err=>{
             this.ErrorMessage=err,
@@ -234,14 +213,14 @@ export class EditStopCardComponent {
   get description() {
     return this.StopCardForm.get('description');
   }
-  get empCode() {
-    return this.StopCardForm.get('empCode');
+  get employeeCode() {
+    return this.StopCardForm.get('employeeCode');
   }
-  get reportedByPositionID() {
-    return this.StopCardForm.get('reportedByPositionID');
+  get reportedByPosition() {
+    return this.StopCardForm.get('reportedByPosition');
   }
-  get reportedByNameID() {
-    return this.StopCardForm.get('reportedByNameID');
+  get reportedByName() {
+    return this.StopCardForm.get('reportedByName');
   }
   get actionRequired() {
     return this.StopCardForm.get('actionRequired');
@@ -259,15 +238,7 @@ export class EditStopCardComponent {
     return this.StopCardForm.get('userID');
   }
 
-  // DateSelected(event: any) {
-  //   console.log(event.target.value)
-  //   this.PositionID=event.target.value
-  //   this.dataService.GetReportedByNameByPositionId(this.PositionID).subscribe({
-  //     next: data => this.reportedByNameList = data.data,
-  //     error: err => this.ErrorMessage = err
-  //   })
-  // }
-
+  
 
   verifecationStateSelected(event: any) {
     var boolValue = JSON.parse(event.target.value);

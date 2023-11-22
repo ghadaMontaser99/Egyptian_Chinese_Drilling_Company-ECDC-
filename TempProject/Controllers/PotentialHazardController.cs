@@ -626,11 +626,102 @@ namespace TempProject.Controllers
 
 		}
 
-		
 
 
-		
-		[HttpPost]
+
+        [HttpGet("PrintDataById")]
+        public ActionResult<ResultDTO> PrintDataById(int ID,string UserId, string UserRole)
+        {
+            ResultDTO result = new ResultDTO();
+
+            try
+            {
+                if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<PotentialHazardResponseDTO> PotentialHazardDTOs = new List<PotentialHazardResponseDTO>();
+                    PotentialHazard potentialHazard = PotentialHazardRepoistory.getall().FirstOrDefault(a =>   a.Status == "Open" && a.Id == ID);
+                  
+                        PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
+                        potentialHazardDTO.Id = potentialHazard.Id;
+                        potentialHazardDTO.RigId = potentialHazard.Rig.Number;
+                        potentialHazardDTO.Date = potentialHazard.Date;
+                        potentialHazardDTO.PO_No = potentialHazard.PO_No;
+                        potentialHazardDTO.PR_No = potentialHazard.PR_No;
+                        potentialHazardDTO.ResponibilityName = potentialHazard.Responsibility.Name;
+                        potentialHazardDTO.PR_IssueDate = potentialHazard.PR_IssueDate;
+                        potentialHazardDTO.Description = potentialHazard.Description;
+                        potentialHazardDTO.NeededAction = potentialHazard.NeededAction;
+                        potentialHazardDTO.Title = potentialHazard.Title;
+                        potentialHazardDTO.Status = potentialHazard.Status;
+
+                        potentialHazardDTO.userID = potentialHazard.user.Id;
+                        List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == potentialHazard.Id).ToList();
+                        foreach (var item in hazardImages)
+                        {
+                            string FileName = item.FileName;
+                            potentialHazardDTO.Images.Add(FileName);
+
+                        }
+                        //potentialHazardDTO.Images = potentialHazard.Images;
+
+                        PotentialHazardDTOs.Add(potentialHazardDTO);
+                        //result.Data = prod;
+                    
+                    result.Message = "Success";
+                    result.Data = PotentialHazardDTOs;
+                    result.Statescode = 200;
+                    return result;
+                }
+                else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
+                {
+                    List<PotentialHazardResponseDTO> PotentialHazardDTOs = new List<PotentialHazardResponseDTO>();
+                    PotentialHazard potentialHazard = PotentialHazardRepoistory.getall().FirstOrDefault(a => a.Id == ID && a.Status == "Open" && a.user.Id == UserId);
+                    
+                        PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
+                        potentialHazardDTO.Id = potentialHazard.Id;
+                        potentialHazardDTO.RigId = potentialHazard.Rig.Number;
+                        potentialHazardDTO.Date = potentialHazard.Date;
+                        potentialHazardDTO.PO_No = potentialHazard.PO_No;
+                        potentialHazardDTO.PR_No = potentialHazard.PR_No;
+                        potentialHazardDTO.ResponibilityName = potentialHazard.Responsibility.Name;
+                        potentialHazardDTO.PR_IssueDate = potentialHazard.PR_IssueDate;
+                        potentialHazardDTO.Description = potentialHazard.Description;
+                        potentialHazardDTO.NeededAction = potentialHazard.NeededAction;
+                        potentialHazardDTO.Title = potentialHazard.Title;
+                        potentialHazardDTO.Status = potentialHazard.Status;
+
+                        potentialHazardDTO.userID = potentialHazard.user.Id;
+                        List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == potentialHazard.Id).ToList();
+                        foreach (var item in hazardImages)
+                        {
+                            string FileName = item.FileName;
+                            potentialHazardDTO.Images.Add(FileName);
+
+                        }
+                        //potentialHazardDTO.Images = potentialHazard.Images;
+
+                        PotentialHazardDTOs.Add(potentialHazardDTO);
+                        //result.Data = prod;
+                    
+                    result.Message = "Success";
+                    result.Data = PotentialHazardDTOs;
+                    result.Statescode = 200;
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Statescode = 404;
+                result.Message = "data not found";
+            }
+
+            return result;
+
+        }
+
+
+        [HttpPost]
         public ActionResult<ResultDTO> AddPotentialHazard([FromForm] PotentialHazardDTO potentialHazard)
         {
             ResultDTO result = new ResultDTO();

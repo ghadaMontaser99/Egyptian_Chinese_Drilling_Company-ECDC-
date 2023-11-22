@@ -10,8 +10,8 @@ namespace TempProject.Models
         
 		[DefaultValue(false)]
         public bool IsDeleted { get; set; }
-        public virtual List<StopCardRegister> StopCardRegisters { get; set; }
-		public virtual List<ReportedByName> ReportedByNames { get; set; }
+  //      public virtual List<StopCardRegister> StopCardRegisters { get; set; }
+		//public virtual List<ReportedByName> ReportedByNames { get; set; }
 
 	}
 }

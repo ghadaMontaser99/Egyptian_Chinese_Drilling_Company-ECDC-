@@ -14,14 +14,16 @@ namespace TempProject.DTO.ResponseDTO
         public string Classification { get; set; }
 
         public string Description { get; set; }
-
+        public int EmployeeCode { get; set; }
         public string ReportedByPosition { get; set; }
+        public string ReportedByName { get; set; }
+        //      public string ReportedByPosition { get; set; }
 
 
-		public string ReportedByName { get; set; }
-		public int ReportedByCode { get; set; }
+        //public string ReportedByName { get; set; }
+        //public int ReportedByCode { get; set; }
 
-		public string ActionRequired { get; set; }
+        public string ActionRequired { get; set; }
 
         [ForeignKey("TypeOfObservationCategory")]
         public string TypeOfObservationCategory { get; set; }

@@ -265,6 +265,21 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ReportedByNames",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmpCode = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReportedByNames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ReportedByPositions",
                 columns: table => new
                 {
@@ -497,28 +512,6 @@ namespace TempProject.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReportedByNames",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmpCode = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReportedByNames", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ReportedByNames_ReportedByPositions_PositionId",
-                        column: x => x.PositionId,
-                        principalTable: "ReportedByPositions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -855,6 +848,48 @@ namespace TempProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StopCardRegisters",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    ClassificationID = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeCode = table.Column<int>(type: "int", nullable: false),
+                    ReportedByPosition = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReportedByName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActionRequired = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TypeOfObservationCategoryID = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StopWorkAuthorityApplied = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StopCardRegisters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StopCardRegisters_AspNetUsers_userID",
+                        column: x => x.userID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_StopCardRegisters_Classifications_ClassificationID",
+                        column: x => x.ClassificationID,
+                        principalTable: "Classifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_StopCardRegisters_TypeOfObservationCategorys_TypeOfObservationCategoryID",
+                        column: x => x.TypeOfObservationCategoryID,
+                        principalTable: "TypeOfObservationCategorys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "JMPs",
                 columns: table => new
                 {
@@ -1003,60 +1038,6 @@ namespace TempProject.Migrations
                         name: "FK_Accidents_ViolationCategorys_ViolationCategoryId",
                         column: x => x.ViolationCategoryId,
                         principalTable: "ViolationCategorys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StopCardRegisters",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClassificationID = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmpCode = table.Column<int>(type: "int", nullable: false),
-                    ReportedByPositionID = table.Column<int>(type: "int", nullable: false),
-                    ReportedByNameID = table.Column<int>(type: "int", nullable: false),
-                    ActionRequired = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeOfObservationCategoryID = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StopWorkAuthorityApplied = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    userID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StopCardRegisters", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StopCardRegisters_AspNetUsers_userID",
-                        column: x => x.userID,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_StopCardRegisters_Classifications_ClassificationID",
-                        column: x => x.ClassificationID,
-                        principalTable: "Classifications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_StopCardRegisters_ReportedByNames_ReportedByNameID",
-                        column: x => x.ReportedByNameID,
-                        principalTable: "ReportedByNames",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_StopCardRegisters_ReportedByPositions_ReportedByPositionID",
-                        column: x => x.ReportedByPositionID,
-                        principalTable: "ReportedByPositions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_StopCardRegisters_TypeOfObservationCategorys_TypeOfObservationCategoryID",
-                        column: x => x.TypeOfObservationCategoryID,
-                        principalTable: "TypeOfObservationCategorys",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -1708,11 +1689,6 @@ namespace TempProject.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReportedByNames_PositionId",
-                table: "ReportedByNames",
-                column: "PositionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RigMovePerformances_RigId",
                 table: "RigMovePerformances",
                 column: "RigId");
@@ -1726,16 +1702,6 @@ namespace TempProject.Migrations
                 name: "IX_StopCardRegisters_ClassificationID",
                 table: "StopCardRegisters",
                 column: "ClassificationID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StopCardRegisters_ReportedByNameID",
-                table: "StopCardRegisters",
-                column: "ReportedByNameID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StopCardRegisters_ReportedByPositionID",
-                table: "StopCardRegisters",
-                column: "ReportedByPositionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StopCardRegisters_TypeOfObservationCategoryID",
@@ -1818,6 +1784,12 @@ namespace TempProject.Migrations
                 name: "RecordableAccidents");
 
             migrationBuilder.DropTable(
+                name: "ReportedByNames");
+
+            migrationBuilder.DropTable(
+                name: "ReportedByPositions");
+
+            migrationBuilder.DropTable(
                 name: "StopCardRegisters");
 
             migrationBuilder.DropTable(
@@ -1869,9 +1841,6 @@ namespace TempProject.Migrations
                 name: "Classifications");
 
             migrationBuilder.DropTable(
-                name: "ReportedByNames");
-
-            migrationBuilder.DropTable(
                 name: "TypeOfObservationCategorys");
 
             migrationBuilder.DropTable(
@@ -1915,9 +1884,6 @@ namespace TempProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "ReportedByPositions");
 
             migrationBuilder.DropTable(
                 name: "Rigs");

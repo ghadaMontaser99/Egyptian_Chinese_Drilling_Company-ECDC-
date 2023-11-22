@@ -26,33 +26,47 @@ export class StopcardComponent {
   UserJsonString: any
   UserJsonObj: any
 
-  ReportedByCodeList: any;
-  ReportedBy_NameID: number = 0;
-  ReportedBy_Name: string = '';
-  ReportedByPositionID: number = 0;
-  ReportedBy_Position: string = '';
+  QHSECodeList: any;
 
-  User:any;
+  EmployeeCodeList: any;
+  Employee_PositionID: number = 0;
+  Employee_Position: string = '';
+  Employee_Name: string = '';
+  Employee_NameId: number = 0;
+
+  User: any;
 
   constructor(private loginService: LoginService, private dataService: DataService, private StopCardService: stopcardservice, private fb: FormBuilder, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.User=this.loginService.currentUser.getValue();
-    this.dataService.GetReportedByName().subscribe({
-      next: data => {
-        this.ReportedByCodeList = data.data,
-          console.log("this.ReportedByCodeList")
-        console.log(this.ReportedByCodeList)
-      },
-      error: err => {
-        this.ErrorMessage = err,
-          console.log(err)
-      }
-    })
+    this.User = this.loginService.currentUser.getValue();
     this.UserJsonString = JSON.stringify(this.loginService.currentUser.getValue())
     this.UserJsonObj = JSON.parse(this.UserJsonString);
+    this.dataService.GetEmpCode().subscribe({
+      next: data => {
+        this.QHSECodeList = data.data; // Ensure the structure of data matches expectations
+        console.log('QHSECodeList:', this.QHSECodeList); // Check if data is received
+      },
+      error: err => {
+        this.ErrorMessage = err;
+        console.log('Error fetching QHSE codes:', err);
+      }
+    });
+
+    this.StopCardService.GetStopCard(this.User.ID, this.User.Role).subscribe({
+      next: data => this.json_data = data.data,
+      error: err => this.ErrorMessage = err
+    }),
+      this.dataService.GetClassification().subscribe({
+        next: data => this.classificationList = data.data,
+        error: err => this.ErrorMessage = err
+      }),
+      this.dataService.GetTypeOfObservationCategory().subscribe({
+        next: data => this.typeOfObservationCategoryList = data.data,
+        error: err => this.ErrorMessage = err
+      })
     this.StopCardForm = this.fb.group(
       {
         id: this.fb.control(
@@ -79,20 +93,20 @@ export class StopcardComponent {
             Validators.required
           ]
         ),
-        empCode: this.fb.control(
+        employeeCode: this.fb.control(
           '',
           [
             Validators.required
           ]
         ),
-        reportedByPositionID: this.fb.control(
-          this.ReportedByPositionID,
+        reportedByPosition: this.fb.control(
+          '',
           [
             Validators.required
           ]
         ),
-        reportedByNameID: this.fb.control(
-          this.ReportedBy_NameID,
+        reportedByName: this.fb.control(
+          '',
           [
             Validators.required
           ]
@@ -130,49 +144,38 @@ export class StopcardComponent {
         )
 
       }
-    ),
-      this.StopCardService.GetStopCard(this.User.ID,this.User.Role).subscribe({
-        next: data => this.json_data = data.data,
-        error: err => this.ErrorMessage = err
-      }),
-      this.dataService.GetClassification().subscribe({
-        next: data => this.classificationList = data.data,
-        error: err => this.ErrorMessage = err
-      }),
-      this.dataService.GetTypeOfObservationCategory().subscribe({
-        next: data => this.typeOfObservationCategoryList = data.data,
-        error: err => this.ErrorMessage = err
-      })
+    )
+
   }
 
-  selectedMenace(event: any) {
+  SelectedEmployeeCode(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
-    this.dataService.GetReportedByNameByEmpCode(event.target.value).subscribe({
-      next:data=>{
-        this.ReportedBy_NameID=data.data.id
-        this.ReportedBy_Name=data.data.name,
-        this.ReportedByPositionID=data.data.positionId
-        console.log("this.ReportedBy_Name")
-        console.log(this.ReportedBy_Name)
+    this.dataService.GetEmpCodeByCode(event.target.value).subscribe({
+      next: data => {
+        this.Employee_NameId = data.data.id
+        this.Employee_Name = data.data.name,
+          this.Employee_PositionID = data.data.positionId
+        console.log("this.Employee_Name")
+        console.log(this.Employee_Name)
         console.log("this.ReportedBy_PositionID")
-        console.log(this.ReportedByPositionID)
+        console.log(this.Employee_PositionID)
         console.log("**********************************************")
-        this.dataService.GetReportedByPositionByID(this.ReportedByPositionID).subscribe({
-          next:data=>{
-            this.ReportedBy_Position=data.data.name,
-            console.log("this.ReportedBy_Position")
-            console.log(this.ReportedBy_Position)
+        this.dataService.GetReportedByPositionByID(this.Employee_PositionID).subscribe({
+          next: data => {
+            this.Employee_Position = data.data.name,
+              console.log("this. Employee_Position")
+            console.log(this.Employee_Position)
           },
-          error:err=>{
-            this.ErrorMessage=err,
-            console.log(err)
+          error: err => {
+            this.ErrorMessage = err,
+              console.log(err)
           }
         })
       },
-      error:err=>{
-        this.ErrorMessage=err,
-        console.log(err)
+      error: err => {
+        this.ErrorMessage = err,
+          console.log(err)
       }
     })
   }
@@ -189,14 +192,14 @@ export class StopcardComponent {
   get description() {
     return this.StopCardForm.get('description');
   }
-  get empCode() {
-    return this.StopCardForm.get('empCode');
+  get employeeCode() {
+    return this.StopCardForm.get('employeeCode');
   }
-  get reportedByPositionID() {
-    return this.StopCardForm.get('reportedByPositionID');
+  get reportedByPosition() {
+    return this.StopCardForm.get('reportedByPosition');
   }
-  get reportedByNameID() {
-    return this.StopCardForm.get('reportedByNameID');
+  get reportedByName() {
+    return this.StopCardForm.get('reportedByName');
   }
   get actionRequired() {
     return this.StopCardForm.get('actionRequired');
@@ -215,6 +218,7 @@ export class StopcardComponent {
   }
 
   submitData() {
+    console.log(this.StopCardForm.value)
     this.StopCardService.AddStopCardRegister(this.StopCardForm.value).subscribe({
       next: data => {
         console.log(data)

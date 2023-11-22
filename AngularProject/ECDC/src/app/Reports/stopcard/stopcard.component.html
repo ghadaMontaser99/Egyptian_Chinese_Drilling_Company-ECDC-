@@ -26,29 +26,30 @@
             </div>
           </td>
           <td>
-            <label class="form-label m-0 pb-0">Employee Code: </label>
-            <input list="ReportedBymenace" autocomplete="off" name="menace" formControlName="empCode" class="form-control"
-              (input)="selectedMenace($event)">
-            <datalist id="ReportedBymenace">
-              <option *ngFor="let menace of ReportedByCodeList">{{menace.empCode}} </option>
+            <label class="form-label m-0 pb-0">Employee Code : </label>
+            <input list="employeeCode" autocomplete="off" formControlName="employeeCode" name="employeeCode"
+              class="form-control" (input)="SelectedEmployeeCode($event)">
+            <datalist id="employeeCode">
+              <option *ngFor="let item of QHSECodeList">{{item.code}}</option>
             </datalist>
+
           </td>
         </tr>
         <tr>
           <td>
             <div class="from-group">
-              <label for="reportedByPositionID" class="form-label">Reported By_Position</label>
-              <input class="form-control" [value]="ReportedBy_Position" disabled />
-              <input name="reportedByPositionID" formControlName="reportedByPositionID" id="reportedByPositionID"
-                class="form-control" [(ngModel)]="ReportedByPositionID" hidden />
+              <label for="reportedByPosition" class="form-label">Reported By_Position</label>
+              <input class="form-control" [value]="Employee_Position" disabled />
+              <input name="reportedByPosition" formControlName="reportedByPosition" id="reportedByPosition"
+                class="form-control" [(ngModel)]="Employee_Position" hidden />
             </div>
           </td>
           <td>
             <div class="form-group">
-              <label class="form-label" for="reportedByNameID">Reported By_Name</label>
-              <input class="form-control" [value]="ReportedBy_Name" disabled />
-              <input name="reportedByNameID" formControlName="reportedByNameID" id="reportedByNameID"
-                class="form-control" [(ngModel)]="ReportedBy_NameID" hidden />
+              <label class="form-label" for="reportedByName">Reported By_Name</label>
+              <input class="form-control" [value]="Employee_Name" disabled />
+              <input name="reportedByName" formControlName="reportedByName" id="reportedByName" class="form-control"
+                [(ngModel)]="Employee_Name" hidden />
             </div>
           </td>
         </tr>

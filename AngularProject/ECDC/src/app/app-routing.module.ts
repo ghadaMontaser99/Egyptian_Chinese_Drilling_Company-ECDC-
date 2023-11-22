@@ -1,3 +1,4 @@
+import { PrintRMPEByIdComponent } from './Print_Reports/print-rmpeby-id/print-rmpeby-id.component';
 
 import { RegisterComponent } from './Other_Components/register/register.component';
 import { LoginComponent } from './Other_Components/login/login.component';
@@ -174,6 +175,15 @@ import { UserChartQHSEDailyByYearComponent } from './Charts_Of_Reports/QHSEDaily
 import { AdminChartQHSEDailyByYearComponent } from './Charts_Of_Reports/QHSEDailyCharts/admin-chart-qhsedaily-by-year/admin-chart-qhsedaily-by-year.component';
 import { AdminChartQHSEDailyByMonthComponent } from './Charts_Of_Reports/QHSEDailyCharts/admin-chart-qhsedaily-by-month/admin-chart-qhsedaily-by-month.component';
 import { QHSEDailyPrintByIdComponent } from './Print_Reports/qhsedaily-print-by-id/qhsedaily-print-by-id.component';
+import { PrintAccidentByIdComponent } from './Print_Reports/print-accident-by-id/print-accident-by-id.component';
+import { PrintStopCardByIdComponent } from './Print_Reports/print-stop-card-by-id/print-stop-card-by-id.component';
+import { PrintSJPByIdComponent } from './Print_Reports/print-sjpby-id/print-sjpby-id.component';
+import { PrintPOBByIdComponent } from './Print_Reports/print-pobby-id/print-pobby-id.component';
+import { PrintPTSMByIdComponent } from './Print_Reports/print-ptsmby-id/print-ptsmby-id.component';
+import { PrintEmployeeCompetencyEvaluationtByIdComponent } from './Print_Reports/print-employee-competency-evaluationt-by-id/print-employee-competency-evaluationt-by-id.component';
+import { PrintPPEReceivingByIdComponent } from './Print_Reports/print-ppereceiving-by-id/print-ppereceiving-by-id.component';
+import { PrintDrillByIdComponent } from './Print_Reports/print-drill-by-id/print-drill-by-id.component';
+import { PrintPotentialHazardByIdComponent } from './Print_Reports/print-potential-hazard-by-id/print-potential-hazard-by-id.component';
 
 
 const routes: Routes = [
@@ -347,6 +357,16 @@ const routes: Routes = [
   { path: 'QHSEChartByYearAllRigs',canActivate: [AuthGuard], component: AdminChartQHSEDailyByYearComponent },
   { path: 'QHSEChartByMonthAllRigs',canActivate: [AuthGuard], component: AdminChartQHSEDailyByMonthComponent },
   { path: 'QHSEDailyPrintById/:id',canActivate: [UserauthGuard], component: QHSEDailyPrintByIdComponent },
+  { path: 'PrintAccidentById/:id',canActivate: [UserauthGuard], component: PrintAccidentByIdComponent },
+  { path: 'PrintStopCardById/:id',canActivate: [UserauthGuard], component: PrintStopCardByIdComponent },
+  { path: 'PrintSJPById/:id',canActivate: [UserauthGuard], component: PrintSJPByIdComponent },
+  { path: 'PrintRMPEById/:id',canActivate: [UserauthGuard], component: PrintRMPEByIdComponent },
+  { path: 'PrintPOBById/:id',canActivate: [UserauthGuard], component: PrintPOBByIdComponent },
+  { path: 'PrintPTSMById/:id',canActivate: [UserauthGuard], component: PrintPTSMByIdComponent },
+  { path: 'PrintEmployeeCompetencyEvaluationById/:id',canActivate: [UserauthGuard], component: PrintEmployeeCompetencyEvaluationtByIdComponent },
+  { path: 'PrintPPEReceivingById/:id',canActivate: [UserauthGuard], component: PrintPPEReceivingByIdComponent },
+  { path: 'PrintDrillById/:id',canActivate: [UserauthGuard], component: PrintDrillByIdComponent },
+  { path: 'PrintPotentialHazardById/:id',canActivate: [UserauthGuard], component: PrintPotentialHazardByIdComponent },
 
 // ------------------DRIILS---------
 

@@ -13,10 +13,10 @@ namespace TempProject.Models
 
 		[DefaultValue(false)]
         public bool IsDeleted { get; set; }
-        public virtual List<StopCardRegister> StopCardRegisters { get; set; }
-		[ForeignKey("ReportedByPosition")]
-		public int PositionId { get; set; }
-		public virtual ReportedByPosition ReportedByPosition { get; set; }
+  //      public virtual List<StopCardRegister> StopCardRegisters { get; set; }
+		//[ForeignKey("ReportedByPosition")]
+		//public int PositionId { get; set; }
+		//public virtual ReportedByPosition ReportedByPosition { get; set; }
 
 
 

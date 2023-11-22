@@ -17,8 +17,6 @@ namespace TempProject.Repository
         {
             return c.StopCardRegisters
                 .Include(s => s.Classification)
-                .Include(s => s.ReportedByName)
-                .Include(s => s.ReportedByPosition)
                 .Include(s => s.TypeOfObservationCategory)
 				.Where(a => a.IsDeleted == false)
 				.Select(s => new StopCardRegister
@@ -26,11 +24,11 @@ namespace TempProject.Repository
                     Id = s.Id,
                     Date = s.Date,
                     Classification = new Classification { Name = s.Classification.Name },
-                    ReportedByPosition = new ReportedByPosition { Name = s.ReportedByPosition.Name },
-                    ReportedByName = new ReportedByName { Name = s.ReportedByName.Name },
+                    ReportedByPosition = s.ReportedByPosition,
+                    ReportedByName = s.ReportedByName,
                     TypeOfObservationCategory = new TypeOfObservationCategory { Name = s.TypeOfObservationCategory.Name },
                     Description = s.Description,
-                    EmpCode = s.EmpCode,
+                    EmployeeCode = s.EmployeeCode,
                     ActionRequired = s.ActionRequired,
                     Status = s.Status,
                     StopWorkAuthorityApplied = s.StopWorkAuthorityApplied,

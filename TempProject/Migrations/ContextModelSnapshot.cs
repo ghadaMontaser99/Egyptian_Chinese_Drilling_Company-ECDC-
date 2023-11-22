@@ -1669,12 +1669,7 @@ namespace TempProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PositionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PositionId");
 
                     b.ToTable("ReportedByNames");
                 });
@@ -1846,17 +1841,19 @@ namespace TempProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpCode")
+                    b.Property<int>("EmployeeCode")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ReportedByNameID")
-                        .HasColumnType("int");
+                    b.Property<string>("ReportedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReportedByPositionID")
-                        .HasColumnType("int");
+                    b.Property<string>("ReportedByPosition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -1876,10 +1873,6 @@ namespace TempProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClassificationID");
-
-                    b.HasIndex("ReportedByNameID");
-
-                    b.HasIndex("ReportedByPositionID");
 
                     b.HasIndex("TypeOfObservationCategoryID");
 
@@ -2534,17 +2527,6 @@ namespace TempProject.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("TempProject.Models.ReportedByName", b =>
-                {
-                    b.HasOne("TempProject.Models.ReportedByPosition", "ReportedByPosition")
-                        .WithMany("ReportedByNames")
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ReportedByPosition");
-                });
-
             modelBuilder.Entity("TempProject.Models.RigMovePerformance", b =>
                 {
                     b.HasOne("TempProject.Models.Rig", "Rig")
@@ -2572,18 +2554,6 @@ namespace TempProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TempProject.Models.ReportedByName", "ReportedByName")
-                        .WithMany("StopCardRegisters")
-                        .HasForeignKey("ReportedByNameID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TempProject.Models.ReportedByPosition", "ReportedByPosition")
-                        .WithMany("StopCardRegisters")
-                        .HasForeignKey("ReportedByPositionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TempProject.Models.TypeOfObservationCategory", "TypeOfObservationCategory")
                         .WithMany("StopCardRegisters")
                         .HasForeignKey("TypeOfObservationCategoryID")
@@ -2597,10 +2567,6 @@ namespace TempProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Classification");
-
-                    b.Navigation("ReportedByName");
-
-                    b.Navigation("ReportedByPosition");
 
                     b.Navigation("TypeOfObservationCategory");
 
@@ -2720,18 +2686,6 @@ namespace TempProject.Migrations
                     b.Navigation("CrewSaftyAlertAndQHSEDaily");
 
                     b.Navigation("LeaderShipVisitsAndQHSEDaily");
-                });
-
-            modelBuilder.Entity("TempProject.Models.ReportedByName", b =>
-                {
-                    b.Navigation("StopCardRegisters");
-                });
-
-            modelBuilder.Entity("TempProject.Models.ReportedByPosition", b =>
-                {
-                    b.Navigation("ReportedByNames");
-
-                    b.Navigation("StopCardRegisters");
                 });
 
             modelBuilder.Entity("TempProject.Models.Responsibility", b =>

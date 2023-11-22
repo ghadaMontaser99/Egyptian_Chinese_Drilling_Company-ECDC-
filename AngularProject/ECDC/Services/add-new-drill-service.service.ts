@@ -28,4 +28,6 @@ export class AddNewDrillServiceService {
  GetDrillByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
    return this.http.get<IAPIResult>(`http://localhost:5000/api/Drill/GetDataById/${Id}?UserId=${userId}&UserRole=${userRole}`)
  }
+
+
 }

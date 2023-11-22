@@ -19,7 +19,7 @@ export class AddNewAccidentService {
   EditAccident(accident: FormData): Observable<any> {
     return this.http.put<any>(`http://localhost:5000/api/Accident/${accident.get('id')}`, accident);
   }
-////////////
+
   GetAccidents(userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/GetDataForExcel?UserID=${userId}&UserRole=${userRole}`);
   }
@@ -31,5 +31,9 @@ export class AddNewAccidentService {
 
   GetAccidentByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/${Id}?UserId=${userId}&UserRole=${userRole}`)
+  }
+
+  PrintAccidentByID(Id: number,userId:string,userRole:string): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/Accident/GetDataById/${Id}?UserId=${userId}&UserRole=${userRole}`)
   }
 }

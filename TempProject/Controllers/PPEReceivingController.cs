@@ -255,13 +255,75 @@ namespace TempProject.Controllers
 			return result;
 		}
 
+        [HttpGet("PrintDataById/{ID:int}")]
+        public ActionResult<ResultDTO> PrintDataByID(int ID, string UserId, string UserRole)
+			
+        {
+            ResultDTO result = new ResultDTO();
+
+
+
+            PPEReceiving temp = PPEReceivingRepoistory.getall().FirstOrDefault(a => a.Id == ID);
+            if (temp != null)
+            {
+                List<PPEReceivingResponseDTO> PPEReceivingResponseDTOs = new List<PPEReceivingResponseDTO>();
+
+                PPEReceivingResponseDTO PPEReceivingDTO = new PPEReceivingResponseDTO();
+                PPEReceivingDTO.Id = temp.Id;
+                PPEReceivingDTO.RigId = temp.Rig.Number;
+                PPEReceivingDTO.Date = temp.Date;
+                PPEReceivingDTO.QHSEEmpCode = temp.QHSEEmpCode;
+                PPEReceivingDTO.QHSEEmpName = temp.QHSEEmpName;
+                PPEReceivingDTO.QHSEPositionName = temp.QHSEPositionName;
+                PPEReceivingDTO.EmployeeCode = temp.EmployeeCode;
+                PPEReceivingDTO.EmployeeName = temp.EmployeeName;
+                PPEReceivingDTO.EmployeePositionName = temp.EmployeePositionName;
+                PPEReceivingDTO.UserName = temp.User.UserName;
+                PPEReceivingDTO.userID = temp.User.Id;
+                PPEReceivingDTO.NormalCoverallsSize = temp.NormalCoverallsSize;
+                PPEReceivingDTO.ThermalCoverallsSize = temp.ThermalCoverallsSize;
+                PPEReceivingDTO.SafetyBootsSize = temp.SafetyBootsSize;
+                foreach (var ppeAndPPEReceiving in temp.PPEAndPPEReceiving)
+                {
+                    string pPEDTO;
+                    pPEDTO = ppeAndPPEReceiving.PPE.Name;
+                    PPEReceivingDTO.PPEs.Add(pPEDTO);
+
+                }
+
+
+                PPEReceivingResponseDTOs.Add(PPEReceivingDTO);
+
+
+
+
+
+                if (PPEReceivingDTO != null)
+                {
+
+                    result.Message = "Success";
+                    result.Statescode = 200;
+                    result.Data = PPEReceivingDTO;
+
+                    return result;
+                }
+            }
 
 
 
 
 
 
-		[HttpPost]
+            result.Statescode = 404;
+            result.Message = "data not found";
+            return result;
+        }
+
+
+
+
+
+        [HttpPost]
 		public ActionResult<ResultDTO> AddPPEReceiving( AddPPEReceivingDTO PPEReceiving)
 		{
 			ResultDTO result = new ResultDTO();
