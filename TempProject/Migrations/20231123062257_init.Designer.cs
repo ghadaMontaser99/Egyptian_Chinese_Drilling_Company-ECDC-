@@ -12,7 +12,7 @@ using TempProject.Models;
 namespace TempProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231122213143_init")]
+    [Migration("20231123062257_init")]
     partial class init
     {
         /// <inheritdoc />

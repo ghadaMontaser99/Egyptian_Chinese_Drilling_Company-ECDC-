@@ -310,7 +310,7 @@ const routes: Routes = [
   { path: 'Dashboard/SJPTable',canActivate: [AllAuthGuardGuard], component: JMPTableComponent },
   { path: 'changepassword',canActivate: [AllAuthGuardGuard],component: ChangepasswordComponent },
   { path: 'stopCardCharts' ,canActivate: [UserauthGuard],component: StopCardChartComponent },
-  { path: 'PotentialHazardCharts' ,canActivate: [UserauthGuard],component: PotentialHazardChartsComponent },
+  { path: 'PotentialHazardCharts' ,canActivate: [AuthGuard],component: PotentialHazardChartsComponent },
   { path: 'DrillCompareWithRigsCharts' ,canActivate: [AuthGuard],component: DrillsCompareByRigsComponent },
   { path: 'RigMovePerformanceCharts' ,canActivate: [UserauthGuard],component: RigPerformanceChartComponent },
   { path: 'stopCardCompareCharts' ,canActivate: [UserauthGuard],component: StopCardCompareChartComponent },

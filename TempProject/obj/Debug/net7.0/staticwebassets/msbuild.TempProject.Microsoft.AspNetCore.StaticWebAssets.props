@@ -144,6 +144,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\581731db-b03b-4543-b1b1-312486913ff73s.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\5845cd9d-7782-44a9-bd8d-6ff479afe1de1s.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>AccidentIMG/5845cd9d-7782-44a9-bd8d-6ff479afe1de1s.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\5845cd9d-7782-44a9-bd8d-6ff479afe1de1s.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\59239f55-4013-4342-b9df-9a69a105a77d3s.jpeg))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -400,6 +416,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\a8a7a6cf-5db0-4fcb-9028-0cf3705ff3ec1s - Copy.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\ad2373e8-3ecc-4c2c-b2ad-6a14026019604s - Copy.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>AccidentIMG/ad2373e8-3ecc-4c2c-b2ad-6a14026019604s - Copy.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\ad2373e8-3ecc-4c2c-b2ad-6a14026019604s - Copy.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af1b801f-b812-4c3f-80b3-c858ab27a77d4s - Copy.jpeg))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -415,6 +447,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af1b801f-b812-4c3f-80b3-c858ab27a77d4s - Copy.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af4d1a29-3403-4dbe-bc8d-ce1d96084eef4s - Copy.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>AccidentIMG/af4d1a29-3403-4dbe-bc8d-ce1d96084eef4s - Copy.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af4d1a29-3403-4dbe-bc8d-ce1d96084eef4s - Copy.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\AccidentIMG\af5439e7-c29a-4d6a-bbee-ff48b861c629WhatsApp Image 2023-10-23 at 10.54.21 AM.jpeg))">
       <SourceType>Package</SourceType>
@@ -2000,6 +2048,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\81a52a1e-b2eb-4d10-8723-3ab593a1046d4s - Copy.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\81f62097-0311-4350-ad8e-9d7931ecbb493s.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>DrillIMG/81f62097-0311-4350-ad8e-9d7931ecbb493s.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\81f62097-0311-4350-ad8e-9d7931ecbb493s.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\8b7d1eeb-fd63-4727-b4f9-be49716d7e85change pass - Copy.png))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -2143,6 +2207,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\9c5e7acf-d78a-4284-88a1-199e0df925f95s - Copy.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\9c84abaa-e959-4ce2-b81b-86bba21d92224s - Copy.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>DrillIMG/9c84abaa-e959-4ce2-b81b-86bba21d92224s - Copy.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\9c84abaa-e959-4ce2-b81b-86bba21d92224s - Copy.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\a1f9cf75-c943-4993-b069-4cb351ca40ed4s - Copy.jpeg))">
       <SourceType>Package</SourceType>
@@ -2320,6 +2400,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\c0f2f04d-8685-47d1-a4da-c2cef1f056efazVSxQ.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\c243a95d-bdd3-4272-819e-9a5df273c6364s.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>DrillIMG/c243a95d-bdd3-4272-819e-9a5df273c6364s.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\c243a95d-bdd3-4272-819e-9a5df273c6364s.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\c74ecb5b-1aa3-43d7-a2fb-976ad6cf56283s.jpeg))">
       <SourceType>Package</SourceType>
       <SourceId>TempProject</SourceId>
@@ -2351,6 +2447,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\d2a4fc3a-4a7f-4c63-a211-852b40176139radio - Copy.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\d8f61be2-0f25-4872-aa47-fad176eb7e76user.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>DrillIMG/d8f61be2-0f25-4872-aa47-fad176eb7e76user.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\d8f61be2-0f25-4872-aa47-fad176eb7e76user.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\DrillIMG\df30e85a-45bc-4d67-ada7-1f58e7e453b4ECDC (2).png))">
       <SourceType>Package</SourceType>
@@ -2671,6 +2783,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\925dbcc0-9e31-46ff-b0b2-c2725190748arorororororo.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\933a0dcb-84a0-401f-9c8d-db87b55a2092user.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TempProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TempProject</BasePath>
+      <RelativePath>HazardIMG/933a0dcb-84a0-401f-9c8d-db87b55a2092user.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\933a0dcb-84a0-401f-9c8d-db87b55a2092user.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\HazardIMG\9798c740-fd7c-435a-930b-5a602cb83efdrorororororo.jpg))">
       <SourceType>Package</SourceType>

@@ -15,12 +15,12 @@ using TempProject.Repository;
 
 namespace TempProject.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+	[Route("api/[controller]")]
+	[ApiController]
 	//[Authorize]
 	public class PotentialHazardController : ControllerBase
-    {
-        public IRepository<PotentialHazard> PotentialHazardRepo { get; set; }
+	{
+		public IRepository<PotentialHazard> PotentialHazardRepo { get; set; }
 		public IRepository<HazardImages> HazardImagesRepo { get; set; }
 
 		public IPotentialHazardRepository PotentialHazardRepoistory { get; set; }
@@ -29,18 +29,18 @@ namespace TempProject.Controllers
 
 
 		public PotentialHazardController(Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager,
-			IRepository<PotentialHazard> _PotentialHazardRepo, 
+			IRepository<PotentialHazard> _PotentialHazardRepo,
 			IPotentialHazardRepository _PotentialHazardRepoistory,
 			IRepository<HazardImages> _HazardImagesRepo)
-        {
-            this.PotentialHazardRepo = _PotentialHazardRepo;
-            this.PotentialHazardRepoistory = _PotentialHazardRepoistory;
-            this.userManager = _userManager;
+		{
+			this.PotentialHazardRepo = _PotentialHazardRepo;
+			this.PotentialHazardRepoistory = _PotentialHazardRepoistory;
+			this.userManager = _userManager;
 			this.HazardImagesRepo = _HazardImagesRepo;
-        }
+		}
 
-        [HttpGet("GetData")]
-        public async Task<ResultDTO> GetAllWithData(string UserID, string UserRole)
+		[HttpGet("GetData")]
+		public async Task<ResultDTO> GetAllWithData(string UserID, string UserRole)
 		{
 			ResultDTO result = new ResultDTO();
 
@@ -71,7 +71,7 @@ namespace TempProject.Controllers
 						{
 							string FileName = item.FileName;
 							potentialHazardDTO.Images.Add(FileName);
-				
+
 						}
 
 						//potentialHazardDTO.Images = potentialHazard.Images;
@@ -121,7 +121,7 @@ namespace TempProject.Controllers
 						//result.Data = prod;
 					}
 					//result.Data = prod;
-				
+
 					if (newTemp != null)
 					{
 						result.Message = "Success";
@@ -129,10 +129,10 @@ namespace TempProject.Controllers
 						result.Data = newTemp;
 
 						return result;
-					}					
+					}
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				result.Statescode = 404;
 				result.Message = "data not found";
@@ -165,7 +165,7 @@ namespace TempProject.Controllers
 						potentialHazardDTO.PR_No = potentialHazard.PR_No;
 						potentialHazardDTO.userName = potentialHazard.user.UserName;
 						potentialHazardDTO.Responibility = potentialHazard.Responsibility.Name;
-						foreach(var item in potentialHazard.Images)
+						foreach (var item in potentialHazard.Images)
 						{
 							potentialHazardDTO.images.Add(item.FileName);
 
@@ -357,7 +357,7 @@ namespace TempProject.Controllers
 					potentialHazardDTO.NeededAction = temp.NeededAction;
 					potentialHazardDTO.Title = temp.Title;
 					potentialHazardDTO.Status = temp.Status;
-					potentialHazardDTO.ResponsibilityId= temp.ResponibilityId;
+					potentialHazardDTO.ResponsibilityId = temp.ResponibilityId;
 
 					potentialHazardDTO.userID = temp.user.Id;
 					List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == temp.Id).ToList();
@@ -426,103 +426,59 @@ namespace TempProject.Controllers
 			return result;
 		}
 		[HttpGet("GetAllForAnalysis/{Year:int}")]
-		public ActionResult<ResultDTO> GetAllForAnalysis(string UserID, string UserRole,int Year)
+		public ActionResult<ResultDTO> GetAllForAnalysis(string UserID, string UserRole, int Year)
 		{
 
 			ResultDTO result = new ResultDTO();
 			try
 			{
-				if (string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase))
+
+				List<PotentialHazard> temp = PotentialHazardRepo.getall().Where(r => r.Date.Year == Year).ToList();
+
+
+				List<PotentialHazardResponseDTO> newTemp = new List<PotentialHazardResponseDTO>();
+				foreach (PotentialHazard potentialHazard in temp)
+				{
+					PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
+					potentialHazardDTO.Id = potentialHazard.Id;
+					potentialHazardDTO.RigId = potentialHazard.RigId;
+					potentialHazardDTO.Date = potentialHazard.Date;
+					potentialHazardDTO.PO_No = potentialHazard.PO_No;
+					potentialHazardDTO.PR_No = potentialHazard.PR_No;
+					potentialHazardDTO.ResponsibilityId = potentialHazard.ResponibilityId;
+					potentialHazardDTO.PR_IssueDate = potentialHazard.PR_IssueDate;
+					potentialHazardDTO.Description = potentialHazard.Description;
+					potentialHazardDTO.NeededAction = potentialHazard.NeededAction;
+					potentialHazardDTO.Status = potentialHazard.Status;
+					potentialHazardDTO.Title = potentialHazard.Title;
+
+					potentialHazardDTO.userID = potentialHazard.userID;
+					List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == potentialHazard.Id).ToList();
+					foreach (var item in hazardImages)
+					{
+						string FileName = item.FileName;
+						potentialHazardDTO.Images.Add(FileName);
+
+					}
+
+
+					newTemp.Add(potentialHazardDTO);
+
+				}
+				if (newTemp != null)
 				{
 
-					List<PotentialHazard> temp = PotentialHazardRepo.getall().Where(r =>  r.Date.Year == Year).ToList();
+					result.Message = "Success";
+					result.Statescode = 200;
+					result.Data = newTemp;
 
-
-					List<PotentialHazardResponseDTO> newTemp = new List<PotentialHazardResponseDTO>();
-					foreach (PotentialHazard potentialHazard in temp)
-					{
-						PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
-						potentialHazardDTO.Id = potentialHazard.Id;
-						potentialHazardDTO.RigId = potentialHazard.RigId;
-						potentialHazardDTO.Date = potentialHazard.Date;
-						potentialHazardDTO.PO_No = potentialHazard.PO_No;
-						potentialHazardDTO.PR_No = potentialHazard.PR_No;
-						potentialHazardDTO.ResponsibilityId = potentialHazard.ResponibilityId;
-						potentialHazardDTO.PR_IssueDate = potentialHazard.PR_IssueDate;
-						potentialHazardDTO.Description = potentialHazard.Description;
-						potentialHazardDTO.NeededAction = potentialHazard.NeededAction;
-						potentialHazardDTO.Status = potentialHazard.Status;
-						potentialHazardDTO.Title = potentialHazard.Title;
-
-						potentialHazardDTO.userID = potentialHazard.userID;
-						List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == potentialHazard.Id).ToList();
-						foreach (var item in hazardImages)
-						{
-							string FileName = item.FileName;
-							potentialHazardDTO.Images.Add(FileName);
-
-						}
-
-
-						newTemp.Add(potentialHazardDTO);
-						
-					}
-					if (newTemp != null)
-					{
-
-						result.Message = "Success";
-						result.Statescode = 200;
-						result.Data = newTemp;
-
-						return result;
-					}
+					return result;
 				}
-				else if (string.Equals(UserRole, "User", StringComparison.OrdinalIgnoreCase))
-				{
 
-					List<PotentialHazard> temp = PotentialHazardRepo.getall().Where(r => r.user.Id == UserID && r.Date.Year == Year).ToList();
-
-
-					List<PotentialHazardResponseDTO> newTemp = new List<PotentialHazardResponseDTO>();
-					foreach (PotentialHazard potentialHazard in temp)
-					{
-						PotentialHazardResponseDTO potentialHazardDTO = new PotentialHazardResponseDTO();
-						potentialHazardDTO.Id = potentialHazard.Id;
-						potentialHazardDTO.RigId = potentialHazard.RigId;
-						potentialHazardDTO.Date = potentialHazard.Date;
-						potentialHazardDTO.PO_No = potentialHazard.PO_No;
-						potentialHazardDTO.PR_No = potentialHazard.PR_No;
-						potentialHazardDTO.ResponsibilityId = potentialHazard.ResponibilityId;
-						potentialHazardDTO.PR_IssueDate = potentialHazard.PR_IssueDate;
-						potentialHazardDTO.Description = potentialHazard.Description;
-						potentialHazardDTO.NeededAction = potentialHazard.NeededAction;
-						potentialHazardDTO.Status = potentialHazard.Status;
-						potentialHazardDTO.Title = potentialHazard.Title;
-
-						potentialHazardDTO.userID = potentialHazard.userID;
-						List<HazardImages> hazardImages = HazardImagesRepo.getall().Where(p => p.PotentialHazardId == potentialHazard.Id).ToList();
-						foreach (var item in hazardImages)
-						{
-							string FileName = item.FileName;
-							potentialHazardDTO.Images.Add(FileName);
-
-						}
-
-
-						newTemp.Add(potentialHazardDTO);
-
-					}
-					if (newTemp != null)
-					{
-
-						result.Message = "Success";
-						result.Statescode = 200;
-						result.Data = newTemp;
-
-						return result;
-					}
-				}
 			}
+			
+
+
 			catch (Exception ex)
 			{
 				result.Statescode = 404;
@@ -530,6 +486,8 @@ namespace TempProject.Controllers
 			}
 			return result;
 		}
+	
+
 
 
 
