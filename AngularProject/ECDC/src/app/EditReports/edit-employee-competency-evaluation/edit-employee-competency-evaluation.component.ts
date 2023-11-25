@@ -338,10 +338,7 @@ export class EditEmployeeCompetencyEvaluationComponent {
   }
   
   submitData() {
-    console.log("/*********SUBMIMT HERE**********/")
-    alert("heeeeeeeeeeeeeeelp")
-    alert( this.UserJsonObj.ID)
-   
+    console.log("/*********SUBMIMT HERE**********/")  
     console.log(this.employeeCompetencyEvaluationForm.value)
     if (this.employeeCompetencyEvaluationForm.valid) {
       const Formdata = new FormData();

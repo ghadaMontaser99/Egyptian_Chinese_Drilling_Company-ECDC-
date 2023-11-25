@@ -326,6 +326,84 @@ this.AddQHSEDailyService.GetQHSEDailys(this.User.ID,this.User.Role).subscribe({
     this.AddQHSEDailyService.GetForAnalysisByYeaAllRigs(event.target.value).subscribe({
       next: (data:any) => {
         console.log(data.data)
+        this.clearChart("myChart13")
+        //this.QHSEDailyRecord=data.data;
+
+        console.log("this.StopCardsRecordsList")
+        console.log(data.data.ptsmRecordsList)
+
+        this.AddCanvas("myChart13","chart13")
+
+        var myChart13 = new Chart("myChart13", {
+          type: 'bar',
+          data: {
+            labels:  this.RecordsNames,
+            datasets: [{
+              label: this.SelectedYear,
+              data: 
+              data.data.daysSinceLastLTIList
+                ,
+              backgroundColor: [
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)',
+                'rgba(0, 150, 0, 0.2)'
+              ],
+              borderColor: [
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)'
+              ],
+              borderWidth: 1,
+              datalabels: {
+                color: [
+                  'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)',
+                'rgba(0, 150, 0, 1)'
+                ],
+                font: {
+                  size: 18,
+                }
+              }
+            }
+
+          ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+      }
+    })
+
+    this.AddQHSEDailyService.GetForAnalysisByYeaAllRigs(event.target.value).subscribe({
+      next: (data:any) => {
+        console.log(data.data)
         this.clearChart("myChart4")
         //this.QHSEDailyRecord=data.data;
 

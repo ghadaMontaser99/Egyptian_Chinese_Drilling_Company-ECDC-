@@ -527,6 +527,7 @@ namespace TempProject.Controllers
 				.Where(r => r.Date.Year == Year
 				&& r.user.Id == UserID).Sum(s => s.WeeklyInspection);
 
+
 				qHSEYearChart.CountDaysSinceLastLTIYear = QHSEDailyReportRepoistory.getall()
 				.Where(r => r.Date.Year == Year
 				&& r.user.Id == UserID).Sum(s => s.DaysSinceLastLTI);
@@ -586,7 +587,28 @@ namespace TempProject.Controllers
 				List<int> MonthlyInspectionList = new List<int>();
 
 				List<Rig> AllRigs = RigRepo.getall().ToList();
-				foreach(var item in AllRigs)
+
+				List<int> DaysSinceLastLTIList = new List<int>();
+
+				foreach (var item in AllRigs)
+				{
+					var lastReport = QHSEDailyReportRepoistory.getall()
+						.LastOrDefault(s => s.Date.Year == Year && s.Rig.Id == item.Id);
+
+					if (lastReport != null)
+					{
+						int count = lastReport.DaysSinceLastLTI;
+						DaysSinceLastLTIList.Add(count);
+					}
+					else
+					{
+						int count = 0;
+						DaysSinceLastLTIList.Add(count);
+					}
+
+				}
+
+				foreach (var item in AllRigs)
 				{
 					//QHSEYearChartAllRigDTO obj = new QHSEYearChartAllRigDTO();
 
@@ -671,15 +693,7 @@ namespace TempProject.Controllers
 					WeeklyInspectionList.Add(Count);
 				}
 
-				List<int> DaysSinceLastLTIList = new List<int>();
-				foreach (var item in AllRigs)
-				{
-					//QHSEYearChartAllRigDTO obj = new QHSEYearChartAllRigDTO();
-
-					int Count = QHSEDailyReportRepoistory.getall()
-					.Where(r => r.Date.Year == Year && r.Rig.Id == item.Id).Sum(s => s.DaysSinceLastLTI);
-					DaysSinceLastLTIList.Add(Count);
-				}
+			
 
 				List<int> RecordableAccidentList = new List<int>();
 				foreach (var item in AllRigs)
@@ -954,6 +968,29 @@ namespace TempProject.Controllers
 				List<int> MonthlyInspectionListMonth1 = new List<int>();
 
 				List<Rig> AllRigs = RigRepo.getall().ToList();
+
+				List<int> DaysSinceLastLTIListMonth1 = new List<int>();
+				foreach (var item in AllRigs)
+				{
+					var lastReport = QHSEDailyReportRepoistory.getall()
+						.LastOrDefault(s => s.Date.Year == Year && s.Rig.Id == item.Id && (s.Date.Month == Month1));
+
+					if (lastReport != null)
+					{
+						int count = lastReport.DaysSinceLastLTI;
+						DaysSinceLastLTIListMonth1.Add(count);
+					}
+					else
+					{
+						int count = 0;
+						DaysSinceLastLTIListMonth1.Add(count);
+					}
+				}
+
+
+		
+
+
 				foreach (var item in AllRigs)
 				{
 					//QHSEYearChartAllRigDTO obj = new QHSEYearChartAllRigDTO();
@@ -1039,15 +1076,7 @@ namespace TempProject.Controllers
 					WeeklyInspectionListMonth1.Add(Count);
 				}
 
-				List<int> DaysSinceLastLTIListMonth1 = new List<int>();
-				foreach (var item in AllRigs)
-				{
-					//QHSEYearChartAllRigDTO obj = new QHSEYearChartAllRigDTO();
-
-					int Count = QHSEDailyReportRepoistory.getall()
-					.Where(r => r.Date.Year == Year && (r.Date.Month == Month1) && r.Rig.Id == item.Id).Sum(s => s.DaysSinceLastLTI);
-					DaysSinceLastLTIListMonth1.Add(Count);
-				}
+			
 
 				List<int> RecordableAccidentListMonth1 = new List<int>();
 				foreach (var item in AllRigs)
@@ -1092,6 +1121,26 @@ namespace TempProject.Controllers
 				List<int> QuizCrewNumberListMonth2 = new List<int>();
 				List<int> SafetyAlertCrewNumberListMonth2 = new List<int>();
 				List<int> MonthlyInspectionListMonth2 = new List<int>();
+
+
+				List<int> DaysSinceLastLTIListMonth2 = new List<int>();
+				foreach (var item in AllRigs)
+				{
+					var lastReport = QHSEDailyReportRepoistory.getall()
+						.LastOrDefault(s => s.Date.Year == Year && s.Rig.Id == item.Id && (s.Date.Month == Month2));
+
+					if (lastReport != null)
+					{
+						int count = lastReport.DaysSinceLastLTI;
+						DaysSinceLastLTIListMonth2.Add(count);
+					}
+					else
+					{
+						int count = 0;
+						DaysSinceLastLTIListMonth2.Add(count);
+					}
+				}
+
 
 				foreach (var item in AllRigs)
 				{
@@ -1176,16 +1225,6 @@ namespace TempProject.Controllers
 					int Count = (int)QHSEDailyReportRepoistory.getall()
 					.Where(r => r.Date.Year == Year && (r.Date.Month == Month2) && r.Rig.Id == item.Id).Sum(s => s.WeeklyInspection);
 					WeeklyInspectionListMonth2.Add(Count);
-				}
-
-				List<int> DaysSinceLastLTIListMonth2 = new List<int>();
-				foreach (var item in AllRigs)
-				{
-					//QHSEYearChartAllRigDTO obj = new QHSEYearChartAllRigDTO();
-
-					int Count = QHSEDailyReportRepoistory.getall()
-					.Where(r => r.Date.Year == Year && (r.Date.Month == Month2) && r.Rig.Id == item.Id).Sum(s => s.DaysSinceLastLTI);
-					DaysSinceLastLTIListMonth2.Add(Count);
 				}
 
 				List<int> RecordableAccidentListMonth2 = new List<int>();

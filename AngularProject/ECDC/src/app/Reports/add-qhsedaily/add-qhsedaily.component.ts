@@ -556,7 +556,8 @@ this.testUser=this.loginService.currentUser.getValue();
             next: data => {
               console.log('from service')
               console.log(data)
-              location.reload();
+              //location.reload();
+              this.router.navigate(['/QHSEDaily']);
     
             },
             error: error => {
