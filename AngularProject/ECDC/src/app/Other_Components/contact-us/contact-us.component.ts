@@ -9,7 +9,7 @@ import * as signalR from '@aspnet/signalr';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent {
-  Hub = new signalR.HubConnectionBuilder().withUrl("http://localhost:5082/TestHub",{
+  Hub = new signalR.HubConnectionBuilder().withUrl("http://localhost:5000/TestHub",{
     skipNegotiation: true,
     transport: signalR.HttpTransportType.WebSockets
   }).build();

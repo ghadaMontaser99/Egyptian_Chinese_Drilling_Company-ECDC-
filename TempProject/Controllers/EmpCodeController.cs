@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TempProject.DTO;
+using TempProject.DTO.ResponseDTO;
 using TempProject.Models;
 using TempProject.Repository;
 
@@ -12,12 +13,13 @@ namespace TempProject.Controllers
 	{
 		public IRepository<EmpCode> EmpCodeRepo { get; set; }
 		
+		public IEmpCodeRepository empCodeRepository { get; set; }
 
-
-		public EmpCodeController(IRepository<EmpCode> _EmpCodeRepo)
+		public EmpCodeController(IRepository<EmpCode> _EmpCodeRepo, IEmpCodeRepository _empCodeRepository)
 		{
 	
 			this.EmpCodeRepo = _EmpCodeRepo;
+			this.empCodeRepository= _empCodeRepository;
 		}
 		[HttpGet]
 		public ActionResult<ResultDTO> GetAll()
@@ -55,41 +57,41 @@ namespace TempProject.Controllers
 
 		}
 
-		//[HttpGet("GetAllForExcel")]
-		//public ActionResult<ResultDTO> GetAllForExcel()
-		//{
+		[HttpGet("GetAllForExcel")]
+		public ActionResult<ResultDTO> GetAllForExcel()
+		{
 
-		//	ResultDTO result = new ResultDTO();
+			ResultDTO result = new ResultDTO();
 
-		//	List<EmpCode> temp = EmpCodeRepo.getall();
-		//	List<QHSEPositionNameExcelDTO> newTemp = new List<QHSEPositionNameExcelDTO>();
-		//	foreach (QHSEPositionName QHSEPositionName in temp)
-		//	{
-		//		QHSEPositionNameExcelDTO QHSEPositionNameDTO = new QHSEPositionNameExcelDTO();
-		//		QHSEPositionNameDTO.Id = QHSEPositionName.Id;
-		//		QHSEPositionNameDTO.Name = QHSEPositionName.Name;
+			List<EmpCode> temp = empCodeRepository.getall();
+			List<EmpCodeExcelDTO> newTemp = new List<EmpCodeExcelDTO>();
+			foreach (EmpCode EmpCode in temp)
+			{
+				EmpCodeExcelDTO EmpCodeDTO = new EmpCodeExcelDTO();
+				EmpCodeDTO.Id = EmpCode.Id;
+				EmpCodeDTO.Name = EmpCode.Name;
+				EmpCodeDTO.Code = EmpCode.Code;
+				EmpCodeDTO.Position = EmpCode.Positions.Name;
+				EmpCodeDTO.Rig = string.Concat("Rig- ", EmpCode.Rig.Number);
 
-		//		EmpCode EmpCodeNumber = EmpCodeRepo.getbyid(QHSEPositionName.EmpCodeId);
-		//		QHSEPositionNameDTO.EmpCode = EmpCodeNumber.Code;
-		//		QHSEPositionNameDTO.Position = QHSEPositionRepo.getbyid(QHSEPositionName.PositionId).Name;
 
-		//		newTemp.Add(QHSEPositionNameDTO);
-		//	}
-		//	if (newTemp != null)
-		//	{
+				newTemp.Add(EmpCodeDTO);
+			}
+			if (newTemp != null)
+			{
 
-		//		result.Message = "Success";
-		//		result.Statescode = 200;
-		//		result.Data = newTemp;
+				result.Message = "Success";
+				result.Statescode = 200;
+				result.Data = newTemp;
 
-		//		return result;
-		//	}
+				return result;
+			}
 
-		//	result.Statescode = 404;
-		//	result.Message = "data not found";
-		//	return result;
+			result.Statescode = 404;
+			result.Message = "data not found";
+			return result;
 
-		//}
+		}
 
 		[HttpGet("ByPage/{page:int}")]
 		public PageResult<EmpCodeDTO> GettAllEmpCodeByPage(int? page, int pagesize = 10)

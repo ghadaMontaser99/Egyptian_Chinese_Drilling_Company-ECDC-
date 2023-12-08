@@ -43,8 +43,8 @@ export class AddQHSEDailyService {
   GetQHSEDailyPrintByID(formId:number,userId:string,userRole:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/api/QHSEDailyReport/GetPrintDataById?formId=${formId}&UserId=${userId}&UserRole=${userRole}`);
   }
-  GetQHSEDailyRecordsOfToday(RigId:number):Observable<any>{
-    return this.http.get<any>(`http://localhost:5000/api/QHSEDailyReport/GetAllRecordsOFToday?RigId=${RigId}`);
+  GetQHSEDailyRecordsOfToday(RigId:number,date:string):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/api/QHSEDailyReport/GetAllRecordsOFToday?RigId=${RigId}&dateAsString=${date}`);
   }
   GetForAnalysisByMonth(userId:string,Year: number,month1:number,month2:number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/QHSEDailyReport/GetForAnalysisByMonth?UserID=${userId}&Year=${Year}&Month1=${month1}&Month2=${month2}`)

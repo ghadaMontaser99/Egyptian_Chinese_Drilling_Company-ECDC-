@@ -235,6 +235,9 @@ export class DataService {
   GetEmpCode(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode`);
   }
+  GetEmpCodeDataForExcel(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode/GetAllForExcel`);
+  }
 
   GetEmpCodeByID(EmpCodeID: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/EmpCode/${EmpCodeID}`);
@@ -278,6 +281,9 @@ export class DataService {
   }
   GetDaysSinceNoLTI(): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI`);
+  }
+  GetDaysSinceNoLTITOCheck(): Observable<IAPIResult> {
+    return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI/GetToCheck`);
   }
   GetDaysSinceNoLTIByID(ID: number): Observable<IAPIResult> {
     return this.http.get<IAPIResult>(`http://localhost:5000/api/DaysSinceNoLTI/${ID}`);

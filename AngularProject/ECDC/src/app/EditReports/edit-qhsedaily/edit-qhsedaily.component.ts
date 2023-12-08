@@ -65,6 +65,7 @@ export class EditQHSEDailyComponent {
   selectedCrew: number[] = [];  
   selectedLeaderCrew: number[] = [];
   SelectedRig:any;
+  StopCardRecordss:any;
   constructor(private loginService: LoginService,private activatedRoute: ActivatedRoute, private dataService: DataService, private AddQHSEDailyAccident: AddQHSEDailyService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -88,6 +89,7 @@ export class EditQHSEDailyComponent {
           this.NONRecAccident=this.QHSEDaily.nonRecordableAccident
           this.ManNumber=this.QHSEDaily.manPowerNumber
           this.TotalManHousr=this.QHSEDaily.totalManPowerHours
+          this.StopCardRecordss=this.QHSEDaily.stopCardsRecords
           //this.SaftyNumber=this.QHSEDaily.safetyAlertCrewNumber
           //this.QuizNumber=this.QHSEDaily.quizCrewNumber
           this.DaysWithNoLTI = this.QHSEDaily.daysSinceLastLTI-1
@@ -160,10 +162,10 @@ export class EditQHSEDailyComponent {
       error: err => this.ErrorMessage = err
     }),
     //we need to fix this or comment it
-    this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(5).subscribe({
-      next: data => this.Record = data.data,
-      error: err => this.ErrorMessage = err
-    }),
+    // this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(5,'1999-1-5').subscribe({
+    //   next: data => this.Record = data.data,
+    //   error: err => this.ErrorMessage = err
+    // }),
     this.dataService.GetClient().subscribe({
       next: data => this.ClientList = data.data,
       error: err => this.ErrorMessage = err
@@ -209,9 +211,9 @@ export class EditQHSEDailyComponent {
       ),
       leaderShipVisitsDTO: this.fb.control(
         [],
-        [
-          Validators.required
-        ]
+        // [
+        //   Validators.required
+        // ]
       ),
       stopCardsRecords: this.fb.control(
         '',
@@ -293,15 +295,15 @@ export class EditQHSEDailyComponent {
       ),
       crewSaftyAlertDTO: this.fb.control(
         [],
-        [
-          Validators.required
-        ]
+        // [
+        //   Validators.required
+        // ]
       ),
       crewQuizDTO: this.fb.control(
         [],
-        [
-          Validators.required
-        ]
+        // [
+        //   Validators.required
+        // ]
       ),
       recordableAccident: this.fb.control(
         '',
@@ -445,25 +447,49 @@ export class EditQHSEDailyComponent {
   }
  
 
-  
+  SelectedDate(event: any)
+{
+  if(this.rigId?.value!=null)
+    {
+      this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(this.rigId?.value,event.target.value).subscribe({
+        next: data => {//this.Record = data.data
+          //this.QHSEDaily = data.data
+          //this.DaysLTIId=data.data.daysSinceNoLTIId;
+          this.StopCardRecordss=data.data.stopCardsRecords
+          this.DrillRecords=data.data.drillsRecords;
+          this.PTSMRecords=data.data.ptsmRecords
+          this.RecAccident=data.data.recordableAccident
+          this.NONRecAccident=data.data.nonRecordableAccident
+          this.ManNumber=data.data.manPowerNumber
+          this.TotalManHousr=data.data.totalManPowerHours
+        },
+        error: err => this.ErrorMessage = err
+      });
+    }
+}
   selectedRigNumber(event: any) {
     console.log("event.target.value")
     console.log(event.target.value)
     this.SelectedRig=event.target.value;
+    if(this.date?.value!=null)
+    {
+      this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(event.target.value,this.date?.value).subscribe({
+        next: data => {//this.Record = data.data
+          //this.QHSEDaily = data.data
+         // this.DaysLTIId=data.data.daysSinceNoLTIId;
+         this.StopCardRecordss=data.data.stopCardsRecords
+          this.DrillRecords=data.data.drillsRecords;
+          this.PTSMRecords=data.data.ptsmRecords
+          this.RecAccident=data.data.recordableAccident
+          this.NONRecAccident=data.data.nonRecordableAccident
+          this.ManNumber=data.data.manPowerNumber
+          this.TotalManHousr=data.data.totalManPowerHours
+        },
+        error: err => this.ErrorMessage = err
+      });
+    }
 
-    this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(event.target.value).subscribe({
-      next: data => {//this.Record = data.data
-        //this.QHSEDaily = data.data
-        this.DaysLTIId=data.data.daysSinceNoLTIId;
-        this.DrillRecords=data.data.drillsRecords;
-        this.PTSMRecords=data.data.ptsmRecords
-        this.RecAccident=data.data.recordableAccident
-        this.NONRecAccident=data.data.nonRecordableAccident
-        this.ManNumber=data.data.manPowerNumber
-        this.TotalManHousr=data.data.totalManPowerHours
-      },
-      error: err => this.ErrorMessage = err
-    }),
+   
       this.dataService.GetDaysSinceNoLTIByRigNumber(event.target.value).subscribe({
         next: data => {
           if(data.data!=null)

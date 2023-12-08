@@ -60,7 +60,9 @@ namespace TempProject
 
 
 			builder.Services.AddScoped<IRepository<EmpCode>, Repository<EmpCode>>();
-            builder.Services.AddScoped<IRepository<SubjectList>, Repository<SubjectList>>();
+			builder.Services.AddScoped<IEmpCodeRepository, EmpCodeRepository>();
+
+			builder.Services.AddScoped<IRepository<SubjectList>, Repository<SubjectList>>();
 			builder.Services.AddScoped<IRepository<Responsibility>, Repository<Responsibility>>();
 			builder.Services.AddScoped<IRepository<PotentialHazard>, Repository<PotentialHazard>>();
 			builder.Services.AddScoped<IRepository<HazardImages>, Repository<HazardImages>>();
@@ -195,9 +197,11 @@ new string[] { }
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+				app.UseDeveloperExceptionPage();
 
-            app.UseStaticFiles();    
+			}
+
+			app.UseStaticFiles();    
             //app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -205,6 +209,7 @@ new string[] { }
             app.UseCors("my");
 
 
+			app.UseDeveloperExceptionPage();
 
 			app.MapHub<NotificationHub>("/NotificationHub");
 			app.MapHub<ArrivalNotificationHub>("/ArrivalNotificationHub");

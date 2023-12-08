@@ -1153,7 +1153,7 @@ namespace TempProject.Controllers
 				foreach (var item in AllRigs)
 				{
 					int Count = QHSEDailyReportRepoistory.getall()
-					.Where(r => r.Date.Year == Year && (r.Date.Month == Month2)).Sum(s => s.StopCardsRecords);
+					.Where(r => r.Date.Year == Year && (r.Date.Month == Month2) && r.Rig.Id == item.Id).Sum(s => s.StopCardsRecords);
 					StopCardsRecordsListMonth2.Add(Count);
 				}
 				foreach (var item in AllRigs)
@@ -1441,16 +1441,83 @@ namespace TempProject.Controllers
 			return result;
 		}
 
+		//[HttpGet("GetAllRecordsOFToday")]
+		//public  async ActionResult<ResultDTO>  GetAllRecordsOFToday(int RigId)
+		//{
+		//	ResultDTO result = new ResultDTO();
+		//	DateTime currentDate = DateTime.Now;
+		//	string date = currentDate.ToString("yyyy-MM-dd");
+		//	DateTime dateObject = DateTime.Parse(date);
+		//	//QHSEDailyReport temp = QHSEDailyReportRepoistory.getall().FirstOrDefault(a => a.Date == dateObject);
+
+		//	QHSEDailyReportResponseDTO QHSEDailyReportDTO = new QHSEDailyReportResponseDTO();
+		//	if (RigId == -1)
+		//	{
+		//		result.Message = "Success";
+		//		result.Statescode = 200;
+		//		result.Data = QHSEDailyReportDTO;
+
+		//		return result;
+
+		//	}
+		//	else
+		//	{
+		//		Rig selectedRig = RigRepo.getbyid(RigId);
+		//		string selectRigName= string.Concat("Rig-", selectedRig.Number);
+		//		IdentityUser user =await userManager.FindByNameAsync("a.zayed");
+		//		var userId=(user.Id).ToString();
+
+		//		QHSEDailyReportDTO.StopCardsRecords = StopCardRegisterRepo.getall().Where(s => s.Date == dateObject&&s.userID== userId).ToList().Count();
+		//		QHSEDailyReportDTO.PTSMRecords = PTSMRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).ToList().Count();
+		//		QHSEDailyReportDTO.DrillsRecords = DrillRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).ToList().Count();
+		//		QHSEDailyReportDTO.ManPowerNumber = BOPRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).Sum(s => s.ManPower);
+		//		QHSEDailyReportDTO.TotalManPowerHours = QHSEDailyReportDTO.ManPowerNumber * 12;
+		//		QHSEDailyReportDTO.RecordableAccident = AccidentRepoistory.getall().Count(s => ( s.DateOfEvent == dateObject && s.Rig.Id == RigId) &&
+		//		(s.ClassificationOfAccident.Name == "Lost Time Incident (LTI)" ||
+		//		 s.ClassificationOfAccident.Name == "Fatalities (FAT)" ||
+		//		 s.ClassificationOfAccident.Name == "Restricted Work Days Case (RWDC)" ||
+		//		 s.ClassificationOfAccident.Name == "Medical Treatment Case (MTC)"));
+
+		//		//QHSEDailyReportDTO.RecordableAccident = AccidentRepoistory.getall().Where(s => (s.RigId == RigId && s.DateOfEvent == dateObject) && (s.ClassificationOfAccident.Name == "Lost Time Incident (LTI)" || s.ClassificationOfAccident.Name == "Fatalities (FAT)" || s.ClassificationOfAccident.Name == "Restricted Work Days Case (RWDC)" || s.ClassificationOfAccident.Name == "Medical Treatment Case (MTC)")).ToList().Count();
+		//		QHSEDailyReportDTO.NonRecordableAccident = AccidentRepoistory.getall().Count(s => s.Rig.Id == RigId && s.DateOfEvent == dateObject && (s.ClassificationOfAccident.Name == "First Aid Case (FAC)" || s.ClassificationOfAccident.Name == "Fire Accident" || s.ClassificationOfAccident.Name == "Property Damage (PD))" || s.ClassificationOfAccident.Name == "Operational Accident"
+		//		|| s.ClassificationOfAccident.Name == "Security Accident" || s.ClassificationOfAccident.Name == "Occupational Accident"
+		//		|| s.ClassificationOfAccident.Name == "Road Traffic Accident (RTA)" || s.ClassificationOfAccident.Name == "Oil, Fuel, Chemicals Spill"
+		//		|| s.ClassificationOfAccident.Name == "Near-Miss Event (NM)" || s.ClassificationOfAccident.Name == "HIPO Near miss"));
+
+		//		if (QHSEDailyReportDTO != null)
+		//		{
+
+		//			result.Message = "Success";
+		//			result.Statescode = 200;
+		//			result.Data = QHSEDailyReportDTO;
+
+		//			return result;
+		//		}
+		//		else
+		//		{
+		//			result.Message = "Empty data";
+		//			result.Statescode = 200;
+		//			result.Data = QHSEDailyReportDTO;
+
+		//			return result;
+		//		}
+
+		//	}
+
+
+		//}
+
 		[HttpGet("GetAllRecordsOFToday")]
-		public ActionResult<ResultDTO> GetAllRecordsOFToday(int RigId)
+		public async Task<ActionResult<ResultDTO>> GetAllRecordsOFToday(int RigId,string dateAsString)
 		{
 			ResultDTO result = new ResultDTO();
-			DateTime currentDate = DateTime.Now;
-			string date = currentDate.ToString("yyyy-MM-dd");
-			DateTime dateObject = DateTime.Parse(date);
-			//QHSEDailyReport temp = QHSEDailyReportRepoistory.getall().FirstOrDefault(a => a.Date == dateObject);
-		
+			//DateTime currentDate = DateTime.UtcNow;
+			//string date = currentDate.ToString("yyyy-MM-dd");
+			//DateTime dateObject = DateTime.Parse(date);
+			DateTime date = DateTime.Parse(dateAsString);
+
 			QHSEDailyReportResponseDTO QHSEDailyReportDTO = new QHSEDailyReportResponseDTO();
+
 			if (RigId == -1)
 			{
 				result.Message = "Success";
@@ -1458,30 +1525,36 @@ namespace TempProject.Controllers
 				result.Data = QHSEDailyReportDTO;
 
 				return result;
-
 			}
 			else
 			{
-				QHSEDailyReportDTO.StopCardsRecords = StopCardRegisterRepo.getall().Where(s => s.Date == dateObject).ToList().Count();
-				QHSEDailyReportDTO.PTSMRecords = PTSMRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).ToList().Count();
-				QHSEDailyReportDTO.DrillsRecords = DrillRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).ToList().Count();
-				QHSEDailyReportDTO.ManPowerNumber = BOPRepo.getall().Where(s => s.Date == dateObject && s.RigId == RigId).Sum(s => s.ManPower);
+				Rig selectedRig = RigRepo.getbyid(RigId);
+				string selectRigName = $"Rig{selectedRig.Number}";
+				IdentityUser user = await userManager.FindByNameAsync(selectRigName);
+				var userId = (user.Id).ToString();
+
+				QHSEDailyReportDTO.StopCardsRecords = StopCardRegisterRepo.getall().ToList()
+					.Count(s =>  s.userID == userId&&s.Date.Date== date);
+
+
+				QHSEDailyReportDTO.PTSMRecords = PTSMRepo.getall().Where(s => s.Date.Date == date && s.RigId == RigId).ToList().Count();
+				QHSEDailyReportDTO.DrillsRecords = DrillRepo.getall().Where(s => s.Date.Date == date && s.RigId == RigId).ToList().Count();
+				QHSEDailyReportDTO.ManPowerNumber = BOPRepo.getall().Where(s => s.Date.Date == date && s.RigId == RigId).Sum(s => s.ManPower);
 				QHSEDailyReportDTO.TotalManPowerHours = QHSEDailyReportDTO.ManPowerNumber * 12;
-				QHSEDailyReportDTO.RecordableAccident = AccidentRepoistory.getall().Count(s => ( s.DateOfEvent == dateObject && s.Rig.Id == RigId) &&
+				QHSEDailyReportDTO.RecordableAccident = AccidentRepoistory.getall().Count(s => (s.DateOfEvent == date && s.Rig.Id == RigId) &&
 				(s.ClassificationOfAccident.Name == "Lost Time Incident (LTI)" ||
 				 s.ClassificationOfAccident.Name == "Fatalities (FAT)" ||
 				 s.ClassificationOfAccident.Name == "Restricted Work Days Case (RWDC)" ||
 				 s.ClassificationOfAccident.Name == "Medical Treatment Case (MTC)"));
 
 				//QHSEDailyReportDTO.RecordableAccident = AccidentRepoistory.getall().Where(s => (s.RigId == RigId && s.DateOfEvent == dateObject) && (s.ClassificationOfAccident.Name == "Lost Time Incident (LTI)" || s.ClassificationOfAccident.Name == "Fatalities (FAT)" || s.ClassificationOfAccident.Name == "Restricted Work Days Case (RWDC)" || s.ClassificationOfAccident.Name == "Medical Treatment Case (MTC)")).ToList().Count();
-				QHSEDailyReportDTO.NonRecordableAccident = AccidentRepoistory.getall().Count(s => s.Rig.Id == RigId && s.DateOfEvent == dateObject && (s.ClassificationOfAccident.Name == "First Aid Case (FAC)" || s.ClassificationOfAccident.Name == "Fire Accident" || s.ClassificationOfAccident.Name == "Property Damage (PD))" || s.ClassificationOfAccident.Name == "Operational Accident"
+				QHSEDailyReportDTO.NonRecordableAccident = AccidentRepoistory.getall().Count(s => s.Rig.Id == RigId && s.DateOfEvent.Date == date && (s.ClassificationOfAccident.Name == "First Aid Case (FAC)" || s.ClassificationOfAccident.Name == "Fire Accident" || s.ClassificationOfAccident.Name == "Property Damage (PD))" || s.ClassificationOfAccident.Name == "Operational Accident"
 				|| s.ClassificationOfAccident.Name == "Security Accident" || s.ClassificationOfAccident.Name == "Occupational Accident"
 				|| s.ClassificationOfAccident.Name == "Road Traffic Accident (RTA)" || s.ClassificationOfAccident.Name == "Oil, Fuel, Chemicals Spill"
 				|| s.ClassificationOfAccident.Name == "Near-Miss Event (NM)" || s.ClassificationOfAccident.Name == "HIPO Near miss"));
 
 				if (QHSEDailyReportDTO != null)
 				{
-
 					result.Message = "Success";
 					result.Statescode = 200;
 					result.Data = QHSEDailyReportDTO;
@@ -1496,11 +1569,9 @@ namespace TempProject.Controllers
 
 					return result;
 				}
-
 			}
-
-
 		}
+
 
 
 

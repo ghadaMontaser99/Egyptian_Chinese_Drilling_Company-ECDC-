@@ -27,7 +27,7 @@ export class AddQHSEDailyComponent {
   ErrorMessage = '';
   json_data: any[] = [];
   time = new Date();
-  rigList: IRig[] = []
+  rigList: IRig[] = [];
   ClientList: IClient[] = []
   LeaderShipVisitsList:LeaderShip[]=[];// ILeadershipVisits[] = []
   DaysSinceLastNoLTIList:IDaysSinceNoLTI[] = []
@@ -35,7 +35,7 @@ export class AddQHSEDailyComponent {
   UserJsonString: any;
   DaysWithNoLTI:number=0;
   DaysWithNoFatelty:number=0;
-  Record:any;
+  Record:any={};
   DaysSinceLastLTI:number=0;
   DaysSinceLastFatelty:number=0;
   DaysLTIId:number=0;
@@ -53,36 +53,44 @@ export class AddQHSEDailyComponent {
   constructor(private datePipe: DatePipe,private loginService: LoginService, private dataService: DataService, private AddQHSEDailyAccident: AddQHSEDailyService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.dataService.GetRig().subscribe({
+      next: data => {
+        this.rigList = data.data;
+        console.log('rrrrrrrrrrrriiiiiiiiiiiiiiiiiiggggggggggg')
+        console.log(this.rigList)
+      },
+      error: err => this.ErrorMessage = err
+    });
     this.User=JSON.stringify(this.loginService.currentUser.getValue())//this.loginService.currentUser.getValue();
-console.log("uuuuuuussssssseeeeerrrrbbbbbvvvcc")
-this.testUser=this.loginService.currentUser.getValue();
+    console.log("uuuuuuussssssseeeeerrrrbbbbbvvvcc")
+    
+    this.testUser=this.loginService.currentUser.getValue();
+
+  
     this.AddQHSEDailyAccident.GetQHSEDailyForExel(this.testUser.ID,this.testUser.Role).subscribe({
       next: data => this.json_data = data.data,
       error: err => this.ErrorMessage = err
-    }),
-    this.dataService.GetRig().subscribe({
-      next: data => this.rigList = data.data,
-      error: err => this.ErrorMessage = err
-    }),
+    });
+   
     this.UserJsonString = JSON.stringify(this.loginService.currentUser.getValue())
     this.UserJsonObj = JSON.parse(this.UserJsonString);
-    this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(-1).subscribe({
+    this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(-1,'1999-1-5').subscribe({
       next: data => this.Record = data.data,
       error: err => this.ErrorMessage = err
     }),
     this.dataService.GetClient().subscribe({
       next: data => this.ClientList = data.data,
       error: err => this.ErrorMessage = err
-    }),
+    });
     this.dataService.GetLeadershipVisit().subscribe({
       next: data => this.LeaderShipVisitsList = data.data,
       
       error: err => this.ErrorMessage = err
-    }),
+    });
     this.dataService.GetCrew().subscribe({
       next: data => this.CrewList = data.data,
       error: err => this.ErrorMessage = err
-    }),
+    });
  
 
 
@@ -114,9 +122,9 @@ this.testUser=this.loginService.currentUser.getValue();
           ),
           leaderShipVisitsDTO: this.fb.control(
             [],
-            [
-              Validators.required
-            ]
+            // [
+            //   Validators.required
+            // ]
           ),
           stopCardsRecords: this.fb.control(
             '',
@@ -137,7 +145,7 @@ this.testUser=this.loginService.currentUser.getValue();
             ]
           ),
           manPowerNumber: this.fb.control(
-            '',
+            null,
             [
               Validators.required
             ]
@@ -198,15 +206,15 @@ this.testUser=this.loginService.currentUser.getValue();
           ),
           crewSaftyAlertDTO: this.fb.control(
             [],
-            [
-              Validators.required
-            ]
+            // [
+            //   Validators.required
+            // ]
           ),
           crewQuizDTO: this.fb.control(
             [],
-            [
-              Validators.required
-            ]
+            // [
+            //   Validators.required
+            // ]
           ),
           recordableAccident: this.fb.control(
             '',
@@ -264,7 +272,7 @@ this.testUser=this.loginService.currentUser.getValue();
             ]
           )
         }
-      ),
+      );
       this.crewQuizDTO?.valueChanges.subscribe((selectedValues) => {
         this.NumberOfQuiz=selectedValues.length;
         const selectedCount = selectedValues.length;
@@ -286,6 +294,8 @@ this.testUser=this.loginService.currentUser.getValue();
       });
       
   }
+
+  
   updateSumResult() {
     this.totalPTW?.setValue(this.ptwHot?.value+this.ptwCold?.value);
   }
@@ -325,18 +335,34 @@ this.testUser=this.loginService.currentUser.getValue();
   //   })
   // }
 
-
-  selectedRigNumber(event: any) {
-    console.log("event.target.value")
-    console.log(event.target.value)
-    this.SelectedRig=event.target.value;
-
-      this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(event.target.value).subscribe({
+SelectedDate(event: any)
+{
+  if(this.rigId?.value!=null)
+    {
+      this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(this.rigId?.value,event.target.value).subscribe({
         next: data => {
           this.Record = data.data
         },
         error: err => this.ErrorMessage = err
       })
+    }
+}
+readOnlyDate:boolean=true;
+  selectedRigNumber(event: any) {
+    console.log("event.target.value")
+    console.log(event.target.value)
+    this.SelectedRig=event.target.value;
+   
+    if(this.date?.value!=null)
+    {
+      this.AddQHSEDailyAccident.GetQHSEDailyRecordsOfToday(event.target.value,this.date?.value).subscribe({
+        next: data => {
+          this.Record = data.data
+        },
+        error: err => this.ErrorMessage = err
+      })
+    }
+     
       this.dataService.GetDaysSinceNoLTIByRigNumber(event.target.value).subscribe({
         next: data => {
           if(data.data!=null)

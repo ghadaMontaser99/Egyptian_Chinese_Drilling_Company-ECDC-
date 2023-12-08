@@ -18,29 +18,62 @@ namespace TempProject.Controllers
 
 
 
-        [HttpPost("upload")]
-        public async Task<IActionResult> Upload(IFormFile file, string FolderName)
-        {
-            if (file != null && file.Length > 0)
-            {
-                string FolderPathe = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads", FolderName);
+		//[HttpPost("upload")]
+		//public async Task<IActionResult> Upload(IFormFile file, string FolderName)
+		//{
+		//    if (file != null && file.Length > 0)
+		//    {
+		//        string FolderPathe = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads", FolderName);
 
-                var filePath = Path.Combine(FolderPathe, file.FileName);
+		//        var filePath = Path.Combine(FolderPathe, file.FileName);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
+		//        using (var stream = new FileStream(filePath, FileMode.Create))
+		//        {
+		//            await file.CopyToAsync(stream);
+		//        }
 
-                return Ok("File uploaded successfully.");
-            }
+		//        return Ok("File uploaded successfully.");
+		//    }
 
-            return BadRequest("Invalid file.");
-        }
+		//    return BadRequest("Invalid file.");
+		//}
+		[HttpPost("upload")]
+		public async Task<IActionResult> Upload(IFormFile file, string FolderName)
+		{
+			try
+			{
+				string FolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads", FolderName);
+
+				// Handle null file separately
+				if (file == null)
+				{
+					return Ok("No file provided. No upload performed.");
+				}
+
+				// Create the folder if it doesn't exist
+				if (!Directory.Exists(FolderPath))
+				{
+					Directory.CreateDirectory(FolderPath);
+				}
+
+				var filePath = Path.Combine(FolderPath, file.FileName);
+
+				using (var stream = new FileStream(filePath, FileMode.Create))
+				{
+					await file.CopyToAsync(stream);
+				}
+
+				return Ok("File uploaded successfully.");
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions that may occur during the file upload
+				return StatusCode(500, $"Internal Server Error: {ex.Message}");
+			}
+		}
 
 
-
-        [HttpGet("GetAllUploadFiles")]
+		[HttpGet("GetAllUploadFiles")]
         public IActionResult GetAllUploadFiles(string FolderName)
         {
             string FolderPathe = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads", FolderName);

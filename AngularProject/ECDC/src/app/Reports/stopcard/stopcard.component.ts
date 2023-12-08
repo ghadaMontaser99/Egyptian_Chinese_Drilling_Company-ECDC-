@@ -161,7 +161,8 @@ export class StopcardComponent {
         console.log("this.ReportedBy_PositionID")
         console.log(this.Employee_PositionID)
         console.log("**********************************************")
-        this.dataService.GetReportedByPositionByID(this.Employee_PositionID).subscribe({
+        //GetReportedByPositionByID
+        this.dataService.GetPositionByID(this.Employee_PositionID).subscribe({
           next: data => {
             this.Employee_Position = data.data.name,
               console.log("this. Employee_Position")

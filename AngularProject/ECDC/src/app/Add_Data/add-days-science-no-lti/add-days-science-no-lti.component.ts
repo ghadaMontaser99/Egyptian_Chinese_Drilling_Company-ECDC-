@@ -19,7 +19,7 @@ export class AddDaysScienceNoLTIComponent {
 
   UserJsonString: any
   UserJsonObj: any
-
+  extractedNumber: number | null = null;
   
   User:any;
 
@@ -68,18 +68,19 @@ export class AddDaysScienceNoLTIComponent {
   f:boolean=false;
   Check(event:any)
   {
+    console.log("seleccccteeedddd itttemmm")
+    console.log(event.target.selectedIndex)
     this.f=false;
-    this.dataService.GetDaysSinceNoLTI().subscribe({
+    this.dataService.GetDaysSinceNoLTITOCheck().subscribe({
       next: data => {
+
         data.data.forEach((ele:any) => {
           if( ele.rigId==event.target.value)
             {
               this.f=true;             
             }
         });
-
         console.log(data)
-
       },
       error: error => {
         console.log("from Error")

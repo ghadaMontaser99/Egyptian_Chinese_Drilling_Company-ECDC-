@@ -32,14 +32,14 @@ namespace TempProject.Controllers
 
             ResultDTO result = new ResultDTO();
 
-            List<DaysSinceNoLTI> temp = DaysSinceNoLTIRepo.getall();
+            List<DaysSinceNoLTI> temp = DaysSinceNoLTIRepossitory.getall();
             List<DaysSinceNoLTIDTO> newTemp = new List<DaysSinceNoLTIDTO>();
             foreach (DaysSinceNoLTI DaysSinceNoLTI in temp)
             {
                 DaysSinceNoLTIDTO DaysSinceNoLTIDTO = new DaysSinceNoLTIDTO();
                 DaysSinceNoLTIDTO.Id = DaysSinceNoLTI.Id;
 				DaysSinceNoLTIDTO.Days = DaysSinceNoLTI.Days;
-				DaysSinceNoLTIDTO.RigId = DaysSinceNoLTI.RigId;
+				DaysSinceNoLTIDTO.RigId = DaysSinceNoLTI.Rig.Number;
 
 				DaysSinceNoLTIDTO.IsDeleted = DaysSinceNoLTI.IsDeleted;
 
@@ -61,7 +61,47 @@ namespace TempProject.Controllers
 
         }
 
-        [HttpGet("{ID:int}")]
+
+		[HttpGet("GetToCheck")]
+		public ActionResult<ResultDTO> GetAllToCheck()
+		{
+
+			ResultDTO result = new ResultDTO();
+
+			List<DaysSinceNoLTI> temp = DaysSinceNoLTIRepossitory.getall();
+			List<DaysSinceNoLTIDTO> newTemp = new List<DaysSinceNoLTIDTO>();
+			foreach (DaysSinceNoLTI DaysSinceNoLTI in temp)
+			{
+				DaysSinceNoLTIDTO DaysSinceNoLTIDTO = new DaysSinceNoLTIDTO();
+				DaysSinceNoLTIDTO.Id = DaysSinceNoLTI.Id;
+				DaysSinceNoLTIDTO.Days = DaysSinceNoLTI.Days;
+				DaysSinceNoLTIDTO.RigId = DaysSinceNoLTI.Rig.Id;
+
+				DaysSinceNoLTIDTO.IsDeleted = DaysSinceNoLTI.IsDeleted;
+
+				newTemp.Add(DaysSinceNoLTIDTO);
+			}
+			if (newTemp != null)
+			{
+
+				result.Message = "Success";
+				result.Statescode = 200;
+				result.Data = newTemp;
+
+				return result;
+			}
+
+			result.Statescode = 404;
+			result.Message = "data not found";
+			return result;
+
+		}
+
+
+
+
+
+		[HttpGet("{ID:int}")]
         public ActionResult<ResultDTO> GetByID(int ID)
         {
             ResultDTO result = new ResultDTO();

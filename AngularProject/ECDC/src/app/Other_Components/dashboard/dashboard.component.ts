@@ -61,7 +61,7 @@ export class DashboardComponent {
   PTSMcount: number = 0;
   BOPList: any;
   BOPcount: number = 0;
-  drillsList: any;
+  drillsList: any[]=[];
   drillsCount: number = 0;
   PotentialHazardList: any;
   PotentialHazardCount: number = 0;
@@ -148,7 +148,7 @@ export class DashboardComponent {
       next: data => {
         console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" + data.data)
         this.drillsList = data.data,
-          this.drillsCount = this.rigMovePerformanceList.length
+          this.drillsCount = this.drillsList.length
       }
     })
 
@@ -156,7 +156,7 @@ export class DashboardComponent {
       next: data => {
         console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" + data.data)
         this.PotentialHazardList = data.data,
-          this.PotentialHazardCount = this.rigMovePerformanceList.length
+          this.PotentialHazardCount = this.PotentialHazardList.length
       }
     })
   }

@@ -77,7 +77,7 @@ export class AppComponent {
 
     setTimeout(() => {
       this.renderer.setStyle(myElement, 'display', 'none');
-    }, 5000);
+    }, 5060);
   }
 
   //////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ export class AppComponent {
 
     setTimeout(() => {
       this.renderer.setStyle(myElement, 'display', 'none');
-    }, 5000);
+    }, 5060);
   }
 
   ///////////////////////////////////////////////////////////////////////

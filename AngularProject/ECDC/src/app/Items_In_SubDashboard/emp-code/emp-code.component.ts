@@ -42,7 +42,7 @@ export class EmpCodeComponent {
         this.IsRadio = data
       }
     })
-    this.dataService.GetDriverDataForExcel().subscribe({
+    this.dataService.GetEmpCodeDataForExcel().subscribe({
       next: data => this.json_data = data.data,
       error: err => console.log(err)
     })
