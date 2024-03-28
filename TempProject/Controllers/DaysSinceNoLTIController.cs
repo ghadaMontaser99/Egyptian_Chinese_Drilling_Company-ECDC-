@@ -75,7 +75,7 @@ namespace TempProject.Controllers
 				DaysSinceNoLTIDTO DaysSinceNoLTIDTO = new DaysSinceNoLTIDTO();
 				DaysSinceNoLTIDTO.Id = DaysSinceNoLTI.Id;
 				DaysSinceNoLTIDTO.Days = DaysSinceNoLTI.Days;
-				DaysSinceNoLTIDTO.RigId = DaysSinceNoLTI.Rig.Id;
+				DaysSinceNoLTIDTO.RigId = DaysSinceNoLTI.Rig.Id; 
 
 				DaysSinceNoLTIDTO.IsDeleted = DaysSinceNoLTI.IsDeleted;
 
